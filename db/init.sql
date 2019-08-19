@@ -1,3 +1,12 @@
+--Clear all DB info
+DROP TABLE requests;
+DROP TABLE confirmed_riders;
+DROP TABLE riders;
+DROP TABLE rides;
+DROP TABLE drivers;
+DROP TABLE boats;
+DROP TABLE tiers;
+
 CREATE TABLE "requests" (
 	"request_id" serial NOT NULL,
 	"request_date" varchar(255) NOT NULL,
@@ -44,12 +53,13 @@ CREATE TABLE "tiers" (
 
 CREATE TABLE "riders" (
 	"rider_id" serial NOT NULL,
-	"rider_username" varchar(60) NOT NULL UNIQUE,
-	"rider_email" varchar(60) NOT NULL UNIQUE,
-	"rider_first_name" varchar(60) NOT NULL,
-	"rider_last_name" varchar(60) NOT NULL,
+	"rider_username" varchar(255) NOT NULL UNIQUE,
+	"rider_password" varchar(200) NOT NULL,
+	"rider_email" varchar(60) UNIQUE,
+	"rider_first_name" varchar(60),
+	"rider_last_name" varchar(60),
 	"rider_image_url" varchar(1000),
-	"rider_rating" FLOAT(1) NOT NULL,
+	"rider_rating" FLOAT(1),
 	CONSTRAINT "riders_pk" PRIMARY KEY ("rider_id")
 ) WITH (
   OIDS=FALSE
@@ -60,13 +70,14 @@ CREATE TABLE "riders" (
 CREATE TABLE "drivers" (
 	"driver_id" serial NOT NULL,
 	"driver_username" varchar(60) NOT NULL UNIQUE,
-	"driver_email" varchar(60) NOT NULL UNIQUE,
-	"driver_first_name" varchar(60) NOT NULL,
-	"driver_last_name" varchar(60) NOT NULL,
+	"driver_password" varchar(255) NOT NULL,
+	"driver_email" varchar(60) UNIQUE,
+	"driver_first_name" varchar(60),
+	"driver_last_name" varchar(60),
 	"driver_image_url" varchar(1000),
-	"driver_rating" FLOAT(1) NOT NULL,
-	"driver_license" varchar(255) NOT NULL,
-	"boat_id" integer NOT NULL,
+	"driver_rating" FLOAT(1),
+	"driver_license" varchar(255),
+	"boat_id" integer,
 	CONSTRAINT "drivers_pk" PRIMARY KEY ("driver_id")
 ) WITH (
   OIDS=FALSE
