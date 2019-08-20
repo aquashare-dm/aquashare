@@ -1,16 +1,21 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
+import { logout } from "../redux/userReducer.js";
 
 
 class Dashboard extends Component{
 
+    logout = async () => {
+        await this.props.logout();
+    }
+
     render(){
         
-        // let {username, password} = this.state;
-        // let {user} = this.props;
-        // //Check if user is logged in
-        // if(user.loggedIn) return <Redirect to="/dashboard" />
+        let { user } = this.props;
+        if(!user.loggedIn){
+            return <Redirect to="/" />
+        }
 
         return(
 
@@ -18,7 +23,7 @@ class Dashboard extends Component{
 
                 <section>
                     <h1>Welcome to the Dashboard</h1>
-
+                    <button onClick={this.logout}>Log out</button>
                     
                 </section>
             </div>
@@ -26,4 +31,8 @@ class Dashboard extends Component{
     };
 }
 
-export default Dashboard;
+function mapStateToProps(state){
+    return state.user
+  }
+
+  export default connect(mapStateToProps, { logout })(Dashboard);

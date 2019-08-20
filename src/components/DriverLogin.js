@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { driverLogin } from "../redux/driverReducer.js";
+import { driverLogin } from "../redux/userReducer.js";
 import { Redirect, Link } from "react-router-dom";
 
 class DriverLogin extends Component{
@@ -29,7 +29,7 @@ class DriverLogin extends Component{
         console.log(this.props);
         //Check if user is logged in
         if(user){
-            if(user.loggedIn) return <Redirect to="/startpage" />
+            if(user.loggedIn) return <Redirect to="/dashboard" />
         }
 
 
@@ -49,7 +49,7 @@ class DriverLogin extends Component{
 }
 
 function mapStateToProps(state){
-    return {user: state.user};
+    return state.user;
 }
 
 export default connect(mapStateToProps, {driverLogin})(DriverLogin);

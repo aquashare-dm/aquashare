@@ -3,18 +3,20 @@ const saltRounds = 10;
 
 module.exports = {
     login: async function(req, res){
+        console.log("hit login, req body is ", req.body);
         let {riderUsername, riderPassword} = req.body;
         const db = req.app.get("db");
         //Check if user exists
         let [existingUser] = await db.get_rider_by_username(riderUsername);
         //If user does not exist
         if(!existingUser) return res.status(401).send("Username not found");
-        let resultPassword = await bcrypt.compare(riderPassword, existingUser.riderPassword);
+        let resultPassword = await bcrypt.compare(riderPassword, existingUser.rider_password);
         delete existingUser.riderPassword;
-        //console.log(existingUser);
+        console.log("existinguser is ",existingUser);
         //Check if Password is correct
         if(resultPassword){
             req.session.user = {
+                isDriver: false,
                 riderUsername: existingUser.rider_username,
                 riderFirstName: existingUser.rider_first_name,
                 riderLastName: existingUser.rider_last_name,
