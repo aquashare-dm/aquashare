@@ -26,3 +26,4 @@ massive(CONNECTION_STRING).then(db => {
 //Rider Endpoints
 app.post("/api/rider-login", riderController.login);
 app.post("/api/rider-signup", riderController.signup);
+app.delete("/api/logout", riderController.logout);

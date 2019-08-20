@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { riderSignup } from "../redux/riderReducer.js";
+import { riderSignup } from "../redux/userReducer.js";
 import { Redirect, Link } from "react-router-dom";
 
 class RiderSignup extends Component{
@@ -72,7 +72,6 @@ class RiderSignup extends Component{
         let { username, password } = this.state;
         let {user} = this.props;
         //Check if user is signed in
-        console.log(this.props);
         if(user.loggedIn) return <Redirect to="/dashboard" />
 
         
@@ -90,7 +89,7 @@ class RiderSignup extends Component{
 }
 
 function mapStateToProps(state){
-    return {user: state.user};
+    return state.user;
 }
 
 export default connect(mapStateToProps, {riderSignup})(RiderSignup);

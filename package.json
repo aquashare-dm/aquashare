@@ -39,5 +39,8 @@
     ]
   },
   "proxy": "http://localhost:3050",
-  "main": "./server/index.js"
+  "main": "./server/index.js",
+  "devDependencies": {
+    "redux-devtools-extension": "^2.13.8"
+  }
 }

@@ -6,7 +6,7 @@ import DriverLogin from "./components/DriverLogin.js";
 import RiderSignup from "./components/RiderSignup.js";
 import DriverSignup from "./components/DriverSignup.js";
 import StartPage from "./components/StartPage.js";
-import { riderSignup, riderLogin } from "./redux/riderReducer.js";
+import { riderSignup, riderLogin } from "./redux/userReducer.js";
 import Signup from "./components/Signup.js";
 import Dashboard from "./components/Dashboard.js";
 

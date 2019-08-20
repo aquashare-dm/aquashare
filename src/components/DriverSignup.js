@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { driverSignup } from "../redux/driverReducer.js";
+import { driverSignup } from "../redux/userReducer.js";
 import { Redirect, Link } from "react-router-dom";
 
 class DriverSignup extends Component{
@@ -22,7 +22,6 @@ class DriverSignup extends Component{
 
     signupUser = async () => {
         //Create company password for future sub-used identification------------------------
-        await this.genCompanyKey(25);
         let numOfEmptyBoxes = 0;
         let inputBoxesEmpty = [];
         
@@ -33,7 +32,7 @@ class DriverSignup extends Component{
         if(password === ""){numOfEmptyBoxes += 1; inputBoxesEmpty.push("Password");} 
 
         if(numOfEmptyBoxes <= 0){
-            this.props.signup(username, password);
+            this.props.driverSignup(username, password);
         }else{
             //this.signUpToastError(numOfEmptyBoxes, inputBoxesEmpty)
             alert("Missing inputs" ,numOfEmptyBoxes, inputBoxesEmpty);
@@ -70,7 +69,7 @@ class DriverSignup extends Component{
 
     render(){
 
-        let { username, passwordme } = this.state;
+        let { username, password } = this.state;
         let {user} = this.props;
         //Check if user is signed in
         if(user.loggedIn) return <Redirect to="/dashboard" />
@@ -78,6 +77,9 @@ class DriverSignup extends Component{
 
         <div>
             <h1>Driver Signup</h1>
+            <input placeholder="Username" type="text" value={username} name="username" onChange={this.handleChange} />
+            <input placeholder="Password" type="password" value={password} name="password" onChange={this.handleChange} />
+            <button className="signup-entry-btn" onClick={this.signupUser}>Signup</button>
         </div>
         )
     };
@@ -85,7 +87,7 @@ class DriverSignup extends Component{
 }
 
 function mapStateToProps(state){
-    return {user: state.user};
+    return state.user;
 }
 
 export default connect(mapStateToProps, {driverSignup})(DriverSignup);
