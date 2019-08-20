@@ -15,7 +15,7 @@ module.exports = {
         //Check if Password is correct
         if(resultPassword){
             req.session.user = {
-                isDriver: false,
+                isDriver: true,
                 driverUsername: existingUser.driver_username,
                 driverFirstName: existingUser.driver_first_name,
                 driverLastName: existingUser.driver_last_name,
@@ -47,7 +47,7 @@ module.exports = {
         req.session.user = {
             driverUsername: user.driverUsername, 
             id: user.driver_id,
-
+            isDriver: true,
             loggedIn: true
         }
 

@@ -44,8 +44,10 @@ class RiderRegistrationForm extends Component {
     render() {
 
         let { user } = this.props;
-        if (!user.loggedIn) {
-            return <Redirect to="/" />
+        if (!user.isDriver) {
+            return <Redirect to="/rider-dashboard" />
+        } else if (user.isDriver) {
+            return <Redirect to="/driver-dashboard" />
         }
 
         return (
