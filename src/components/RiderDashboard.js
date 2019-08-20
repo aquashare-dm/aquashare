@@ -30,7 +30,6 @@ class RiderDashboard extends Component{
             return(
                 <div>
                     <header style={{backgroundColor: "gray"}} >
-                        <h1>Welcome to the Rider Dashboard</h1>
                         <div>Profile Pic</div>
                         <div>First Name</div>
                         <div>Last Name</div>

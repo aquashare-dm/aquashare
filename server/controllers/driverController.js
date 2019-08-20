@@ -3,27 +3,27 @@ const saltRounds = 10;
 
 module.exports = {
     login: async function(req, res){
-        console.log("hit login, req body is ", req.body);
-        let {riderUsername, riderPassword} = req.body;
+        let {driverUsername, driverPassword} = req.body;
         const db = req.app.get("db");
         //Check if user exists
-        let [existingUser] = await db.get_rider_by_username(riderUsername);
+        let [existingUser] = await db.get_driver_by_username(driverUsername);
         //If user does not exist
         if(!existingUser) return res.status(401).send("Username not found");
-        let resultPassword = await bcrypt.compare(riderPassword, existingUser.rider_password);
-        delete existingUser.riderPassword;
+        let resultPassword = await bcrypt.compare(driverPassword, existingUser.driver_password);
+        delete existingUser.driverPassword;
         console.log("existinguser is ",existingUser);
         //Check if Password is correct
         if(resultPassword){
             req.session.user = {
                 isDriver: false,
-                riderUsername: existingUser.rider_username,
-                riderFirstName: existingUser.rider_first_name,
-                riderLastName: existingUser.rider_last_name,
-                riderId: existingUser.rider_id,
-                riderEmail: existingUser.rider_email,
-                riderImageUrl: existingUser.rider_image_url,
-                riderRating: existingUser.rider_rating,
+                driverUsername: existingUser.driver_username,
+                driverFirstName: existingUser.driver_first_name,
+                driverLastName: existingUser.driver_last_name,
+                driverId: existingUser.driver_id,
+                driverEmail: existingUser.driver_email,
+                driverImageUrl: existingUser.driver_image_url,
+                driverRating: existingUser.driver_rating,
+                driverLicense: existingUser.driver_license,
                 loggedIn: true
             }
             res.send(req.session.user);
@@ -33,20 +33,20 @@ module.exports = {
     },
     signup: async function(req, res){
 
-        let {riderUsername, riderPassword} = req.body;
+        let {driverUsername, driverPassword} = req.body;
         const db = req.app.get("db");
         //Check if username does not exist
-        let [existingUser] = await db.get_rider_by_username(riderUsername);
+        let [existingUser] = await db.get_driver_by_username(driverUsername);
         //If username does exist
         if(existingUser) return res.status(400).send("Username already taken");
 
         //Encrypt Password
         let salt = await bcrypt.genSalt(saltRounds);
-        let hashPassword = await bcrypt.hash(riderPassword, salt);
-        let [ user ] = await db.create_rider( [ riderUsername, hashPassword ]);
+        let hashPassword = await bcrypt.hash(driverPassword, salt);
+        let [ user ] = await db.create_driver( [ driverUsername, hashPassword ]);
         req.session.user = {
-            riderUsername: user.riderUsername, 
-            id: user.rider_id,
+            driverUsername: user.driverUsername, 
+            id: user.driver_id,
 
             loggedIn: true
         }
@@ -58,7 +58,7 @@ module.exports = {
         req.session.destroy();
         res.sendStatus(200);
     },
-    getRider: async function(req, res){
+    getDriver: async function(req, res){
         if(req.session.user){
             if(req.session.user.loggedIn){
                 res.status(200).send(req.session.user);

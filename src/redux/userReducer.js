@@ -36,22 +36,22 @@ export const getRider = () => {
 };
 
 //DRIVER ACTIONS
-export const driverLogin = (riderUsername, riderPassword) => {
-    let data = axios.post("/api/rider-login", {riderUsername, riderPassword}).then(res => res.data)
-    return {type: RIDER_LOGIN, payload: data};
+export const driverLogin = (driverUsername, driverPassword) => {
+    let data = axios.post("/api/driver-login", {driverUsername, driverPassword}).then(res => res.data)
+    return {type: DRIVER_LOGIN, payload: data};
 };
 
-export const driverSignup = (riderUsername, riderPassword) => {
-    let data = axios.post("/api/rider-signup", {riderUsername, riderPassword}).then(res=>res.data)
+export const driverSignup = (driverUsername, driverPassword) => {
+    let data = axios.post("/api/driver-signup", {driverUsername, driverPassword}).then(res=>res.data)
     return{
-        type: RIDER_SIGNUP,
+        type: DRIVER_SIGNUP,
         payload: data
     }
 };
 
 export const getDriver = () => {
-    let data = axios.get("/api/get-rider").then(res => res.data)
-    return {type: GET_RIDER, payload: data};
+    let data = axios.get("/api/get-driver").then(res => res.data)
+    return {type: GET_DRIVER, payload: data};
 };
 
 //Default Function
