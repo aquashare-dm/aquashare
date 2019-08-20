@@ -8,7 +8,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 const rootReducer = combineReducers({
     user: userReducer,
-    trips: ridesReducer,
+    rides: ridesReducer,
 })
 
 const persistConfig = {
