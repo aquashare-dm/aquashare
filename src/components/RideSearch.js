@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
+import { saveSearchCriteria } from '../redux/ridesReducer'
 
 
 class RideSearch extends Component{
@@ -15,6 +16,8 @@ class RideSearch extends Component{
     }
 
     searchRides = () => {
+        let { firstDate, secondDate, location, numberOfRiders } = this.state
+        this.props.saveSearchCriteria(firstDate, secondDate, location, numberOfRiders)
         this.props.history.push('/rider-dashboard/available-rides')
     }
 
@@ -24,6 +27,7 @@ class RideSearch extends Component{
     }
 
     render(){
+        console.log(this.state)
         let { firstDate, secondDate, location, numberOfRiders } = this.state
         let { user } = this.props;
         if(!user.loggedIn){
@@ -54,4 +58,4 @@ function mapStateToProps(state){
     return state.user
   }
 
-  export default connect(mapStateToProps, null)(withRouter(RideSearch));
+  export default connect(mapStateToProps, { saveSearchCriteria })(withRouter(RideSearch));
