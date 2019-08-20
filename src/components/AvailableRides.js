@@ -2,14 +2,15 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
 import { getRides } from '../redux/ridesReducer'
+import Ride from './Ride.js'
 
 
 class AvailableRides extends Component{
 
     componentDidMount() {
-        let { firstDate, secondDate, numberOfRiders } = this.props.trips.searchCriteria
-        let { trips } = this.props
-        if(!trips.length) {
+        let { firstDate, secondDate, numberOfRiders } = this.props.rides.searchCriteria
+        let { rides } = this.props.rides
+        if(!rides.length) {
             this.props.getRides(firstDate, secondDate, numberOfRiders)
         }
     }
@@ -24,12 +25,15 @@ class AvailableRides extends Component{
 
     render(){
         console.log(this.props)
+        let { rides } = this.props.rides
         return(
             <div>
                 <header>
                     <button onClick={this.goBack}>{`<Back`}</button>
                     <h1>Available Rides</h1>
-                    <div>Map through get request payload here and display rides according to data inputted in previous search screen</div>
+                    <div>{rides.map( ride => (
+                        <Ride key={ride.ride_id} {...ride} />
+                    ))}</div>
                     <div>Not finding a trip you like?</div>
                     <button onClick={this.requestRide}>Request A Ride</button> 
                 </header>

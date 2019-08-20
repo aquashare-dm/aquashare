@@ -8,7 +8,7 @@ const initialState = {
         location: '',
         numberOfRiders: ''
     },
-    trips: [],
+    rides: [],
     error: false
 };
 
@@ -40,7 +40,7 @@ export default function (state = initialState, action){
             console.log('Hit the SAVE_CRITERIA action')
             return {...state, searchCriteria: payload};
         case GET_RIDES + "_FULFILLED":
-            return {...state, trips: payload};
+            return {...state, rides: payload};
         case GET_RIDES + "_REJECTED":
             return {...state, error: payload};
         default:
