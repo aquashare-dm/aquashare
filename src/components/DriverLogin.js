@@ -29,7 +29,7 @@ class DriverLogin extends Component{
         console.log(this.props);
         //Check if user is logged in
         if(user){
-            if(user.loggedIn) return <Redirect to="/dashboard" />
+            if(user.loggedIn) return <Redirect to="/driver-dashboard" />
         }
 
 
@@ -38,7 +38,7 @@ class DriverLogin extends Component{
             <div>
 
                 <section>
-                    <h1>Rider Login Page</h1>
+                    <h1>Driver Login Page</h1>
                     <input placeholder="Username" type="text" value={username} name="username" onChange={this.handleChange} />
                     <input placeholder="Password" type="password" value={password} name="password" onChange={this.handleChange} />
                     <button className="login-entry-btn" onClick={this.loginDriver}>Login</button>

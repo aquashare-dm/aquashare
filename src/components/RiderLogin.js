@@ -29,7 +29,7 @@ class RiderLogin extends Component{
         console.log(this.props);
         //Check if user is logged in
         if(user){
-            if(user.loggedIn) return <Redirect to="/dashboard" />
+            if(user.loggedIn) return <Redirect to="/rider-dashboard" />
         }
 
 

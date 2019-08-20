@@ -6,14 +6,38 @@ import DriverLogin from "./components/DriverLogin.js";
 import RiderSignup from "./components/RiderSignup.js";
 import DriverSignup from "./components/DriverSignup.js";
 import StartPage from "./components/StartPage.js";
-import { riderSignup, riderLogin } from "./redux/userReducer.js";
 import Signup from "./components/Signup.js";
-import Dashboard from "./components/Dashboard.js";
+import RiderDashboard from "./components/RiderDashboard.js";
+import DriverDashboard from "./components/DriverDashboard.js";
+import AvailableRides from "./components/AvailableRides.js";
+import RideSearch from "./components/RideSearch.js";
+import RideRequestForm from "./components/RideRequestForm.js";
+import RiderTripRequests from "./components/RiderTripRequests.js";
+import RiderHistory from "./components/RiderHistory.js";
+import RiderProfile from "./components/RiderProfile.js";
+import RiderDashLandingPage from "./components/RiderDashLandingPage.js";
 
 export default (
     <Switch>
         <Route exact path="/" component={StartPage} />
-        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/rider-dashboard" render={ () => {
+            return(
+                <div>
+                    <RiderDashboard/>
+                    <Switch>
+                        <Route exact path="/rider-dashboard" component={RiderDashLandingPage} />
+                        <Route path="/rider-dashboard/find-a-ride" component={RideSearch} />
+                        <Route path="/rider-dashboard/available-rides" component={AvailableRides} />
+                        <Route path="/rider-dashboard/request-a-ride" component={RideRequestForm} />
+                        <Route path="/rider-dashboard/ride-requests" component={RiderTripRequests} />
+                        <Route path="/rider-dashboard/ride-history" component={RiderHistory} />
+                        <Route path="/rider-dashboard/rider-profile" component={RiderProfile} />
+                    </Switch>
+                </div>
+
+            )
+        }}/>
+        <Route path="/driver-dashboard" component={DriverDashboard} />
         <Route path="/startpage" component={StartPage} />
         <Route path="/login" render={() => {
             return(
