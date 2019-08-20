@@ -3,10 +3,12 @@ import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import promiseMiddleware from "redux-promise-middleware";
 import userReducer from "./userReducer";
+import ridesReducer from "./ridesReducer";
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 const rootReducer = combineReducers({
-    user: userReducer
+    user: userReducer,
+    trips: ridesReducer,
 })
 
 const persistConfig = {
