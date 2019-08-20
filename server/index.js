@@ -4,6 +4,7 @@ const massive = require("massive");
 const session = require("express-session");
 const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING } = process.env;
 const riderController = require("./controllers/riderController.js")
+const ridesController = require("./controllers/ridesController.js")
 
 const app = express();
 app.use(express.json());
@@ -28,3 +29,6 @@ app.post("/api/rider-login", riderController.login);
 app.post("/api/rider-signup", riderController.signup);
 app.delete("/api/logout", riderController.logout);
 app.put("/api/rider-register", riderController.riderRegister);
+
+// Rides Endpoints
+app.get("/api/get-rides", ridesController.getRides);

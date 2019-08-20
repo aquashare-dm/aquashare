@@ -8,3 +8,6 @@ export const DRIVER_LOGIN = "DRIVER_LOGIN";
 export const DRIVER_SIGNUP = "DRIVER_SIGNUP";
 export const DRIVER_LOGOUT = "DRIVER_LOGOUT";
 export const GET_DRIVER = "GET_DRIVER";
+
+export const SAVE_CRITERIA = "SAVE_CRITERIA"
+export const GET_RIDES = "GET_RIDES"
