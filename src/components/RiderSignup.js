@@ -72,7 +72,7 @@ class RiderSignup extends Component{
         let { username, password } = this.state;
         let {user} = this.props;
         //Check if user is signed in
-        if(user.loggedIn) return <Redirect to="/dashboard" />
+        if(user.loggedIn) return <Redirect to="/rider-dashboard" />
 
         
         return(

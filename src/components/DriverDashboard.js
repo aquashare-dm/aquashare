@@ -4,7 +4,7 @@ import { Redirect, Link } from "react-router-dom";
 import { logout } from "../redux/userReducer.js";
 
 
-class Dashboard extends Component{
+class DriverDashboard extends Component{
 
     logout = async () => {
         await this.props.logout();
@@ -22,7 +22,7 @@ class Dashboard extends Component{
             <div>
 
                 <section>
-                    <h1>Welcome to the Dashboard</h1>
+                    <h1>Welcome to the Driver Dashboard</h1>
                     <button onClick={this.logout}>Log out</button>
                     
                 </section>
@@ -35,4 +35,4 @@ function mapStateToProps(state){
     return state.user
   }
 
-  export default connect(mapStateToProps, { logout })(Dashboard);
+  export default connect(mapStateToProps, { logout })(DriverDashboard);
