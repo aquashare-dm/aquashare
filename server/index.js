@@ -29,11 +29,12 @@ massive(CONNECTION_STRING).then(db => {
 app.post("/api/rider-login", riderController.login);
 app.post("/api/rider-signup", riderController.signup);
 app.delete("/api/logout", riderController.logout);
+app.put("/api/rider-register", riderController.riderRegister);
 
 //Driver Endpoints
 app.post("/api/driver-login", driverController.login);
 app.post("/api/driver-signup", driverController.signup);
-app.put("/api/rider-register", riderController.riderRegister);
+app.put("/api/driver-register", driverController.driverRegister);
 
 // Rides Endpoints
 app.get("/api/get-rides", ridesController.getRides);

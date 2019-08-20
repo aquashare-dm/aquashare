@@ -1,7 +1,7 @@
 import axios from "axios";
 import {
     RIDER_SIGNUP, RIDER_LOGIN, GET_RIDER, RIDER_LOGOUT,
-    DRIVER_SIGNUP, DRIVER_LOGIN, GET_DRIVER, DRIVER_LOGOUT, RIDER_REGISTER
+    DRIVER_SIGNUP, DRIVER_LOGIN, GET_DRIVER, DRIVER_LOGOUT, RIDER_REGISTER, DRIVER_REGISTER
 } from "./actionTypes.js";
 
 const initialState = {
@@ -61,6 +61,11 @@ export const getDriver = () => {
     return {type: GET_DRIVER, payload: data};
 };
 
+export const driverRegister = (driverUsername, driverEmail, driverFirst, driverLast, driverImage, driverLicense, startRating) => {
+    let data = axios.put('/api/driver-register', { driverUsername, driverEmail, driverFirst, driverLast, driverImage, driverLicense, startRating })
+    return { type: DRIVER_REGISTER, payload: data }
+}
+
 //Default Function
 export default function (state = initialState, action) {
     let { type, payload } = action;
@@ -109,6 +114,11 @@ export default function (state = initialState, action) {
         case DRIVER_LOGOUT + "_FULFILLED":
             return { ...state, ...initialState };
         case DRIVER_LOGOUT + "_REJECTED":
+            return { ...state, error: payload }
+
+        case DRIVER_REGISTER + "_FULFILLED":
+            return { ...state, user: payload, error: false }
+        case DRIVER_REGISTER + "_REJECTED":
             return { ...state, error: payload }
 
         default:
