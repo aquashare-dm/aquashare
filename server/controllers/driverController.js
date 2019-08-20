@@ -66,5 +66,13 @@ module.exports = {
                 res.status(401).send("Unauthorised access, please log in to continue");
             }
         }
+    },
+    driverRegister: async (req, res) => {
+        let { driverUsername, driverEmail, driverFirst, driverLast, driverImage, driverLicense, startRating } = req.body;
+        const db = req.app.get("db");
+        console.log(req.body);
+        let user = await db.driver_register([driverUsername, driverEmail, driverFirst, driverLast, driverImage, driverLicense, startRating])
+        console.log("driver register user is ", user);
+        res.status(200).send(user);
     }
 }
