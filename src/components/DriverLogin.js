@@ -32,7 +32,6 @@ class DriverLogin extends Component{
             if(user.loggedIn) return <Redirect to="/driver-dashboard" />
         }
 
-
         return(
 
             <div>
