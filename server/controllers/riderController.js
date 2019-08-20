@@ -47,7 +47,7 @@ module.exports = {
         req.session.user = {
             riderUsername: user.rider_username,
             id: user.rider_id,
-
+            isDriver: false,
             loggedIn: true
         }
 
