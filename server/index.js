@@ -1,10 +1,11 @@
-require("dotenv").config({path: __dirname + "/../.env"});
+require("dotenv").config({ path: __dirname + "/../.env" });
 const express = require("express");
 const massive = require("massive");
 const session = require("express-session");
 const {SERVER_PORT, SESSION_SECRET, CONNECTION_STRING} = process.env;
 const riderController = require("./controllers/riderController.js");
 const driverController = require("./controllers/driverController.js");
+const ridesController = require("./controllers/ridesController.js");
 
 const app = express();
 app.use(express.json());
@@ -20,7 +21,7 @@ app.use(session({
 
 massive(CONNECTION_STRING).then(db => {
     app.set("db", db);
-    app.listen(SERVER_PORT, ()  => {console.log("Server Listening on Port", SERVER_PORT)});
+    app.listen(SERVER_PORT, () => { console.log("Server Listening on Port", SERVER_PORT) });
     console.log("DB connected");
 });
 
@@ -32,3 +33,7 @@ app.delete("/api/logout", riderController.logout);
 //Driver Endpoints
 app.post("/api/driver-login", driverController.login);
 app.post("/api/driver-signup", driverController.signup);
+app.put("/api/rider-register", riderController.riderRegister);
+
+// Rides Endpoints
+app.get("/api/get-rides", ridesController.getRides);
