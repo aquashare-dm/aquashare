@@ -1,14 +1,18 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Login from "./components/Login.js";
-import RiderLogin from "./components/RiderLogin.js";
+
+//Driver Components
 import DriverLogin from "./components/DriverLogin.js";
-import RiderSignup from "./components/RiderSignup.js";
 import DriverSignup from "./components/DriverSignup.js";
 import StartPage from "./components/StartPage.js";
 import Signup from "./components/Signup.js";
-import RiderDashboard from "./components/RiderDashboard.js";
 import DriverDashboard from "./components/DriverDashboard.js";
+
+//Rider Components
+import RiderLogin from "./components/RiderLogin.js";
+import RiderSignup from "./components/RiderSignup.js";
+import RiderDashboard from "./components/RiderDashboard.js";
 import AvailableRides from "./components/AvailableRides.js";
 import RideSearch from "./components/RideSearch.js";
 import RideRequestForm from "./components/RideRequestForm.js";
@@ -37,7 +41,23 @@ export default (
 
             )
         }}/>
-        <Route path="/driver-dashboard" component={DriverDashboard} />
+        <Route path="/driver-dashboard" render={ () => {
+            return(
+                <div>
+                    <DriverDashboard/>
+                    <Switch>
+                        <Route exact path="/driver-dashboard" component={RiderDashLandingPage} />
+                        {/* <Route path="/rider-dashboard/find-a-ride" component={RideSearch} />
+                        <Route path="/rider-dashboard/available-rides" component={AvailableRides} />
+                        <Route path="/rider-dashboard/request-a-ride" component={RideRequestForm} />
+                        <Route path="/rider-dashboard/ride-requests" component={RiderTripRequests} />
+                        <Route path="/rider-dashboard/ride-history" component={RiderHistory} />
+                        <Route path="/rider-dashboard/rider-profile" component={RiderProfile} /> */}
+                    </Switch>
+                </div>
+
+            )
+        }}/>
         <Route path="/startpage" component={StartPage} />
         <Route path="/login" render={() => {
             return(

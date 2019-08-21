@@ -23,6 +23,7 @@ module.exports = {
                 riderId: existingUser.rider_id,
                 riderEmail: existingUser.rider_email,
                 riderImageUrl: existingUser.rider_image_url,
+                riderRating: existingUser.rider_rating,
                 loggedIn: true
             }
             res.send(req.session.user);
@@ -46,7 +47,7 @@ module.exports = {
         req.session.user = {
             riderUsername: user.rider_username,
             id: user.rider_id,
-
+            isDriver: false,
             loggedIn: true
         }
 
