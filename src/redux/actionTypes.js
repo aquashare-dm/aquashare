@@ -12,3 +12,4 @@ export const DRIVER_REGISTER = "DRIVER_REGISTER";
 
 export const SAVE_CRITERIA = "SAVE_CRITERIA"
 export const GET_RIDES = "GET_RIDES"
+export const GET_PAST_RIDES = "GET_PAST_RIDES"
