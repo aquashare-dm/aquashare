@@ -3,33 +3,54 @@ import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
 
 
-class RiderProfile extends Component{
+class RiderProfile extends Component {
+    constructor(props) {
+        super(props)
+        console.log('prrrrrrrroooooooppppppps', props)
+        this.state = {
+            user: {},
+            riderImage: '',
+            riderRating: '',
+            riderUsername: '',
+            riderFirstName: '',
+            riderLastName: '',
+            riderEmail: ''
+        }
+    }
+
 
     goBack = () => {
         this.props.history.goBack()
     }
 
-    render(){
-        
+    render() {
         let { user } = this.props;
-        if(!user.loggedIn){
+        if (!user.loggedIn) {
             return <Redirect to="/" />
         }
 
-        return(
-        
+
+        return (
+
             <div>
                 <header>
-                    <button onClick={this.goBack}>{`<Back`}</button> 
-                    <h1>This view will show all of the profile information and allow it to be editable</h1>
+                    <button onClick={this.goBack}>{`<Back`}</button>
                 </header>
+                <section>
+                    <img src={this.props.user.riderImage} />
+                    <h3>{this.props.user.riderRating}</h3>
+                    <h1>{this.props.user.riderUsername}</h1>
+                    <h3>{this.props.user.riderFirst}</h3>
+                    <h3>{this.props.user.riderLast}</h3>
+                    <h3>{this.props.user.riderEmail}</h3>
+                </section>
             </div>
         );
     };
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
     return state.user
-  }
+}
 
-  export default connect(mapStateToProps, null)(withRouter(RiderProfile));
+export default connect(mapStateToProps, null)(withRouter(RiderProfile));

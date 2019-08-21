@@ -15,10 +15,10 @@ export default class UploadImage extends Component {
         };
     }
 
-    componentWillReceiveProps(props) {
-        console.log('prrrrrooooooppppspss', props)
+    // componentWillReceiveProps(props) {
+    //     console.log('prrrrrooooooppppspss', props)
 
-    }
+    // }
 
     onImageDrop = (files) => {
         this.setState({
