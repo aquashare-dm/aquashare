@@ -87,6 +87,7 @@ CREATE TABLE "drivers" (
 
 CREATE TABLE "boats" (
 	"boat_id" serial NOT NULL,
+	"driver_id" integer NOT NULL,
 	"boat_name" varchar(255),
 	"tier_id" integer NOT NULL,
 	"boat_description" varchar(400),
