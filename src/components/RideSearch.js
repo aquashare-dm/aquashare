@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
-import { saveSearchCriteria } from '../redux/ridesReducer';
+import { saveSearchCriteria, getRides } from '../redux/ridesReducer';
 import { GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import Geocode from "react-geocode";
 import CurrentLocation from "./RideSearch/Map.js";
@@ -21,6 +21,7 @@ class RideSearch extends Component{
             locationLatitude: "",
             locationLongitude: "",
             numberOfRiders: 0,
+            radius: 50,
 
             //GoogleMaps States
             showingInfoWindow: false,
@@ -46,8 +47,9 @@ class RideSearch extends Component{
 
     searchRides = async () => {
         await this.submitAddressForGeocoding();
-        let { firstDate, secondDate, location, numberOfRiders } = this.state
-        this.props.saveSearchCriteria(firstDate, secondDate, location, numberOfRiders)
+        let { firstDate, secondDate, location, locationLatitude, locationLongitude, numberOfRiders, radius } = this.state
+        await this.props.saveSearchCriteria(firstDate, secondDate, location, locationLatitude, locationLongitude, numberOfRiders, radius)
+        await this.props.getRides( locationLatitude, locationLongitude, numberOfRiders, radius)
         this.props.history.push('/rider-dashboard/available-rides')
     }
 
@@ -94,7 +96,7 @@ class RideSearch extends Component{
 
     render(){
         console.log(this.state)
-        let { firstDate, secondDate, location, numberOfRiders } = this.state
+        let { firstDate, secondDate, location, numberOfRiders, radius } = this.state
         let { user } = this.props;
         if(!user.loggedIn){
             return <Redirect to="/" />
@@ -128,13 +130,16 @@ class RideSearch extends Component{
 
                     <h1>Find an available ride</h1>
                     <div>Dates</div>
-                    <input onChange={this.handleChange} name="firstDate" value={firstDate} placeholder="08/31/19" />
+                    <input onChange={this.handleChange} type="date" name="firstDate" value={firstDate} placeholder="08/31/2019" />
                     <div>To</div>
-                    <input onChange={this.handleChange} name="secondDate" value={secondDate} placeholder="09/30/19" />
+                    <input onChange={this.handleChange} type="date" name="secondDate" value={secondDate} placeholder="09/30/2019" />
                     <div>Location</div>
-                    <input onChange={this.handleChange} id="location-address-input" name="location" value={location} placeholder="Lake Powell" />
+                    <input onChange={this.handleChange} id="location-address-input" name="location" value={location} placeholder="Lake Powell, UT" />
+                    <div>within</div>
+                    <input onChange={this.handleChange} type="number" min="0" name="radius" value={radius} placeholder="50" />
+                    <div>miles</div>
                     <div>Number of Riders</div>
-                    <input onChange={this.handleChange} type="number" name="numberOfRiders" value={numberOfRiders} placeholder="1" />
+                    <input onChange={this.handleChange} type="number" min="0" name="numberOfRiders" value={numberOfRiders} placeholder="1" />
                     <button onClick={this.searchRides}>Find Ride</button> 
                 </header>
             </div>
@@ -148,4 +153,4 @@ function mapStateToProps(state){
 
   export default GoogleApiWrapper({
     apiKey: REACT_APP_GOOGLE_API_KEY
-}) (connect(mapStateToProps, { saveSearchCriteria })(withRouter(RideSearch)));
+}) (connect(mapStateToProps, { saveSearchCriteria, getRides })(withRouter(RideSearch)));
