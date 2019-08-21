@@ -17,13 +17,6 @@ class RiderRegistrationForm extends Component {
         }
     }
 
-    registerAccount = () => {
-        let { user } = this.props
-        console.log('Account information sent to DB to be updated!')
-        user.registered = true
-        this.props.history.push('/rider-dashboard')
-    }
-
     handleChange = (event) => {
         let { name, value } = event.target;
         this.setState({
@@ -33,22 +26,15 @@ class RiderRegistrationForm extends Component {
 
     handleFormSubmit = (e) => {
         e.preventDefault()
-        let { riderEmail, riderFirst, riderLast, riderImage, startRating } = this.state
+        let { riderEmail, riderFirst, riderLast, riderImage } = this.state
         const newStartRating = 5.0
         this.props.riderRegister(this.props.user.riderUsername, riderEmail, riderFirst, riderLast, riderImage, newStartRating)
-
     }
 
 
 
     render() {
-
         let { user } = this.props;
-        if (!user.isDriver) {
-            return <Redirect to="/rider-dashboard" />
-        } else if (user.isDriver) {
-            return <Redirect to="/driver-dashboard" />
-        }
 
         return (
 
