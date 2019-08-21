@@ -15,7 +15,9 @@ export const DRIVER_REGISTER = "DRIVER_REGISTER";
 //Ride Actions
 export const SAVE_CRITERIA = "SAVE_CRITERIA"
 export const GET_RIDES = "GET_RIDES"
+export const GET_PAST_RIDES = "GET_PAST_RIDES"
 
 //Boat Actions
 export const CREATE_BOAT = "CREATE_BOAT";
 export const EDIT_BOAT = "EDIT_BOAT";
+
