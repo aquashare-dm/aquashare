@@ -6,6 +6,7 @@ const {SERVER_PORT, SESSION_SECRET, CONNECTION_STRING} = process.env;
 const riderController = require("./controllers/riderController.js");
 const driverController = require("./controllers/driverController.js");
 const ridesController = require("./controllers/ridesController.js");
+const boatController = require("./controllers/boatController.js");
 
 const app = express();
 app.use(express.json());
@@ -36,5 +37,12 @@ app.post("/api/driver-login", driverController.login);
 app.post("/api/driver-signup", driverController.signup);
 app.put("/api/driver-register", driverController.driverRegister);
 
-// Rides Endpoints
+//Rides Endpoints
 app.post("/api/get-rides", ridesController.getRides);
+app.get("/api/get-past-rides/:userId", ridesController.getPastRides);
+
+//Boat Endpoints
+app.post("/api/create-boat", boatController.createBoat);
+app.put("/api/edit-boat", boatController.editBoat);
+
+//Ride Request Endpoints

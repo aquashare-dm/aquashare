@@ -10,13 +10,12 @@ class RiderDashLandingPage extends Component{
     }
 
     render(){
-        
         let { user } = this.props;
         if(!user.loggedIn){
             return <Redirect to="/" />
         }
 
-        if(!user.registered) {
+        if(user.riderRating < 0 || !user.riderRating) {
             return (<div></div>)
         } else {
             return(

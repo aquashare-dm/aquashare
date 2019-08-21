@@ -15,6 +15,8 @@ CREATE TABLE "requests" (
 	"request_seat_number" integer NOT NULL,
 	"tier_id" integer NOT NULL,
 	"rider_id" integer NOT NULL,
+	"request_start_time" integer NOT NULL,
+	"request_end_time" integer NOT NULL,
 	CONSTRAINT "requests_pk" PRIMARY KEY ("request_id")
 ) WITH (
   OIDS=FALSE
@@ -26,12 +28,13 @@ CREATE TABLE "rides" (
 	"ride_id" serial NOT NULL,
 	"ride_date" varchar(255) NOT NULL,
 	"driver_id" integer NOT NULL,
+	"ride_location" varchar(255) NOT NULL,
 	"ride_location_lat" FLOAT(30) NOT NULL,
 	"ride_location_long" FLOAT(30) NOT NULL,
 	"ride_total_seats" integer NOT NULL,
 	"ride_open_seats" integer NOT NULL,
-	"ride_length_minutes" integer NOT NULL,
-	"ride_start_hour" integer NOT NULL,
+	"ride_start_time" integer NOT NULL,
+	"ride_end_time" integer NOT NULL,
 	CONSTRAINT "rides_pk" PRIMARY KEY ("ride_id")
 ) WITH (
   OIDS=FALSE
@@ -97,6 +100,7 @@ CREATE TABLE "boats" (
 	"boat_seat_number" integer NOT NULL,
 	"boat_image_one" varchar(1000),
 	"boat_image_two" varchar(1000),
+	"driver_id" integer NOT NULL,
 	CONSTRAINT "boats_pk" PRIMARY KEY ("boat_id")
 ) WITH (
   OIDS=FALSE

@@ -19,7 +19,6 @@ export const riderLogin = (riderUsername, riderPassword) => {
 };
 
 export const riderSignup = (riderUsername, riderPassword) => {
-    console.log("Triggered ridersignup in reducer");
     let data = axios.post("/api/rider-signup", { riderUsername, riderPassword }).then(res => res.data)
     return {
         type: RIDER_SIGNUP,
@@ -38,7 +37,7 @@ export const getRider = () => {
 };
 
 export const riderRegister = (riderUsername, riderEmail, riderFirst, riderLast, riderImage, startRating) => {
-    let data = axios.put('/api/rider-register', { riderUsername, riderEmail, riderFirst, riderLast, riderImage, startRating })
+    let data = axios.put('/api/rider-register', { riderUsername, riderEmail, riderFirst, riderLast, riderImage, startRating }).then(res => res.data)
     return { type: RIDER_REGISTER, payload: data }
 }
 
@@ -75,7 +74,6 @@ export default function (state = initialState, action) {
             return { ...state, user: payload, redirect: false, error: false };
         case RIDER_SIGNUP + "_REJECTED":
             return { ...state, error: payload };
-
         case RIDER_LOGIN + "_FULFILLED":
             return { ...state, user: payload, redirect: false, error: false };
         case RIDER_LOGIN + "_REJECTED":
@@ -87,7 +85,7 @@ export default function (state = initialState, action) {
             return { ...state, error: payload }
 
         case RIDER_LOGOUT + "_FULFILLED":
-            return { ...state, ...initialState };
+            return { ...initialState };
         case RIDER_LOGOUT + "_REJECTED":
             return { ...state, error: payload };
         case RIDER_REGISTER + "_FULFILLED":

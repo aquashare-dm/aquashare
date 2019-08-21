@@ -95,7 +95,6 @@ class RideSearch extends Component{
     }
 
     render(){
-        console.log(this.state)
         let { firstDate, secondDate, location, numberOfRiders, radius } = this.state
         let { user } = this.props;
         if(!user.loggedIn){

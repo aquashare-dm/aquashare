@@ -33,12 +33,15 @@ class DriverRegistrationForm extends Component {
         })
     };
 
-    handleFormSubmit = (e) => {
+    handleFormSubmit = async (e) => {
         e.preventDefault()
         let { driverEmail, driverFirst, driverLast, driverImage, driverLicense, startRating } = this.state
         const newStartRating = 5.0;
-        this.props.driverRegister(this.props.user.driverUsername, driverEmail, driverFirst, driverLast, driverImage, driverLicense, newStartRating)
+        await this.props.driverRegister(this.props.user.driverUsername, driverEmail, driverFirst, driverLast, driverImage, driverLicense, newStartRating)
 
+        this.props.history.push("/driver-dashboard/boat-register")
+
+        
     }
     handleUploadedImage = (imgUrl) => {
         this.setState({ driverImage: imgUrl })
@@ -48,8 +51,10 @@ class DriverRegistrationForm extends Component {
     render() {
 
         let { user } = this.props;
-        if (!user.loggedIn) {
-            return <Redirect to="/" />
+        if (!user.isDriver) {
+            return <Redirect to="/rider-dashboard" />
+        } else if (user.isDriver) {
+            return <Redirect to="/driver-dashboard" />
         }
 
         return (
