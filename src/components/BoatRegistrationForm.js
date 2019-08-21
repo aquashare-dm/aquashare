@@ -1,20 +1,24 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
-import { driverRegister } from '../redux/userReducer'
+import { createBoat } from '../redux/boatReducer.js'
 
 
-class DriverRegistrationForm extends Component {
+class BoatRegistrationForm extends Component {
     constructor() {
         super()
         this.state = {
             user: {},
-            driverEmail: '',
-            driverFirst: '',
-            driverLast: '',
-            driverImage: '',
-            driverLicense: '',
-            startRating: ''
+            boatName: '',
+            tierId: '',
+            boatDescription: '',
+            boatLicense: '',
+            boatRegistration: '',
+            boatMake: '',
+            boatModel: '',
+            boatSeatNum: '',
+            boatImageOne: '',
+            boatImageTwo: ''
         }
     }
 
@@ -32,15 +36,12 @@ class DriverRegistrationForm extends Component {
         })
     };
 
-    handleFormSubmit = async (e) => {
+    handleFormSubmit = (e) => {
         e.preventDefault()
         let { driverEmail, driverFirst, driverLast, driverImage, driverLicense, startRating } = this.state
         const newStartRating = 5.0;
-        await this.props.driverRegister(this.props.user.driverUsername, driverEmail, driverFirst, driverLast, driverImage, driverLicense, newStartRating)
+        this.props.driverRegister(this.props.user.driverUsername, driverEmail, driverFirst, driverLast, driverImage, driverLicense, newStartRating)
 
-        this.props.history.push("/driver-dashboard/boat-register")
-
-        
     }
 
 
@@ -48,10 +49,8 @@ class DriverRegistrationForm extends Component {
     render() {
 
         let { user } = this.props;
-        if (!user.isDriver) {
-            return <Redirect to="/rider-dashboard" />
-        } else if (user.isDriver) {
-            return <Redirect to="/driver-dashboard" />
+        if (!user.loggedIn) {
+            return <Redirect to="/" />
         }
 
         return (
@@ -78,4 +77,4 @@ function mapStateToProps(state) {
     return state.user
 }
 
-export default connect(mapStateToProps, { driverRegister })(withRouter(DriverRegistrationForm));
+export default connect(mapStateToProps, null)(withRouter(BoatRegistrationForm));
