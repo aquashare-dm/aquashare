@@ -7,7 +7,7 @@ import PastRides from './PastRides.js'
 class RiderHistory extends Component{
 
     componentDidMount() {
-        let {id} = this.props.user
+        let {id} = this.props.user.user
         this.props.getPastRides(id)
     }
 
@@ -20,8 +20,14 @@ class RiderHistory extends Component{
     }
 
     render(){
+        let { user } = this.props.user;
+        if(!user.loggedIn){
+            return <Redirect to="/" />
+        }
+       
         console.log(this.props, "this.props")
         let {pastRides} = this.props.rides
+        
         let ridesDisplay = pastRides.map( ride => (
             <PastRides key={ride.ride_id} {...ride} />
         ))
