@@ -18,11 +18,11 @@ module.exports = {
             req.session.user = {
                 isDriver: false,
                 riderUsername: existingUser.rider_username,
-                riderFirstName: existingUser.rider_first_name,
-                riderLastName: existingUser.rider_last_name,
-                riderId: existingUser.rider_id,
+                riderFirst: existingUser.rider_first_name,
+                riderLast: existingUser.rider_last_name,
+                id: existingUser.rider_id,
                 riderEmail: existingUser.rider_email,
-                riderImageUrl: existingUser.rider_image_url,
+                riderImage: existingUser.rider_image_url,
                 riderRating: existingUser.rider_rating,
                 loggedIn: true
             }
@@ -70,7 +70,18 @@ module.exports = {
     riderRegister: async (req, res) => {
         let { riderUsername, riderEmail, riderFirst, riderLast, riderImage, startRating } = req.body;
         const db = req.app.get("db");
-        let user = await db.rider_register([riderUsername, riderEmail, riderFirst, riderLast, riderImage, startRating])
-        res.status(200).send(user);
+        let [user] = await db.rider_register([riderUsername, riderEmail, riderFirst, riderLast, riderImage, startRating])
+        req.session.user = {
+            riderUsername: user.rider_username,
+            riderFirst: user.rider_first_name,
+            riderLast: user.rider_last_name,
+            riderEmail: user.rider_email,
+            riderImage: user.rider_image_url,
+            riderRating: user.rider_rating,
+            id: user.rider_id,
+            isDriver: false,
+            loggedIn: true
+        }
+        res.send(req.session.user);
     }
 }

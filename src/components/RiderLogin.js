@@ -26,7 +26,6 @@ class RiderLogin extends Component{
     render(){
         let {user} = this.props;
         let {username, password} = this.state;
-        console.log(this.props);
         //Check if user is logged in
         if(user){
             if(user.loggedIn) return <Redirect to="/rider-dashboard" />

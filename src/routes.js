@@ -62,7 +62,6 @@ export default (
 
             )
         }}/>
-        <Route path="/startpage" component={StartPage} />
         <Route path="/login" render={() => {
             return(
                 <div>
