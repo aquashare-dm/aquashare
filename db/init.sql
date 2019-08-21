@@ -15,10 +15,13 @@ CREATE TABLE "requests" (
 	"request_seat_number" integer NOT NULL,
 	"tier_id" integer NOT NULL,
 	"rider_id" integer NOT NULL,
+	"request_start_time" integer NOT NULL,
+	"request_end_time" integer NOT NULL,
 	CONSTRAINT "requests_pk" PRIMARY KEY ("request_id")
 ) WITH (
   OIDS=FALSE
 );
+
 
 
 CREATE TABLE "rides" (
@@ -87,7 +90,6 @@ CREATE TABLE "drivers" (
 
 CREATE TABLE "boats" (
 	"boat_id" serial NOT NULL,
-	"driver_id" integer NOT NULL,
 	"boat_name" varchar(255),
 	"tier_id" integer NOT NULL,
 	"boat_description" varchar(400),
@@ -98,6 +100,7 @@ CREATE TABLE "boats" (
 	"boat_seat_number" integer NOT NULL,
 	"boat_image_one" varchar(1000),
 	"boat_image_two" varchar(1000),
+	"driver_id" integer NOT NULL,
 	CONSTRAINT "boats_pk" PRIMARY KEY ("boat_id")
 ) WITH (
   OIDS=FALSE

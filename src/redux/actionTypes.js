@@ -21,3 +21,8 @@ export const GET_PAST_RIDES = "GET_PAST_RIDES"
 export const CREATE_BOAT = "CREATE_BOAT";
 export const EDIT_BOAT = "EDIT_BOAT";
 
+//Request Actions
+export const CREATE_REQUEST = "CREATE_REQUEST";
+export const EDIT_REQUEST = "EDIT_REQUEST";
+export const DELETE_REQUEST = "DELETE_REQUEST";
+
