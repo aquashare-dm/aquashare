@@ -6,7 +6,10 @@ const initialState = {
         firstDate: '',
         secondDate: '',
         location: '',
-        numberOfRiders: ''
+        locationLatitude: "",
+        locationLongitude: "",
+        numberOfRiders: 0,
+        radius: 50
     },
     rides: [],
     error: false
@@ -14,18 +17,17 @@ const initialState = {
 
 //ACTIONS------------------------------
 
-export const getRides = (firstDate, secondDate, numberOfRiders) => {
-    let data = axios.get("/api/get-rides", { firstDate, secondDate, numberOfRiders }).then(res => res.data)
+export const getRides = ( locationLatitude, locationLongitude, numberOfRiders, radius) => {
+    let data = axios.post("/api/get-rides", { locationLatitude, locationLongitude, numberOfRiders, radius }).then(res => res.data)
+    console.log('Ride data from Reducer', data)
     return {
         type: GET_RIDES,
         payload: data
     }
 };
 
-export const saveSearchCriteria = (firstDate, secondDate, location, numberOfRiders) => {
-    console.log('Hit the save criteria reducer')
-    let criteria = {firstDate, secondDate, location, numberOfRiders}
-    console.log('criteria', criteria)
+export const saveSearchCriteria = (firstDate, secondDate, location, locationLatitude, locationLongitude, numberOfRiders, radius) => {
+    let criteria = {firstDate, secondDate, location, locationLatitude, locationLongitude, numberOfRiders, radius}
     return {
         type: SAVE_CRITERIA,
         payload: criteria
@@ -40,6 +42,7 @@ export default function (state = initialState, action){
             console.log('Hit the SAVE_CRITERIA action')
             return {...state, searchCriteria: payload};
         case GET_RIDES + "_FULFILLED":
+                console.log('Hit the GET_RIDES action')
             return {...state, rides: payload};
         case GET_RIDES + "_REJECTED":
             return {...state, error: payload};

@@ -7,13 +7,12 @@ import Ride from './Ride.js'
 
 class AvailableRides extends Component{
 
-    componentDidMount() {
-        let { firstDate, secondDate, numberOfRiders } = this.props.rides.searchCriteria
-        let { rides } = this.props.rides
-        if(!rides.length) {
-            this.props.getRides(firstDate, secondDate, numberOfRiders)
-        }
-    }
+    // componentDidUpdate(prevProps) {
+    //     let { locationLatitude, locationLongitude, numberOfRiders, radius } = this.props.rides.searchCriteria
+    //     if(prevProps !== this.props) {
+    //         this.props.getRides( locationLatitude, locationLongitude, numberOfRiders, radius)
+    //     }
+    // }
     
     goBack = () => {
         this.props.history.goBack()
