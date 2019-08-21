@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Redirect, Link, withRouter } from "react-router-dom";
 import { logout } from "../redux/userReducer.js";
 import RiderRegistrationForm from "./RiderRegistrationForm.js";
-import RiderDashLandingPage from "./RiderDashLandingPage.js";
 
 
 class RiderDashboard extends Component{
@@ -20,13 +19,12 @@ class RiderDashboard extends Component{
 
     render(){
         
-        console.log('prevProps: ', this.props)
         let { user } = this.props;
-        if(!user.loggedIn){
-            return <Redirect to="/" />
-        }
+        // if(!user.loggedIn){
+        //     return <Redirect to="/" />
+        // }
 
-        if(!user.registered){
+        if(user.riderRating < 0 || !user.riderRating){
             return(
                 <div>
                     <header style={{backgroundColor: "gray"}} >
