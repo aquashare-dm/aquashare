@@ -12,7 +12,9 @@
     "massive": "^5.11.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-dropzone": "^10.1.7",
     "react-geocode": "^0.1.2",
+    "react-image-crop": "^8.2.1",
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.1",
@@ -20,7 +22,8 @@
     "redux-persist": "^5.10.0",
     "redux-promise-middleware": "^6.1.1",
     "semantic-ui": "^2.4.2",
-    "semantic-ui-react": "^0.87.3"
+    "semantic-ui-react": "^0.87.3",
+    "superagent": "^5.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
