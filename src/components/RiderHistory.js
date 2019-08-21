@@ -28,7 +28,8 @@ class RiderHistory extends Component{
         console.log(this.props, "this.props")
         let {pastRides} = this.props.rides
         
-        let ridesDisplay = pastRides.map( ride => (
+        let ridesDisplay = pastRides
+        .map( ride => (
             <PastRides key={ride.ride_id} {...ride} />
         ))
         return(
