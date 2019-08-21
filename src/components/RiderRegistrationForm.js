@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
 import { riderRegister } from '../redux/userReducer'
-// import Dropzone from 'react-dropzone'
 import UploadImage from './UploadImage'
 
 
