@@ -36,14 +36,15 @@ class BoatRegistrationForm extends Component {
         })
     };
 
-    handleFormSubmit = (e) => {
+    createBoat = (e) => {
         e.preventDefault()
-        let { driverEmail, driverFirst, driverLast, driverImage, driverLicense, startRating } = this.state
-        const newStartRating = 5.0;
-        this.props.driverRegister(this.props.user.driverUsername, driverEmail, driverFirst, driverLast, driverImage, driverLicense, newStartRating)
+        let { boatName, tierId, boatDescription, boatLicense, boatRegistration, boatMake, boatModel,
+        boatSeatNum, boatImageOne, boatImageTwo } = this.state
+        this.props.createBoat(boatName, tierId, boatDescription, boatLicense, boatRegistration, boatMake, boatModel,
+            +boatSeatNum, boatImageOne, boatImageTwo, this.props.user.driverId)
 
     }
-
+    
 
 
     render() {
@@ -61,12 +62,17 @@ class BoatRegistrationForm extends Component {
                     Image
                 </div>
                 <form>
-                    <input type="text" name="driverImage" onChange={this.handleChange} value={this.state.driverImage} placeholder="Image" />
-                    <input type="text" name="driverEmail" onChange={this.handleChange} value={this.state.driverEmail} placeholder="Email" />
-                    <input type="text" name="driverFirst" onChange={this.handleChange} value={this.state.driverFirst} placeholder="First Name" />
-                    <input type="text" name="driverLast" onChange={this.handleChange} value={this.state.driverLast} placeholder="Last Name" />
-                    <input type="text" name="driverLicense" onChange={this.handleChange} value={this.state.driverLicense} placeholder="Driver's License Number" />
-                    <button onClick={(e) => { this.handleFormSubmit(e) }}>Submit</button>
+                    <input type="text" name="boatName" onChange={this.handleChange} value={this.state.boatName} placeholder="Boat Name" />
+                    <input type="text" name="tierId" onChange={this.handleChange} value={this.state.tierId} placeholder="Tier Id" />
+                    <input type="text" name="boatDescription" onChange={this.handleChange} value={this.state.boatDescription} placeholder="Boat Description" />
+                    <input type="text" name="boatLicense" onChange={this.handleChange} value={this.state.boatLicense} placeholder="Boat License Number" />
+                    <input type="text" name="boatRegistration" onChange={this.handleChange} value={this.state.boatRegistration} placeholder="Boat Registration Number" />
+                    <input type="text" name="boatMake" onChange={this.handleChange} value={this.state.boatMake} placeholder="Boat Make" />
+                    <input type="text" name="boatModel" onChange={this.handleChange} value={this.state.boatModel} placeholder="Boat Model" />
+                    <input type="text" name="boatSeatNum" onChange={this.handleChange} value={this.state.boatSeatNum} placeholder="Number of Boat Seats" />
+                    <input type="text" name="boatImageOne" onChange={this.handleChange} value={this.state.boatImageOne} placeholder="Boat Image 1" />
+                    <input type="text" name="boatImageTwo" onChange={this.handleChange} value={this.state.boatImageTwo} placeholder="Boat Image 2" />
+                    <button onClick={(e) => { this.createBoat(e) }}>Submit</button>
                 </form>
             </div>
         );
@@ -77,4 +83,4 @@ function mapStateToProps(state) {
     return state.user
 }
 
-export default connect(mapStateToProps, null)(withRouter(BoatRegistrationForm));
+export default connect(mapStateToProps, {createBoat})(withRouter(BoatRegistrationForm));
