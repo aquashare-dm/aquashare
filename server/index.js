@@ -7,6 +7,7 @@ const riderController = require("./controllers/riderController.js");
 const driverController = require("./controllers/driverController.js");
 const ridesController = require("./controllers/ridesController.js");
 const boatController = require("./controllers/boatController.js");
+const requestController = require("./controllers/requestController.js");
 
 const app = express();
 app.use(express.json());
@@ -46,3 +47,6 @@ app.post("/api/create-boat", boatController.createBoat);
 app.put("/api/edit-boat", boatController.editBoat);
 
 //Ride Request Endpoints
+
+app.post("/api/create-request", requestController.createRequest);
+app.put("/api/edit-request", requestController.editRequest);

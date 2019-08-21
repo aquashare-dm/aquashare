@@ -4,6 +4,7 @@ import { Redirect, withRouter } from "react-router-dom";
 import { GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import Geocode from "react-geocode";
 import CurrentLocation from "./RideSearch/Map.js";
+import { createRequest } from '../redux/requestReducer'
 
 require("dotenv").config({path: __dirname + "/../../.env"});
 const {REACT_APP_GOOGLE_API_KEY} = process.env;
@@ -22,7 +23,27 @@ class RideRequestForm extends Component{
             tierId: '',
             riderId: '',
             requestStartTime: '',
-            requestEndTime: ''
+            requestEndTime: '',
+
+            //GoogleMaps States
+            showingInfoWindow: false,
+            activeMarker: {},
+            selectedPlace: {},
+
+            //UI States
+            inInputBox: false
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        if(document.activeElement.id === "location-address-input" && this.state.inInputBox === false){
+            this.setState({inInputBox: true})
+        }
+
+        //Check if focus was removed from input box
+        if(document.activeElement.id !== "location-address-input" && this.state.inInputBox === true){
+            this.setState({inInputBox: false});
+            this.submitAddressForGeocoding();
         }
     }
 
@@ -30,12 +51,14 @@ class RideRequestForm extends Component{
         this.props.history.goBack()
     };
     
-    requestRide = (e) => {
+    requestRide = async (e) => {
+
         e.preventDefault()
-        console.log('Request was sent, redirecting to requests outstanding page in 2 seconds!')
-        setTimeout( () => {
-            this.props.history.push('/rider-dashboard/ride-requests')
-        }, 2000)
+        await this.submitAddressForGeocoding();
+        console.log("this.props is ", this.props);
+        let {requestDate, locationLatitude, locationLongitude, requestSeatNum, tierId, requestStartTime, requestEndTime} = this.state;
+        await this.props.createRequest(requestDate, locationLatitude, locationLongitude, +requestSeatNum, +tierId, this.props.user.id, +requestStartTime, +requestEndTime);
+        this.props.history.push('/rider-dashboard/ride-requests');
     };
 
     handleChange = (event) => {
@@ -44,6 +67,43 @@ class RideRequestForm extends Component{
             [name]: value
         })
     };
+
+    //Google Maps API Functions
+
+    onMarkerClick = (props, marker, event) => {
+        this.setState({
+            selectedPlace: props,
+            activeMarker: marker,
+            showingInfoWindow: true
+        });
+    }
+
+    onClose = (props) => {
+        if(this.state.showingInfoWindow){
+            this.setState({
+                showingInfoWindow: false,
+                activeMarker: null
+            });
+        }
+    }
+
+    //------------------------
+
+    submitAddressForGeocoding = () => {
+        Geocode.fromAddress(this.state.location).then(
+            response => {
+
+                const { lat, lng } = response.results[0].geometry.location;
+                this.setState({
+                    locationLatitude: lat,
+                    locationLongitude: lng
+                })
+            },
+            error => {
+                console.error(error);
+            }
+        );
+    }
 
     render(){
         
@@ -55,13 +115,14 @@ class RideRequestForm extends Component{
         return(
         
             <div>
+                
                 <header>
                     <button onClick={this.goBack}>{`<Back`}</button>
                     <h1>Enter information here to send request to drivers</h1>
                 </header>
                 <form>
                     <input type="text" name="requestDate" onChange={this.handleChange} value={this.state.requestDate} placeholder="Request Date" />
-                    <input type="text" name="location" onChange={this.handleChange} value={this.state.location} placeholder="Request Location" />
+                    <input type="text" id="location-address-input" name="location" onChange={this.handleChange} value={this.state.location} placeholder="Request Location" />
                     <input type="text" name="requestSeatNum" onChange={this.handleChange} value={this.state.requestSeatNum} placeholder="Requested Number of Seats" />
                     <input type="text" name="tierId" onChange={this.handleChange} value={this.state.tierId} placeholder="Requested Tier" />
                     <input type="text" name="requestStartTime" onChange={this.handleChange} value={this.state.requestStartTime} placeholder="Start Time" />
@@ -69,6 +130,26 @@ class RideRequestForm extends Component{
 
                     <button onClick={(e) => { this.requestRide(e) }}>Request Your Ride</button>
                 </form>
+
+                <div className="mapRightCont" style={{marginTop: "50px"}}>
+                    <CurrentLocation centerAroundCurrentLocation width={"500px"} height={"300px"} google={this.props.google} lat={this.state.locationLatitude} lng={this.state.locationLongitude} >
+                        <Marker
+                            position={{lat:this.state.locationLatitude, lng:this.state.locationLongitude}}
+                            onClick={this.onMarkerClick}
+                            name={'Your current location'}
+                        />
+                        <InfoWindow
+                            marker={this.state.activeMarker}
+                            visible={this.state.showingInfoWindow}
+                            onClose={this.onClose}
+                        >
+                            <div>
+                                <h4>{this.state.selectedPlace.name}</h4>
+                            </div>
+                            
+                        </InfoWindow>
+                    </CurrentLocation>
+                </div>
             </div>
         );
     };
@@ -78,4 +159,6 @@ function mapStateToProps(state){
     return state.user
   }
 
-  export default connect(mapStateToProps, null)(withRouter(RideRequestForm));
+  export default GoogleApiWrapper({
+    apiKey: REACT_APP_GOOGLE_API_KEY
+}) (connect(mapStateToProps, {createRequest})(withRouter(RideRequestForm)));
