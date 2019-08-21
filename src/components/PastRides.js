@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {Rating} from 'semantic-ui-react'
 
 class Ride extends Component {
     buyRide = () => {
@@ -20,6 +21,8 @@ class Ride extends Component {
             <p>Boat Info</p>
             <p>Tier</p>
             <p>Pricing</p>
+            <p>Please rate your trip.</p>
+            <Rating icon='star' maxRating={5} clearable/>
         </div>
         );
     }
