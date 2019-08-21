@@ -21,17 +21,17 @@ CREATE TABLE "requests" (
 );
 
 
-
 CREATE TABLE "rides" (
 	"ride_id" serial NOT NULL,
 	"ride_date" varchar(255) NOT NULL,
 	"driver_id" integer NOT NULL,
+	"ride_location" varchar(255) NOT NULL,
 	"ride_location_lat" FLOAT(30) NOT NULL,
 	"ride_location_long" FLOAT(30) NOT NULL,
 	"ride_total_seats" integer NOT NULL,
 	"ride_open_seats" integer NOT NULL,
-	"ride_length_minutes" integer NOT NULL,
-	"ride_start_hour" integer NOT NULL,
+	"ride_start_time" integer NOT NULL,
+	"ride_end_time" integer NOT NULL,
 	CONSTRAINT "rides_pk" PRIMARY KEY ("ride_id")
 ) WITH (
   OIDS=FALSE
