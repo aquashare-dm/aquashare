@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
 import { riderRegister } from '../redux/userReducer'
+// import Dropzone from 'react-dropzone'
+import UploadImage from './UploadImage'
 
 
 class RiderRegistrationForm extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             user: {},
             riderEmail: '',
@@ -39,7 +41,9 @@ class RiderRegistrationForm extends Component {
 
     }
 
-
+    handleUploadedImage = (imgUrl) => {
+        this.setState({ riderImage: imgUrl })
+    }
 
     render() {
 
@@ -55,10 +59,10 @@ class RiderRegistrationForm extends Component {
             <div>
                 <h1>{this.props.user.riderUsername}</h1>
                 <div>
-                    Image
+                    <UploadImage action={this.handleUploadedImage} />
                 </div>
                 <form>
-                    <input type="text" name="riderImage" onChange={this.handleChange} value={this.state.riderImage} placeholder="Image" />
+                    <input type="hidden" name="riderImage" value={this.state.riderImage} placeholder="Image" />
                     <input type="text" name="riderEmail" onChange={this.handleChange} value={this.state.riderEmail} placeholder="Email" />
                     <input type="text" name="riderFirst" onChange={this.handleChange} value={this.state.riderFirst} placeholder="First Name" />
                     <input type="text" name="riderLast" onChange={this.handleChange} value={this.state.riderLast} placeholder="Last Name" />

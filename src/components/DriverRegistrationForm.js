@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
 import { driverRegister } from '../redux/userReducer'
+import UploadImage from './UploadImage'
 
 
 class DriverRegistrationForm extends Component {
@@ -39,7 +40,9 @@ class DriverRegistrationForm extends Component {
         this.props.driverRegister(this.props.user.driverUsername, driverEmail, driverFirst, driverLast, driverImage, driverLicense, newStartRating)
 
     }
-
+    handleUploadedImage = (imgUrl) => {
+        this.setState({ driverImage: imgUrl })
+    }
 
 
     render() {
@@ -54,10 +57,10 @@ class DriverRegistrationForm extends Component {
             <div>
                 <h1>{this.props.user.riderUsername}</h1>
                 <div>
-                    Image
+                    <UploadImage action={this.handleUploadedImage} />
                 </div>
                 <form>
-                    <input type="text" name="driverImage" onChange={this.handleChange} value={this.state.driverImage} placeholder="Image" />
+                    <input type="hidden" name="driverImage" value={this.state.driverImage} placeholder="Image" />
                     <input type="text" name="driverEmail" onChange={this.handleChange} value={this.state.driverEmail} placeholder="Email" />
                     <input type="text" name="driverFirst" onChange={this.handleChange} value={this.state.driverFirst} placeholder="First Name" />
                     <input type="text" name="driverLast" onChange={this.handleChange} value={this.state.driverLast} placeholder="Last Name" />
