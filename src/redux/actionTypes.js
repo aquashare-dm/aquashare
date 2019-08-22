@@ -4,6 +4,7 @@ export const RIDER_SIGNUP = "RIDER_SIGNUP";
 export const RIDER_LOGOUT = "RIDER_LOGOUT";
 export const GET_RIDER = "GET_RIDER";
 export const RIDER_REGISTER = "RIDER_REGISTER"
+export const EDIT_RIDER_PROFILE = "EDIT_RIDER_PROFILE"
 
 //Driver Actions
 export const DRIVER_LOGIN = "DRIVER_LOGIN";

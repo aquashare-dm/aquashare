@@ -1,7 +1,7 @@
 import axios from "axios";
 import {
     RIDER_SIGNUP, RIDER_LOGIN, GET_RIDER, RIDER_LOGOUT,
-    DRIVER_SIGNUP, DRIVER_LOGIN, GET_DRIVER, DRIVER_LOGOUT, RIDER_REGISTER, DRIVER_REGISTER
+    DRIVER_SIGNUP, DRIVER_LOGIN, GET_DRIVER, DRIVER_LOGOUT, RIDER_REGISTER, DRIVER_REGISTER, EDIT_RIDER_PROFILE
 } from "./actionTypes.js";
 
 const initialState = {
@@ -39,17 +39,22 @@ export const getRider = () => {
 export const riderRegister = (riderUsername, riderEmail, riderFirst, riderLast, riderImage, startRating) => {
     let data = axios.put('/api/rider-register', { riderUsername, riderEmail, riderFirst, riderLast, riderImage, startRating }).then(res => res.data)
     return { type: RIDER_REGISTER, payload: data }
+};
+
+export const editRiderProfile = (riderUsername, newRiderEmail, newRiderFirst, newRiderLast, newRiderImage) => {
+    let data = axios.put('/api/edit-rider', { riderUsername, newRiderEmail, newRiderFirst, newRiderLast, newRiderImage }).then(res => res.data)
+    return { type: EDIT_RIDER_PROFILE, payload: data }
 }
 
 //DRIVER ACTIONS
 export const driverLogin = (driverUsername, driverPassword) => {
-    let data = axios.post("/api/driver-login", {driverUsername, driverPassword}).then(res => res.data)
-    return {type: DRIVER_LOGIN, payload: data};
+    let data = axios.post("/api/driver-login", { driverUsername, driverPassword }).then(res => res.data)
+    return { type: DRIVER_LOGIN, payload: data };
 };
 
 export const driverSignup = (driverUsername, driverPassword) => {
-    let data = axios.post("/api/driver-signup", {driverUsername, driverPassword}).then(res=>res.data)
-    return{
+    let data = axios.post("/api/driver-signup", { driverUsername, driverPassword }).then(res => res.data)
+    return {
         type: DRIVER_SIGNUP,
         payload: data
     }
@@ -57,7 +62,7 @@ export const driverSignup = (driverUsername, driverPassword) => {
 
 export const getDriver = () => {
     let data = axios.get("/api/get-driver").then(res => res.data)
-    return {type: GET_DRIVER, payload: data};
+    return { type: GET_DRIVER, payload: data };
 };
 
 export const driverRegister = (driverUsername, driverEmail, driverFirst, driverLast, driverImage, driverLicense, startRating) => {
@@ -92,6 +97,10 @@ export default function (state = initialState, action) {
             return { ...state, user: payload, error: false }
         case RIDER_REGISTER + "_REJECTED":
             return { ...state, error: payload }
+        case EDIT_RIDER_PROFILE + "_FULFILLED":
+            return { ...state, user: payload, error: false }
+        case EDIT_RIDER_PROFILE + "_REJECTED":
+            return { ...state, error: payload }
 
         //Driver Actions
         case DRIVER_SIGNUP + "_FULFILLED":
@@ -120,6 +129,7 @@ export default function (state = initialState, action) {
             return { ...state, error: payload }
 
         default:
+            console.log('hitting default')
             return state;
     }
 }
