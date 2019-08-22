@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
+import {button} from "semantic-ui-react";
+import "./coreStyling.css";
+import "./mainEntryAuth.css";
 
 class StartPage extends Component{
 
@@ -8,18 +11,23 @@ class StartPage extends Component{
         
         return(
 
-            <div>
+            <section className="mainAppWindow">
 
-                <section>
-                    <h1>AquaShare Start Page</h1>
-                    <Link to="/login">
-                        <button>Login</button>
-                    </Link>
-                    <Link to="/signup">
-                        <button>Signup</button>
-                    </Link>
+                <section className="fullScreenContainerStartPages">
+                    <div className="startPageLogoContainer">
+                        <h1 className="logoH1">AQUASHARE</h1>
+                    </div>
+                    <div className="doubleInputCont">
+                        <Link to="/login" className="fluid ui inverted blue button">
+                            <p>Login</p>
+                        </Link>
+                        <Link to="/signup" className="fluid ui inverted blue button">
+                            <p>Signup</p>
+                        </Link>
+                    </div>
+
                 </section>
-            </div>
+            </section>
         );
     };
 }

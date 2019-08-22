@@ -1,3 +1,22 @@
-.mainWindow{
-    
-}
+/* Mobile View */
+@media (min-width: 300px) and (max-width: 991px){
+    .mainAppWindow{
+        width: 100vw;
+    }
+    .fullScreenContainer{
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        background-color: grey;
+        align-items: center;
+        flex-direction: column;
+    }
+    .doubleInputCont{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 70%;
+        height: 16%;
+    }
+  }
