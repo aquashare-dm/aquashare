@@ -23,6 +23,7 @@ import RiderDashLandingPage from "./components/RiderDashLandingPage.js";
 
 //Boat Components
 import BoatRegistrationForm from "./components/BoatRegistrationForm.js";
+import DriverDashLandingPage from "./components/DriverDashLandingPage.js";
 
 export default (
     <Switch>
@@ -49,7 +50,7 @@ export default (
                 <div>
                     <DriverDashboard/>
                     <Switch>
-                        <Route exact path="/driver-dashboard" component={RiderDashLandingPage} />
+                        <Route exact path="/driver-dashboard" component={DriverDashLandingPage} />
                         <Route path="/driver-dashboard/boat-register" component={BoatRegistrationForm}/>
                         {/* <Route path="/rider-dashboard/find-a-ride" component={RideSearch} />
                         <Route path="/rider-dashboard/available-rides" component={AvailableRides} />

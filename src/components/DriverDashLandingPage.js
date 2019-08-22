@@ -16,7 +16,7 @@ class DriverDashLandingPage extends Component{
             return <Redirect to="/" />
         }
 
-        if(!user.registered) {
+        if(user.driverRating < 0 || !user.driverRating) {
             return (<div></div>)
         } else {
             return(

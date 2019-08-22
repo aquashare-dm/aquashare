@@ -73,6 +73,7 @@ class DriverSignup extends Component{
         let {user} = this.props;
         //Check if user is signed in
         if(user.loggedIn) return <Redirect to="/driver-dashboard" />
+        
         return(
 
         <div>

@@ -1,6 +1,6 @@
 import axios from "axios";
 import {
-    CREATE_BOAT, EDIT_BOAT
+    CREATE_BOAT, EDIT_BOAT, RESET_STATE_ON_LOGOUT
 } from "./actionTypes.js";
 
 const initialState = {
@@ -12,6 +12,11 @@ const initialState = {
 //ACTIONS------------------------------
 
 //BOAT ACTIONS ----------------------------------------------------------
+
+export const resetBoatStateOnLogout = () => {
+    let data = axios.delete("/api/logout").then(res => res.data)
+    return { type: RESET_STATE_ON_LOGOUT, payload: data };
+};
 
 export const createBoat = (boat_name, tier_id, boat_description, boat_license, boat_registration, boat_make, boat_model,
     boat_seat_number, boat_image_one, boat_image_two, driver_id) => {
@@ -42,6 +47,11 @@ export default function (state = initialState, action) {
         case EDIT_BOAT + "_REJECTED":
             return { ...state, error: payload };
 
+        case RESET_STATE_ON_LOGOUT + "_FULFILLED":
+            return { ...initialState };
+        case RESET_STATE_ON_LOGOUT + "_REJECTED":
+            return { ...state, error: payload }
+        
         default:
             return state;
     }

@@ -20,6 +20,7 @@ export const GET_PAST_RIDES = "GET_PAST_RIDES"
 //Boat Actions
 export const CREATE_BOAT = "CREATE_BOAT";
 export const EDIT_BOAT = "EDIT_BOAT";
+export const RESET_STATE_ON_LOGOUT = "RESET_STATE_ON_LOGOUT";
 
 //Request Actions
 export const CREATE_REQUEST = "CREATE_REQUEST";

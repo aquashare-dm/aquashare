@@ -50,6 +50,5 @@ app.post("/api/create-boat", boatController.createBoat);
 app.put("/api/edit-boat", boatController.editBoat);
 
 //Ride Request Endpoints
-
 app.post("/api/create-request", requestController.createRequest);
 app.put("/api/edit-request", requestController.editRequest);
