@@ -2,7 +2,7 @@ require("dotenv").config({ path: __dirname + "/../.env" });
 const express = require("express");
 const massive = require("massive");
 const session = require("express-session");
-const {SERVER_PORT, SESSION_SECRET, CONNECTION_STRING} = process.env;
+const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING } = process.env;
 const riderController = require("./controllers/riderController.js");
 const driverController = require("./controllers/driverController.js");
 const ridesController = require("./controllers/ridesController.js");
@@ -32,6 +32,7 @@ app.post("/api/rider-login", riderController.login);
 app.post("/api/rider-signup", riderController.signup);
 app.delete("/api/logout", riderController.logout);
 app.put("/api/rider-register", riderController.riderRegister);
+app.put('/api/edit-rider', riderController.editRiderProfile);
 
 //Driver Endpoints
 app.post("/api/driver-login", driverController.login);

@@ -3,9 +3,7 @@ import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
 import { riderRegister } from '../redux/userReducer'
 import UploadImage from './UploadImage'
-import { riderRegister } from '../redux/userReducer';
 // import Dropzone from 'react-dropzone'
-import UploadImage from './UploadImage';
 
 
 class RiderRegistrationForm extends Component {

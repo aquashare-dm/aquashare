@@ -83,5 +83,30 @@ module.exports = {
             loggedIn: true
         }
         res.send(req.session.user);
+    },
+    async editRiderProfile(req, res) {
+        let { riderUsername, newRiderEmail, newRiderFirst, newRiderLast, newRiderImage } = req.body;
+        const db = req.app.get('db');
+        let [user] = await db.edit_rider_profile([
+            riderUsername,
+            newRiderEmail,
+            newRiderFirst,
+            newRiderLast,
+            newRiderImage
+        ]);
+        console.log(user)
+        req.session.user = {
+            riderUsername: user.rider_username,
+            riderFirst: user.rider_first_name,
+            riderLast: user.rider_last_name,
+            riderEmail: user.rider_email,
+            riderImage: user.rider_image_url,
+            riderRating: user.rider_rating,
+            id: user.rider_id,
+            isDriver: false,
+            loggedIn: true
+        }
+        console.log(req.session.user)
+        res.send(req.session.user);
     }
 }
