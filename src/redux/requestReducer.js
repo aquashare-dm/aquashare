@@ -1,6 +1,6 @@
 import axios from "axios";
 import {
-    CREATE_REQUEST, EDIT_REQUEST, DELETE_REQUEST
+    CREATE_REQUEST, EDIT_REQUEST, DELETE_REQUEST, GET_REQUESTS_BY_ID
 } from "./actionTypes.js";
 
 const initialState = {
@@ -23,6 +23,18 @@ export const editRequest = (request_id, request_date, request_location_lat, requ
     return { type: EDIT_REQUEST, payload: data };
 };
 
+export const getRequestsById = (userId) => {
+    let data = axios
+        .get(`/api/get-requests/${userId}`)
+        .then(res => {
+           return  res.data})
+    return {
+        type:GET_REQUESTS_BY_ID,
+        payload: data,
+        error: false
+    }
+}
+
 //Default Function
 export default function (state = initialState, action) {
     let { type, payload } = action;
@@ -38,6 +50,10 @@ export default function (state = initialState, action) {
         case EDIT_REQUEST + "_REJECTED":
             return { ...state, error: payload };
 
+        case GET_REQUESTS_BY_ID + "_FULFILLED":
+            return {...state, allRequests: payload};
+        case GET_REQUESTS_BY_ID + "_REJECTED":
+            return {...state, error: true};    
         default:
             return state;
     }
