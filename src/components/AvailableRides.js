@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
 import { getRides } from '../redux/ridesReducer'
-import Ride from './Ride.js'
+import SearchedRides from './SearchedRides.js'
 
 
 class AvailableRides extends Component{
@@ -25,14 +25,35 @@ class AvailableRides extends Component{
     render(){
         console.log(this.props)
         let { rides } = this.props.rides
+        let { user } = this.props.user
+        let { firstDate, secondDate } = this.props.rides.searchCriteria
+
+        if(!user.loggedIn){
+            return <Redirect to="/" />
+        }
+
         return(
             <div>
                 <header>
                     <button onClick={this.goBack}>{`<Back`}</button>
                     <h1>Available Rides</h1>
-                    <div>{rides.map( ride => (
-                        <Ride key={ride.ride_id} {...ride} />
-                    ))}</div>
+                    <div>{
+                        rides.filter( function (ride) {
+                            if(Date.now() > Date.parse(firstDate)) {
+                                if(JSON.stringify(ride.ride_end_time).length === 1) {
+                                    return Date.parse(`${ride.ride_date} 00:0${JSON.stringify(ride.ride_start_time)}:00:00`) >= Date.now()
+                                } else {
+                                    return Date.parse(`${ride.ride_date} 00:${JSON.stringify(ride.ride_start_time)}:00:00`) >= Date.now()
+                                }    
+                            } else {
+                                return Date.parse(ride.ride_date) >= Date.parse(firstDate)
+                            }
+                        })
+                        .filter( ride => Date.parse(ride.ride_date) <= Date.parse(secondDate))
+                        .map( ride => (
+                            <SearchedRides key={ride.ride_id} {...ride} />
+                        ))
+                    }</div>
                     <div>Not finding a trip you like?</div>
                     <button onClick={this.requestRide}>Request A Ride</button> 
                 </header>

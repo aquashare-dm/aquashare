@@ -19,8 +19,6 @@ class DriverDashboard extends Component{
     }
 
     render(){
-        
-        console.log('prevProps: ', this.props)
         let { user } = this.props;
         if(!user.loggedIn){
             return <Redirect to="/" />
