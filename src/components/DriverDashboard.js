@@ -7,6 +7,18 @@ import DriverRegistrationForm from "./DriverRegistrationForm.js";
 
 
 class DriverDashboard extends Component{
+    constructor(props) {
+        super(props)
+        this.state = {
+            registered: false,
+        }
+    }
+    
+    registrationFormSwitch = ()  =>{
+        this.setState({ registered: true}, () => {
+            this.props.history.push("/driver-dashboard/boat-register")
+        })
+    }
     
     componentDidUpdate(prevProps) {
         if (prevProps !== this.props) {
@@ -26,7 +38,7 @@ class DriverDashboard extends Component{
             return <Redirect to="/" />
         }
 
-        if(user.driverRating < 0 || !user.driverRating){
+        if(!this.state.registered){
             return(
                 <div>
                     <header style={{backgroundColor: "gray"}} >
@@ -37,7 +49,7 @@ class DriverDashboard extends Component{
 
                         <button onClick={this.logout}>Log out</button> 
                     </header>
-                    <DriverRegistrationForm/>
+                    <DriverRegistrationForm registrationFormSwitch={this.registrationFormSwitch}/>
                 </div>
             ); 
         } else {

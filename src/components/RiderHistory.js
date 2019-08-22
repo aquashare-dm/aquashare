@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
-import {getRides, getPastRides} from "../redux/ridesReducer"
+import {getRides, getRidesById} from "../redux/ridesReducer"
 import PastRides from './PastRides.js'
 
 class RiderHistory extends Component{
 
     componentDidMount() {
         let {id} = this.props.user.user
-        this.props.getPastRides(id)
+        this.props.getRidesById(id)
     }
 
     goBack = () => {
@@ -57,4 +57,4 @@ function mapStateToProps(state){
     return state
   }
 
-  export default connect(mapStateToProps, {getRides, getPastRides})(withRouter(RiderHistory));
+  export default connect(mapStateToProps, {getRides, getRidesById})(withRouter(RiderHistory));

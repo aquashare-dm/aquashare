@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_RIDES, SAVE_CRITERIA, GET_PAST_RIDES} from "./actionTypes.js";
+import { GET_RIDES, SAVE_CRITERIA, GET_RIDES_BY_ID} from "./actionTypes.js";
 
 const initialState = {
     searchCriteria: {
@@ -35,13 +35,13 @@ export const saveSearchCriteria = (firstDate, secondDate, location, locationLati
     }
 }
 
-export const getPastRides = (userId) => {
+export const getRidesById = (userId) => {
     let data = axios
-        .get(`/api/get-past-rides/${userId}`)
+        .get(`/api/get-rides-by-id/${userId}`)
         .then(res => {
            return  res.data})
     return {
-        type: GET_PAST_RIDES,
+        type: GET_RIDES_BY_ID,
         payload: data,
         error: false
     }
@@ -59,9 +59,9 @@ export default function (state = initialState, action){
             return {...state, rides: payload};
         case GET_RIDES + "_REJECTED":
             return {...state, error: payload};
-        case GET_PAST_RIDES + "_FULFILLED":
+        case GET_RIDES_BY_ID + "_FULFILLED":
             return {...state, pastRides: payload};
-        case GET_PAST_RIDES + "_REJECTED":
+        case GET_RIDES_BY_ID + "_REJECTED":
             return {...state, error: payload}; 
         default:
             console.log('Hit the default action type')
