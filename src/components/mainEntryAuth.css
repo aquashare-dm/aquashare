@@ -1,0 +1,40 @@
+/* Mobile View */
+@media (min-width: 300px) and (max-width: 991px){
+    .logoH1{
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        letter-spacing: 3px;
+        font-size: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+    }
+    .fullScreenContainerStartPages{
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        background-color: grey;
+        align-items: center;
+        flex-direction: column;
+
+        background-image: url("./aquaShareStartPageBack.png");
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: 550px 900px;
+        background-attachment: fixed;
+    }
+    .entryButtonStyleOverRide{
+        width: 100%;
+    }
+    .startPageLogoContainer{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 70%;
+        height: 20%;
+        margin-top: 40%;
+        margin-bottom: 50%;
+    }
+  }

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
-
+import "./coreStyling.css";
+import "./mainEntryAuth.css";
 
 class Login extends Component{
 
@@ -14,16 +15,20 @@ class Login extends Component{
 
         return(
 
-            <div>
+            <div className="mainAppWindow">
 
-                <section>
-                    <h1>Login Page</h1>
-                    <Link to="login/rider-login">
-                        <button>I am a rider</button>
-                    </Link>
-                    <Link to="login/driver-login">
-                        <button>I am a Driver</button>
-                    </Link>
+                <section section className="fullScreenContainerStartPages">
+                    <div className="startPageLogoContainer">
+                        <h1 className="logoH1">AQUASHARE</h1>
+                    </div>
+                    <div className="doubleInputCont">
+                        <Link to="login/rider-login" className="fluid ui inverted blue button">
+                            <p>I am a Rider</p>
+                        </Link>
+                        <Link to="login/driver-login" className="fluid ui inverted blue button">
+                            <p>I am a Driver</p>
+                        </Link>
+                    </div>
                     
                 </section>
             </div>
