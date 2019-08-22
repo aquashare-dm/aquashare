@@ -2,14 +2,23 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {Rating} from 'semantic-ui-react'
 
-class Ride extends Component {
+class PastRides extends Component {
+    state = {
+        rating: 0,
+        maxRating: 5
+    }
+    
+    handleRate = (e, { rating, maxRating }) => this.setState({ rating, maxRating }) 
+        
+    
+        
     buyRide = () => {
         console.log('Buy a ride button triggered!')
     }
 
     render() {
         let { ride_id, ride_location, ride_open_seats, ride_start_time, ride_end_time } = this.props;
-
+        console.log(this.state.rating, 'rating')
         return (
         <div style={{backgroundColor: 'yellow', margin: '10px'}}>
             <p>{ride_id}</p>
@@ -22,10 +31,13 @@ class Ride extends Component {
             <p>Tier</p>
             <p>Pricing</p>
             <p>Please rate your trip.</p>
-            <Rating icon='star' maxRating={5} clearable/>
+            <div>
+                <Rating maxRating={5} onRate={this.handleRate} />
+                
+            </div>
         </div>
         );
     }
 }
 
-export default connect( null, null)(Ride);
+export default connect( null, null)(PastRides);
