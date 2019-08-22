@@ -20,9 +20,11 @@ import RiderTripRequests from "./components/RiderTripRequests.js";
 import RiderHistory from "./components/RiderHistory.js";
 import RiderProfile from "./components/RiderProfile.js";
 import RiderDashLandingPage from "./components/RiderDashLandingPage.js";
+import UpcomingRides from "./components/UpcomingRides.js";
 
 //Boat Components
 import BoatRegistrationForm from "./components/BoatRegistrationForm.js";
+import DriverDashLandingPage from "./components/DriverDashLandingPage.js";
 
 export default (
     <Switch>
@@ -35,6 +37,7 @@ export default (
                         <Route exact path="/rider-dashboard" component={RiderDashLandingPage} />
                         <Route path="/rider-dashboard/find-a-ride" component={RideSearch} />
                         <Route path="/rider-dashboard/available-rides" component={AvailableRides} />
+                        <Route path="/rider-dashboard/upcoming-rides" component={UpcomingRides} />
                         <Route path="/rider-dashboard/request-a-ride" component={RideRequestForm} />
                         <Route path="/rider-dashboard/ride-requests" component={RiderTripRequests} />
                         <Route path="/rider-dashboard/ride-history" component={RiderHistory} />
@@ -49,7 +52,7 @@ export default (
                 <div>
                     <DriverDashboard/>
                     <Switch>
-                        <Route exact path="/driver-dashboard" component={RiderDashLandingPage} />
+                        <Route exact path="/driver-dashboard" component={DriverDashLandingPage} />
                         <Route path="/driver-dashboard/boat-register" component={BoatRegistrationForm}/>
                         {/* <Route path="/rider-dashboard/find-a-ride" component={RideSearch} />
                         <Route path="/rider-dashboard/available-rides" component={AvailableRides} />

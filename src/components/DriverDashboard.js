@@ -2,11 +2,23 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, Link, withRouter } from "react-router-dom";
 import { logout } from "../redux/userReducer.js";
+import { resetBoatStateOnLogout } from "../redux/boatReducer.js"
 import DriverRegistrationForm from "./DriverRegistrationForm.js";
-import DriverDashLandingPage from "./DriverDashLandingPage.js";
 
 
 class DriverDashboard extends Component{
+    constructor(props) {
+        super(props)
+        this.state = {
+            registered: false,
+        }
+    }
+    
+    registrationFormSwitch = ()  =>{
+        this.setState({ registered: true}, () => {
+            this.props.history.push("/driver-dashboard/boat-register")
+        })
+    }
     
     componentDidUpdate(prevProps) {
         if (prevProps !== this.props) {
@@ -14,19 +26,19 @@ class DriverDashboard extends Component{
         }
     }
 
-    logout = async () => {
-        await this.props.logout();
+    logout = () => {
+        this.props.logout();
+        this.props.resetBoatStateOnLogout()
     }
 
     render(){
-        
-        console.log('prevProps: ', this.props)
-        let { user } = this.props;
+        console.log(this.props)
+        let { user } = this.props.user;
         if(!user.loggedIn){
             return <Redirect to="/" />
         }
 
-        if(!user.registered){
+        if(!this.state.registered){
             return(
                 <div>
                     <header style={{backgroundColor: "gray"}} >
@@ -37,7 +49,7 @@ class DriverDashboard extends Component{
 
                         <button onClick={this.logout}>Log out</button> 
                     </header>
-                    <DriverRegistrationForm/>
+                    <DriverRegistrationForm registrationFormSwitch={this.registrationFormSwitch}/>
                 </div>
             ); 
         } else {
@@ -60,7 +72,7 @@ class DriverDashboard extends Component{
 }
 
 function mapStateToProps(state){
-    return state.user
+    return state
   }
 
-  export default connect(mapStateToProps, { logout })(withRouter(DriverDashboard));
+  export default connect(mapStateToProps, { logout, resetBoatStateOnLogout })(withRouter(DriverDashboard));

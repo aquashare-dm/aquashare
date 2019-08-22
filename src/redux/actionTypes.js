@@ -16,14 +16,15 @@ export const DRIVER_REGISTER = "DRIVER_REGISTER";
 //Ride Actions
 export const SAVE_CRITERIA = "SAVE_CRITERIA"
 export const GET_RIDES = "GET_RIDES"
-export const GET_PAST_RIDES = "GET_PAST_RIDES"
+export const GET_RIDES_BY_ID = "GET_RIDES_BY_ID"
 
 //Boat Actions
 export const CREATE_BOAT = "CREATE_BOAT";
 export const EDIT_BOAT = "EDIT_BOAT";
+export const RESET_STATE_ON_LOGOUT = "RESET_STATE_ON_LOGOUT";
 
 //Request Actions
 export const CREATE_REQUEST = "CREATE_REQUEST";
 export const EDIT_REQUEST = "EDIT_REQUEST";
 export const DELETE_REQUEST = "DELETE_REQUEST";
-
+export const GET_REQUESTS_BY_ID = "GET_REQUESTS_BY_ID";

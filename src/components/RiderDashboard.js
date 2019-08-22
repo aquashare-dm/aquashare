@@ -18,7 +18,7 @@ class RiderDashboard extends Component{
     }
 
     render(){
-        
+        console.log('this.props', this.props)
         let { user } = this.props;
         // if(!user.loggedIn){
         //     return <Redirect to="/" />
@@ -34,6 +34,9 @@ class RiderDashboard extends Component{
                         <div>Rider Rating</div>
                         <Link to="/rider-dashboard/find-a-ride">
                             <div>Find a Ride</div>
+                        </Link>
+                        <Link to="/rider-dashboard/upcoming-rides">
+                            <div>Upcoming Rides</div>
                         </Link>
                         <Link to="/rider-dashboard/ride-requests">
                             <div>Ride Requests</div>
@@ -60,6 +63,9 @@ class RiderDashboard extends Component{
                         <div>Rider Rating</div>
                         <Link to="/rider-dashboard/find-a-ride">
                             <div>Find a Ride</div>
+                        </Link>
+                        <Link to="/rider-dashboard/upcoming-rides">
+                            <div>Upcoming Rides</div>
                         </Link>
                         <Link to="/rider-dashboard/ride-requests">
                             <div>Ride Requests</div>

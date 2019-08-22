@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
 import { createBoat } from '../redux/boatReducer.js'
+import UploadImage from './UploadImage'
 
 
 class BoatRegistrationForm extends Component {
@@ -22,13 +23,6 @@ class BoatRegistrationForm extends Component {
         }
     }
 
-    registerAccount = () => {
-        let { user } = this.props
-        console.log('Account information sent to DB to be updated!')
-        user.registered = true
-        this.props.history.push('/driver-dashboard')
-    }
-
     handleChange = (event) => {
         let { name, value } = event.target;
         this.setState({
@@ -42,24 +36,22 @@ class BoatRegistrationForm extends Component {
         boatSeatNum, boatImageOne, boatImageTwo } = this.state
         this.props.createBoat(boatName, tierId, boatDescription, boatLicense, boatRegistration, boatMake, boatModel,
             +boatSeatNum, boatImageOne, boatImageTwo, this.props.user.driverId)
+        this.props.history.push("/driver-dashboard")
+    }
 
+    handleUploadedImage = (imgUrl) => {
+        this.setState({ riderImage: imgUrl })
     }
     
-
-
     render() {
-
         let { user } = this.props;
-        if (!user.loggedIn) {
-            return <Redirect to="/" />
-        }
 
         return (
 
             <div>
                 <h1>{this.props.user.riderUsername}</h1>
                 <div>
-                    Image
+                    <UploadImage action={this.handleUploadedImage} />
                 </div>
                 <form>
                     <input type="text" name="boatName" onChange={this.handleChange} value={this.state.boatName} placeholder="Boat Name" />
