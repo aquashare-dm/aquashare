@@ -35,6 +35,9 @@ class RiderDashboard extends Component{
                         <Link to="/rider-dashboard/find-a-ride">
                             <div>Find a Ride</div>
                         </Link>
+                        <Link to="/rider-dashboard/upcoming-rides">
+                            <div>Upcoming Rides</div>
+                        </Link>
                         <Link to="/rider-dashboard/ride-requests">
                             <div>Ride Requests</div>
                         </Link>
@@ -60,6 +63,9 @@ class RiderDashboard extends Component{
                         <div>Rider Rating</div>
                         <Link to="/rider-dashboard/find-a-ride">
                             <div>Find a Ride</div>
+                        </Link>
+                        <Link to="/rider-dashboard/upcoming-rides">
+                            <div>Upcoming Rides</div>
                         </Link>
                         <Link to="/rider-dashboard/ride-requests">
                             <div>Ride Requests</div>

@@ -4,6 +4,7 @@ export const RIDER_SIGNUP = "RIDER_SIGNUP";
 export const RIDER_LOGOUT = "RIDER_LOGOUT";
 export const GET_RIDER = "GET_RIDER";
 export const RIDER_REGISTER = "RIDER_REGISTER"
+export const EDIT_RIDER_PROFILE = "EDIT_RIDER_PROFILE"
 
 //Driver Actions
 export const DRIVER_LOGIN = "DRIVER_LOGIN";
@@ -26,4 +27,4 @@ export const RESET_STATE_ON_LOGOUT = "RESET_STATE_ON_LOGOUT";
 export const CREATE_REQUEST = "CREATE_REQUEST";
 export const EDIT_REQUEST = "EDIT_REQUEST";
 export const DELETE_REQUEST = "DELETE_REQUEST";
-
+export const GET_REQUESTS_BY_ID = "GET_REQUESTS_BY_ID";
