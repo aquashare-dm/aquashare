@@ -68,7 +68,6 @@ class RiderSignup extends Component{
     // }
 
     render(){
-
         let { username, password } = this.state;
         let {user} = this.props;
         //Check if user is signed in

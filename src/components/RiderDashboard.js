@@ -18,7 +18,7 @@ class RiderDashboard extends Component{
     }
 
     render(){
-        
+        console.log('this.props', this.props)
         let { user } = this.props;
         // if(!user.loggedIn){
         //     return <Redirect to="/" />

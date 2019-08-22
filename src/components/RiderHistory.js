@@ -28,10 +28,17 @@ class RiderHistory extends Component{
         console.log(this.props, "this.props")
         let {pastRides} = this.props.rides
         
-        let ridesDisplay = pastRides
-        .map( ride => (
-            <PastRides key={ride.ride_id} {...ride} />
-        ))
+        let ridesDisplay = pastRides.filter( function (ride) {
+            if (JSON.stringify(ride.ride_end_time).length === 1) {
+                let currentFlag = Date.parse(`${ride.ride_date} 00:0${JSON.stringify(ride.ride_end_time)}:00:00`) - Date.now()
+                return currentFlag <= 0
+            } else {
+                let currentFlag = Date.parse(`${ride.ride_date} 00:${JSON.stringify(ride.ride_end_time)}:00:00`) - Date.now()
+                return currentFlag <= 0
+            }})
+            .map( ride => (
+                <PastRides key={ride.ride_id} {...ride} />
+            ))
         return(
         
             <div>
