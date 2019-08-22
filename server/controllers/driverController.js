@@ -17,11 +17,11 @@ module.exports = {
             req.session.user = {
                 isDriver: true,
                 driverUsername: existingUser.driver_username,
-                driverFirstName: existingUser.driver_first_name,
-                driverLastName: existingUser.driver_last_name,
-                driverId: existingUser.driver_id,
+                driverFirst: existingUser.driver_first_name,
+                driverLast: existingUser.driver_last_name,
+                id: existingUser.driver_id,
                 driverEmail: existingUser.driver_email,
-                driverImageUrl: existingUser.driver_image_url,
+                driverImage: existingUser.driver_image_url,
                 driverRating: existingUser.driver_rating,
                 driverLicense: existingUser.driver_license,
                 loggedIn: true
@@ -63,16 +63,26 @@ module.exports = {
             if(req.session.user.loggedIn){
                 res.status(200).send(req.session.user);
             }else{
-                res.status(401).send("Unauthorised access, please log in to continue");
+                res.status(401).send("Unauthorized access, please log in to continue");
             }
         }
     },
     driverRegister: async (req, res) => {
         let { driverUsername, driverEmail, driverFirst, driverLast, driverImage, driverLicense, startRating } = req.body;
         const db = req.app.get("db");
-        console.log(req.body);
-        let user = await db.driver_register([driverUsername, driverEmail, driverFirst, driverLast, driverImage, driverLicense, startRating])
-        console.log("driver register user is ", user);
-        res.status(200).send(user);
+        let [user] = await db.driver_register([driverUsername, driverEmail, driverFirst, driverLast, driverImage, driverLicense, startRating])
+        req.session.user = {
+            isDriver: true,
+            driverUsername: user.driver_username,
+            driverFirst: user.driver_first_name,
+            driverLast: user.driver_last_name,
+            id: user.driver_id,
+            driverEmail: user.driver_email,
+            driverImage: user.driver_image_url,
+            driverRating: user.driver_rating,
+            driverLicense: user.driver_license,
+            loggedIn: true
+        }
+        res.status(200).send(req.session.user);
     }
 }

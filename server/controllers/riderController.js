@@ -63,7 +63,7 @@ module.exports = {
             if (req.session.user.loggedIn) {
                 res.status(200).send(req.session.user);
             } else {
-                res.status(401).send("Unauthorised access, please log in to continue");
+                res.status(401).send("Unauthorized access, please log in to continue");
             }
         }
     },

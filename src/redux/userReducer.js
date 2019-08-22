@@ -61,7 +61,7 @@ export const getDriver = () => {
 };
 
 export const driverRegister = (driverUsername, driverEmail, driverFirst, driverLast, driverImage, driverLicense, startRating) => {
-    let data = axios.put('/api/driver-register', { driverUsername, driverEmail, driverFirst, driverLast, driverImage, driverLicense, startRating })
+    let data = axios.put('/api/driver-register', { driverUsername, driverEmail, driverFirst, driverLast, driverImage, driverLicense, startRating }).then(res => res.data)
     return { type: DRIVER_REGISTER, payload: data }
 }
 
@@ -110,7 +110,7 @@ export default function (state = initialState, action) {
             return { ...state, error: payload }
 
         case DRIVER_LOGOUT + "_FULFILLED":
-            return { ...state, ...initialState };
+            return { ...initialState };
         case DRIVER_LOGOUT + "_REJECTED":
             return { ...state, error: payload }
 
