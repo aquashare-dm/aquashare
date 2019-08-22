@@ -12,7 +12,7 @@ const initialState = {
         radius: 50
     },
     rides: [],
-    pastRides: [],
+    filteredRides: [],
     error: false
 };
 
@@ -60,7 +60,7 @@ export default function (state = initialState, action){
         case GET_RIDES + "_REJECTED":
             return {...state, error: payload};
         case GET_RIDES_BY_ID + "_FULFILLED":
-            return {...state, pastRides: payload};
+            return {...state, filteredRides: payload};
         case GET_RIDES_BY_ID + "_REJECTED":
             return {...state, error: payload}; 
         default:
