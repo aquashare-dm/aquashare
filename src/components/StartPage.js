@@ -14,15 +14,16 @@ class StartPage extends Component{
             <section className="mainAppWindow">
 
                 <section className="fullScreenContainerStartPages">
-                    <div className="startPageLogoContainer">
+                    <div className="startPageLogoContainer" style={{marginBottom: "28%"}}>
                         <h1 className="logoH1">AQUASHARE</h1>
                     </div>
+                    <h2 className="startPagesH2" style={{marginBottom: "10%"}}>WELCOME</h2>
                     <div className="doubleInputCont">
                         <Link to="/login" className="fluid ui inverted blue button">
-                            <p>Login</p>
+                            <p className="buttonInsideText">LOGIN</p>
                         </Link>
                         <Link to="/signup" className="fluid ui inverted blue button">
-                            <p>Signup</p>
+                            <p className="buttonInsideText">SIGNUP</p>
                         </Link>
                     </div>
 
