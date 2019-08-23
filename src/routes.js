@@ -24,7 +24,6 @@ import RiderDashLandingPage from "./components/RiderDashLandingPage.js";
 import UpcomingRides from "./components/UpcomingRides.js";
 
 //Boat Components
-//
 import BoatRegistrationForm from "./components/BoatRegistrationForm.js";
 import DriverDashLandingPage from "./components/DriverDashLandingPage.js";
 

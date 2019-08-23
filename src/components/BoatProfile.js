@@ -9,19 +9,18 @@ class BoatProfile extends Component {
         super(props)
         this.state = {
             user: {},
-            boatId: this.props.boat.boatId,
-            newBoatName: this.props.boat.boatName,
-            newBoatDescription: this.props.boat.boatDescription,
-            newBoatLicense: this.props.boat.boatLicense,
-            newBoatRegistration: this.props.boat.boatRegistration,
-            newBoatMake: this.props.boat.boatMake,
-            newBoatModel: this.props.boat.boatModel,
-            newBoatSeatNumber: this.props.boat.boatSeatNumber,
-            newBoatImageOne: this.props.boat.boatImageOne,
-            newBoatImageTwo: this.props.boat.boatImageTwo,
-            // driverId: this.props.boat.driverId
+            boatId: this.props.boat.boat.boatId,
+            newBoatName: this.props.boat.boat.boatName,
+            newBoatDescription: this.props.boat.boat.boatDescription,
+            newBoatLicense: this.props.boat.boat.boatLicense,
+            newBoatRegistration: this.props.boat.boat.boatRegistration,
+            newBoatMake: this.props.boat.boat.boatMake,
+            newBoatModel: this.props.boat.boat.boatModel,
+            newBoatSeatNumber: this.props.boat.boat.boatSeatNumber,
+            newBoatImageOne: this.props.boat.boat.boatImageOne,
+            newBoatImageTwo: this.props.boat.boat.boatImageTwo,
         }
-    } d
+    }
 
     handleChange = (event) => {
         let { name, value } = event.target;
@@ -31,8 +30,8 @@ class BoatProfile extends Component {
     };
 
     handleFormSubmit = (e) => {
-        let { boatId, newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne, newBoatImageTwo } = this.state
-        this.props.editRiderProfile(this.props.boat.boatId, newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne, newBoatImageTwo)
+        let { newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne, newBoatImageTwo } = this.state
+        this.props.editBoat(this.props.boat.boat.boatId, newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne, newBoatImageTwo)
     }
 
     goBack = () => {
@@ -53,9 +52,12 @@ class BoatProfile extends Component {
         let { newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne, newBoatImageTwo } = this.state
         return (
             <div>
-                {/* {this.state.editing ? (
+                {this.state.editing ? (
                     <div>
-                        <h3>Upload New Image</h3>
+                        <h3>Upload New Images</h3>
+                        <div>
+                            <UploadImage action={this.handleUploadedImage} />
+                        </div>
                         <div>
                             <UploadImage action={this.handleUploadedImage} />
                         </div>
@@ -112,22 +114,22 @@ class BoatProfile extends Component {
                             <button onClick={this.flipEdit}>Cancel</button>
                         </div>
                     </div>
-                ) : ( */}
-                <div>
-                    <h3>{this.props.boat.boatName}</h3>
-                    <h3>{this.props.boat.boatDescription}</h3>
-                    <h1>{this.props.boat.boatLicense}</h1>
-                    <h3>{this.props.boat.boatRegistration} </h3>
-                    <h3>{this.props.boat.boatMake}</h3>
-                    <h3>{this.props.boat.boatModel}</h3>
-                    <h3>{this.props.boat.boatSeatNumber}</h3>
-                    <h3>{this.props.boat.boatImageOne}</h3>
-                    <h3>{this.props.boat.boatImageTwo}</h3>
-                    <div>
-                        <button onClick={this.flipEdit}>Edit</button>
-                    </div>
-                </div>
-                {/* )} */}
+                ) : (
+                        <div>
+                            <h3>Boat Name: {boat.boatName}</h3>
+                            <h3>Description: {boat.boatDescription}</h3>
+                            <h1>License Number: {boat.boatLicense}</h1>
+                            <h3>Boat Registration Number:{boat.boatRegistration} </h3>
+                            <h3>Boat Make: {boat.boatMake}</h3>
+                            <h3>Boat Model: {boat.boatModel}</h3>
+                            <h3>Number of Seats: {boat.boatSeatNumber}</h3>
+                            <h3>{boat.boatImageOne}</h3>
+                            <h3>{boat.boatImageTwo}</h3>
+                            <div>
+                                <button onClick={this.flipEdit}>Edit</button>
+                            </div>
+                        </div>
+                    )}
 
             </div>
         );

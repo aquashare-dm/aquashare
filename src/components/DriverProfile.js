@@ -91,10 +91,11 @@ class DriverProfile extends Component {
                         <div>
                             <h3>{this.props.user.driverImage}</h3>
                             <h3>{this.props.user.driverRating}</h3>
-                            <h1>{this.props.user.driverUsername}</h1>
-                            <h3>{this.props.user.driverFirst} {this.props.user.DriverLast}</h3>
-                            <h3>{this.props.user.driverEmail}</h3>
-                            <h3>{this.props.user.driverLicense}</h3>
+                            <h1>Username: {this.props.user.driverUsername}</h1>
+                            <h3>First Name: {this.props.user.driverFirst} </h3>
+                            <h3>Last Name:{this.props.user.DriverLast}</h3>
+                            <h3>Email: {this.props.user.driverEmail}</h3>
+                            <h3>Boat License Number: {this.props.user.driverLicense}</h3>
                             <div>
                                 <button onClick={this.flipEdit}>Edit</button>
                             </div>
