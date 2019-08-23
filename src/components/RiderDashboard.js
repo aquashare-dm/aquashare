@@ -103,7 +103,7 @@ class RiderDashboard extends Component{
                         <div className="showMobileIconCont" onClick={()=>{this.menuClick()}} ref={this.mobileMenuIcon}>
                             <i className="fas fa-bars"/>
                         </div>
-                        <h2>AQUASHARE</h2>
+                        <h1 className="logoH1">AQUASHARE</h1>
                     </section>
 
                     <div className="navOptionsCont" ref={this.navOptionsRowCont}>
