@@ -9,6 +9,7 @@ import StartPage from "./components/StartPage.js";
 import Signup from "./components/Signup.js";
 import DriverDashboard from "./components/DriverDashboard.js";
 import DriverProfile from "./components/DriverProfile.js";
+import DriverHistory from "./components/DriverHistory.js";
 
 //Rider Components
 import RiderLogin from "./components/RiderLogin.js";
@@ -22,6 +23,7 @@ import RiderHistory from "./components/RiderHistory.js";
 import RiderProfile from "./components/RiderProfile.js";
 import RiderDashLandingPage from "./components/RiderDashLandingPage.js";
 import UpcomingRides from "./components/UpcomingRides.js";
+import DriverUpcomingRides from "./components/DriverUpcomingRides.js";
 
 //Boat Components
 import BoatRegistrationForm from "./components/BoatRegistrationForm.js";
@@ -55,11 +57,12 @@ export default (
                     <Switch>
                         <Route exact path="/driver-dashboard" component={DriverDashLandingPage} />
                         <Route path="/driver-dashboard/boat-register" component={BoatRegistrationForm} />
-                        {/* <Route path="/rider-dashboard/find-a-ride" component={RideSearch} />
-                        <Route path="/rider-dashboard/available-rides" component={AvailableRides} />
-                        <Route path="/rider-dashboard/request-a-ride" component={RideRequestForm} />
-                        <Route path="/rider-dashboard/ride-requests" component={RiderTripRequests} />
-                        <Route path="/rider-dashboard/ride-history" component={RiderHistory} /> */}
+                        <Route path="/driver-dashboard/upcoming-rides" component={DriverUpcomingRides} />
+                        {/* <Route path="/rider-dashboard/find-a-ride" component={RideSearch} /> */}
+                        {/* <Route path="/rider-dashboard/available-rides" component={AvailableRides} /> */}
+                        {/* <Route path="/rider-dashboard/request-a-ride" component={RideRequestForm} /> */}
+                        {/* <Route path="/rider-dashboard/ride-requests" component={RiderTripRequests} /> */}
+                        <Route path="/driver-dashboard/ride-history" component={DriverHistory} />
                         <Route path="/driver-dashboard/driver-profile" component={DriverProfile} />
                     </Switch>
 
