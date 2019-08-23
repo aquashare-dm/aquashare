@@ -112,7 +112,6 @@ class DriverRideCreationForm extends Component {
         if (!user.loggedIn) {
             return <Redirect to="/" />
         }
-        console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', this.props)
         return (
 
             <div>
