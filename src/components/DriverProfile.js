@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
 import { editDriverProfile } from '../redux/userReducer'
 import UploadImage from './UploadImage'
+import BoatProfile from './BoatProfile'
 
 class DriverProfile extends Component {
     constructor(props) {
@@ -42,8 +43,6 @@ class DriverProfile extends Component {
     }
 
     flipEdit = () => this.setState({ editing: !this.state.editing })
-
-
 
     render() {
         let { user } = this.props;
@@ -94,11 +93,13 @@ class DriverProfile extends Component {
                             <h1>{this.props.user.driverUsername}</h1>
                             <h3>{this.props.user.driverFirst} {this.props.user.DriverLast}</h3>
                             <h3>{this.props.user.driverEmail}</h3>
+                            <h3>{this.props.user.driverLicense}</h3>
                             <div>
                                 <button onClick={this.flipEdit}>Edit</button>
                             </div>
                         </div>
                     )}
+                <BoatProfile />
 
             </div>
         );
