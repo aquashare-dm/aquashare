@@ -24,6 +24,7 @@ import RiderDashLandingPage from "./components/RiderDashLandingPage.js";
 import UpcomingRides from "./components/UpcomingRides.js";
 
 //Boat Components
+//
 import BoatRegistrationForm from "./components/BoatRegistrationForm.js";
 import DriverDashLandingPage from "./components/DriverDashLandingPage.js";
 
@@ -62,6 +63,7 @@ export default (
                         <Route path="/rider-dashboard/ride-history" component={RiderHistory} /> */}
                         <Route path="/driver-dashboard/driver-profile" component={DriverProfile} />
                     </Switch>
+
                 </div>
 
             )
