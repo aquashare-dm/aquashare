@@ -49,6 +49,7 @@ class DriverProfile extends Component {
         if (!user.loggedIn) {
             return <Redirect to="/" />
         }
+        //
         let { newDriverImage, newDriverUsername, newDriverFirst, newDriverLast, newDriverEmail, newDriverLicense } = this.state
         return (
             <div>
