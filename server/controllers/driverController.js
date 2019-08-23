@@ -11,7 +11,6 @@ module.exports = {
         if (!existingUser) return res.status(401).send("Username not found");
         let resultPassword = await bcrypt.compare(driverPassword, existingUser.driver_password);
         delete existingUser.driverPassword;
-        console.log("existinguser is ", existingUser);
         //Check if Password is correct
         if (resultPassword) {
             req.session.user = {
@@ -71,6 +70,7 @@ module.exports = {
         let { driverUsername, driverEmail, driverFirst, driverLast, driverImage, driverLicense, startRating } = req.body;
         const db = req.app.get("db");
         let [user] = await db.driver_register([driverUsername, driverEmail, driverFirst, driverLast, driverImage, driverLicense, startRating])
+        console.log("hit driverRegister in controller, user has info: ", user);
         req.session.user = {
             isDriver: true,
             driverUsername: user.driver_username,
@@ -106,7 +106,6 @@ module.exports = {
             driverLicense: user.driver_license,
             loggedIn: true
         }
-        console.log(req.session.user)
         res.send(req.session.user);
     },
     

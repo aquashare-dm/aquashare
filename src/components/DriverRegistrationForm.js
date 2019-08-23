@@ -26,12 +26,18 @@ class DriverRegistrationForm extends Component {
         })
     };
 
+    registrationFormSwitch = ()  =>{
+        this.setState({ registered: true}, () => {
+            this.props.history.push("/driver-dashboard/boat-register")
+        })
+    }
+
     handleFormSubmit = (e) => {
         e.preventDefault()
         let { driverEmail, driverFirst, driverLast, driverImage, driverLicense } = this.state
         const newStartRating = 5.0;
         this.props.driverRegister(this.props.user.driverUsername, driverEmail, driverFirst, driverLast, driverImage, driverLicense, newStartRating)
-        this.props.registrationFormSwitch()
+        this.registrationFormSwitch();
     }
     handleUploadedImage = (imgUrl) => {
         this.setState({ driverImage: imgUrl })

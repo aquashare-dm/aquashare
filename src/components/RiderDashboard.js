@@ -23,7 +23,6 @@ class RiderDashboard extends Component{
         }
         this.mobileMenuIcon = React.createRef();
         this.navOptionsRowCont = React.createRef();
-        // this.googleContainer = this.document.getElementById("google-maps-container") 
     }
     
     componentDidMount(){
@@ -45,7 +44,7 @@ class RiderDashboard extends Component{
           current.classList.remove("hideMobileIconCont")
         }
       }
-      triggerNavRowOptions = () => {
+    triggerNavRowOptions = () => {
         let {current} = this.navOptionsRowCont;
         if(window.innerWidth <= 992){
           current.classList.add("hideNavOptionsCont");
@@ -55,7 +54,7 @@ class RiderDashboard extends Component{
           current.classList.remove("hideNavOptionsCont")
         }
       }
-      menuClick = () => {
+    menuClick = () => {
         let {current} = this.navOptionsRowCont;
         console.log(current.classList);
         if(this.state.navMenuOpen === false){
@@ -104,7 +103,7 @@ class RiderDashboard extends Component{
                         <div className="showMobileIconCont" onClick={()=>{this.menuClick()}} ref={this.mobileMenuIcon}>
                             <i className="fas fa-bars"/>
                         </div>
-                        <h2>Start Bootstrap</h2>
+                        <h2>AQUASHARE</h2>
                     </section>
 
                     <div className="navOptionsCont" ref={this.navOptionsRowCont}>
