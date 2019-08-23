@@ -105,8 +105,8 @@ class RideSearch extends Component{
         
             <div>
 
-                <div className="mapRightCont" >
-                    <CurrentLocation centerAroundCurrentLocation width={"500px"} height={"300px"} google={this.props.google} lat={this.state.locationLatitude} lng={this.state.locationLongitude}>
+                <div className="mapRightCont" id="google-maps-container" style={{visibility: !this.props.navMenuOpen?"visible":"hidden"}}>
+                    <CurrentLocation centerAroundCurrentLocation width={"100vw"} height={"300px"} google={this.props.google} lat={this.state.locationLatitude} lng={this.state.locationLongitude}>
                         <Marker
                             position={{lat:this.state.locationLatitude, lng:this.state.locationLongitude}}
                             onClick={this.onMarkerClick}

@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Redirect, Link, withRouter } from "react-router-dom";
+import { Route, Redirect, Link, withRouter, Switch } from "react-router-dom";
 import { logout } from "../redux/userReducer.js";
 import { resetBoatStateOnLogout } from "../redux/boatReducer.js"
 import DriverRegistrationForm from "./DriverRegistrationForm.js";
+
+import BoatRegistrationForm from "./BoatRegistrationForm.js";
 
 
 class DriverDashboard extends Component{
@@ -64,7 +66,18 @@ class DriverDashboard extends Component{
 
                         <button onClick={this.logout}>Log out</button> 
                     </header>
+
+                    <Switch>
+                        <Route path="/driver-dashboard/boat-register" component={BoatRegistrationForm}/>
+                        {/* <Route path="/rider-dashboard/find-a-ride" component={RideSearch} />
+                        <Route path="/rider-dashboard/available-rides" component={AvailableRides} />
+                        <Route path="/rider-dashboard/request-a-ride" component={RideRequestForm} />
+                        <Route path="/rider-dashboard/ride-requests" component={RiderTripRequests} />
+                        <Route path="/rider-dashboard/ride-history" component={RiderHistory} />
+                        <Route path="/rider-dashboard/rider-profile" component={RiderProfile} /> */}
+                    </Switch>
                 </div>
+
             ); 
         }
     

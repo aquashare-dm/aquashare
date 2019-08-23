@@ -1,0 +1,75 @@
+/* Mobile View */
+@media (min-width: 300px) and (max-width: 991px){
+    .mainDashCont{
+        position: fixed;
+        top: 0;
+        width: 100%;
+    }
+    .mainDashNavCont{
+
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 10vh;
+        padding: 3%;
+    
+        border: none;
+        background-color: rgba(33, 37, 41, 0.7);
+        align-items: center;
+        text-align: center;
+        justify-content: space-between;
+    }
+    .navBarTopPadding{
+        height: 10vh;
+    }
+    .navOptionsCont{
+        z-index: 9;
+        width: 80%;
+        height: 100vh;
+        background-color: grey;
+        color: white;
+        display: flex;
+        flex-direction: column;
+    }
+    .navLinkOption:hover{
+        color: #fed136;
+        cursor: pointer;
+    }
+    .heroButton:hover{
+        background-color: #a88d2cd8;
+        cursor: pointer;
+    }
+    .hideNavOptionsCont{
+        display: none;
+    }
+    .hideMobileIconCont{
+        display: none;
+    }
+    .showMobileIconCont{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 4px;
+        width: 40px;
+        height: 40px;
+        background-color: #fed136;
+        color: black;
+        font-size: 25px;
+      }
+      .showNavOptionsCont{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        width: 70%;
+        color: white;
+      }
+      .navLinkOption{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Montserrat', sans-serif;
+        padding-right: 15px;
+        color: #fff;
+      }
+}

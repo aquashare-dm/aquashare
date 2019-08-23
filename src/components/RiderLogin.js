@@ -30,7 +30,7 @@ class RiderLogin extends Component{
         let {username, password} = this.state;
         //Check if user is logged in
         if(user){
-            if(user.loggedIn) return <Redirect to="/rider-dashboard" />
+            if(user.loggedIn) return <Redirect to="/rider-dashboard/find-a-ride" />
         }
 
 
@@ -45,11 +45,11 @@ class RiderLogin extends Component{
                 <div className="doubleInputCont" style={{height: "20%"}}>
                     <div className="fluid ui icon input" style={{width: "100%"}}>
                         <input placeholder="Username" type="text" value={username} name="username" onChange={this.handleChange} />
-                        <i class="fas fa-user icon" style={{color: "#337AB7"}}></i>
+                        <i className="fas fa-user icon" style={{color: "#337AB7"}}></i>
                     </div>
                     <div className="ui fluid icon input" style={{width: "100%"}}>
                         <input placeholder="Password" type="password" value={password} name="password" onChange={this.handleChange} />
-                        <i class="fas fa-unlock icon" style={{color: "#337AB7"}}></i>
+                        <i className="fas fa-unlock icon" style={{color: "#337AB7"}}></i>
                     </div>
                     <button className="ui fluid inverted blue button" onClick={this.loginRider}>
                         <p className="buttonInsideText">LOGIN</p>
