@@ -36,7 +36,7 @@ class BoatRegistrationForm extends Component {
         boatSeatNum, boatImageOne, boatImageTwo } = this.state
         this.props.createBoat(boatName, tierId, boatDescription, boatLicense, boatRegistration, boatMake, boatModel,
             +boatSeatNum, boatImageOne, boatImageTwo, this.props.user.driverId)
-        this.props.history.push("/driver-dashboard")
+        this.props.history.push("/driver-dashboard/create-a-ride")
     }
 
     handleUploadedImage = (imgUrl) => {

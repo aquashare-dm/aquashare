@@ -126,7 +126,6 @@ class RiderDashboard extends Component{
                 <this.registrationForm />
                 <Switch>
                     <Route path="/rider-dashboard/find-a-ride" render={()=>{
-                        console.log("passing in ridesearch")
                         return(<RideSearch navMenuOpen={this.state.navMenuOpen}/>)
                     }}/>
                     <Route path="/rider-dashboard/available-rides" component={AvailableRides} />
