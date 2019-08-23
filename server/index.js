@@ -25,9 +25,9 @@ massive(CONNECTION_STRING).then(db => {
     app.set("db", db);
     app.listen(SERVER_PORT, () => { console.log("Server Listening on Port", SERVER_PORT) });
     console.log("DB connected");
-    console.log(Date.parse('08/31/19')-21600000)
-    console.log(Date.now()+61200000)
-    console.log(Date.now()-Date.parse('08/21/19 21:24:00'))
+    console.log(Date.parse('08/31/19') - 21600000)
+    console.log(Date.now() + 61200000)
+    console.log(Date.now() - Date.parse('08/21/19 21:24:00'))
 });
 
 //Rider Endpoints
@@ -46,6 +46,7 @@ app.put("/api/driver-register", driverController.driverRegister);
 app.post("/api/get-rides", ridesController.getRides);
 app.get("/api/get-rides-by-id/:userId", ridesController.getRidesById);
 app.get("/api/get-rides-by-driver-id/:driverId", ridesController.getRidesByDriverId);
+app.post('/api/create-ride', ridesController.createRide)
 
 //Boat Endpoints
 app.post("/api/create-boat", boatController.createBoat);

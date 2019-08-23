@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_RIDES, SAVE_CRITERIA, GET_RIDES_BY_ID, CREATE_RIDE, GET_RIDES_BY_DRIVER_ID} from "./actionTypes.js";
+import { GET_RIDES, SAVE_CRITERIA, GET_RIDES_BY_ID, CREATE_RIDE, GET_RIDES_BY_DRIVER_ID } from "./actionTypes.js";
 
 const initialState = {
     searchCriteria: {
@@ -47,8 +47,8 @@ export const getRidesById = (driverId) => {
         error: false
     }
 }
-export const createRide = (request_date, request_location_lat, request_location_long, request_seat_number, tier_id, rider_id, request_start_time, request_end_time) => {
-    let data = axios.post("/api/create-request", { request_date, request_location_lat, request_location_long, request_seat_number, tier_id, rider_id, request_start_time, request_end_time }).then(res => res.data)
+export const createRide = (ride_date, driver_id, ride_location, ride_location_lat, ride_location_long, ride_total_seats, ride_open_seats, ride_start_time, ride_end_time, tier_id, ) => {
+    let data = axios.post("/api/create-ride", { ride_date, driver_id, ride_location, ride_location_lat, ride_location_long, ride_total_seats, ride_open_seats, ride_start_time, ride_end_time, tier_id }).then(res => res.data)
     return { type: CREATE_RIDE, payload: data };
 };
 
@@ -80,13 +80,13 @@ export default function (state = initialState, action) {
             return { ...state, filteredRides: payload };
         case GET_RIDES_BY_ID + "_REJECTED":
             return { ...state, error: payload };
-        
+
         //DRIVER RIDES
         case CREATE_RIDE + "_FULFILLED":
             return { ...state, rides: payload };
         case CREATE_RIDE + "_REJECTED":
             return { ...state, error: payload };
-            
+
         case GET_RIDES_BY_DRIVER_ID + "_FULFILLED":
             console.log('')
             return { ...state, filteredRides: payload };
