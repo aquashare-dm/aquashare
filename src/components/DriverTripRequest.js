@@ -21,7 +21,7 @@ class DriverTripRequest extends Component {
             <p>{request_end_time}</p>
             <p>{rider_id}</p>
             <p>I want to fill this request.</p>
-            <button>Submit</button>
+            <button>Accept</button>
             
         </div>
         );
