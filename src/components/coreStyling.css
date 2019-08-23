@@ -9,7 +9,7 @@
         width: 100vw;
         height: 100vh;
         display: flex;
-        background-color: grey;
+        background-color: rgb(36, 36, 36);
         align-items: center;
         flex-direction: column;
     }

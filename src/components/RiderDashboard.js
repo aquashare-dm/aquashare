@@ -103,7 +103,7 @@ class RiderDashboard extends Component{
                         <div className="showMobileIconCont" onClick={()=>{this.menuClick()}} ref={this.mobileMenuIcon}>
                             <i className="fas fa-bars"/>
                         </div>
-                        <h2>AQUASHARE</h2>
+                        <h1 className="logoH1">AQUASHARE</h1>
                     </section>
 
                     <div className="navOptionsCont" ref={this.navOptionsRowCont}>
@@ -126,7 +126,6 @@ class RiderDashboard extends Component{
                 <this.registrationForm />
                 <Switch>
                     <Route path="/rider-dashboard/find-a-ride" render={()=>{
-                        console.log("passing in ridesearch")
                         return(<RideSearch navMenuOpen={this.state.navMenuOpen}/>)
                     }}/>
                     <Route path="/rider-dashboard/available-rides" component={AvailableRides} />

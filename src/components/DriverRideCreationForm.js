@@ -11,7 +11,7 @@ const { REACT_APP_GOOGLE_API_KEY } = process.env;
 //Geocoding Functionality
 Geocode.setApiKey(REACT_APP_GOOGLE_API_KEY);
 
-class RideRequestForm extends Component {
+class DriverRideCreationForm extends Component {
     constructor() {
         super();
         this.state = {
@@ -20,11 +20,11 @@ class RideRequestForm extends Component {
             location: '',
             locationLatitude: "",
             locationLongitude: "",
-            boatSeatNum: '',
-            tripSeatNum: '',
-            tierId: '',
+            totalBoatSeatNum: '',
+            openBoatSeatNum: '',
             startTime: '',
             endTime: '',
+            tierId: '',
 
             //GoogleMaps States
             showingInfoWindow: false,
@@ -57,8 +57,8 @@ class RideRequestForm extends Component {
         e.preventDefault()
         await this.submitAddressForGeocoding();
         console.log("this.props is ", this.props);
-        let { date, locationLatitude, locationLongitude, boatSeatNum, tripSeatNum, tierId, startTime, endTime } = this.state;
-        await this.props.createRide(this.props.user.id, date, locationLatitude, locationLongitude, +boatSeatNum, +tripSeatNum, tierId, +startTime, +endTime);
+        let { date, location, locationLatitude, locationLongitude, totalBoatSeatNum, openBoatSeatNum, startTime, endTime, tierId } = this.state;
+        await this.props.createRide(date, this.props.user.id, location, locationLatitude, locationLongitude, +totalBoatSeatNum, +openBoatSeatNum, +startTime, +endTime, tierId);
         this.props.history.push('/driver-dashboard/created-rides');
     };
 
@@ -112,7 +112,7 @@ class RideRequestForm extends Component {
         if (!user.loggedIn) {
             return <Redirect to="/" />
         }
-
+        console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', this.props)
         return (
 
             <div>
