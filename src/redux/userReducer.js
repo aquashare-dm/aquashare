@@ -1,7 +1,7 @@
 import axios from "axios";
 import {
     RIDER_SIGNUP, RIDER_LOGIN, GET_RIDER, RIDER_LOGOUT,
-    DRIVER_SIGNUP, DRIVER_LOGIN, GET_DRIVER, DRIVER_LOGOUT, RIDER_REGISTER, DRIVER_REGISTER, EDIT_RIDER_PROFILE
+    DRIVER_SIGNUP, DRIVER_LOGIN, GET_DRIVER, DRIVER_LOGOUT, RIDER_REGISTER, DRIVER_REGISTER, EDIT_RIDER_PROFILE, EDIT_DRIVER_PROFILE
 } from "./actionTypes.js";
 
 const initialState = {
@@ -69,6 +69,10 @@ export const driverRegister = (driverUsername, driverEmail, driverFirst, driverL
     let data = axios.put('/api/driver-register', { driverUsername, driverEmail, driverFirst, driverLast, driverImage, driverLicense, startRating }).then(res => res.data)
     return { type: DRIVER_REGISTER, payload: data }
 }
+export const editDriverProfile = (driverUsername, newDriverEmail, newDriverFirst, newDriverLast, newDriverImage) => {
+    let data = axios.put('/api/edit-rider', { driverUsername, newDriverEmail, newDriverFirst, newDriverLast, newDriverImage }).then(res => res.data)
+    return { type: EDIT_DRIVER_PROFILE, payload: data }
+}
 
 //Default Function
 export default function (state = initialState, action) {
@@ -126,6 +130,10 @@ export default function (state = initialState, action) {
         case DRIVER_REGISTER + "_FULFILLED":
             return { ...state, user: payload, error: false }
         case DRIVER_REGISTER + "_REJECTED":
+            return { ...state, error: payload }
+        case EDIT_DRIVER_PROFILE + "_FULFILLED":
+            return { ...state, user: payload, error: false }
+        case EDIT_DRIVER_PROFILE + "_REJECTED":
             return { ...state, error: payload }
 
         default:
