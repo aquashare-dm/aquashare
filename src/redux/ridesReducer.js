@@ -54,7 +54,7 @@ export const createRide = (request_date, request_location_lat, request_location_
 
 export const getRidesByDriverId = (userId) => {
     let data = axios
-        .get(`/api/get-rides-by-id/${userId}`)
+        .get(`/api/get-rides-by-driver-id/${userId}`)
         .then(res => {
             return res.data
         })
@@ -86,7 +86,9 @@ export default function (state = initialState, action) {
             return { ...state, rides: payload };
         case CREATE_RIDE + "_REJECTED":
             return { ...state, error: payload };
+            
         case GET_RIDES_BY_DRIVER_ID + "_FULFILLED":
+            console.log('')
             return { ...state, filteredRides: payload };
         case GET_RIDES_BY_DRIVER_ID + "_REJECTED":
             return { ...state, error: payload };
