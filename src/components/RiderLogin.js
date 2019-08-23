@@ -30,7 +30,7 @@ class RiderLogin extends Component{
         let {username, password} = this.state;
         //Check if user is logged in
         if(user){
-            if(user.loggedIn) return <Redirect to="/rider-dashboard" />
+            if(user.loggedIn && !user.isDriver) return <Redirect to="/rider-dashboard" />
         }
 
 

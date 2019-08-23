@@ -40,7 +40,7 @@ class UpcomingRides extends Component{
             <div>
                 <header>
                     <button onClick={this.goBack}>{`<Back`}</button>
-                    <h1>This view will list all of the upcoming user trips and will allow riders to rate the driver</h1>
+                    <h1>This view will list all of the upcoming user trips</h1>
                     <div>{ridesDisplay}</div>
                 </header>
             </div>
