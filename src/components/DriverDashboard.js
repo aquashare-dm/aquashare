@@ -46,6 +46,21 @@ class DriverDashboard extends Component{
                         <div>First Name</div>
                         <div>Last Name</div>
                         <div>Driver Rating</div>
+                        <Link to="/driver-dashboard/create-a-ride">
+                            <div>Find a Ride</div>
+                        </Link>
+                        <Link to="/driver-dashboard/upcoming-rides">
+                            <div>Upcoming Rides</div>
+                        </Link>
+                        <Link to="/driver-dashboard/ride-requests">
+                            <div>Ride Requests</div>
+                        </Link>
+                        <Link to="/driver-dashboard/ride-history">
+                            <div>Ride History</div>
+                        </Link>
+                        <Link to="/driver-dashboard/driver-profile">
+                            <div>Edit Profile</div>
+                        </Link>
 
                         <button onClick={this.logout}>Log out</button> 
                     </header>
@@ -61,7 +76,21 @@ class DriverDashboard extends Component{
                         <div>First Name</div>
                         <div>Last Name</div>
                         <div>Driver Rating</div>
-
+                        <Link to="/driver-dashboard/create-a-ride">
+                            <div>Find a Ride</div>
+                        </Link>
+                        <Link to="/driver-dashboard/upcoming-rides">
+                            <div>Upcoming Rides</div>
+                        </Link>
+                        <Link to="/driver-dashboard/ride-requests">
+                            <div>Ride Requests</div>
+                        </Link>
+                        <Link to="/driver-dashboard/ride-history">
+                            <div>Ride History</div>
+                        </Link>
+                        <Link to="/driver-dashboard/driver-profile">
+                            <div>Edit Profile</div>
+                        </Link>
                         <button onClick={this.logout}>Log out</button> 
                     </header>
                 </div>
