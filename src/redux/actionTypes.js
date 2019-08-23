@@ -12,6 +12,7 @@ export const DRIVER_SIGNUP = "DRIVER_SIGNUP";
 export const DRIVER_LOGOUT = "DRIVER_LOGOUT";
 export const GET_DRIVER = "GET_DRIVER";
 export const DRIVER_REGISTER = "DRIVER_REGISTER";
+export const CREATE_RIDE = "CREATE_RIDE";
 
 //Ride Actions
 export const SAVE_CRITERIA = "SAVE_CRITERIA"

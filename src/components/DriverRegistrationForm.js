@@ -40,7 +40,7 @@ class DriverRegistrationForm extends Component {
     render() {
         let { boat, user } = this.props;
 
-        if(user.driverRating && ![boat].length) {
+        if (user.driverRating && ![boat].length) {
             return (<div></div>)
         } else {
             return (
