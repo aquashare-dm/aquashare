@@ -119,7 +119,7 @@ class RideRequestForm extends Component {
 
                 <header>
                     <button onClick={this.goBack}>{`<Back`}</button>
-                    <h1>Enter information here to send request to drivers</h1>
+                    <h1>Create a Ride</h1>
                 </header>
                 <form>
                     <input type="text" name="date" onChange={this.handleChange} value={this.state.requestDate} placeholder="Date" />
