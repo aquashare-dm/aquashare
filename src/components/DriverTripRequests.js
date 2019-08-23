@@ -1,15 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
-import {getRequestsById} from '../redux/requestReducer'
-import TripRequest from './TripRequest'
+import {getAvailableRequests} from '../redux/requestReducer'
+import DriverTripRequest from './DriverTripRequest'
 
-
-class RiderTripRequests extends Component{
+class DriverTripRequests extends Component{
 
     componentDidMount() {
-        let {id} = this.props.user.user
-        this.props.getRequestsById(id)
+        this.props.getAvailableRequests()
     } 
 
     goBack = () => {
@@ -17,21 +15,22 @@ class RiderTripRequests extends Component{
     }
     
     goToSearchPage = () => {
-        this.props.history.push('/rider-dashboard/find-a-ride')
+        this.props.history.push('/driver-dashboard/create-a-ride')
     }
 
     render(){
         console.log("Props on request page", this.props)
         let { user } = this.props.user;
         let {requests} = this.props
-        let {request_date, request_end_time} = this.props.requests.allRequests[0]
-        console.log(request_date, request_end_time, "date and time")
+        
+       
         if(!user.loggedIn){
             return <Redirect to="/" />
         }
         console.log(requests, 'requests')
+        
         let requestsDisplay = requests.allRequests.map( request => (
-            <TripRequest key = {request.rider_id} {...request} />
+            <DriverTripRequest key = {request.request_id} {...request} />
         ))
         return(
         
@@ -51,5 +50,5 @@ function mapStateToProps(state){
     return state
   }
 
-  export default connect(mapStateToProps, {getRequestsById})(withRouter(RiderTripRequests));
+  export default connect(mapStateToProps, {getAvailableRequests})(withRouter(DriverTripRequests));
 
