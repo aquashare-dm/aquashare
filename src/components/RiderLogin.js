@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { riderLogin } from "../redux/userReducer.js";
 import { Redirect, Link } from "react-router-dom";
+import "./coreStyling.css";
+import "./mainEntryAuth.css";
 
 class RiderLogin extends Component{
 
@@ -34,15 +36,29 @@ class RiderLogin extends Component{
 
         return(
 
-            <div>
+        <section className="mainAppWindow">
+            <section className="fullScreenContainerStartPages">
+                <div className="startPageLogoContainer" style={{marginBottom: "15%"}}>
+                    <h1 className="logoH1">AQUASHARE</h1>
+                </div>
+                <h2 className="startPagesH2" style={{marginBottom: "10%"}}>RIDER LOGIN</h2>
+                <div className="doubleInputCont" style={{height: "20%"}}>
+                    <div className="fluid ui icon input" style={{width: "100%"}}>
+                        <input placeholder="Username" type="text" value={username} name="username" onChange={this.handleChange} />
+                        <i class="fas fa-user icon" style={{color: "#337AB7"}}></i>
+                    </div>
+                    <div className="ui fluid icon input" style={{width: "100%"}}>
+                        <input placeholder="Password" type="password" value={password} name="password" onChange={this.handleChange} />
+                        <i class="fas fa-unlock icon" style={{color: "#337AB7"}}></i>
+                    </div>
+                    <button className="ui fluid inverted blue button" onClick={this.loginRider}>
+                        <p className="buttonInsideText">LOGIN</p>
+                    </button>
+                </div>
 
-                <section>
-                    <h1>Rider Login Page</h1>
-                    <input placeholder="Username" type="text" value={username} name="username" onChange={this.handleChange} />
-                    <input placeholder="Password" type="password" value={password} name="password" onChange={this.handleChange} />
-                    <button className="login-entry-btn" onClick={this.loginRider}>Login</button>
-                </section>
-            </div>
+                
+            </section>
+        </section>
         );
     };
 }
