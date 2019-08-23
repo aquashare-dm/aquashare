@@ -108,5 +108,6 @@ module.exports = {
         }
         console.log(req.session.user)
         res.send(req.session.user);
-    }
+    },
+    
 }

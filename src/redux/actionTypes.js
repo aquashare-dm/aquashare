@@ -19,6 +19,7 @@ export const EDIT_DRIVER_PROFILE = "EDIT_DRIVER_PROFILE"
 export const SAVE_CRITERIA = "SAVE_CRITERIA"
 export const GET_RIDES = "GET_RIDES"
 export const GET_RIDES_BY_ID = "GET_RIDES_BY_ID"
+export const GET_RIDES_BY_DRIVER_ID = "GET_RIDES_BY_DRIVER_ID"
 
 //Boat Actions
 export const CREATE_BOAT = "CREATE_BOAT";
