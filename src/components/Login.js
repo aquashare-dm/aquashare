@@ -17,7 +17,7 @@ class Login extends Component{
 
             <div className="mainAppWindow">
 
-                <section section className="fullScreenContainerStartPages">
+                <section className="fullScreenContainerStartPages">
                     <div className="startPageLogoContainer" style={{marginBottom: "28%"}}>
                         <h1 className="logoH1">AQUASHARE</h1>
                     </div>

@@ -20,7 +20,8 @@ export class CurrentLocation extends React.Component {
         lng: lng
       },
       map:{
-        position: 'absolute',
+        
+        position: 'relative',
         width: this.props.width,
         height: this.props.height,
         
