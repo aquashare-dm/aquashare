@@ -7,7 +7,6 @@ import "./mainEntryAuth.css";
 
 class StartPage extends Component{
     render(){
-        console.log(this.props)
         let { user } = this.props
         if(!user.loggedIn){
             return(
@@ -31,7 +30,7 @@ class StartPage extends Component{
             );
         } else if (!user.isDriver && user.loggedIn) {
             return <Redirect to="/rider-dashboard" />
-        } else {
+        } else if (user.isDriver && user.loggedIn) {
             return <Redirect to="/driver-dashboard" />
         }
     };

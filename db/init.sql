@@ -35,6 +35,7 @@ CREATE TABLE "rides" (
 	"ride_open_seats" integer NOT NULL,
 	"ride_start_time" integer NOT NULL,
 	"ride_end_time" integer NOT NULL,
+	"tier_id" integer NOT NULL,
 	CONSTRAINT "rides_pk" PRIMARY KEY ("ride_id")
 ) WITH (
   OIDS=FALSE
