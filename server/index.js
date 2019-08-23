@@ -45,6 +45,7 @@ app.put("/api/driver-register", driverController.driverRegister);
 //Rides Endpoints
 app.post("/api/get-rides", ridesController.getRides);
 app.get("/api/get-rides-by-id/:userId", ridesController.getRidesById);
+app.get("/api/get-rides-by-driver-id/:driverId", ridesController.getRidesByDriverId);
 
 //Boat Endpoints
 app.post("/api/create-boat", boatController.createBoat);

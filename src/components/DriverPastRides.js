@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {Rating} from 'semantic-ui-react'
 
-class PastRides extends Component {
+class DriverPastRides extends Component {
     state = {
         rating: 0,
         maxRating: 5
@@ -40,4 +40,4 @@ class PastRides extends Component {
     }
 }
 
-export default connect( null, null)(PastRides);
+export default connect( null, null)(DriverPastRides);

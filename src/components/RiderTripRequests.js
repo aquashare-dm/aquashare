@@ -21,10 +21,11 @@ class RiderTripRequests extends Component{
     }
 
     render(){
-        console.log(this.props)
+        console.log("Props on request page", this.props)
         let { user } = this.props.user;
-        let {requests, firstDate, secondDate} = this.props
-
+        let {requests} = this.props
+        let {request_date, request_end_time} = this.props.requests.allRequests[0]
+        console.log(request_date, request_end_time, "date and time")
         if(!user.loggedIn){
             return <Redirect to="/" />
         }

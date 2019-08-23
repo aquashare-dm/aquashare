@@ -22,7 +22,7 @@ module.exports = {
         console.log('Hit the getRequestedRides in controller')
         let {userId} = req.params;
         const db = req.app.get("db");
-        let rides = await db.get_requests_by_username(+userId);
-        res.send(rides)
+        let requests = await db.get_requests_by_username(+userId);
+        res.send(requests)
     }
 }
