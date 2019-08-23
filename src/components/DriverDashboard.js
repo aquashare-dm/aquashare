@@ -3,6 +3,9 @@ import { connect } from "react-redux";
 import { Route, Redirect, Link, withRouter, Switch } from "react-router-dom";
 import { logout } from "../redux/userReducer.js";
 import { resetBoatStateOnLogout } from "../redux/boatReducer.js"
+import "./coreStyling.css";
+import "./dashboardStyling.css";
+
 import DriverRegistrationForm from "./DriverRegistrationForm.js";
 
 import BoatRegistrationForm from "./BoatRegistrationForm.js";
@@ -17,13 +20,16 @@ class DriverDashboard extends Component{
         this.state = {
             registered: false,
         }
+        this.mobileMenuIcon = React.createRef();
+        this.navOptionsRowCont = React.createRef();
     }
     
-    registrationFormSwitch = ()  =>{
-        this.setState({ registered: true}, () => {
-            this.props.history.push("/driver-dashboard/boat-register")
-        })
-    }
+    componentDidMount(){
+        this.triggerMobileMenu();
+        this.triggerNavRowOptions();
+      }
+
+
     
     componentDidUpdate(prevProps) {
         if (prevProps !== this.props) {
@@ -31,75 +37,99 @@ class DriverDashboard extends Component{
         }
     }
 
+    triggerMobileMenu = () => {
+        let {current} = this.mobileMenuIcon;
+        if(window.innerWidth >= 992){
+          current.classList.add("hideMobileIconCont");
+          current.classList.remove("showMobileIconCont");
+        }else{
+          current.classList.add("showMobileIconCont");
+          current.classList.remove("hideMobileIconCont")
+        }
+      }
+    triggerNavRowOptions = () => {
+        let {current} = this.navOptionsRowCont;
+        if(window.innerWidth <= 992){
+          current.classList.add("hideNavOptionsCont");
+          current.classList.remove("navOptionsCont");
+        }else{
+          current.classList.add("navOptionsCont");
+          current.classList.remove("hideNavOptionsCont")
+        }
+      }
+    menuClick = () => {
+        let {current} = this.navOptionsRowCont;
+        console.log(current.classList);
+        if(this.state.navMenuOpen === false){
+            current.classList.add("navOptionsCont");
+            current.classList.remove("hideNavOptionsCont");
+            this.setState({navMenuOpen: true});
+        }else{
+            current.classList.add("hideNavOptionsCont");
+            current.classList.remove("navOptionsCont");
+            this.setState({navMenuOpen: false});
+        }
+        
+      }
+
     logout = () => {
         this.props.logout();
         this.props.resetBoatStateOnLogout()
     }
 
+    registrationForm = () => {
+        let { user } = this.props;
+        console.log("Checking if user registered");
+        console.log("User's rider rating is ", user.driverRating);
+        if(user.driverRating < 0 || !user.driverRating){
+            return(
+                <DriverRegistrationForm/>
+            );
+        }
+        else{
+            return(<p/>);
+        }
+    }
+
     render(){
         console.log(this.props)
-        let { user } = this.props.user;
+        let { user } = this.props;
         if(!user.loggedIn){
             return <Redirect to="/" />
         }
+        return(
+            <section className="mainAppWindow">
+                <div className="navBarTopPadding"></div>
+                <section className="mainDashCont">
+                    <section className="mainDashNavCont">
+                        <div className="showMobileIconCont" onClick={()=>{this.menuClick()}} ref={this.mobileMenuIcon}>
+                            <i className="fas fa-bars"/>
+                        </div>
+                        <h2>AQUASHARE</h2>
+                    </section>
 
-        if(!this.state.registered){
-            return(
-                <div>
-                    <header style={{backgroundColor: "gray"}} >
-                        <div>Profile Pic</div>
-                        <div>First Name</div>
-                        <div>Last Name</div>
-                        <div>Driver Rating</div>
-                        <Link to="/driver-dashboard/create-a-ride">
-                            <div>Find a Ride</div>
+                    <div className="navOptionsCont" ref={this.navOptionsRowCont}>
+                        <Link to="/driver-dashboard/create-a-ride" className="navLinkOption" onClick={this.menuClick}>
+                            <div>Create a Ride</div>
                         </Link>
-                        <Link to="/driver-dashboard/upcoming-rides">
+                        <Link to="/driver-dashboard/upcoming-rides" className="navLinkOption" onClick={this.menuClick}>
                             <div>Upcoming Rides</div>
                         </Link>
-                        <Link to="/driver-dashboard/ride-requests">
+                        <Link to="/driver-dashboard/ride-requests" className="navLinkOption" onClick={this.menuClick}>
                             <div>Ride Requests</div>
                         </Link>
-                        <Link to="/driver-dashboard/ride-history">
+                        <Link to="/driver-dashboard/ride-history" className="navLinkOption" onClick={this.menuClick}>
                             <div>Ride History</div>
                         </Link>
-                        <Link to="/driver-dashboard/driver-profile">
-                            <div>Edit Profile</div>
+                        <Link to="/driver-dashboard/driver-profile" className="navLinkOption" onClick={this.menuClick}>
+                            <div>View Profile</div>
                         </Link>
+                        <div className="navLinkOption" onClick={()=>{this.logout(); this.menuClick()}}>LOGOUT</div>
+                    </div>
 
-                        <button onClick={this.logout}>Log out</button> 
-                    </header>
-                    <DriverRegistrationForm registrationFormSwitch={this.registrationFormSwitch}/>
-                </div>
-            ); 
-        } else {
-            return(
-                <div>
-                    <header style={{backgroundColor: "gray"}} >
-                        <h1>Welcome to the Driver Dashboard</h1>
-                        <div>Profile Pic</div>
-                        <div>First Name</div>
-                        <div>Last Name</div>
-                        <div>Driver Rating</div>
-                        <Link to="/driver-dashboard/create-a-ride">
-                            <div>Find a Ride</div>
-                        </Link>
-                        <Link to="/driver-dashboard/upcoming-rides">
-                            <div>Upcoming Rides</div>
-                        </Link>
-                        <Link to="/driver-dashboard/ride-requests">
-                            <div>Ride Requests</div>
-                        </Link>
-                        <Link to="/driver-dashboard/ride-history">
-                            <div>Ride History</div>
-                        </Link>
-                        <Link to="/driver-dashboard/driver-profile">
-                            <div>Edit Profile</div>
-                        </Link>
-                        <button onClick={this.logout}>Log out</button> 
-                    </header>
-
-                    <Switch>
+                </section>
+                <this.registrationForm />
+                <Switch>
                         <Route path="/driver-dashboard/boat-register" component={BoatRegistrationForm} />
                         <Route path="/driver-dashboard/upcoming-rides" component={DriverUpcomingRides} />
                         {/* <Route path="/rider-dashboard/find-a-ride" component={RideSearch} /> */}
@@ -110,16 +140,17 @@ class DriverDashboard extends Component{
                         <Route path="/driver-dashboard/driver-profile" component={DriverProfile} />
 
                     </Switch>
-                </div>
+                
+            </section>
+        );
+        
 
-            ); 
-        }
     
     };
 }
 
 function mapStateToProps(state){
-    return state
+    return state.user
   }
 
   export default connect(mapStateToProps, { logout, resetBoatStateOnLogout })(withRouter(DriverDashboard));
