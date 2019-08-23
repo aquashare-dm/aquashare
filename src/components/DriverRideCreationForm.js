@@ -53,7 +53,6 @@ class DriverRideCreationForm extends Component {
     };
 
     createRide = async (e) => {
-
         e.preventDefault()
         await this.submitAddressForGeocoding();
         console.log("this.props is ", this.props);
@@ -79,7 +78,7 @@ class DriverRideCreationForm extends Component {
         });
     }
 
-    onClose = (props) => {
+    onClose = () => {
         if (this.state.showingInfoWindow) {
             this.setState({
                 showingInfoWindow: false,
