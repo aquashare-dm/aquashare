@@ -86,9 +86,10 @@ class RiderProfile extends Component {
                         <div>
                             <h3>{this.props.user.riderImage}</h3>
                             <h3>{this.props.user.riderRating}</h3>
-                            <h1>{this.props.user.riderUsername}</h1>
-                            <h3>{this.props.user.riderFirst} {this.props.user.riderLast}</h3>
-                            <h3>{this.props.user.riderEmail}</h3>
+                            <h1>Username:{this.props.user.riderUsername}</h1>
+                            <h3>First Name: {this.props.user.riderFirst} </h3>
+                            <h3>Last Name: {this.props.user.riderLast}</h3>
+                            <h3>Email: {this.props.user.riderEmail}</h3>
                             <div>
                                 <button onClick={this.flipEdit}>Edit</button>
                             </div>
