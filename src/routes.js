@@ -8,6 +8,7 @@ import DriverSignup from "./components/DriverSignup.js";
 import StartPage from "./components/StartPage.js";
 import Signup from "./components/Signup.js";
 import DriverDashboard from "./components/DriverDashboard.js";
+import DriverProfile from "./components/DriverProfile.js";
 
 //Rider Components
 import RiderLogin from "./components/RiderLogin.js";
@@ -29,10 +30,10 @@ import DriverDashLandingPage from "./components/DriverDashLandingPage.js";
 export default (
     <Switch>
         <Route exact path="/" component={StartPage} />
-        <Route path="/rider-dashboard" render={ () => {
-            return(
+        <Route path="/rider-dashboard" render={() => {
+            return (
                 <div>
-                    <RiderDashboard/>
+                    <RiderDashboard />
                     <Switch>
                         <Route exact path="/rider-dashboard" component={RiderDashLandingPage} />
                         <Route path="/rider-dashboard/find-a-ride" component={RideSearch} />
@@ -46,47 +47,47 @@ export default (
                 </div>
 
             )
-        }}/>
-        <Route path="/driver-dashboard" render={ () => {
-            return(
+        }} />
+        <Route path="/driver-dashboard" render={() => {
+            return (
                 <div>
-                    <DriverDashboard/>
+                    <DriverDashboard />
                     <Switch>
                         <Route exact path="/driver-dashboard" component={DriverDashLandingPage} />
-                        <Route path="/driver-dashboard/boat-register" component={BoatRegistrationForm}/>
+                        <Route path="/driver-dashboard/boat-register" component={BoatRegistrationForm} />
                         {/* <Route path="/rider-dashboard/find-a-ride" component={RideSearch} />
                         <Route path="/rider-dashboard/available-rides" component={AvailableRides} />
                         <Route path="/rider-dashboard/request-a-ride" component={RideRequestForm} />
                         <Route path="/rider-dashboard/ride-requests" component={RiderTripRequests} />
-                        <Route path="/rider-dashboard/ride-history" component={RiderHistory} />
-                        <Route path="/rider-dashboard/rider-profile" component={RiderProfile} /> */}
+                        <Route path="/rider-dashboard/ride-history" component={RiderHistory} /> */}
+                        <Route path="/driver-dashboard/driver-profile" component={DriverProfile} />
                     </Switch>
                 </div>
 
             )
-        }}/>
+        }} />
         <Route path="/login" render={() => {
-            return(
+            return (
                 <div>
                     <Switch>
-                        <Route exact path="/login" component={Login}/>
-                        <Route path="/login/rider-login" component={RiderLogin}/>
-                        <Route path="/login/driver-login" component={DriverLogin}/>
+                        <Route exact path="/login" component={Login} />
+                        <Route path="/login/rider-login" component={RiderLogin} />
+                        <Route path="/login/driver-login" component={DriverLogin} />
                     </Switch>
                 </div>
             )
-        }}/>
+        }} />
         <Route path="/signup" render={() => {
-            return(
+            return (
                 <div>
                     <Switch>
-                        <Route exact path="/signup" component={Signup}/>
-                        <Route path="/signup/rider-signup" component={RiderSignup}/>
-                        <Route path="/signup/driver-signup" component={DriverSignup}/>
+                        <Route exact path="/signup" component={Signup} />
+                        <Route path="/signup/rider-signup" component={RiderSignup} />
+                        <Route path="/signup/driver-signup" component={DriverSignup} />
                     </Switch>
                 </div>
             )
-        }}/>
-        
+        }} />
+
     </Switch>
 )

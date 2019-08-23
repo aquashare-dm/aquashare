@@ -46,14 +46,14 @@ class BoatProfile extends Component {
     flipEdit = () => this.setState({ editing: !this.state.editing })
 
     render() {
-        let { boat } = this.props;
-        if (!user.loggedIn) {
+        let { boat } = this.props.boat;
+        if (!this.props.user.user.loggedIn) {
             return <Redirect to="/" />
         }
         let { newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne, newBoatImageTwo } = this.state
         return (
             <div>
-                {this.state.editing ? (
+                {/* {this.state.editing ? (
                     <div>
                         <h3>Upload New Image</h3>
                         <div>
@@ -112,22 +112,22 @@ class BoatProfile extends Component {
                             <button onClick={this.flipEdit}>Cancel</button>
                         </div>
                     </div>
-                ) : (
-                        <div>
-                            <h3>{this.props.boat.boatName}</h3>
-                            <h3>{this.props.boat.boatDescription}</h3>
-                            <h1>{this.props.boat.boatLicense}</h1>
-                            <h3>{this.props.boat.boatRegistration} </h3>
-                            <h3>{this.props.boat.boatMake}</h3>
-                            <h3>{this.props.boat.boatModel}</h3>
-                            <h3>{this.props.boat.boatSeatNumber}</h3>
-                            <h3>{this.props.boat.boatImageOne}</h3>
-                            <h3>{this.props.boat.boatImageTwo}</h3>
-                            <div>
-                                <button onClick={this.flipEdit}>Edit</button>
-                            </div>
-                        </div>
-                    )}
+                ) : ( */}
+                <div>
+                    <h3>{this.props.boat.boatName}</h3>
+                    <h3>{this.props.boat.boatDescription}</h3>
+                    <h1>{this.props.boat.boatLicense}</h1>
+                    <h3>{this.props.boat.boatRegistration} </h3>
+                    <h3>{this.props.boat.boatMake}</h3>
+                    <h3>{this.props.boat.boatModel}</h3>
+                    <h3>{this.props.boat.boatSeatNumber}</h3>
+                    <h3>{this.props.boat.boatImageOne}</h3>
+                    <h3>{this.props.boat.boatImageTwo}</h3>
+                    <div>
+                        <button onClick={this.flipEdit}>Edit</button>
+                    </div>
+                </div>
+                {/* )} */}
 
             </div>
         );
@@ -135,7 +135,7 @@ class BoatProfile extends Component {
 }
 
 function mapStateToProps(state) {
-    return state.boat
+    return state
 }
 
 export default connect(mapStateToProps, { editBoat })(withRouter(BoatProfile));
