@@ -6,6 +6,9 @@ import { resetBoatStateOnLogout } from "../redux/boatReducer.js"
 import DriverRegistrationForm from "./DriverRegistrationForm.js";
 
 import BoatRegistrationForm from "./BoatRegistrationForm.js";
+import DriverProfile from "./DriverProfile.js";
+import DriverHistory from "./DriverHistory.js";
+import DriverUpcomingRides from "./DriverUpcomingRides.js";
 
 
 class DriverDashboard extends Component{
@@ -48,6 +51,21 @@ class DriverDashboard extends Component{
                         <div>First Name</div>
                         <div>Last Name</div>
                         <div>Driver Rating</div>
+                        <Link to="/driver-dashboard/create-a-ride">
+                            <div>Find a Ride</div>
+                        </Link>
+                        <Link to="/driver-dashboard/upcoming-rides">
+                            <div>Upcoming Rides</div>
+                        </Link>
+                        <Link to="/driver-dashboard/ride-requests">
+                            <div>Ride Requests</div>
+                        </Link>
+                        <Link to="/driver-dashboard/ride-history">
+                            <div>Ride History</div>
+                        </Link>
+                        <Link to="/driver-dashboard/driver-profile">
+                            <div>Edit Profile</div>
+                        </Link>
 
                         <button onClick={this.logout}>Log out</button> 
                     </header>
@@ -63,18 +81,34 @@ class DriverDashboard extends Component{
                         <div>First Name</div>
                         <div>Last Name</div>
                         <div>Driver Rating</div>
-
+                        <Link to="/driver-dashboard/create-a-ride">
+                            <div>Find a Ride</div>
+                        </Link>
+                        <Link to="/driver-dashboard/upcoming-rides">
+                            <div>Upcoming Rides</div>
+                        </Link>
+                        <Link to="/driver-dashboard/ride-requests">
+                            <div>Ride Requests</div>
+                        </Link>
+                        <Link to="/driver-dashboard/ride-history">
+                            <div>Ride History</div>
+                        </Link>
+                        <Link to="/driver-dashboard/driver-profile">
+                            <div>Edit Profile</div>
+                        </Link>
                         <button onClick={this.logout}>Log out</button> 
                     </header>
 
                     <Switch>
-                        <Route path="/driver-dashboard/boat-register" component={BoatRegistrationForm}/>
-                        {/* <Route path="/rider-dashboard/find-a-ride" component={RideSearch} />
-                        <Route path="/rider-dashboard/available-rides" component={AvailableRides} />
-                        <Route path="/rider-dashboard/request-a-ride" component={RideRequestForm} />
-                        <Route path="/rider-dashboard/ride-requests" component={RiderTripRequests} />
-                        <Route path="/rider-dashboard/ride-history" component={RiderHistory} />
-                        <Route path="/rider-dashboard/rider-profile" component={RiderProfile} /> */}
+                        <Route path="/driver-dashboard/boat-register" component={BoatRegistrationForm} />
+                        <Route path="/driver-dashboard/upcoming-rides" component={DriverUpcomingRides} />
+                        {/* <Route path="/rider-dashboard/find-a-ride" component={RideSearch} /> */}
+                        {/* <Route path="/rider-dashboard/available-rides" component={AvailableRides} /> */}
+                        {/* <Route path="/rider-dashboard/request-a-ride" component={RideRequestForm} /> */}
+                        {/* <Route path="/rider-dashboard/ride-requests" component={RiderTripRequests} /> */}
+                        <Route path="/driver-dashboard/ride-history" component={DriverHistory} />
+                        <Route path="/driver-dashboard/driver-profile" component={DriverProfile} />
+
                     </Switch>
                 </div>
 

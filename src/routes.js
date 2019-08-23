@@ -9,10 +9,12 @@ import StartPage from "./components/StartPage.js";
 import Signup from "./components/Signup.js";
 import DriverDashboard from "./components/DriverDashboard.js";
 
+
 //Rider Components
 import RiderLogin from "./components/RiderLogin.js";
 import RiderSignup from "./components/RiderSignup.js";
 import RiderDashboard from "./components/RiderDashboard.js";
+
 
 
 export default (
@@ -21,27 +23,27 @@ export default (
         <Route path="/rider-dashboard" component={RiderDashboard}/> 
         <Route path="/driver-dashboard" component={DriverDashboard}/>
         <Route path="/login" render={() => {
-            return(
+            return (
                 <div>
                     <Switch>
-                        <Route exact path="/login" component={Login}/>
-                        <Route path="/login/rider-login" component={RiderLogin}/>
-                        <Route path="/login/driver-login" component={DriverLogin}/>
+                        <Route exact path="/login" component={Login} />
+                        <Route path="/login/rider-login" component={RiderLogin} />
+                        <Route path="/login/driver-login" component={DriverLogin} />
                     </Switch>
                 </div>
             )
-        }}/>
+        }} />
         <Route path="/signup" render={() => {
-            return(
+            return (
                 <div>
                     <Switch>
-                        <Route exact path="/signup" component={Signup}/>
-                        <Route path="/signup/rider-signup" component={RiderSignup}/>
-                        <Route path="/signup/driver-signup" component={DriverSignup}/>
+                        <Route exact path="/signup" component={Signup} />
+                        <Route path="/signup/rider-signup" component={RiderSignup} />
+                        <Route path="/signup/driver-signup" component={DriverSignup} />
                     </Switch>
                 </div>
             )
-        }}/>
-        
+        }} />
+
     </Switch>
 )

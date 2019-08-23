@@ -20,17 +20,18 @@ export const resetBoatStateOnLogout = () => {
 
 export const createBoat = (boat_name, tier_id, boat_description, boat_license, boat_registration, boat_make, boat_model,
     boat_seat_number, boat_image_one, boat_image_two, driver_id) => {
-    let data = axios.post("/api/create-boat", { boat_name, tier_id, boat_description, boat_license, boat_registration, boat_make, boat_model,
-        boat_seat_number, boat_image_one, boat_image_two, driver_id }).then(res => res.data)
+    let data = axios.post("/api/create-boat", {
+        boat_name, tier_id, boat_description, boat_license, boat_registration, boat_make, boat_model,
+        boat_seat_number, boat_image_one, boat_image_two, driver_id
+    }).then(res => res.data)
     return { type: CREATE_BOAT, payload: data };
 };
 
-export const editBoat = (boat_id, boat_name, tier_id, boat_description, boat_license, boat_registration, boat_make, boat_model,
-    boat_seat_number, boat_image_one, boat_image_two, driver_id) => {
-    let data = axios.put("/api/edit-boat", { boat_id, boat_name, tier_id, boat_description, boat_license, boat_registration, boat_make, boat_model,
-        boat_seat_number, boat_image_one, boat_image_two, driver_id }).then(res => res.data)
+export const editBoat = (boatId, newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne, newBoatImageTwo) => {
+    let data = axios.put("/api/edit-boat", { boatId, newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne, newBoatImageTwo }).then(res => res.data)
     return { type: EDIT_BOAT, payload: data };
 };
+
 
 //Default Function
 export default function (state = initialState, action) {
@@ -51,7 +52,7 @@ export default function (state = initialState, action) {
             return { ...initialState };
         case RESET_STATE_ON_LOGOUT + "_REJECTED":
             return { ...state, error: payload }
-        
+
         default:
             return state;
     }

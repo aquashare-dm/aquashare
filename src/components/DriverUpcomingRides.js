@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
-import {getRidesById} from "../redux/ridesReducer"
-import UpcomingRidesById from './UpcomingRidesById.js'
+import {getRidesByDriverId} from "../redux/ridesReducer"
+import DriverUpcomingRidesById from './DriverUpcomingRidesById.js'
 
-class UpcomingRides extends Component{
+class DriverUpcomingRides extends Component{
 
     componentDidMount() {
         let {id} = this.props.user.user
-        this.props.getRidesById(id)
+        this.props.getRidesByDriverId(id)
     }
 
     goBack = () => {
@@ -33,7 +33,7 @@ class UpcomingRides extends Component{
                 return currentFlag >= 0
             }})
             .map( ride => (
-                <UpcomingRidesById key={ride.ride_id} {...ride} />
+                <DriverUpcomingRidesById key={ride.ride_id} {...ride} />
             ))
         return(
         
@@ -52,4 +52,4 @@ function mapStateToProps(state){
     return state
   }
 
-  export default connect(mapStateToProps, {getRidesById})(withRouter(UpcomingRides));
+  export default connect(mapStateToProps, {getRidesByDriverId})(withRouter(DriverUpcomingRides));

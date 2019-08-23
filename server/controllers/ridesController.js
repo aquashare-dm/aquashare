@@ -10,5 +10,15 @@ module.exports = {
         const db = req.app.get("db");
         let rides = await db.get_rides_by_username(+userId);
         res.send(rides)
-    }   
+    },
+    getRidesByDriverId: async function(req, res){
+        let {driverId} = req.params;
+        console.log(driverId, 'driverId')
+        console.log('hits controller function')
+        const db = req.app.get("db");
+        let rides = await db.get_rides_by_driver_id(+driverId);
+        console.log(rides, 'rides')
+        res.send(rides)
+    },
+
 }

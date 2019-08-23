@@ -12,11 +12,14 @@ export const DRIVER_SIGNUP = "DRIVER_SIGNUP";
 export const DRIVER_LOGOUT = "DRIVER_LOGOUT";
 export const GET_DRIVER = "GET_DRIVER";
 export const DRIVER_REGISTER = "DRIVER_REGISTER";
+export const CREATE_RIDE = "CREATE_RIDE";
+export const EDIT_DRIVER_PROFILE = "EDIT_DRIVER_PROFILE"
 
 //Ride Actions
 export const SAVE_CRITERIA = "SAVE_CRITERIA"
 export const GET_RIDES = "GET_RIDES"
 export const GET_RIDES_BY_ID = "GET_RIDES_BY_ID"
+export const GET_RIDES_BY_DRIVER_ID = "GET_RIDES_BY_DRIVER_ID"
 
 //Boat Actions
 export const CREATE_BOAT = "CREATE_BOAT";
