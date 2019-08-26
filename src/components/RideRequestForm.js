@@ -121,7 +121,7 @@ class RideRequestForm extends Component{
                     <h1>Enter information here to send request to drivers</h1>
                 </header>
                 <form>
-                    <input type="text" name="requestDate" onChange={this.handleChange} value={this.state.requestDate} placeholder="Request Date" />
+                    <input type="date" name="requestDate" onChange={this.handleChange} value={this.state.requestDate} placeholder="Request Date" />
                     <input type="text" id="location-address-input" name="location" onChange={this.handleChange} value={this.state.location} placeholder="Request Location" />
                     <input type="text" name="requestSeatNum" onChange={this.handleChange} value={this.state.requestSeatNum} placeholder="Requested Number of Seats" />
                     <input type="text" name="tierId" onChange={this.handleChange} value={this.state.tierId} placeholder="Requested Tier" />
