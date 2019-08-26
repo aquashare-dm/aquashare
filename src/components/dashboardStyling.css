@@ -13,21 +13,32 @@
         width: 100%;
         height: 10vh;
         padding: 3%;
-    
+        color: white;
         border: none;
-        background-color: rgba(33, 37, 41, 0.7);
+        background-color: rgb(36, 36, 36);
         align-items: center;
         text-align: center;
         justify-content: space-between;
     }
+    .logoH1{
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        letter-spacing: 3px;
+        font-size: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        margin: none;
+    }
     .navBarTopPadding{
-        height: 10vh;
+        height: 8vh;
     }
     .navOptionsCont{
         z-index: 9;
         width: 80%;
         height: 100vh;
-        background-color: grey;
+        background-color: rgb(36, 36, 36);
         color: white;
         display: flex;
         flex-direction: column;
