@@ -1,25 +1,25 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
-import { createBoat } from '../redux/boatReducer.js'
+import { createBoat, connectBoatIdToDriver } from '../redux/boatReducer.js'
 import UploadImage from './UploadImage'
+import { setTimeout } from "timers";
 
 
 class BoatRegistrationForm extends Component {
     constructor() {
         super()
         this.state = {
-            user: {},
             boatName: '',
-            tierId: '',
+            tierId: 0,
             boatDescription: '',
             boatLicense: '',
             boatRegistration: '',
             boatMake: '',
             boatModel: '',
-            boatSeatNum: '',
-            boatImageOne: '',
-            boatImageTwo: ''
+            boatSeatNum: 0,
+            tubeSeatNum: 0,
+            boatImage: '',
         }
     }
 
@@ -31,39 +31,39 @@ class BoatRegistrationForm extends Component {
     };
 
     createBoat = (e) => {
+        console.log('slllllslslslslslslslslsslslsl', this.props.user)
         e.preventDefault()
         let { boatName, tierId, boatDescription, boatLicense, boatRegistration, boatMake, boatModel,
-        boatSeatNum, boatImageOne, boatImageTwo } = this.state
+            boatSeatNum, tubeSeatNum, boatImage } = this.state
         this.props.createBoat(boatName, tierId, boatDescription, boatLicense, boatRegistration, boatMake, boatModel,
-            +boatSeatNum, boatImageOne, boatImageTwo, this.props.user.driverId)
+            boatSeatNum, tubeSeatNum, boatImage, this.props.user.id)
         this.props.history.push("/driver-dashboard/create-a-ride")
     }
 
-    handleUploadedImage = (imgUrl) => {
-        this.setState({ riderImage: imgUrl })
+    handleImage = (imgUrl) => {
+        this.setState({ boatImage: imgUrl })
     }
-    
+
     render() {
         let { user } = this.props;
 
         return (
 
             <div>
-                <h1>{this.props.user.riderUsername}</h1>
+                <h1>{user.riderUsername}</h1>
                 <div>
-                    <UploadImage action={this.handleUploadedImage} />
+                    <UploadImage action={this.props.handleUploadedImage} handleImage={this.handleImage} newImageUrl={this.state.boatImage} />
                 </div>
                 <form>
                     <input type="text" name="boatName" onChange={this.handleChange} value={this.state.boatName} placeholder="Boat Name" />
-                    <input type="text" name="tierId" onChange={this.handleChange} value={this.state.tierId} placeholder="Tier Id" />
+                    <input type="number" name="tierId" onChange={this.handleChange} value={this.state.tierId} placeholder="1" />
                     <input type="text" name="boatDescription" onChange={this.handleChange} value={this.state.boatDescription} placeholder="Boat Description" />
                     <input type="text" name="boatLicense" onChange={this.handleChange} value={this.state.boatLicense} placeholder="Boat License Number" />
                     <input type="text" name="boatRegistration" onChange={this.handleChange} value={this.state.boatRegistration} placeholder="Boat Registration Number" />
                     <input type="text" name="boatMake" onChange={this.handleChange} value={this.state.boatMake} placeholder="Boat Make" />
                     <input type="text" name="boatModel" onChange={this.handleChange} value={this.state.boatModel} placeholder="Boat Model" />
-                    <input type="text" name="boatSeatNum" onChange={this.handleChange} value={this.state.boatSeatNum} placeholder="Number of Boat Seats" />
-                    <input type="text" name="boatImageOne" onChange={this.handleChange} value={this.state.boatImageOne} placeholder="Boat Image 1" />
-                    <input type="text" name="boatImageTwo" onChange={this.handleChange} value={this.state.boatImageTwo} placeholder="Boat Image 2" />
+                    <input type="number" name="boatSeatNum" onChange={this.handleChange} value={this.state.boatSeatNum} placeholder="8" />
+                    <input type="number" name="tubeSeatNum" onChange={this.handleChange} value={this.state.tubeSeatNum} placeholder="3" />
                     <button onClick={(e) => { this.createBoat(e) }}>Submit</button>
                 </form>
             </div>
@@ -75,4 +75,4 @@ function mapStateToProps(state) {
     return state.user
 }
 
-export default connect(mapStateToProps, {createBoat})(withRouter(BoatRegistrationForm));
+export default connect(mapStateToProps, { createBoat })(withRouter(BoatRegistrationForm));

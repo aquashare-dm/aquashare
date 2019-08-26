@@ -44,7 +44,7 @@ module.exports = {
         let hashPassword = await bcrypt.hash(driverPassword, salt);
         let [user] = await db.create_driver([driverUsername, hashPassword]);
         req.session.user = {
-            driverUsername: user.driverUsername,
+            driverUsername: user.driver_username,
             id: user.driver_id,
             isDriver: true,
             loggedIn: true
@@ -69,6 +69,7 @@ module.exports = {
     driverRegister: async (req, res) => {
         let { driverUsername, driverEmail, driverFirst, driverLast, driverImage, driverLicense, startRating } = req.body;
         const db = req.app.get("db");
+        console.log(req.body)
         let [user] = await db.driver_register([driverUsername, driverEmail, driverFirst, driverLast, driverImage, driverLicense, startRating])
         console.log("hit driverRegister in controller, user has info: ", user);
         req.session.user = {
@@ -108,5 +109,5 @@ module.exports = {
         }
         res.send(req.session.user);
     },
-    
+
 }

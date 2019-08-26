@@ -18,7 +18,6 @@ class BoatProfile extends Component {
             newBoatModel: this.props.boat.boat.boatModel,
             newBoatSeatNumber: this.props.boat.boat.boatSeatNumber,
             newBoatImageOne: this.props.boat.boat.boatImageOne,
-            newBoatImageTwo: this.props.boat.boat.boatImageTwo,
         }
     }
 
@@ -30,8 +29,8 @@ class BoatProfile extends Component {
     };
 
     handleFormSubmit = (e) => {
-        let { newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne, newBoatImageTwo } = this.state
-        this.props.editBoat(this.props.boat.boat.boatId, newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne, newBoatImageTwo)
+        let { newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne } = this.state
+        this.props.editBoat(this.props.boat.boat.boatId, newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne)
     }
 
     goBack = () => {
@@ -39,73 +38,86 @@ class BoatProfile extends Component {
     }
 
     handleUploadedImage = (imgUrl) => {
-        this.setState({ editImage: true, boatImageOne: imgUrl, boatImageTwo: imgUrl })
+        this.setState({ editImage: true, boatImageOne: imgUrl })
     }
 
     flipEdit = () => this.setState({ editing: !this.state.editing })
 
+    // handleImage = (imageUrl, whichImage) => {
+    //     if (whichImage === 'imageOne') {
+    //         this.setState({ newBoatImageOne: imageUrl })
+    //     } else if (whichImage === 'imageTwo') {
+    //         this.setState({ newBoatImageTwo: imageUrl })
+    //     }
+    // }
+
+    handleImage = (imageUrl) => {
+        this.setState({ newBoatImageOne: imageUrl })
+    }
+
     render() {
+        console.log('oooooooooooooooooooooooooooooooooo', this.props)
         let { boat } = this.props.boat;
         if (!this.props.user.user.loggedIn) {
             return <Redirect to="/" />
         }
-        let { newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne, newBoatImageTwo } = this.state
+        let { newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne } = this.state
         return (
             <div>
                 {this.state.editing ? (
                     <div>
                         <h3>Upload New Images</h3>
                         <div>
-                            <UploadImage action={this.handleUploadedImage} />
-                        </div>
-                        <div>
-                            <UploadImage action={this.handleUploadedImage} />
+                            <UploadImage action={this.props.handleImageUpload} handleImage={this.handleImage} newImageUrl={this.state.newBoatImageOne} />
                         </div>
                         <input
                             value={newBoatName}
                             onChange={this.handleChange}
                             name="newBoatName"
+                            placeholder="Boat Name"
                         />
                         <input
                             value={newBoatDescription}
                             onChange={this.handleChange}
                             name="newBoatDescription"
+                            placeholder="Boat Description"
                         />
                         <input
                             value={newBoatLicense}
                             onChange={this.handleChange}
                             name="newBoatLicense"
+                            placeholder="License Number"
                         />
                         <input
                             value={newBoatRegistration}
                             onChange={this.handleChange}
                             name="newBoatRegistration"
+                            placeholder="Registration Number"
                         />
                         <input
                             value={newBoatMake}
                             onChange={this.handleChange}
                             name="newBoatMake"
+                            placeholder="Make"
                         />
                         <input
                             value={newBoatModel}
                             onChange={this.handleChange}
                             name="newBoatModel"
+                            placeholder="Model"
                         />
                         <input
                             value={newBoatSeatNumber}
                             onChange={this.handleChange}
                             name="newBoatSeatNumber"
+                            placeholder="Seat Number"
                         />
-                        <input
+                        {/* <input
                             value={newBoatImageOne}
                             onChange={this.handleChange}
                             name="newBoatImageOne"
-                        />
-                        <input
-                            value={newBoatImageTwo}
-                            onChange={this.handleChange}
-                            name="newBoatImageTwo"
-                        />
+                            placeholder="Image"
+                        /> */}
                         <div>
                             <button onClick={() => {
                                 this.handleFormSubmit()
@@ -123,8 +135,7 @@ class BoatProfile extends Component {
                             <h3>Boat Make: {boat.boatMake}</h3>
                             <h3>Boat Model: {boat.boatModel}</h3>
                             <h3>Number of Seats: {boat.boatSeatNumber}</h3>
-                            <h3>{boat.boatImageOne}</h3>
-                            <h3>{boat.boatImageTwo}</h3>
+                            <img src={`${boat.boatImageOne}`} />
                             <div>
                                 <button onClick={this.flipEdit}>Edit</button>
                             </div>

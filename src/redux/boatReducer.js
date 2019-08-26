@@ -18,17 +18,17 @@ export const resetBoatStateOnLogout = () => {
     return { type: RESET_STATE_ON_LOGOUT, payload: data };
 };
 
-export const createBoat = (boat_name, tier_id, boat_description, boat_license, boat_registration, boat_make, boat_model,
-    boat_seat_number, boat_image_one, boat_image_two, driver_id) => {
+export const createBoat = (boatName, tierId, boatDescription, boatLicense, boatRegistration, boatMake, boatModel,
+    boatSeatNum, tubeSeatNum, boatImageOne, driverId) => {
     let data = axios.post("/api/create-boat", {
-        boat_name, tier_id, boat_description, boat_license, boat_registration, boat_make, boat_model,
-        boat_seat_number, boat_image_one, boat_image_two, driver_id
+        boatName, tierId, boatDescription, boatLicense, boatRegistration, boatMake, boatModel,
+            boatSeatNum, tubeSeatNum, boatImageOne, driverId
     }).then(res => res.data)
     return { type: CREATE_BOAT, payload: data };
 };
 
-export const editBoat = (boatId, newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne, newBoatImageTwo) => {
-    let data = axios.put("/api/edit-boat", { boatId, newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne, newBoatImageTwo }).then(res => res.data)
+export const editBoat = (boatId, newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne) => {
+    let data = axios.put("/api/edit-boat", { boatId, newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne }).then(res => res.data)
     return { type: EDIT_BOAT, payload: data };
 };
 
