@@ -4,25 +4,25 @@ import { Redirect, Link } from "react-router-dom";
 import "./coreStyling.css";
 import "./mainEntryAuth.css";
 
-class Signup extends Component{
+class Signup extends Component {
 
-    render(){
+    render() {
         let { user } = this.props
-        if(user){
-            if(user.loggedIn && !user.isDriver) return <Redirect to="/rider-dashboard/find-a-ride" />
-            if(user.loggedIn && user.isDriver) return <Redirect to="/driver-dashboard/create-a-ride" />
+        if (user) {
+            if (user.loggedIn && !user.isDriver) return <Redirect to="/rider-login" />
+            if (user.loggedIn && user.isDriver) return <Redirect to="/driver-login" />
         }
-        return(
+        return (
 
             <div className="mainAppWindow">
 
                 <section className="fullScreenContainerStartPages">
-                    <div className="startPageLogoContainer" style={{marginBottom: "28%"}}>
+                    <div className="startPageLogoContainer" style={{ marginBottom: "28%" }}>
                         <h1 className="logoH1">AQUASHARE</h1>
                     </div>
-                    <h2 className="startPagesH2" style={{marginBottom: "10%"}}>SIGNUP AS A</h2>
+                    <h2 className="startPagesH2" style={{ marginBottom: "10%" }}>SIGNUP AS A</h2>
                     <div className="doubleInputCont" >
-                        
+
                         <Link to="signup/rider-signup" className="fluid ui button">
                             <p className="buttonInsideText">RIDER</p>
                         </Link>
@@ -30,14 +30,14 @@ class Signup extends Component{
                             <p className="buttonInsideText">DRIVER</p>
                         </Link>
                     </div>
-        
+
                 </section>
             </div>
         );
     };
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
     return state.user;
 }
 

@@ -107,6 +107,8 @@ class DriverRideCreationForm extends Component {
 
     render() {
 
+        console.log('ride creation form props', this.props)
+
         let { user } = this.props;
         if (!user.loggedIn) {
             return <Redirect to="/" />
@@ -122,12 +124,9 @@ class DriverRideCreationForm extends Component {
                 <form>
                     <input type="date" name="date" onChange={this.handleChange} value={this.state.requestDate} placeholder="Date" />
                     <input type="text" id="location-address-input" name="location" onChange={this.handleChange} value={this.state.location} placeholder="Location" />
-                    <input type="text" name="totalBoatSeatNum" onChange={this.handleChange} value={this.state.totalBoatSeatNum} placeholder="Number of Seats" />
                     <input type="text" name="openBoatSeatNum" onChange={this.handleChange} value={this.state.openBoatSeatNum} placeholder="Seats on Tube" />
-                    <input type="text" name="tierId" onChange={this.handleChange} value={this.state.tierId} placeholder="Requested Tier" />
                     <input type="text" name="startTime" onChange={this.handleChange} value={this.state.startTime} placeholder="Start Time" />
                     <input type="text" name="endTime" onChange={this.handleChange} value={this.state.endTime} placeholder="End Time" />
-
                     <button onClick={(e) => { this.createRide(e) }}>Create Ride</button>
                 </form>
 
@@ -146,7 +145,6 @@ class DriverRideCreationForm extends Component {
                             <div>
                                 <h4>{this.state.selectedPlace.name}</h4>
                             </div>
-
                         </InfoWindow>
                     </CurrentLocation>
                 </div>
