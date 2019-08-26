@@ -24,14 +24,7 @@ module.exports = {
         }
         res.status(200).send(req.session.boat);
     },
-
-    connectBoatIdToDriver: async (req, res) => {
-        let { driverId, boatId } = req.body
-        const db = req.app.get("db");
-        await db.update_boat_on_driver([driverId, boatId])
-        res.sendStatus(200)
-    },
-
+    
     editBoat: async (req, res) => {
         let {
             driverId,
