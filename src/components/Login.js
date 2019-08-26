@@ -7,14 +7,12 @@ import "./mainEntryAuth.css";
 class Login extends Component{
 
     render(){
-        
-        // let {username, password} = this.state;
-        // let {user} = this.props;
-        // //Check if user is logged in
-        // if(user.loggedIn) return <Redirect to="/dashboard" />
-
+        let { user } = this.props
+        if(user){
+            if(user.loggedIn && !user.isDriver) return <Redirect to="/rider-dashboard/find-a-ride" />
+            if(user.loggedIn && user.isDriver) return <Redirect to="/driver-dashboard/create-a-ride" />
+        }
         return(
-
             <div className="mainAppWindow">
 
                 <section className="fullScreenContainerStartPages">
@@ -38,4 +36,8 @@ class Login extends Component{
     };
 }
 
-export default Login;
+function mapStateToProps(state){
+    return state.user;
+}
+
+export default connect(mapStateToProps, null)(Login);
