@@ -26,27 +26,28 @@ class DriverRegistrationForm extends Component {
         })
     };
 
-    registrationFormSwitch = ()  =>{
-        this.setState({ registered: true}, () => {
+    registrationFormSwitch = () => {
+        this.setState({ registered: true }, () => {
             this.props.history.push("/driver-dashboard/boat-register")
         })
     }
 
     handleFormSubmit = (e) => {
+        console.log(this.props.user)
         e.preventDefault()
         let { driverEmail, driverFirst, driverLast, driverImage, driverLicense } = this.state
         const newStartRating = 5.0;
         this.props.driverRegister(this.props.user.driverUsername, driverEmail, driverFirst, driverLast, driverImage, driverLicense, newStartRating)
         this.registrationFormSwitch();
     }
-    handleUploadedImage = (imgUrl) => {
+    handleImage = (imgUrl) => {
         this.setState({ driverImage: imgUrl })
     }
 
     render() {
         let { boat, user } = this.props;
         console.log("this.props on registration", this.props)
-        if(!user.user.loggedIn) {
+        if (!user.loggedIn) {
             return <Redirect to='/' />
         }
 
@@ -57,7 +58,7 @@ class DriverRegistrationForm extends Component {
                 <div>
                     <h1>{this.props.user.riderUsername}</h1>
                     <div>
-                        <UploadImage action={this.handleUploadedImage} />
+                        <UploadImage action={this.props.handleUploadedImage} handleImage={this.handleImage} newImageUrl={this.state.driverImage} />
                     </div>
                     <form>
                         <input type="hidden" name="driverImage" value={this.state.driverImage} placeholder="Image" />

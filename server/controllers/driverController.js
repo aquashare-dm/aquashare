@@ -44,7 +44,7 @@ module.exports = {
         let hashPassword = await bcrypt.hash(driverPassword, salt);
         let [user] = await db.create_driver([driverUsername, hashPassword]);
         req.session.user = {
-            driverUsername: user.driverUsername,
+            driverUsername: user.driver_username,
             id: user.driver_id,
             isDriver: true,
             loggedIn: true
@@ -108,5 +108,5 @@ module.exports = {
         }
         res.send(req.session.user);
     },
-    
+
 }
