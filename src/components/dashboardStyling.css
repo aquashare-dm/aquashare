@@ -77,28 +77,41 @@
         justify-content: space-between;
     }
     .mapPageBottomContainer{
-        background-color: #00e6ac;
+        
+        background: linear-gradient(166deg, rgba(67,206,162,1) 0%, rgba(37,133,215,1) 70%);
         height: 50vh;
         width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 5% 5%;
+        padding: 3% 5%;
     }
     .mapPageBottomContainerWhiteBox{
-
         height: 100%;
         width: 100%;
         background-color: white;
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: flex-start;
-        padding: 6%;
+        padding: 4%;
+        justify-content: space-evenly;
         overflow: auto;
     }
-    
+    .rowContainerSpaceBetween{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
+    .labeledInputBox{
+        margin-bottom: 2%;
+    }
+    .dropdownBoxContainer{
+        width: 48%;
+        margin-bottom: 4%;
+    }
+
 
     /* Header and Paragraph Styling */
     .dashLogoH1{
@@ -123,4 +136,5 @@
         color: black;
         margin: none;
     }
+
 }

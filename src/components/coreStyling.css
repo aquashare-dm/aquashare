@@ -4,6 +4,7 @@
         width: 100vw;
         display: flex;
         flex-direction: column;
+        
     }
     .fullScreenContainer{
         width: 100vw;
@@ -18,7 +19,7 @@
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
-        width: 70%;
+        width: 75%;
         height: 16%;
     }
     .buttonInsideText{
