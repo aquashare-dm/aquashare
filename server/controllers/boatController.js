@@ -35,8 +35,7 @@ module.exports = {
             newBoatMake,
             newBoatModel,
             newBoatSeatNumber,
-            newBoatImageOne,
-            newBoatImageTwo,
+            newBoatImageOne
         } = req.body;
         const db = req.app.get("db");
         console.log(req.body)
@@ -49,8 +48,7 @@ module.exports = {
             newBoatMake,
             newBoatModel,
             newBoatSeatNumber,
-            newBoatImageOne,
-            newBoatImageTwo,
+            newBoatImageOne
         ])
         console.log('BOOOOOOAAAT', boat)
         req.session.boat = {
@@ -62,8 +60,7 @@ module.exports = {
             boatMake: boat.boat_make,
             boatModel: boat.boat_model,
             boatSeatNumber: boat.boat_seat_number,
-            boatImageOne: boat.boat_image_one,
-            boatImageTwo: boat.boat_image_two,
+            boatImageOne: boat.boat_image_one
         }
         console.log(req.session.boat)
         res.status(200).send(req.session.boat);

@@ -27,8 +27,8 @@ export const createBoat = (boat_name, tier_id, boat_description, boat_license, b
     return { type: CREATE_BOAT, payload: data };
 };
 
-export const editBoat = (boatId, newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne, newBoatImageTwo) => {
-    let data = axios.put("/api/edit-boat", { boatId, newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne, newBoatImageTwo }).then(res => res.data)
+export const editBoat = (boatId, newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne) => {
+    let data = axios.put("/api/edit-boat", { boatId, newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne }).then(res => res.data)
     return { type: EDIT_BOAT, payload: data };
 };
 

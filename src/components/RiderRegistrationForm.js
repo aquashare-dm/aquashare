@@ -33,7 +33,7 @@ class RiderRegistrationForm extends Component {
         this.props.riderRegister(this.props.user.riderUsername, riderEmail, riderFirst, riderLast, riderImage, newStartRating)
     }
 
-    handleUploadedImage = (imgUrl) => {
+    handleImage = (imgUrl) => {
         this.setState({ riderImage: imgUrl })
     }
 
@@ -45,7 +45,8 @@ class RiderRegistrationForm extends Component {
             <div>
                 <h1>{this.props.user.riderUsername}</h1>
                 <div>
-                    <UploadImage action={this.handleUploadedImage} />
+                    <UploadImage action={this.props.handleUploadedImage} handleImage={this.handleImage} newImageUrl={this.state.riderImage} />
+
                 </div>
                 <form>
                     <input type="hidden" name="riderImage" value={this.state.riderImage} placeholder="Image" />
