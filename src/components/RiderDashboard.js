@@ -91,7 +91,7 @@ class RiderDashboard extends Component{
     render(){
         console.log('this.props', this.props)
         let { user } = this.props;
-        if(!user.loggedIn){
+        if (!user.loggedIn) {
             return <Redirect to="/" />
         }
         if(user){
@@ -105,7 +105,7 @@ class RiderDashboard extends Component{
                         <div className="showMobileIconCont" onClick={()=>{this.menuClick()}} ref={this.mobileMenuIcon}>
                             <i className="fas fa-bars"/>
                         </div>
-                        <h1 className="logoH1">AQUASHARE</h1>
+                        <h1 className="dashLogoH1">AQUASHARE</h1>
                     </section>
 
                     <div className="navOptionsCont" ref={this.navOptionsRowCont}>
