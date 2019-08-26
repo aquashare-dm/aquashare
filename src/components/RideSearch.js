@@ -6,6 +6,8 @@ import { GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import Geocode from "react-geocode";
 import CurrentLocation from "./RideSearch/Map.js";
 import Select from "react-select";
+import "./coreStyling.css";
+import "./dashboardStyling.css";
 
 require("dotenv").config({path: __dirname + "/../../.env"});
 const {REACT_APP_GOOGLE_API_KEY} = process.env;
@@ -131,7 +133,7 @@ class RideSearch extends Component{
         }
         return(
         
-            <div className="mainAppWindow">
+            <div>
 
                 <div className="mapRightCont" id="google-maps-container" style={{visibility: !this.props.navMenuOpen?"visible":"hidden"}}>
                     <CurrentLocation centerAroundCurrentLocation width={"100vw"} height={"40vh"} google={this.props.google} lat={this.state.locationLatitude} lng={this.state.locationLongitude}>
@@ -171,7 +173,7 @@ class RideSearch extends Component{
                             <Select className="ui search dropdown dropdownBoxContainer" placeholder="Mile Radius" label="radius" options={radiusOptions} onChange={this.handleDropDownChange}></Select>
                             <Select className="ui search dropdown dropdownBoxContainer" placeholder="Seats Needed" label="numberOfRiders" options={seatOptions} onChange={this.handleDropDownChange}></Select>
                         </div>
-                        <button className="ui inverted blue button " onClick={this.searchRides}>FIND RIDE</button> 
+                        <button className="ui inverted blue button" onClick={this.searchRides}>FIND RIDE</button> 
                     </div>
                     
                 </section>

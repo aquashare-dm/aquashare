@@ -21,15 +21,15 @@ class RiderTripRequests extends Component{
     }
 
     render(){
-        console.log("Props on request page", this.props)
-        let { user } = this.props.user;
-        let {requests} = this.props
-        let {request_date, request_end_time} = this.props.requests.allRequests[0]
-        console.log(request_date, request_end_time, "date and time")
         if(!user.loggedIn){
             return <Redirect to="/" />
         }
-        console.log(requests, 'requests')
+        
+
+        let { user } = this.props.user;
+        let {requests} = this.props
+        let {request_date, request_end_time} = this.props.requests.allRequests[0]
+
         let requestsDisplay = requests.allRequests.map( request => (
             <TripRequest key = {request.rider_id} {...request} />
         ))

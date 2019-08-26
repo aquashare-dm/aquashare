@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import "./coreStyling.css";
+import "./dashboardStyling.css";
 
 class SearchedRides extends Component {
     buyRide = () => {
@@ -7,22 +9,28 @@ class SearchedRides extends Component {
     }
 
     render() {
-        let { ride_date, ride_location, ride_total_seats, ride_open_seats, ride_start_time, ride_end_time } = this.props;
+        let { ride_date, ride_location, ride_total_seats, ride_open_seats, ride_start_time, ride_end_time, driver_id, tier_id } = this.props;
 
         return (
-        <div style={{backgroundColor: 'yellow', margin: '10px'}}>
-            <p>Date: {ride_date}</p>
-            <p>Location: {ride_location}</p>
-            <p>Total seats: {ride_total_seats}</p>
-            <p>Available seats: {ride_open_seats}</p>
-            <p>Start Time: {ride_start_time}</p>
-            <p>End Time: {ride_end_time}</p>
-            <p>Driver</p>
-            <p>Boat Info</p>
-            <p>Tier</p>
-            <p>Pricing</p>
-            <button onClick={this.buyRide} >Reserve Your Seat Now</button>
-        </div>
+
+            <div className="availableRideContainer">
+                <div className="six wide column">{ride_date}</div>
+                <div className="one wide column">{ride_open_seats}</div>
+                <div className="one wide column">{tier_id}</div>
+                <div className="eight wide column" style={{overflowX: "auto"}}>{ride_location}</div>
+                
+                {/* <p>Location: {ride_location}</p>
+                <p>Total seats: {ride_total_seats}</p>
+                <p>Available seats: {ride_open_seats}</p>
+                <p>Start Time: {ride_start_time}</p>
+                <p>End Time: {ride_end_time}</p>
+                <p>Driver: {driver_id}</p>
+                <p>Boat Info</p>
+                <p>Tier</p>
+                <p>Pricing</p> */}
+                {/* <button onClick={this.buyRide} >Reserve Your Seat Now</button> */}
+            </div>
+
         );
     }
 }
