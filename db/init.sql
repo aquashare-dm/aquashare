@@ -81,7 +81,6 @@ CREATE TABLE "drivers" (
 	"driver_image_url" varchar(1000),
 	"driver_rating" FLOAT(1),
 	"driver_license" varchar(255),
-	"boat_id" integer,
 	CONSTRAINT "drivers_pk" PRIMARY KEY ("driver_id")
 ) WITH (
   OIDS=FALSE
