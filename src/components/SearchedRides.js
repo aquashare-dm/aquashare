@@ -11,12 +11,12 @@ class SearchedRides extends Component {
 
         return (
         <div style={{backgroundColor: 'yellow', margin: '10px'}}>
-            <p>{ride_date}</p>
-            <p>{ride_location}</p>
-            <p>{ride_total_seats}</p>
-            <p>{ride_open_seats}</p>
-            <p>{ride_start_time}</p>
-            <p>{ride_end_time}</p>
+            <p>Date: {ride_date}</p>
+            <p>Location: {ride_location}</p>
+            <p>Total seats: {ride_total_seats}</p>
+            <p>Available seats: {ride_open_seats}</p>
+            <p>Start Time: {ride_start_time}</p>
+            <p>End Time: {ride_end_time}</p>
             <p>Driver</p>
             <p>Boat Info</p>
             <p>Tier</p>
