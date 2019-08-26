@@ -74,7 +74,10 @@ class DriverSignup extends Component{
         let { username, password } = this.state;
         let {user} = this.props;
         //Check if user is signed in
-        if(user.loggedIn) return <Redirect to="/driver-dashboard" />
+        if(user){
+            if(user.loggedIn && !user.isDriver) return <Redirect to="/rider-dashboard/find-a-ride" />
+            if(user.loggedIn && user.isDriver) return <Redirect to="/driver-dashboard/create-a-ride" />
+        }
         
         return(
 

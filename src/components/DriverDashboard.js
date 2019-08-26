@@ -7,7 +7,7 @@ import "./coreStyling.css";
 import "./dashboardStyling.css";
 
 import DriverRegistrationForm from "./DriverRegistrationForm.js";
-
+import DriverTripRequests from './DriverTripRequests';
 import BoatRegistrationForm from "./BoatRegistrationForm.js";
 import DriverProfile from "./DriverProfile.js";
 import DriverHistory from "./DriverHistory.js";
@@ -95,9 +95,12 @@ class DriverDashboard extends Component {
     render() {
         console.log(this.props)
         let { user } = this.props;
-        // if (!user.loggedIn) {
-        //     return <Redirect to="/" />
-        // }
+        if (!user.loggedIn) {
+            return <Redirect to="/" />
+        }
+        if(user){
+            if(user.loggedIn && !user.isDriver) return <Redirect to="/rider-dashboard/find-a-ride" />
+        }
         return (
             <section className="mainAppWindow">
                 <div className="navBarTopPadding"></div>
@@ -136,7 +139,7 @@ class DriverDashboard extends Component {
                     <Route path="/driver-dashboard/create-a-ride" component={DriverRideCreationForm} />
                     {/* <Route path="/rider-dashboard/available-rides" component={AvailableRides} /> */}
                     {/* <Route path="/rider-dashboard/request-a-ride" component={RideRequestForm} /> */}
-                    {/* <Route path="/rider-dashboard/ride-requests" component={RiderTripRequests} /> */}
+                    <Route path="/driver-dashboard/ride-requests" component={DriverTripRequests} />
                     <Route path="/driver-dashboard/ride-history" component={DriverHistory} />
                     <Route path="/driver-dashboard/driver-profile" component={DriverProfile} />
 

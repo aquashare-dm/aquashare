@@ -1,6 +1,6 @@
 import axios from "axios";
 import {
-    CREATE_REQUEST, EDIT_REQUEST, DELETE_REQUEST, GET_REQUESTS_BY_ID
+    CREATE_REQUEST, EDIT_REQUEST, DELETE_REQUEST, GET_REQUESTS_BY_ID, GET_AVAILABLE_REQUESTS
 } from "./actionTypes.js";
 
 const initialState = {
@@ -30,6 +30,18 @@ export const getRequestsById = (userId) => {
            return  res.data})
     return {
         type:GET_REQUESTS_BY_ID,
+        payload: data,
+        error: false
+    }
+}
+
+export const getAvailableRequests = () => {
+    let data = axios
+        .get(`/api/get-all-requests`)
+        .then(res => {
+           return  res.data})
+    return {
+        type:GET_AVAILABLE_REQUESTS,
         payload: data,
         error: false
     }
