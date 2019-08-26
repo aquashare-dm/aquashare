@@ -27,7 +27,7 @@ module.exports = {
     
     editBoat: async (req, res) => {
         let {
-            boatId,
+            driverId,
             newBoatName,
             newBoatDescription,
             newBoatLicense,
@@ -40,17 +40,17 @@ module.exports = {
         const db = req.app.get("db");
         console.log(req.body)
         let [boat] = await db.edit_boat([
-            boatId,
+            driverId,
             newBoatName,
             newBoatDescription,
             newBoatLicense,
             newBoatRegistration,
             newBoatMake,
             newBoatModel,
-            newBoatSeatNumber,
+            +newBoatSeatNumber,
             newBoatImageOne
         ])
-        console.log('BOOOOOOAAAT', boat)
+        console.log('boat', boat)
         req.session.boat = {
             boatId: boat.boat_id,
             boatName: boat.boat_name,
@@ -66,4 +66,23 @@ module.exports = {
         res.status(200).send(req.session.boat);
     },
 
+    getBoat: async (req, res) => {
+        let { driverId } = req.body
+        const db = req.app.get('db')
+        let [boat] = await db.get_boat(driverId)
+
+        req.session.boat = {
+            boatId: boat.boat_id,
+            boatName: boat.boat_name,
+            boatDescription: boat.boat_description,
+            boatLicense: boat.boat_license,
+            boatRegistration: boat.boat_registration,
+            boatMake: boat.boat_make,
+            boatModel: boat.boat_model,
+            boatSeatNumber: boat.boat_seat_number,
+            boatImageOne: boat.boat_image_one
+        }
+
+        res.status(200).send(req.session.boat)
+    }
 }

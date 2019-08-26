@@ -20,11 +20,13 @@ export const SAVE_CRITERIA = "SAVE_CRITERIA"
 export const GET_RIDES = "GET_RIDES"
 export const GET_RIDES_BY_ID = "GET_RIDES_BY_ID"
 export const GET_RIDES_BY_DRIVER_ID = "GET_RIDES_BY_DRIVER_ID"
+export const GET_CONFIRMED_RIDES_BY_DRIVER_ID = "GET_CONFIRMED_RIDES_BY_DRIVER_ID"
 
 //Boat Actions
 export const CREATE_BOAT = "CREATE_BOAT";
 export const EDIT_BOAT = "EDIT_BOAT";
 export const RESET_STATE_ON_LOGOUT = "RESET_STATE_ON_LOGOUT";
+export const GET_BOAT = "GET_BOAT"
 
 //Request Actions
 export const CREATE_REQUEST = "CREATE_REQUEST";
