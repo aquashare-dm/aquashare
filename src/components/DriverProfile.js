@@ -31,7 +31,7 @@ class DriverProfile extends Component {
 
     handleFormSubmit = (e) => {
         let { newDriverEmail, newDriverFirst, newDriverLast, newDriverImage, newDriverLicense } = this.state
-        this.props.editRiderProfile(this.props.user.riderUsername, newDriverEmail, newDriverFirst, newDriverLast, newDriverImage, newDriverLicense)
+        this.props.editDriverProfile(this.props.user.riderUsername, newDriverEmail, newDriverFirst, newDriverLast, newDriverImage, newDriverLicense)
     }
 
     goBack = () => {
@@ -89,7 +89,7 @@ class DriverProfile extends Component {
                     </div>
                 ) : (
                         <div>
-                            <h3>{this.props.user.driverImage}</h3>
+                            <img src={`${this.props.user.driverImage}`} />
                             <h3>{this.props.user.driverRating}</h3>
                             <h1>Username: {this.props.user.driverUsername}</h1>
                             <h3>First Name: {this.props.user.driverFirst} </h3>

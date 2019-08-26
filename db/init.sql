@@ -99,6 +99,7 @@ CREATE TABLE "boats" (
 	"boat_make" varchar(255) NOT NULL,
 	"boat_model" varchar(255) NOT NULL,
 	"boat_seat_number" integer NOT NULL,
+	"boat_tube_seats" integer NOT NULL,
 	"boat_image_one" varchar(1000),
 	"boat_image_two" varchar(1000),
 	"driver_id" integer NOT NULL,

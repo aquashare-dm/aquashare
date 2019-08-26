@@ -18,7 +18,6 @@ class BoatProfile extends Component {
             newBoatModel: this.props.boat.boat.boatModel,
             newBoatSeatNumber: this.props.boat.boat.boatSeatNumber,
             newBoatImageOne: this.props.boat.boat.boatImageOne,
-            newBoatImageTwo: this.props.boat.boat.boatImageTwo,
         }
     }
 
@@ -30,8 +29,8 @@ class BoatProfile extends Component {
     };
 
     handleFormSubmit = (e) => {
-        let { newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne, newBoatImageTwo } = this.state
-        this.props.editBoat(this.props.boat.boat.boatId, newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne, newBoatImageTwo)
+        let { newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne } = this.state
+        this.props.editBoat(this.props.boat.boat.boatId, newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne)
     }
 
     goBack = () => {
@@ -39,7 +38,7 @@ class BoatProfile extends Component {
     }
 
     handleUploadedImage = (imgUrl) => {
-        this.setState({ editImage: true, boatImageOne: imgUrl, boatImageTwo: imgUrl })
+        this.setState({ editImage: true, boatImageOne: imgUrl })
     }
 
     flipEdit = () => this.setState({ editing: !this.state.editing })
@@ -57,21 +56,19 @@ class BoatProfile extends Component {
     }
 
     render() {
+        console.log('oooooooooooooooooooooooooooooooooo', this.props)
         let { boat } = this.props.boat;
         if (!this.props.user.user.loggedIn) {
             return <Redirect to="/" />
         }
-        let { newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne, newBoatImageTwo } = this.state
+        let { newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne } = this.state
         return (
             <div>
                 {this.state.editing ? (
                     <div>
                         <h3>Upload New Images</h3>
                         <div>
-                            <UploadImage action={this.props.handleUploadedImage} handleImage={this.handleImage} newImageUrl={this.state.newBoatImageOne} />
-                        </div>
-                        <div>
-                            <UploadImage action={this.props.handleUploadedImage} handleImage={this.handleImage} newImageUrl={this.state.newBoatImageTwo} />
+                            <UploadImage action={this.props.handleImageUpload} handleImage={this.handleImage} newImageUrl={this.state.newBoatImageOne} />
                         </div>
                         <input
                             value={newBoatName}
@@ -120,12 +117,6 @@ class BoatProfile extends Component {
                             onChange={this.handleChange}
                             name="newBoatImageOne"
                             placeholder="Image"
-                        />
-                        <input
-                            value={newBoatImageTwo}
-                            onChange={this.handleChange}
-                            name="newBoatImageTwo"
-                            placeholder="Image"
                         /> */}
                         <div>
                             <button onClick={() => {
@@ -145,7 +136,6 @@ class BoatProfile extends Component {
                             <h3>Boat Model: {boat.boatModel}</h3>
                             <h3>Number of Seats: {boat.boatSeatNumber}</h3>
                             <img src={`${boat.boatImageOne}`} />
-                            <img src={`${boat.boatImageTwo}`} />
                             <div>
                                 <button onClick={this.flipEdit}>Edit</button>
                             </div>

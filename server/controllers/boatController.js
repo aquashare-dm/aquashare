@@ -5,11 +5,11 @@
 module.exports = {
 
     createBoat: async (req, res) => {
-        let { boat_name, tier_id, boat_description, boat_license, boat_registration, boat_make, boat_model,
-            boat_seat_number, boat_image_one, driver_id } = req.body;
+        let { boatName, tierId, boatDescription, boatLicense, boatRegistration, boatMake, boatModel,
+            boatSeatNum, tubeSeatNum, boatImageOne, driverId } = req.body;
         const db = req.app.get("db");
-        let [boat] = await db.create_boat(boat_name, tier_id, boat_description, boat_license, boat_registration, boat_make, boat_model,
-            boat_seat_number, boat_image_one, driver_id);
+        let [boat] = await db.create_boat(boatName, tierId, boatDescription, boatLicense, boatRegistration, boatMake, boatModel,
+            boatSeatNum, tubeSeatNum, boatImageOne, driverId);
         req.session.boat = {
             boatDescription: boat.boat_description,
             boatId: boat.boat_id,
@@ -25,6 +25,13 @@ module.exports = {
         res.status(200).send(req.session.boat);
     },
 
+    connectBoatIdToDriver: async (req, res) => {
+        let { driverId, boatId } = req.body
+        const db = req.app.get("db");
+        await db.update_boat_on_driver([driverId, boatId])
+        res.sendStatus(200)
+    },
+    
     editBoat: async (req, res) => {
         let {
             boatId,
@@ -35,8 +42,7 @@ module.exports = {
             newBoatMake,
             newBoatModel,
             newBoatSeatNumber,
-            newBoatImageOne,
-            newBoatImageTwo,
+            newBoatImageOne
         } = req.body;
         const db = req.app.get("db");
         console.log(req.body)
@@ -49,8 +55,7 @@ module.exports = {
             newBoatMake,
             newBoatModel,
             newBoatSeatNumber,
-            newBoatImageOne,
-            newBoatImageTwo,
+            newBoatImageOne
         ])
         console.log('BOOOOOOAAAT', boat)
         req.session.boat = {
@@ -62,8 +67,7 @@ module.exports = {
             boatMake: boat.boat_make,
             boatModel: boat.boat_model,
             boatSeatNumber: boat.boat_seat_number,
-            boatImageOne: boat.boat_image_one,
-            boatImageTwo: boat.boat_image_two,
+            boatImageOne: boat.boat_image_one
         }
         console.log(req.session.boat)
         res.status(200).send(req.session.boat);

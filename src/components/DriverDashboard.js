@@ -93,7 +93,7 @@ class DriverDashboard extends Component {
     }
 
     render() {
-        console.log(this.props)
+        console.log("this.props on DriverDashboard", this.props)
         let { user } = this.props;
 
         if (!user.loggedIn) {
