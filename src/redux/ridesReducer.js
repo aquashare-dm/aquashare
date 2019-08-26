@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_RIDES, SAVE_CRITERIA, GET_RIDES_BY_ID, CREATE_RIDE, GET_RIDES_BY_DRIVER_ID } from "./actionTypes.js";
+import { GET_RIDES, SAVE_CRITERIA, GET_RIDES_BY_ID, CREATE_RIDE, GET_RIDES_BY_DRIVER_ID, GET_CONFIRMED_RIDES_BY_DRIVER_ID } from "./actionTypes.js";
 
 const initialState = {
     searchCriteria: {
@@ -65,6 +65,19 @@ export const getRidesByDriverId = (userId) => {
     }
 }
 
+export const getConfirmedRidesByDriverId = (driverId) => {
+    let data = axios
+        .get(`/api/get-confirmed-rides-by-driver-id/${driverId}`)
+        .then(res => {
+            return res.data
+        })
+    return {
+        type: GET_CONFIRMED_RIDES_BY_DRIVER_ID,
+        payload: data,
+        error: false
+    }
+}
+
 
 //Action Function
 export default function (state = initialState, action) {
@@ -92,6 +105,11 @@ export default function (state = initialState, action) {
             return { ...state, filteredRides: payload };
         case GET_RIDES_BY_DRIVER_ID + "_REJECTED":
             return { ...state, error: payload };
+
+        case GET_CONFIRMED_RIDES_BY_DRIVER_ID + "_FULFILLED":
+            return { ...state, filteredRides: payload };
+        case GET_CONFIRMED_RIDES_BY_DRIVER_ID + "_REJECTED":
+            return { ...state, error: payload };    
         default:
             console.log('Hit the default action type')
             return state;
