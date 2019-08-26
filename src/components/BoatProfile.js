@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
-import { editBoat } from '../redux/boatReducer'
+import { editBoat, getBoatInfo } from '../redux/boatReducer'
 import UploadImage from './UploadImage'
 
 class BoatProfile extends Component {
@@ -13,12 +13,16 @@ class BoatProfile extends Component {
             newBoatName: this.props.boat.boat.boatName,
             newBoatDescription: this.props.boat.boat.boatDescription,
             newBoatLicense: this.props.boat.boat.boatLicense,
-            newBoatRegistration: this.props.boat.boat.boatRegistration,
+            newBoatRegistration: this.props.boat.boatboatRegistration,
             newBoatMake: this.props.boat.boat.boatMake,
             newBoatModel: this.props.boat.boat.boatModel,
             newBoatSeatNumber: this.props.boat.boat.boatSeatNumber,
             newBoatImageOne: this.props.boat.boat.boatImageOne,
         }
+    }
+
+    componentDidMount() {
+        this.props.getBoatInfo(this.props.user.user.id)
     }
 
     handleChange = (event) => {
@@ -30,7 +34,8 @@ class BoatProfile extends Component {
 
     handleFormSubmit = (e) => {
         let { newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne } = this.state
-        this.props.editBoat(this.props.boat.boat.boatId, newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne)
+        console.log("this.props in Boat Profile", this.props)
+        this.props.editBoat(this.props.user.user.id, newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne)
     }
 
     goBack = () => {
@@ -43,24 +48,12 @@ class BoatProfile extends Component {
 
     flipEdit = () => this.setState({ editing: !this.state.editing })
 
-    // handleImage = (imageUrl, whichImage) => {
-    //     if (whichImage === 'imageOne') {
-    //         this.setState({ newBoatImageOne: imageUrl })
-    //     } else if (whichImage === 'imageTwo') {
-    //         this.setState({ newBoatImageTwo: imageUrl })
-    //     }
-    // }
-
     handleImage = (imageUrl) => {
         this.setState({ newBoatImageOne: imageUrl })
     }
 
     render() {
-        console.log('oooooooooooooooooooooooooooooooooo', this.props)
         let { boat } = this.props.boat;
-        if (!this.props.user.user.loggedIn) {
-            return <Redirect to="/" />
-        }
         let { newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne } = this.state
         return (
             <div>
@@ -107,7 +100,8 @@ class BoatProfile extends Component {
                             placeholder="Model"
                         />
                         <input
-                            value={newBoatSeatNumber}
+                            type="number"
+                            value={+newBoatSeatNumber}
                             onChange={this.handleChange}
                             name="newBoatSeatNumber"
                             placeholder="Seat Number"
@@ -151,4 +145,4 @@ function mapStateToProps(state) {
     return state
 }
 
-export default connect(mapStateToProps, { editBoat })(withRouter(BoatProfile));
+export default connect(mapStateToProps, { editBoat, getBoatInfo })(withRouter(BoatProfile));
