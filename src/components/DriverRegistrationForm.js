@@ -38,6 +38,7 @@ class DriverRegistrationForm extends Component {
         let { driverEmail, driverFirst, driverLast, driverImage, driverLicense } = this.state
         const newStartRating = 5.0;
         this.props.driverRegister(this.props.user.driverUsername, driverEmail, driverFirst, driverLast, driverImage, driverLicense, newStartRating)
+        console.log(this.props.user.driverUsername)
         this.registrationFormSwitch();
     }
     handleImage = (imgUrl) => {

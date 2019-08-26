@@ -50,6 +50,7 @@ app.post('/api/create-ride', ridesController.createRide)
 
 //Boat Endpoints
 app.post("/api/create-boat", boatController.createBoat);
+app.put("/api/create-boat", boatController.connectBoatIdToDriver);
 app.put("/api/edit-boat", boatController.editBoat);
 
 //Ride Request Endpoints
