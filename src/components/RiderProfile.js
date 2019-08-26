@@ -42,6 +42,9 @@ class RiderProfile extends Component {
 
     flipEdit = () => this.setState({ editing: !this.state.editing })
 
+    handleImage = (imageUrl) => {
+        this.setState({ newRiderImage: imageUrl })
+    }
 
 
     render() {
@@ -50,14 +53,14 @@ class RiderProfile extends Component {
         if (!user.loggedIn) {
             return <Redirect to="/" />
         }
-        let { newRiderImage, newRiderUsername, newRiderFirst, newRiderLast, newRiderEmail } = this.state
+        let { newRiderFirst, newRiderLast, newRiderEmail } = this.state
         return (
             <div>
                 {this.state.editing ? (
                     <div>
                         <h3>Upload New Image</h3>
                         <div>
-                            <UploadImage action={this.handleUploadedImage} />
+                            <UploadImage action={this.props.handleUploadedImage} handleImage={this.handleImage} newImageUrl={this.state.newRiderImage} />
                         </div>
                         <input
                             value={newRiderFirst}
@@ -84,7 +87,7 @@ class RiderProfile extends Component {
                     </div>
                 ) : (
                         <div>
-                            <h3>{this.props.user.riderImage}</h3>
+                            <img src={`${this.props.user.riderImage}`} />
                             <h3>{this.props.user.riderRating}</h3>
                             <h1>Username:{this.props.user.riderUsername}</h1>
                             <h3>First Name: {this.props.user.riderFirst} </h3>

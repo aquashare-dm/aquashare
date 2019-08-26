@@ -8,17 +8,11 @@ const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dti2va41j/image/u
 export default class UploadImage extends Component {
     constructor(props) {
         super(props);
-        // console.log('prrrrrooooooppppspss', props)
 
         this.state = {
             uploadedFileCloudinaryUrl: '',
         };
     }
-
-    // componentWillReceiveProps(props) {
-    //     console.log('prrrrrooooooppppspss', props)
-
-    // }
 
     onImageDrop = (files) => {
         this.setState({
@@ -41,11 +35,14 @@ export default class UploadImage extends Component {
             if (response.body.secure_url !== '') {
                 this.setState({
                     uploadedFileCloudinaryUrl: response.body.secure_url
+                }, () => {
+                    this.props.handleImage(this.state.uploadedFileCloudinaryUrl)
                 });
+
                 if (this.props.action) {
                     this.props.action(response.body.secure_url)
                 } else {
-                    console.log('noooooooooo props')
+                    console.log('no props')
                 }
 
             }
@@ -75,7 +72,6 @@ export default class UploadImage extends Component {
                 <div>
                     {this.state.uploadedFileCloudinaryUrl === '' ? null :
                         <div>
-                            {/* <p>{this.state.uploadedFile.name}</p> */}
                             <img src={this.state.uploadedFileCloudinaryUrl} />
                         </div>
                     }
