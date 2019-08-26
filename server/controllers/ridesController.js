@@ -3,6 +3,7 @@ module.exports = {
         let { locationLatitude, locationLongitude, numberOfRiders, radius } = req.body
         const db = req.app.get("db");
         let rides = await db.get_rides_by_criteria([locationLatitude, locationLongitude, numberOfRiders, radius]);
+        console.log("rides", rides)
         res.send(rides)
     },
     getRidesById: async function (req, res) {
@@ -11,6 +12,7 @@ module.exports = {
         let rides = await db.get_rides_by_username(+userId);
         res.send(rides)
     },
+    
     getRidesByDriverId: async function (req, res) {
         let { driverId } = req.params;
         console.log(driverId, 'driverId')
@@ -20,6 +22,17 @@ module.exports = {
         console.log(rides, 'rides')
         res.send(rides)
     },
+
+    getConfirmedRidesByDriverId: async function (req, res) {
+        let { driverId } = req.params;
+        console.log(driverId, 'driverId')
+        console.log('hits controller function')
+        const db = req.app.get("db");
+        let rides = await db.get_confirmed_rides_by_driver_id(+driverId);
+        console.log(rides, 'rides')
+        res.send(rides)
+    },
+
     createRide: async (req, res) => {
         let { ride_date, driver_id, ride_location, ride_location_lat, ride_location_long, ride_total_seats, ride_open_seats, ride_start_time, ride_end_time, tier_id } = req.body
         const db = req.app.get('db')
