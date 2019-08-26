@@ -3,6 +3,7 @@ module.exports = {
         let { locationLatitude, locationLongitude, numberOfRiders, radius } = req.body
         const db = req.app.get("db");
         let rides = await db.get_rides_by_criteria([locationLatitude, locationLongitude, numberOfRiders, radius]);
+        console.log("rides", rides)
         res.send(rides)
     },
     getRidesById: async function (req, res) {
