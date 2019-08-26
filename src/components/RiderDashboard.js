@@ -91,10 +91,12 @@ class RiderDashboard extends Component{
     render(){
         console.log('this.props', this.props)
         let { user } = this.props;
-        // if(!user.loggedIn){
-        //     return <Redirect to="/" />
-        // }
-
+        if(!user.loggedIn){
+            return <Redirect to="/" />
+        }
+        if(user){
+            if(user.loggedIn && user.isDriver) return <Redirect to="/driver-dashboard/create-a-ride" />
+        }
         return(
             <section className="mainAppWindow">
                 <div className="navBarTopPadding"></div>
@@ -115,6 +117,9 @@ class RiderDashboard extends Component{
                         </Link>
                         <Link to="/rider-dashboard/ride-requests" className="navLinkOption" onClick={this.menuClick}>
                             <div>Ride Requests</div>
+                        </Link>
+                        <Link to="/rider-dashboard/ride-history" className="navLinkOption" onClick={this.menuClick}>
+                            <div>Ride History</div>
                         </Link>
                         <Link to="/rider-dashboard/rider-profile" className="navLinkOption" onClick={this.menuClick}>
                             <div>View Profile</div>

@@ -29,9 +29,9 @@ class StartPage extends Component{
                 </section>
             );
         } else if (!user.isDriver && user.loggedIn) {
-            return <Redirect to="/rider-dashboard" />
+            return <Redirect to="/rider-dashboard/find-a-ride" />
         } else if (user.isDriver && user.loggedIn) {
-            return <Redirect to="/driver-dashboard" />
+            return <Redirect to="/driver-dashboard/create-a-ride" />
         }
     };
 }
