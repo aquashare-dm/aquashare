@@ -103,7 +103,7 @@ class RideSearch extends Component{
 
         return(
         
-            <div>
+            <div className="mainAppWindow">
 
                 <div className="mapRightCont" id="google-maps-container" style={{visibility: !this.props.navMenuOpen?"visible":"hidden"}}>
                     <CurrentLocation centerAroundCurrentLocation width={"100vw"} height={"40vh"} google={this.props.google} lat={this.state.locationLatitude} lng={this.state.locationLongitude}>
@@ -124,23 +124,28 @@ class RideSearch extends Component{
                         </InfoWindow>
                     </CurrentLocation>
                 </div>
-                <header>
+                <section className="mapPageBottomContainer">
+                    <div className="mapPageBottomContainerWhiteBox">
+                        <h2 className="mapPageContainerHeader">FIND A RIDE</h2>
+                        <div className="ui labeled input">
+                            <div className="ui fluid label">Start Date</div>
+                            <input onChange={this.handleChange} type="date" name="firstDate" value={firstDate} placeholder="08/31/2019" />
+                        </div>
+                        
+                        <div>To</div>
+                        <input onChange={this.handleChange} type="date" name="secondDate" value={secondDate} placeholder="09/30/2019" />
+                        <div>Location</div>
+                        <input onChange={this.handleChange} id="location-address-input" name="location" value={location} placeholder="Lake Powell, UT" />
+                        <div>within</div>
+                        <input onChange={this.handleChange} type="number" min="0" name="radius" value={radius} placeholder="50" />
+                        <div>miles</div>
+                        <div>Number of Riders</div>
+                        <input onChange={this.handleChange} type="number" min="0" name="numberOfRiders" value={numberOfRiders} placeholder="1" />
+                        <button onClick={this.searchRides}>Find Ride</button> 
+                    </div>
                     
+                </section>
 
-                    <h1>Find an available ride</h1>
-                    <div>Dates</div>
-                    <input onChange={this.handleChange} type="date" name="firstDate" value={firstDate} placeholder="08/31/2019" />
-                    <div>To</div>
-                    <input onChange={this.handleChange} type="date" name="secondDate" value={secondDate} placeholder="09/30/2019" />
-                    <div>Location</div>
-                    <input onChange={this.handleChange} id="location-address-input" name="location" value={location} placeholder="Lake Powell, UT" />
-                    <div>within</div>
-                    <input onChange={this.handleChange} type="number" min="0" name="radius" value={radius} placeholder="50" />
-                    <div>miles</div>
-                    <div>Number of Riders</div>
-                    <input onChange={this.handleChange} type="number" min="0" name="numberOfRiders" value={numberOfRiders} placeholder="1" />
-                    <button onClick={this.searchRides}>Find Ride</button> 
-                </header>
             </div>
         );
     };
