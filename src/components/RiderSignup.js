@@ -5,9 +5,9 @@ import { Redirect, Link } from "react-router-dom";
 import "./coreStyling.css";
 import "./mainEntryAuth.css";
 
-class RiderSignup extends Component{
+class RiderSignup extends Component {
 
-    constructor(){
+    constructor() {
         super();
         this.state = {
             username: "",
@@ -26,21 +26,21 @@ class RiderSignup extends Component{
         //Create company password for future sub-used identification------------------------
         let numOfEmptyBoxes = 0;
         let inputBoxesEmpty = [];
-        
+
         //----------------------------------------------------------------------------------
-        let { username, password} = this.state;
+        let { username, password } = this.state;
 
-        if(username === ""){numOfEmptyBoxes += 1; inputBoxesEmpty.push("Username");} 
-        if(password === ""){numOfEmptyBoxes += 1; inputBoxesEmpty.push("Password");} 
+        if (username === "") { numOfEmptyBoxes += 1; inputBoxesEmpty.push("Username"); }
+        if (password === "") { numOfEmptyBoxes += 1; inputBoxesEmpty.push("Password"); }
 
-        if(numOfEmptyBoxes <= 0){
+        if (numOfEmptyBoxes <= 0) {
             this.props.riderSignup(username, password);
-        }else{
+        } else {
             //this.signUpToastError(numOfEmptyBoxes, inputBoxesEmpty)
-            alert("Missing inputs" ,numOfEmptyBoxes, inputBoxesEmpty);
+            alert("Missing inputs", numOfEmptyBoxes, inputBoxesEmpty);
         }
 
-        
+
 
 
     }
@@ -69,46 +69,46 @@ class RiderSignup extends Component{
 
     // }
 
-    render(){
+    render() {
         let { username, password } = this.state;
-        let {user} = this.props;
+        let { user } = this.props;
         //Check if user is signed in
-        if(user){
-            if(user.loggedIn && !user.isDriver) return <Redirect to="/rider-dashboard/find-a-ride" />
-            if(user.loggedIn && user.isDriver) return <Redirect to="/driver-dashboard/create-a-ride" />
+        if (user) {
+            if (user.loggedIn && !user.isDriver) return <Redirect to="/rider-dashboard" />
+            if (user.loggedIn && user.isDriver) return <Redirect to="/driver-dashboard/create-a-ride" />
         }
 
-        
-        return(
 
-        <section className="mainAppWindow">
-            <section className="fullScreenContainerStartPages">
-                <div className="startPageLogoContainer" style={{marginBottom: "15%"}}>
-                    <h1 className="logoH1">AQUASHARE</h1>
-                </div>
-                <h2 className="startPagesH2" style={{marginBottom: "10%"}}>RIDER SIGNUP</h2>
-                <div className="doubleInputCont" style={{height: "20%"}}>
-                    <div className="fluid ui icon input" style={{width: "100%"}}>
-                        <input placeholder="Username" type="text" value={username} name="username" onChange={this.handleChange} />
-                        <i className="fas fa-user icon" style={{color: "#337AB7"}}></i>
+        return (
+
+            <section className="mainAppWindow">
+                <section className="fullScreenContainerStartPages">
+                    <div className="startPageLogoContainer" style={{ marginBottom: "15%" }}>
+                        <h1 className="logoH1">AQUASHARE</h1>
                     </div>
-                    <div className="ui fluid icon input" style={{width: "100%"}}>
-                        <input placeholder="Password" type="password" value={password} name="password" onChange={this.handleChange} />
-                        <i className="fas fa-unlock icon" style={{color: "#337AB7"}}></i>
+                    <h2 className="startPagesH2" style={{ marginBottom: "10%" }}>RIDER SIGNUP</h2>
+                    <div className="doubleInputCont" style={{ height: "20%" }}>
+                        <div className="fluid ui icon input" style={{ width: "100%" }}>
+                            <input placeholder="Username" type="text" value={username} name="username" onChange={this.handleChange} />
+                            <i className="fas fa-user icon" style={{ color: "#337AB7" }}></i>
+                        </div>
+                        <div className="ui fluid icon input" style={{ width: "100%" }}>
+                            <input placeholder="Password" type="password" value={password} name="password" onChange={this.handleChange} />
+                            <i className="fas fa-unlock icon" style={{ color: "#337AB7" }}></i>
+                        </div>
+                        <button className="ui fluid inverted blue button" onClick={this.signupUser}>
+                            <p className="buttonInsideText">SIGNUP</p>
+                        </button>
                     </div>
-                    <button className="ui fluid inverted blue button" onClick={this.signupUser}>
-                        <p className="buttonInsideText">SIGNUP</p>
-                    </button>
-                </div>
+                </section>
             </section>
-        </section>
         )
     };
 
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
     return state.user;
 }
 
-export default connect(mapStateToProps, {riderSignup})(RiderSignup);
+export default connect(mapStateToProps, { riderSignup })(RiderSignup);
