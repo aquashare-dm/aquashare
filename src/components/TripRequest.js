@@ -15,13 +15,13 @@ class TripRequest extends Component {
         
         return (
         <div style={{backgroundColor: 'yellow', margin: '10px'}}>
-            <p>{request_date}</p>
-            <p>{request_location_lat}</p>
+            <p>Date: {request_date}</p>
+            <p>Location: {request_location_lat}</p>
             <p>{request_location_long}</p>
-            <p>{request_seat_number}</p>
-            <p>{tier_id}</p>
-            <p>{request_start_time}</p>
-            <p>{request_end_time}</p>
+            <p>Seats: {request_seat_number}</p>
+            <p>Tier: {tier_id}</p>
+            <p>Start Time: {request_start_time}</p>
+            <p>End Time: {request_end_time}</p>
             {/* <p>Driver</p>
             <p>Boat Info</p>
             <p>Tier</p>

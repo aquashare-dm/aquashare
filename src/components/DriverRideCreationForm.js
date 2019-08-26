@@ -120,10 +120,10 @@ class DriverRideCreationForm extends Component {
                     <h1>Create a Ride</h1>
                 </header>
                 <form>
-                    <input type="text" name="date" onChange={this.handleChange} value={this.state.requestDate} placeholder="Date" />
+                    <input type="date" name="date" onChange={this.handleChange} value={this.state.requestDate} placeholder="Date" />
                     <input type="text" id="location-address-input" name="location" onChange={this.handleChange} value={this.state.location} placeholder="Location" />
-                    <input type="text" name="boatSeatNum" onChange={this.handleChange} value={this.state.boatSeatNum} placeholder="Number of Seats" />
-                    <input type="text" name="tripSeatNum" onChange={this.handleChange} value={this.state.tripSeatNum} placeholder="Seats on Tube" />
+                    <input type="text" name="totalBoatSeatNum" onChange={this.handleChange} value={this.state.totalBoatSeatNum} placeholder="Number of Seats" />
+                    <input type="text" name="openBoatSeatNum" onChange={this.handleChange} value={this.state.openBoatSeatNum} placeholder="Seats on Tube" />
                     <input type="text" name="tierId" onChange={this.handleChange} value={this.state.tierId} placeholder="Requested Tier" />
                     <input type="text" name="startTime" onChange={this.handleChange} value={this.state.startTime} placeholder="Start Time" />
                     <input type="text" name="endTime" onChange={this.handleChange} value={this.state.endTime} placeholder="End Time" />

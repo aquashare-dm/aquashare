@@ -69,6 +69,7 @@ module.exports = {
     driverRegister: async (req, res) => {
         let { driverUsername, driverEmail, driverFirst, driverLast, driverImage, driverLicense, startRating } = req.body;
         const db = req.app.get("db");
+        console.log(req.body)
         let [user] = await db.driver_register([driverUsername, driverEmail, driverFirst, driverLast, driverImage, driverLicense, startRating])
         console.log("hit driverRegister in controller, user has info: ", user);
         req.session.user = {
