@@ -31,7 +31,8 @@ class DriverLogin extends Component{
         console.log(this.props);
         //Check if user is logged in
         if(user){
-            if(user.loggedIn) return <Redirect to="/driver-dashboard/create-a-ride" />
+            if(user.loggedIn && !user.isDriver) return <Redirect to="/rider-dashboard/find-a-ride" />
+            if(user.loggedIn && user.isDriver) return <Redirect to="/driver-dashboard/create-a-ride" />
         }
 
         return(

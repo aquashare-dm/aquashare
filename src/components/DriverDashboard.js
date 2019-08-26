@@ -99,6 +99,9 @@ class DriverDashboard extends Component {
         if (!user.loggedIn) {
             return <Redirect to="/" />
         }
+        if(user){
+            if(user.loggedIn && !user.isDriver) return <Redirect to="/rider-dashboard/find-a-ride" />
+        }
         return (
             <section className="mainAppWindow">
                 <div className="navBarTopPadding"></div>

@@ -45,6 +45,10 @@ class DriverRegistrationForm extends Component {
 
     render() {
         let { boat, user } = this.props;
+        console.log("this.props on registration", this.props)
+        if(!user.user.loggedIn) {
+            return <Redirect to='/' />
+        }
 
         if (user.driverRating && ![boat].length) {
             return (<div></div>)
