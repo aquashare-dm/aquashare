@@ -24,5 +24,12 @@ module.exports = {
         const db = req.app.get("db");
         let requests = await db.get_requests_by_username(+userId);
         res.send(requests)
+    },
+
+    getAvailableRequests: async function(req, res) {
+        console.log('Hit the getAvailableRides in controller')
+        const db = req.app.get("db");
+        let allRequests = await db.get_available_requests();
+        res.send(allRequests)
     }
 }
