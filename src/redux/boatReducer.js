@@ -19,10 +19,10 @@ export const resetBoatStateOnLogout = () => {
 };
 
 export const createBoat = (boat_name, tier_id, boat_description, boat_license, boat_registration, boat_make, boat_model,
-    boat_seat_number, boat_image_one, boat_image_two, driver_id) => {
+    boat_seat_number, boat_image_one, driver_id) => {
     let data = axios.post("/api/create-boat", {
         boat_name, tier_id, boat_description, boat_license, boat_registration, boat_make, boat_model,
-        boat_seat_number, boat_image_one, boat_image_two, driver_id
+        boat_seat_number, boat_image_one, driver_id
     }).then(res => res.data)
     return { type: CREATE_BOAT, payload: data };
 };

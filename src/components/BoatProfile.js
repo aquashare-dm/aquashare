@@ -44,6 +44,18 @@ class BoatProfile extends Component {
 
     flipEdit = () => this.setState({ editing: !this.state.editing })
 
+    // handleImage = (imageUrl, whichImage) => {
+    //     if (whichImage === 'imageOne') {
+    //         this.setState({ newBoatImageOne: imageUrl })
+    //     } else if (whichImage === 'imageTwo') {
+    //         this.setState({ newBoatImageTwo: imageUrl })
+    //     }
+    // }
+
+    handleImage = (imageUrl) => {
+        this.setState({ newBoatImageOne: imageUrl })
+    }
+
     render() {
         let { boat } = this.props.boat;
         if (!this.props.user.user.loggedIn) {
@@ -56,56 +68,65 @@ class BoatProfile extends Component {
                     <div>
                         <h3>Upload New Images</h3>
                         <div>
-                            <UploadImage action={this.handleUploadedImage} />
+                            <UploadImage action={this.props.handleUploadedImage} handleImage={this.handleImage} newImageUrl={this.state.newBoatImageOne} />
                         </div>
                         <div>
-                            <UploadImage action={this.handleUploadedImage} />
+                            <UploadImage action={this.props.handleUploadedImage} handleImage={this.handleImage} newImageUrl={this.state.newBoatImageTwo} />
                         </div>
                         <input
                             value={newBoatName}
                             onChange={this.handleChange}
                             name="newBoatName"
+                            placeholder="Boat Name"
                         />
                         <input
                             value={newBoatDescription}
                             onChange={this.handleChange}
                             name="newBoatDescription"
+                            placeholder="Boat Description"
                         />
                         <input
                             value={newBoatLicense}
                             onChange={this.handleChange}
                             name="newBoatLicense"
+                            placeholder="License Number"
                         />
                         <input
                             value={newBoatRegistration}
                             onChange={this.handleChange}
                             name="newBoatRegistration"
+                            placeholder="Registration Number"
                         />
                         <input
                             value={newBoatMake}
                             onChange={this.handleChange}
                             name="newBoatMake"
+                            placeholder="Make"
                         />
                         <input
                             value={newBoatModel}
                             onChange={this.handleChange}
                             name="newBoatModel"
+                            placeholder="Model"
                         />
                         <input
                             value={newBoatSeatNumber}
                             onChange={this.handleChange}
                             name="newBoatSeatNumber"
+                            placeholder="Seat Number"
                         />
-                        <input
+                        {/* <input
                             value={newBoatImageOne}
                             onChange={this.handleChange}
                             name="newBoatImageOne"
+                            placeholder="Image"
                         />
                         <input
                             value={newBoatImageTwo}
                             onChange={this.handleChange}
                             name="newBoatImageTwo"
-                        />
+                            placeholder="Image"
+                        /> */}
                         <div>
                             <button onClick={() => {
                                 this.handleFormSubmit()
@@ -123,8 +144,8 @@ class BoatProfile extends Component {
                             <h3>Boat Make: {boat.boatMake}</h3>
                             <h3>Boat Model: {boat.boatModel}</h3>
                             <h3>Number of Seats: {boat.boatSeatNumber}</h3>
-                            <h3>{boat.boatImageOne}</h3>
-                            <h3>{boat.boatImageTwo}</h3>
+                            <img src={`${boat.boatImageOne}`} />
+                            <img src={`${boat.boatImageTwo}`} />
                             <div>
                                 <button onClick={this.flipEdit}>Edit</button>
                             </div>

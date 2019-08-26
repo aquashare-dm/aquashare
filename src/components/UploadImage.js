@@ -36,7 +36,7 @@ export default class UploadImage extends Component {
                 this.setState({
                     uploadedFileCloudinaryUrl: response.body.secure_url
                 }, () => {
-                    this.props.handleNewRiderImage(this.state.uploadedFileCloudinaryUrl)
+                    this.props.handleImage(this.state.uploadedFileCloudinaryUrl)
                 });
 
                 if (this.props.action) {
