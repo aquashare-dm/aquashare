@@ -13,7 +13,8 @@ import DriverProfile from "./DriverProfile.js";
 import DriverHistory from "./DriverHistory.js";
 import DriverUpcomingRides from "./DriverUpcomingRides.js";
 import DriverRideCreationForm from "./DriverRideCreationForm.js";
-import DriverCreatedRides from './DriverCreatedRides.js'
+import DriverCreatedRides from "./DriverCreatedRides.js";
+
 
 class DriverDashboard extends Component {
     constructor(props) {
