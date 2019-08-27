@@ -17,7 +17,7 @@ class DriverPastRides extends Component {
     }
 
     render() {
-        let { ride_id, ride_date, ride_location, ride_open_seats, ride_start_time, ride_end_time } = this.props;
+        let { ride_id, rider_first_name, rider_last_name, ride_date, ride_location, ride_open_seats, ride_start_time, ride_end_time, tier_id } = this.props;
         console.log(this.state.rating, 'rating')
         return (
         <div style={{backgroundColor: 'yellow', margin: '10px'}}>
@@ -27,14 +27,11 @@ class DriverPastRides extends Component {
             <p>Seats: {ride_open_seats}</p>
             <p>Start Time: {ride_start_time}</p>
             <p>End Time: {ride_end_time}</p>
-            <p>Driver</p>
-            <p>Boat Info</p>
-            <p>Tier</p>
-            <p>Pricing</p>
-            <p>Please rate your trip.</p>
+            <p>Rider: {rider_first_name} {rider_last_name}</p>
+            <p>Tier: {tier_id}</p>
+            <p>Please rate the trip.</p>
             <div>
-                <Rating icon='star' maxRating={5} onRate={this.handleRate} />
-                
+                <Rating icon='star' maxRating={5} onRate={this.handleRate} /> 
             </div>
         </div>
         );
