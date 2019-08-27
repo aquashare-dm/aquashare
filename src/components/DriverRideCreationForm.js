@@ -117,6 +117,8 @@ class DriverRideCreationForm extends Component {
 
     render() {
 
+        console.log('ride creation form props', this.props)
+
         let { user } = this.props;
         if (!user.loggedIn) {
             return <Redirect to="/" />
@@ -156,7 +158,6 @@ class DriverRideCreationForm extends Component {
                             <div>
                                 <h4>{this.state.selectedPlace.name}</h4>
                             </div>
-
                         </InfoWindow>
                     </CurrentLocation>
                 </div>

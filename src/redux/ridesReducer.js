@@ -20,7 +20,7 @@ const initialState = {
 
 export const getRides = (locationLatitude, locationLongitude, numberOfRiders, radius) => {
     let data = axios.post("/api/get-rides", { locationLatitude, locationLongitude, numberOfRiders, radius }).then(res => res.data)
-    console.log('Ride data from Reducer', data)
+    console.log("ride data in reducer is", data);
     return {
         type: GET_RIDES,
         payload: data

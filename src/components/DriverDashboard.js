@@ -31,14 +31,15 @@ class DriverDashboard extends Component {
         this.triggerNavRowOptions();
     }
 
-
-
     componentDidUpdate(prevProps) {
         if (prevProps !== this.props) {
             this.render()
         }
     }
 
+    registered = () => {
+        this.props.history.push('/driver-dashboard/create-a-ride')
+    }
     triggerMobileMenu = () => {
         let { current } = this.mobileMenuIcon;
         if (window.innerWidth >= 992) {
@@ -100,8 +101,8 @@ class DriverDashboard extends Component {
         if (!user.loggedIn) {
             return <Redirect to="/" />
         }
-        if(user){
-            if(user.loggedIn && !user.isDriver) return <Redirect to="/rider-dashboard/find-a-ride" />
+        if (user) {
+            if (user.loggedIn && !user.isDriver) return <Redirect to="/rider-dashboard" />
         }
         return (
             <section className="mainAppWindow">
