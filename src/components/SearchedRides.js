@@ -4,20 +4,23 @@ import "./coreStyling.css";
 import "./dashboardStyling.css";
 
 class SearchedRides extends Component {
+    constructor(props){
+        super(props);
+    }
+
     buyRide = () => {
         console.log('Buy a ride button triggered!')
     }
 
     render() {
-        let { ride_date, ride_location, ride_total_seats, ride_open_seats, ride_start_time, ride_end_time, driver_id, tier_id, driver_first_name, driver_last_name } = this.props;
-
+        let { ride_id, ride_date, ride_location, ride_total_seats, ride_open_seats, ride_start_time, ride_end_time, driver_id, tier_id, driver_first_name, driver_last_name } = this.props;
         return (
-
-            <div className="availableRideContainer">
-                <div className="six wide column">{ride_date}</div>
-                <div className="one wide column">{ride_open_seats}</div>
-                <div className="one wide column">{tier_id}</div>
-                <div className="eight wide column" style={{overflowX: "auto"}}>{ride_location}</div>
+            
+            <div className="availableRideContainer" onClick={()=>{this.props.getRideData(this.props.key)}}>
+                <div className="six wide column" style={{marginLeft: "4%"}}>{ride_date}</div>
+                <div className="one wide column" style={{marginLeft: "6%"}}>{ride_open_seats}</div>
+                <div className="one wide column" style={{marginLeft: "13%"}}>{tier_id}</div>
+                <div className="eight wide column" style={{overflowX: "auto", marginLeft: "9%"}}>{ride_location}</div>
                 
                 {/* <p>Location: {ride_location}</p>
                 <p>Total seats: {ride_total_seats}</p>
