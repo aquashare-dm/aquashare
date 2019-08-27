@@ -21,9 +21,9 @@ class RiderTripRequests extends Component{
     }
 
     render(){
-        if(!user.loggedIn){
-            return <Redirect to="/" />
-        }
+        // if(!user.loggedIn){
+        //     return <Redirect to="/" />
+        // }
         
 
         let { user } = this.props.user;
