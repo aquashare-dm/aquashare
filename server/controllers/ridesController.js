@@ -33,9 +33,9 @@ module.exports = {
     },
 
     createRide: async (req, res) => {
-        let { ride_date, driver_id, ride_location, ride_location_lat, ride_location_long, ride_total_seats, ride_open_seats, ride_start_time, ride_end_time, tier_id } = req.body
+        let { driverId, date, location, locationLatitude, locationLongitude, openBoatSeats, startTime, endTime } = req.body
         const db = req.app.get('db')
-        let [ride] = await db.create_ride(ride_date, driver_id, ride_location, ride_location_lat, ride_location_long, ride_total_seats, ride_open_seats, ride_start_time, ride_end_time, tier_id)
+        let [ride] = await db.create_ride([driverId, date, location, locationLatitude, locationLongitude, openBoatSeats, startTime, endTime])
         req.session.ride = {
 
             date: ride.ride_date,
