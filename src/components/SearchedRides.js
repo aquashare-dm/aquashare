@@ -83,11 +83,11 @@ class SearchedRides extends Component {
                         <div className="selectedRideRowContainer" style={{marginBottom: "5%"}}>
                             <div className="selectedRideParagraph">Location: {ride_location}</div>
                         </div>
-                        <div class="ui labeled button" tabindex="0">
-                            <div class="ui inverted blue button" >
+                        <div className="ui labeled button" tabIndex="0">
+                            <div className="ui inverted blue button" >
                                 PURCHASE
                             </div>
-                            <a class="ui basic label">
+                            <a className="ui basic label">
                                 ${ridePrice}
                             </a>
                         </div>
