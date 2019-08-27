@@ -47,10 +47,10 @@ export const getRidesById = (driverId) => {
         error: false
     }
 }
-export const createRide = (ride_date, driver_id, ride_location, ride_location_lat, ride_location_long, ride_total_seats, ride_open_seats, ride_start_time, ride_end_time, tier_id, ) => {
-    let data = axios.post("/api/create-ride", { ride_date, driver_id, ride_location, ride_location_lat, ride_location_long, ride_total_seats, ride_open_seats, ride_start_time, ride_end_time, tier_id }).then(res => res.data)
+export const createRide = ( driverId, date, location, locationLatitude, locationLongitude, openBoatSeats, startTime, endTime ) => {
+    let data = axios.post("/api/create-ride", { driverId, date, location, locationLatitude, locationLongitude, openBoatSeats, startTime, endTime }).then(res => res.data)
     return { type: CREATE_RIDE, payload: data };
-};
+}
 
 export const getRidesByDriverId = (userId) => {
     let data = axios
