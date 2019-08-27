@@ -13,6 +13,7 @@ class SearchedRides extends Component {
     }
 
     render() {
+        console.log("rendered a ride")
         let { ride_id, ride_date, ride_location, ride_total_seats, ride_open_seats, ride_start_time, ride_end_time, driver_id, tier_id, driver_first_name, driver_last_name } = this.props;
         return (
             
