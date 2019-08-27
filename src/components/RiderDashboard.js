@@ -99,7 +99,6 @@ class RiderDashboard extends Component {
             // return <Redirect to="/rider-dashboard/rider-register" />
             return this.props.history.push("/rider-dashboard/rider-register")
         } else {
-            console.log("HIT FIND RIDE")
             return <Redirect to="/rider-dashboard/find-a-ride" />
         }
     }
