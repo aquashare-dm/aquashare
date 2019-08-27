@@ -14,6 +14,7 @@ class AvailableRides extends Component{
         let { locationLatitude, locationLongitude, numberOfRiders, radius } = this.props.rides.searchCriteria
         if(prevProps !== this.props) {
             this.props.getRides( locationLatitude, locationLongitude, numberOfRiders, radius)
+            console.log("compDidMount rides are ",this.props.getRides( locationLatitude, locationLongitude, numberOfRiders, radius))
         }
     }
     
@@ -33,6 +34,7 @@ class AvailableRides extends Component{
         let { rides } = this.props.rides
         let { user } = this.props.user
         let { firstDate, secondDate } = this.props.rides.searchCriteria
+        console.log("rides is ", this.rides)
 
         if(!user.loggedIn){
             return <Redirect to="/" />
@@ -54,7 +56,6 @@ class AvailableRides extends Component{
 
                             <div className="allAvailRidesContainer" >{
                                 rides.filter( function (ride) {
-                                    console.log("ride.ride_id = ", ride.ride_id)
                                     if(Date.now() > Date.parse(firstDate)) {
                                         if(JSON.stringify(ride.ride_end_time).length === 1) {
                                             return Date.parse(`${ride.ride_date} 00:0${JSON.stringify(ride.ride_start_time)}:00:00`) >= Date.now()
@@ -67,7 +68,8 @@ class AvailableRides extends Component{
                                 })
                                 .filter( ride => Date.parse(ride.ride_date) <= Date.parse(secondDate))
                                 .map( ride => (
-                                    <SearchedRides key={ride.ride_id} getRideData={this.getRideData} {...ride}  />
+                                
+                                    <SearchedRides key={ride.ride_id} getRideData={this.getRideData} {...ride} eventTypes={["click"]} />
                                 ))
                             }</div>
                             <h2 className="normalContentHeader">NOT FINDING YOUR RIDE?</h2>

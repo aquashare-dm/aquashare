@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
 import { editRiderProfile } from '../redux/userReducer'
 import UploadImage from './UploadImage'
+import "./coreStyling.css";
+import "./dashboardStyling.css";
 
 class RiderProfile extends Component {
     constructor(props) {
