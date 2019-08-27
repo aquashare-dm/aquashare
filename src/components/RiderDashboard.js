@@ -29,6 +29,7 @@ class RiderDashboard extends Component {
     componentDidMount() {
         this.triggerMobileMenu();
         this.triggerNavRowOptions();
+        this.checkIfRegistered()
     }
     componentDidUpdate(prevProps) {
         if (prevProps !== this.props) {
@@ -78,34 +79,48 @@ class RiderDashboard extends Component {
         await this.props.logout();
     }
 
-    registrationForm = () => {
-        let { user } = this.props;
-        console.log("Checking if user registered");
-        console.log("User's rider rating is ", user.riderRating);
-        if (user.riderRating < 0 || !user.riderRating) {
-            return (
-                <RiderRegistrationForm registered={this.registered} />
-            );
-        }
-        else {
-            return (<p />);
-        }
+    // registrationForm = () => {
+    //     let { user } = this.props;
+    //     console.log("Checking if user registered");
+    //     console.log("User's rider rating is ", user.riderRating);
+    //     if (user.riderRating < 0 || !user.riderRating) {
+    //         return (
+    //             <RiderRegistrationForm registered={this.registered} />
+    //         );
+    //     }
+    //     else {
+    //         return (<p />);
+    //     }
 
+    // }
+
+    checkIfRegistered = () => {
+        if (!this.props.user.riderRating) {
+            // return <Redirect to="/rider-dashboard/rider-register" />
+            return this.props.history.push("/rider-dashboard/rider-register")
+        } else {
+            return <Redirect to="/rider-dashboard/find-a-ride" />
+        }
     }
 
     render() {
         console.log('this.props', this.props)
         let { user } = this.props;
         if (!user.loggedIn) {
+            console.log("redirect to /");
             return <Redirect to="/" />
         }
         if (user) {
-            if (user.loggedIn && user.isDriver) return <Redirect to="/driver-dashboard/" />
+
+            if (user.loggedIn && user.isDriver) {
+                console.log("redirect to driver dashboard");
+                return <Redirect to="/driver-dashboard/" />
+            }
         }
-        if (this.state.registered) {
-            return <Redirect to='/rider-dashboard/find-a-ride' />
-        }
+
+
         return (
+
             <section className="mainAppWindow">
                 <div className="navBarTopPadding"></div>
                 <section className="mainDashCont">
@@ -136,7 +151,6 @@ class RiderDashboard extends Component {
                     </div>
 
                 </section>
-                <this.registrationForm />
                 <Switch>
                     <Route path="/rider-dashboard/find-a-ride" render={() => {
                         return (<RideSearch navMenuOpen={this.state.navMenuOpen} />)
@@ -147,12 +161,14 @@ class RiderDashboard extends Component {
                     <Route path="/rider-dashboard/ride-requests" component={RiderTripRequests} />
                     <Route path="/rider-dashboard/ride-history" component={RiderHistory} />
                     <Route path="/rider-dashboard/rider-profile" component={RiderProfile} />
+                    <Route path="/rider-dashboard/rider-register" component={RiderRegistrationForm} />
                 </Switch>
 
             </section>
 
 
-        );
+        )
+
 
     };
 }

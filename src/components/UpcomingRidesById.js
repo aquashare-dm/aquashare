@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 class UpcomingRidesById extends Component {
     render() {
-        let { ride_id, ride_location, ride_open_seats, ride_start_time, ride_end_time, driver_id} = this.props;
+        let { ride_id, ride_location, ride_open_seats, ride_start_time, ride_end_time, driver_first_name, driver_last_name, tier_id, boat_name} = this.props;
         return (
         <div style={{backgroundColor: 'yellow', margin: '10px'}}>
             <p>{ride_id}</p>
@@ -11,9 +11,9 @@ class UpcomingRidesById extends Component {
             <p>{ride_open_seats}</p>
             <p>{ride_start_time}</p>
             <p>{ride_end_time}</p>
-            <p>Driver: {driver_id}</p>
-            <p>Boat Info</p>
-            <p>Tier</p>
+            <p>Driver: {driver_first_name} {driver_last_name}</p>
+            <p>Boat Info: {boat_name}</p>
+            <p>Tier: {tier_id}</p>
             <p>Pricing</p>
         </div>
         );

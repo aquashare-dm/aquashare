@@ -12,7 +12,7 @@ class DriverTripRequest extends Component {
         
         return (
         <div style={{backgroundColor: 'yellow', margin: '10px'}}>
-            <p>{request_date}</p>
+            <p>Requested Date: {request_date}</p>
             <p>{request_location_lat}</p>
             <p>{request_location_long}</p>
             <p>{request_seat_number}</p>
