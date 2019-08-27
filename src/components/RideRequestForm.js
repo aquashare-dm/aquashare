@@ -50,6 +50,14 @@ class RideRequestForm extends Component{
     goBack = () => {
         this.props.history.goBack()
     };
+
+    correctTimeForDatabase = (str) => {
+        if (str[1] === ":") {
+            return +str.slice(0,1)
+        } else {
+            return +str.slice(0,2)
+        }
+    }
     
     requestRide = async (e) => {
 
@@ -57,7 +65,9 @@ class RideRequestForm extends Component{
         await this.submitAddressForGeocoding();
         console.log("this.props is ", this.props);
         let {requestDate, locationLatitude, locationLongitude, requestSeatNum, tierId, requestStartTime, requestEndTime} = this.state;
-        await this.props.createRequest(requestDate, locationLatitude, locationLongitude, +requestSeatNum, +tierId, this.props.user.id, +requestStartTime, +requestEndTime);
+        let correctedStartTime = this.correctTimeForDatabase(requestStartTime)
+        let correctedEndTime = this.correctTimeForDatabase(requestEndTime)
+        await this.props.createRequest(requestDate, locationLatitude, locationLongitude, requestSeatNum, tierId, this.props.user.id, correctedStartTime, correctedEndTime);
         this.props.history.push('/rider-dashboard/ride-requests');
     };
 
@@ -123,10 +133,10 @@ class RideRequestForm extends Component{
                 <form>
                     <input type="date" name="requestDate" onChange={this.handleChange} value={this.state.requestDate} placeholder="Request Date" />
                     <input type="text" id="location-address-input" name="location" onChange={this.handleChange} value={this.state.location} placeholder="Request Location" />
-                    <input type="text" name="requestSeatNum" onChange={this.handleChange} value={this.state.requestSeatNum} placeholder="Requested Number of Seats" />
-                    <input type="text" name="tierId" onChange={this.handleChange} value={this.state.tierId} placeholder="Requested Tier" />
-                    <input type="text" name="requestStartTime" onChange={this.handleChange} value={this.state.requestStartTime} placeholder="Start Time" />
-                    <input type="text" name="requestEndTime" onChange={this.handleChange} value={this.state.requestEndTime} placeholder="End Time" />
+                    <input type="number" min="0" name="requestSeatNum" onChange={this.handleChange} value={this.state.requestSeatNum} placeholder="Requested Number of Seats" />
+                    <input type="number" name="tierId" onChange={this.handleChange} value={this.state.tierId} placeholder="Requested Tier" />
+                    <input type="time" step="360000" name="requestStartTime" onChange={this.handleChange} value={this.state.requestStartTime} placeholder="Start Time" />
+                    <input type="time" step="360000" name="requestEndTime" onChange={this.handleChange} value={this.state.requestEndTime} placeholder="End Time" />
 
                     <button onClick={(e) => { this.requestRide(e) }}>Request Your Ride</button>
                 </form>
