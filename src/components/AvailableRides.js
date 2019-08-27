@@ -69,7 +69,7 @@ class AvailableRides extends Component{
                                 .filter( ride => Date.parse(ride.ride_date) <= Date.parse(secondDate))
                                 .map( ride => (
                                 
-                                    <SearchedRides key={ride.ride_id} getRideData={this.getRideData} {...ride}  />
+                                    <SearchedRides key={ride.ride_id} getRideData={this.getRideData} {...ride} eventTypes={["click"]} />
                                 ))
                             }</div>
                             <h2 className="normalContentHeader">NOT FINDING YOUR RIDE?</h2>
