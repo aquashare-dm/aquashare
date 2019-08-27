@@ -5,16 +5,17 @@ import { getRides } from '../redux/ridesReducer';
 import SearchedRides from './SearchedRides.js';
 import "./coreStyling.css";
 import "./dashboardStyling.css";
+import { whileStatement } from "@babel/types";
 
 
 class AvailableRides extends Component{
 
-    // componentDidUpdate(prevProps) {
-    //     let { locationLatitude, locationLongitude, numberOfRiders, radius } = this.props.rides.searchCriteria
-    //     if(prevProps !== this.props) {
-    //         this.props.getRides( locationLatitude, locationLongitude, numberOfRiders, radius)
-    //     }
-    // }
+    componentDidMount(prevProps) {
+        let { locationLatitude, locationLongitude, numberOfRiders, radius } = this.props.rides.searchCriteria
+        if(prevProps !== this.props) {
+            this.props.getRides( locationLatitude, locationLongitude, numberOfRiders, radius)
+        }
+    }
     
     goBack = () => {
         this.props.history.goBack()
@@ -24,8 +25,11 @@ class AvailableRides extends Component{
         this.props.history.push('/rider-dashboard/request-a-ride')
     }
 
+    getRideData = (rideKey) => {
+        console.log("clicked on ride")
+    }
+
     render(){
-        console.log(this.props)
         let { rides } = this.props.rides
         let { user } = this.props.user
         let { firstDate, secondDate } = this.props.rides.searchCriteria
@@ -40,8 +44,17 @@ class AvailableRides extends Component{
                    <section className="normalPageWhiteBox">
                             {/* <button onClick={this.goBack}>{`<Back`}</button> */}
                             <h2 className="mapPageContainerHeader">AVAILABLE RIDES</h2>
-                            <div className="allAvailRidesContainer">{
+
+                            <div className="availableRideContainer" style={{backgroundColor: "white", height: "5vh"}}>
+                                <div className="six wide column" style={{marginLeft: "4%"}}>DATE</div>
+                                <div className="one wide column" style={{marginLeft: "17%"}}>SEATS</div>
+                                <div className="one wide column" style={{marginLeft: "4%"}}>TIER</div>
+                                <div className="eight wide column" style={{overflowX: "auto", marginLeft: "3%"}}>LOCATION</div>
+                            </div>
+
+                            <div className="allAvailRidesContainer" >{
                                 rides.filter( function (ride) {
+                                    console.log("ride.ride_id = ", ride.ride_id)
                                     if(Date.now() > Date.parse(firstDate)) {
                                         if(JSON.stringify(ride.ride_end_time).length === 1) {
                                             return Date.parse(`${ride.ride_date} 00:0${JSON.stringify(ride.ride_start_time)}:00:00`) >= Date.now()
@@ -54,7 +67,7 @@ class AvailableRides extends Component{
                                 })
                                 .filter( ride => Date.parse(ride.ride_date) <= Date.parse(secondDate))
                                 .map( ride => (
-                                    <SearchedRides key={ride.ride_id} {...ride} />
+                                    <SearchedRides key={ride.ride_id} getRideData={this.getRideData} {...ride}  />
                                 ))
                             }</div>
                             <h2 className="normalContentHeader">NOT FINDING YOUR RIDE?</h2>

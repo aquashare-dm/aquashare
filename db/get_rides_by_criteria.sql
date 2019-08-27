@@ -1,4 +1,4 @@
-SELECT rides.ride_date, rides.ride_location, rides.ride_total_seats, rides.ride_open_seats, rides.ride_start_time, rides.ride_end_time, drivers.driver_first_name, drivers.driver_last_name, boats.boat_name, boats.boat_description, boats.boat_make, boats.boat_model
+SELECT rides.ride_id, rides.ride_date, rides.ride_location, rides.ride_total_seats, rides.ride_open_seats, rides.ride_start_time, rides.ride_end_time, drivers.driver_first_name, drivers.driver_last_name, boats.boat_name, boats.boat_description, boats.boat_make, boats.boat_model
 FROM rides
 INNER JOIN drivers
     ON drivers.driver_id = rides.driver_id
