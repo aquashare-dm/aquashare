@@ -50,7 +50,7 @@ class DriverRideCreationForm extends Component {
 
     goBack = () => {
         this.props.history.goBack()
-    };
+    }
 
     correctTimeForDatabase = (str) => {
         if (str[1] === ":") {
