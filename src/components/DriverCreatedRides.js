@@ -20,10 +20,10 @@ class DriverCreatedRides extends Component{
     // }
 
     render(){
-        let { user } = this.props.user;
-        if(!user.loggedIn){
-            return <Redirect to="/" />
-        }
+        // let { user } = this.props.user;
+        // if(!user.loggedIn){
+        //     return <Redirect to="/" />
+        // }
        
         console.log(this.props, "this.props")
         let {filteredRides} = this.props.rides

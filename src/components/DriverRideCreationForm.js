@@ -20,11 +20,11 @@ class DriverRideCreationForm extends Component {
             location: '',
             locationLatitude: "",
             locationLongitude: "",
-            totalBoatSeatNum: '',
-            openBoatSeats: '',
+            // totalBoatSeatNum: '',
+            // openBoatSeats: '',
             startTime: '',
             endTime: '',
-            tierId: '',
+            // tierId: '',
 
             //GoogleMaps States
             showingInfoWindow: false,
@@ -64,10 +64,10 @@ class DriverRideCreationForm extends Component {
         e.preventDefault()
         await this.submitAddressForGeocoding();
         console.log("this.props is ", this.props);
-        let { date, location, locationLatitude, locationLongitude, openBoatSeats, startTime, endTime } = this.state;
+        let { date, location, locationLatitude, locationLongitude, startTime, endTime } = this.state;
         let correctedStartTime = this.correctTimeForDatabase(startTime)
         let correctedEndTime = this.correctTimeForDatabase(endTime)
-        await this.props.createRide(this.props.user.id, date, location, locationLatitude, locationLongitude, openBoatSeats, correctedStartTime, correctedEndTime);
+        await this.props.createRide(this.props.user.id, date, location, locationLatitude, locationLongitude, correctedStartTime, correctedEndTime);
         this.props.history.push('/driver-dashboard/created-rides');
     };
 
@@ -135,7 +135,7 @@ class DriverRideCreationForm extends Component {
                     <input type="date" name="date" onChange={this.handleChange} value={this.state.requestDate} placeholder="Date" />
                     <input type="text" id="location-address-input" name="location" onChange={this.handleChange} value={this.state.location} placeholder="Location" />
                     {/* <input type="text" name="totalBoatSeatNum" onChange={this.handleChange} value={this.state.totalBoatSeatNum} placeholder="Number of Seats" /> */}
-                    <input type="number" name="openBoatSeats" onChange={this.handleChange} value={this.state.openBoatSeats} placeholder="Available Seats on Tube" />
+                    {/* <input type="number" name="openBoatSeats" onChange={this.handleChange} value={this.state.openBoatSeats} placeholder="Available Seats on Tube" /> */}
                     {/* <input type="text" name="tierId" onChange={this.handleChange} value={this.state.tierId} placeholder="Requested Tier" /> */}
                     <input type="time" step="360000" name="startTime" onChange={this.handleChange} value={this.state.startTime} placeholder="Start Time" />
                     <input type="time" step="360000" name="endTime" onChange={this.handleChange} value={this.state.endTime} placeholder="End Time" />

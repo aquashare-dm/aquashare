@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_RIDES, SAVE_CRITERIA, GET_RIDES_BY_ID, CREATE_RIDE, GET_RIDES_BY_DRIVER_ID, GET_CONFIRMED_RIDES_BY_DRIVER_ID } from "./actionTypes.js";
+import { GET_RIDES, SAVE_CRITERIA, GET_RIDES_BY_ID, CREATE_RIDE, GET_RIDES_BY_DRIVER_ID, GET_CONFIRMED_RIDES_BY_DRIVER_ID, RESERVE_TUBE_SEAT } from "./actionTypes.js";
 
 const initialState = {
     searchCriteria: {
@@ -47,8 +47,8 @@ export const getRidesById = (driverId) => {
         error: false
     }
 }
-export const createRide = ( driverId, date, location, locationLatitude, locationLongitude, openBoatSeats, startTime, endTime ) => {
-    let data = axios.post("/api/create-ride", { driverId, date, location, locationLatitude, locationLongitude, openBoatSeats, startTime, endTime }).then(res => res.data)
+export const createRide = ( driverId, date, location, locationLatitude, locationLongitude, startTime, endTime ) => {
+    let data = axios.post("/api/create-ride", { driverId, date, location, locationLatitude, locationLongitude, startTime, endTime }).then(res => res.data)
     return { type: CREATE_RIDE, payload: data };
 }
 
@@ -78,6 +78,17 @@ export const getConfirmedRidesByDriverId = (driverId) => {
     }
 }
 
+export const reserveTubeSeat = (riderId, rideId, newTubeSeatCount) => {
+    let data = axios
+        .post('/api/buy-a-ride', { riderId, rideId, newTubeSeatCount })
+        .then(res => res.data)
+    return {
+        type: RESERVE_TUBE_SEAT,
+        payload: data,
+        error: false
+    }
+}
+
 
 //Action Function
 export default function (state = initialState, action) {
@@ -92,6 +103,10 @@ export default function (state = initialState, action) {
         case GET_RIDES_BY_ID + "_FULFILLED":
             return { ...state, filteredRides: payload };
         case GET_RIDES_BY_ID + "_REJECTED":
+            return { ...state, error: payload };
+        case RESERVE_TUBE_SEAT + "_FULFILLED":
+            return { ...state, rides: payload };
+        case RESERVE_TUBE_SEAT + "_REJECTED":
             return { ...state, error: payload };
 
         //DRIVER RIDES
