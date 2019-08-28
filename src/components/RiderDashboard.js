@@ -95,11 +95,15 @@ class RiderDashboard extends Component {
     // }
 
     checkIfRegistered = () => {
+        console.log("triggered check for rider register");
         if (!this.props.user.riderRating) {
             // return <Redirect to="/rider-dashboard/rider-register" />
             return this.props.history.push("/rider-dashboard/rider-register")
+            
         } else {
-            return <Redirect to="/rider-dashboard/find-a-ride" />
+            console.log("user regist, redirect to find a ride")
+            return this.props.history.push("/rider-dashboard/find-a-ride")
+            // return(<Redirect to="/rider-dashboard/find-a-ride" />)
         }
     }
 
@@ -107,11 +111,9 @@ class RiderDashboard extends Component {
         console.log('this.props', this.props)
         let { user } = this.props;
         if (!user.loggedIn) {
-            console.log("redirect to /");
             return <Redirect to="/" />
         }
         if (user) {
-
             if (user.loggedIn && user.isDriver) {
                 console.log("redirect to driver dashboard");
                 return <Redirect to="/driver-dashboard/" />
@@ -155,6 +157,7 @@ class RiderDashboard extends Component {
                     <Route path="/rider-dashboard/find-a-ride" render={() => {
                         return (<RideSearch navMenuOpen={this.state.navMenuOpen} />)
                     }} />
+                    
                     <Route path="/rider-dashboard/available-rides" component={AvailableRides} />
                     <Route path="/rider-dashboard/upcoming-rides" component={UpcomingRides} />
                     <Route path="/rider-dashboard/request-a-ride" component={RideRequestForm} />
