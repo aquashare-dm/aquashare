@@ -5,7 +5,6 @@ import { logout } from "../redux/userReducer.js";
 import { resetBoatStateOnLogout } from "../redux/boatReducer.js"
 import "./coreStyling.css";
 import "./dashboardStyling.css";
-
 import DriverRegistrationForm from "./DriverRegistrationForm.js";
 import DriverTripRequests from './DriverTripRequests';
 import BoatRegistrationForm from "./BoatRegistrationForm.js";
@@ -25,19 +24,16 @@ class DriverDashboard extends Component {
         this.mobileMenuIcon = React.createRef();
         this.navOptionsRowCont = React.createRef();
     }
-
     componentDidMount() {
         this.triggerMobileMenu();
         this.triggerNavRowOptions();
         this.checkIfRegistered()
     }
-
     componentDidUpdate(prevProps) {
         if (prevProps !== this.props) {
             this.render()
         }
     }
-
     registered = () => {
         this.setState({ registered: true })
         this.props.history.push('/driver-dashboard/create-a-ride')
@@ -74,53 +70,39 @@ class DriverDashboard extends Component {
             current.classList.remove("navOptionsCont");
             this.setState({ navMenuOpen: false });
         }
-
     }
-
     logout = () => {
         this.props.logout();
         this.props.resetBoatStateOnLogout()
     }
-
-    // registrationForm = () => {
-    //     let { user } = this.props;
-    //     console.log("Checking if user registered");
-    //     console.log("User's rider rating is ", user.driverRating);
-    //     if (user.driverRating < 0 || !user.driverRating) {
-    //         return (
-    //             <DriverRegistrationForm />
-    //         );
-    //     }
-    //     else {
-    //         return (<p />);
-    //     }
-    // }
-
-    checkIfRegistered = () => {
-        if (!this.props.user.driverRating) {
-            return this.props.history.push("/rider-dashboard/driver-register")
-        } else {
-            return this.props.history.push("/driver-dashboard/create-a-ride")
+    registrationForm = () => {
+        let { user } = this.props;
+        console.log("Checking if user registered");
+        console.log("User's rider rating is ", user.driverRating);
+        if (user.driverRating < 0 || !user.driverRating) {
+            return (
+                <DriverRegistrationForm />
+            );
+        }
+        else {
+            return (<p />);
         }
     }
-
     checkIfRegistered = () => {
         console.log("triggered check for rider register");
-        if (!this.props.user.riderRating) {
+        if (!this.props.user.driverRating) {
             // return <Redirect to="/rider-dashboard/rider-register" />
-            return this.props.history.push("/rider-dashboard/rider-register")
-            
+            return this.props.history.push("/driver-dashboard/driver-register")
+
         } else {
             console.log("user regist, redirect to find a ride")
-            return this.props.history.push("/rider-dashboard/find-a-ride")
+            return this.props.history.push("/driver-dashboard/create-a-ride")
             // return(<Redirect to="/rider-dashboard/find-a-ride" />)
         }
     }
-
     render() {
         console.log("this.props on DriverDashboard", this.props)
         let { user } = this.props;
-
         if (!user.loggedIn) {
             return <Redirect to="/" />
         }
@@ -137,7 +119,6 @@ class DriverDashboard extends Component {
                         </div>
                         <h1 className="dashLogoH1">AQUASHARE</h1>
                     </section>
-
                     <div className="navOptionsCont" ref={this.navOptionsRowCont}>
                         <Link to="/driver-dashboard/create-a-ride" className="navLinkOption" onClick={this.menuClick}>
                             <div>Create a Ride</div>
@@ -156,9 +137,10 @@ class DriverDashboard extends Component {
                         </Link>
                         <div className="navLinkOption" onClick={() => { this.logout(); this.menuClick() }}>LOGOUT</div>
                     </div>
-
                 </section>
+
                 <Switch>
+                    <Route path="/driver-dashboard/driver-register" component={DriverRegistrationForm} />
                     <Route path="/driver-dashboard/boat-register" component={BoatRegistrationForm} />
                     <Route path="/driver-dashboard/upcoming-rides" component={DriverUpcomingRides} />
                     <Route path="/driver-dashboard/create-a-ride" component={DriverRideCreationForm} />
@@ -167,19 +149,13 @@ class DriverDashboard extends Component {
                     <Route path="/driver-dashboard/ride-requests" component={DriverTripRequests} />
                     <Route path="/driver-dashboard/ride-history" component={DriverHistory} />
                     <Route path="/driver-dashboard/driver-profile" component={DriverProfile} />
-
                 </Switch>
-
             </section>
         );
-
-
-
     };
 }
-
 function mapStateToProps(state) {
     return state.user
 }
-
 export default connect(mapStateToProps, { logout, resetBoatStateOnLogout })(withRouter(DriverDashboard));
+

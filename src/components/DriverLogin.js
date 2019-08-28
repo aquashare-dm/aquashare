@@ -24,6 +24,7 @@ class DriverLogin extends Component {
         let { username, password } = this.state;
         this.props.driverLogin(username, password);
         // return this.props.history.push('/driver-dashboard/create-a-ride')
+        return (<Redirect to="/driver-dashboard/create-a-ride" />)
 
     }
 
