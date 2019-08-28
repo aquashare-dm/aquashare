@@ -82,6 +82,7 @@ class RideRequestForm extends Component{
         })
     };
 
+
     //Google Maps API Functions
 
     onMarkerClick = (props, marker, event) => {
@@ -139,13 +140,13 @@ class RideRequestForm extends Component{
         }
 
         //Drop Down Selection Variables
-        let radiusOptions = [
+        let tierIdOptions = [
             {label:"Tier 1", value: 1, name: "tierId"},
             {label:"Tier 2", value: 2, name: "tierId"},
             {label:"Tier 3", value: 3, name: "tierId"},
             {label:"Tier 4", value: 4, name: "tierId"}
         ];
-        let seatOptions = [
+        let requestSeatNumOptions = [
             {label:"1 Seat", value: 1, name: "requestSeatNum"},
             {label:"2 Seats", value: 2, name: "requestSeatNum"},
             {label:"3 Seats", value: 3, name: "requestSeatNum"},
@@ -191,26 +192,26 @@ class RideRequestForm extends Component{
                         </div>
                         <div className="ui labeled input labeledInputBox" style={{width: "100%"}}>
                             <div className="ui label">Location</div>
-                            <input onChange={this.handleChange} type="date" name="location" value={location} placeholder="Lake Powell, UT." />
+                            <input onChange={this.handleChange} id="location-address-input" type="text" name="location" value={location} placeholder="Lake Powell, UT." />
                         </div>
                         <div className="ui labeled input labeledInputBox" style={{width: "100%"}}>
                             <div className="ui label">Start Time</div>
-                            <input onChange={this.handleChange} id="location-address-input" name="requestStartTime" value={requestStartTime} placeholder="8:00" />
+                            <input type="time" step="360000" onChange={this.handleChange} name="requestStartTime" value={requestStartTime} placeholder="8:00" />
                         </div>
                         <div className="ui labeled input labeledInputBox" style={{width: "100%"}}>
                             <div className="ui label">End Time</div>
-                            <input onChange={this.handleChange} id="location-address-input" name="requestEndTime" value={requestEndTime} placeholder="11:00" />
+                            <input type="time" step="360000" onChange={this.handleChange} name="requestEndTime" value={requestEndTime} placeholder="11:00" />
                         </div>
                         <div className="rowContainerSpaceBetween">
-                            <Select className="ui search dropdown dropdownBoxContainer" placeholder="Seats Requested" label="requestSeatNum" options={requestSeatNum} onChange={this.handleDropDownChange}></Select>
-                            <Select className="ui search dropdown dropdownBoxContainer" placeholder="Tier Desired" label="tierId" options={tierId} onChange={this.handleDropDownChange}></Select>
+                            <Select className="ui search dropdown dropdownBoxContainer" placeholder="Seats Requested" label="requestSeatNum" options={requestSeatNumOptions} onChange={this.handleDropDownChange}></Select>
+                            <Select className="ui search dropdown dropdownBoxContainer" placeholder="Tier Desired" label="tierId" options={tierIdOptions} onChange={this.handleDropDownChange}></Select>
                         </div>
                         <div className="ui labeled input labeledInputBox" style={{width: "100%"}}>
                             <div className="ui label">Contact Number</div>
                             <input onChange={this.handleChange} id="location-address-input" name="requesterCell" value={requesterCell} placeholder="5005005000" />
                         </div>
                         <div className="labeledInputBox">
-                            <button className="ui inverted blue button" onClick={this.searchRides}>REQUEST RIDE</button> 
+                            <button className="ui inverted blue button" onClick={this.requestRide}>REQUEST RIDE</button> 
                         </div>
                         
                     </div>
