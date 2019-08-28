@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {Rating} from 'semantic-ui-react'
+import {Rating} from 'semantic-ui-react';
+import onClickOutside from 'react-onclickoutside';
 
 class PastRides extends Component {
     state = {
