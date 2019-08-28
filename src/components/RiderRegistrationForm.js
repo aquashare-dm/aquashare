@@ -32,8 +32,14 @@ class RiderRegistrationForm extends Component {
         let { riderEmail, riderFirst, riderLast, riderImage } = this.state
         const newStartRating = 5.0
         this.props.riderRegister(this.props.user.riderUsername, riderEmail, riderFirst, riderLast, riderImage, newStartRating)
-        this.redirect()
+        this.redirectTo()
     }
+
+    redirectTo = () => {
+        this.props.history.push("/rider-dashboard/find-a-ride")
+    }
+
+
 
 
     handleImage = (imgUrl) => {

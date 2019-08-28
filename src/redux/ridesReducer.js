@@ -18,8 +18,8 @@ const initialState = {
 
 //ACTIONS------------------------------
 
-export const getRides = (locationLatitude, locationLongitude, numberOfRiders, radius) => {
-    let data = axios.post("/api/get-rides", { locationLatitude, locationLongitude, numberOfRiders, radius }).then(res => res.data)
+export const getRides = (locationLatitude, locationLongitude, radius) => {
+    let data = axios.post("/api/get-rides", { locationLatitude, locationLongitude, radius }).then(res => res.data)
     console.log("ride data in reducer is", data);
     return {
         type: GET_RIDES,
@@ -78,9 +78,9 @@ export const getConfirmedRidesByDriverId = (driverId) => {
     }
 }
 
-export const reserveTubeSeat = (riderId, rideId, newTubeSeatCount) => {
+export const reserveTubeSeat = (token, ridePrice, userId, ride_id, newTubeSeatCount, locationLatitude, locationLongitude, radius) => {
     let data = axios
-        .post('/api/buy-a-ride', { riderId, rideId, newTubeSeatCount })
+        .post(`/api/payment/${userId}`, { token, ridePrice, ride_id, newTubeSeatCount, locationLatitude, locationLongitude, radius })
         .then(res => res.data)
     return {
         type: RESERVE_TUBE_SEAT,

@@ -4,9 +4,7 @@ import { driverSignup } from "../redux/userReducer.js";
 import { Redirect, Link } from "react-router-dom";
 import "./coreStyling.css";
 import "./mainEntryAuth.css";
-
 class DriverSignup extends Component {
-
     constructor() {
         super();
         this.state = {
@@ -14,25 +12,20 @@ class DriverSignup extends Component {
             password: ""
         }
     }
-
     handleChange = (event) => {
         let { name, value } = event.target;
         this.setState({
             [name]: value
         })
     };
-
     signupUser = async () => {
         //Create company password for future sub-used identification------------------------
         let numOfEmptyBoxes = 0;
         let inputBoxesEmpty = [];
-
         //----------------------------------------------------------------------------------
         let { username, password } = this.state;
-
         if (username === "") { numOfEmptyBoxes += 1; inputBoxesEmpty.push("Username"); }
         if (password === "") { numOfEmptyBoxes += 1; inputBoxesEmpty.push("Password"); }
-
         if (numOfEmptyBoxes <= 0) {
             this.props.driverSignup(username, password);
         } else {
@@ -40,7 +33,6 @@ class DriverSignup extends Component {
             alert("Missing inputs", numOfEmptyBoxes, inputBoxesEmpty);
         }
     }
-
     // signUpToastError = (numOfEmptyBoxes, inputBoxNames) => {
     //     console.log("Empty boxes are ", numOfEmptyBoxes);
     //     if(numOfEmptyBoxes === 1){
@@ -62,11 +54,8 @@ class DriverSignup extends Component {
     //             draggable: true
     //         });
     //     }
-
     // }
-
     render() {
-
         let { username, password } = this.state;
         let { user } = this.props;
         //Check if user is signed in
@@ -74,9 +63,7 @@ class DriverSignup extends Component {
             if (user.loggedIn && !user.isDriver) return <Redirect to="/rider-dashboard" />
             if (user.loggedIn && user.isDriver) return <Redirect to="/driver-dashboard/sign-up" />
         }
-
         return (
-
             <section className="mainAppWindow">
                 <section className="fullScreenContainerStartPages">
                     <div className="startPageLogoContainer" style={{ marginBottom: "15%" }}>
@@ -100,11 +87,8 @@ class DriverSignup extends Component {
             </section>
         )
     };
-
 }
-
 function mapStateToProps(state) {
     return state.user;
 }
-
 export default connect(mapStateToProps, { driverSignup })(DriverSignup);

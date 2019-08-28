@@ -56,14 +56,14 @@ class BoatRegistrationForm extends Component {
                 </div>
                 <form>
                     <input type="text" name="boatName" onChange={this.handleChange} value={this.state.boatName} placeholder="Boat Name" />
-                    <input type="number" name="tierId" onChange={this.handleChange} value={this.state.tierId} placeholder="1" />
+                    <input type="number" name="tierId" onChange={this.handleChange} value={this.state.tierId} placeholder="Tier" />
                     <input type="text" name="boatDescription" onChange={this.handleChange} value={this.state.boatDescription} placeholder="Boat Description" />
                     <input type="text" name="boatLicense" onChange={this.handleChange} value={this.state.boatLicense} placeholder="Boat License Number" />
                     <input type="text" name="boatRegistration" onChange={this.handleChange} value={this.state.boatRegistration} placeholder="Boat Registration Number" />
                     <input type="text" name="boatMake" onChange={this.handleChange} value={this.state.boatMake} placeholder="Boat Make" />
                     <input type="text" name="boatModel" onChange={this.handleChange} value={this.state.boatModel} placeholder="Boat Model" />
-                    <input type="number" name="boatSeatNum" onChange={this.handleChange} value={this.state.boatSeatNum} placeholder="8" />
-                    <input type="number" name="tubeSeatNum" onChange={this.handleChange} value={this.state.tubeSeatNum} placeholder="3" />
+                    <input type="number" name="boatSeatNum" onChange={this.handleChange} value={this.state.boatSeatNum} placeholder="Seats" />
+                    <input type="number" name="tubeSeatNum" onChange={this.handleChange} value={this.state.tubeSeatNum} placeholder="Tube Seats" />
                     <button onClick={(e) => { this.createBoat(e) }}>Submit</button>
                 </form>
             </div>
