@@ -58,17 +58,7 @@ class SearchedRides extends Component {
                     <div className="one wide column" style={{marginLeft: "6%"}}>{ride_open_seats}</div>
                     <div className="one wide column" style={{marginLeft: "13%"}}>{tier_id}</div>
                     <div className="eight wide column" style={{overflowX: "auto", marginLeft: "9%"}}>{ride_location}</div>
-                    
-                    {/* <p>Location: {ride_location}</p>
-                    <p>Total seats: {ride_total_seats}</p>
-                    <p>Available seats: {ride_open_seats}</p>
-                    <p>Start Time: {ride_start_time}</p>
-                    <p>End Time: {ride_end_time}</p>
-                    <p>Driver: {driver_first_name} {driver_last_name}</p>
-                    <p>Boat Info</p>
-                    <p>Tier</p>
-                    <p>Pricing</p> */}
-                    {/* <button onClick={this.buyRide} >Reserve Your Seat Now</button> */}
+
                 </section>
     
             );

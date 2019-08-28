@@ -15,6 +15,7 @@ class RiderLogin extends Component {
         }
     }
 
+
     handleChange = (event) => {
         let { name, value } = event.target;
         this.setState({ [name]: value });
@@ -23,6 +24,8 @@ class RiderLogin extends Component {
     loginRider = () => {
         let { username, password } = this.state;
         this.props.riderLogin(username, password);
+        // return this.props.history.push("/rider-dashboard/find-a-ride")
+        return(<Redirect to="/rider-dashboard/find-a-ride"/>)
     }
 
     render() {

@@ -9,11 +9,33 @@ const ridesController = require("./controllers/ridesController.js");
 const boatController = require("./controllers/boatController.js");
 const requestController = require("./controllers/requestController.js");
 const stripeController = require("./controllers/stripeController.js");
+const path = require('path');
 
+const client = require('twilio')(
+    process.env.TWILIO_ACCOUNT_SID,
+    process.env.TWILIO_AUTH_TOKEN
+)
 const app = express();
 app.use(express.json());
 
 
+app.post('/api/messages', (req, res) => {
+    res.header('Content-Type', 'application/json')
+    client.messages
+        .create({
+            from: process.env.TWILIO_PHONE_NUMBER,
+            to: req.body.to,
+            body: req.body.body
+        })
+        .then(() => {
+            res.send(JSON.stringify({ success: true }));
+        })
+    console.log('Hit app.post')
+    // .catch(err => {
+    //   console.log(err);
+    //   res.send(JSON.stringify({ success: false }));
+    // });
+})
 
 app.use(session({
     secret: SESSION_SECRET,

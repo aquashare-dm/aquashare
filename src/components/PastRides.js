@@ -1,42 +1,84 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {Rating} from 'semantic-ui-react'
+import {Rating} from 'semantic-ui-react';
+import onClickOutside from 'react-onclickoutside';
 
 class PastRides extends Component {
-    state = {
-        rating: 0,
-        maxRating: 5
+    constructor(props){
+        super(props)
+        this.state={
+            selected: false,
+            rating: 0,
+            maxRating: 5
+        }
     }
     
     handleRate = (e, { rating, maxRating }) => this.setState({ rating, maxRating }) 
-        
-    
-        
+
     buyRide = () => {
         console.log('Buy a ride button triggered!')
     }
 
+    clickedRide = () => {
+        let currentSelectedState = this.state.selected;
+        this.setState({selected: !currentSelectedState})
+    }
+
+    handleClickOutside = () => {
+        if(this.state.selected === true){
+            this.clickedRide();
+        }
+        
+    }
+
     render() {
-        let { ride_id, ride_date, ride_location, ride_open_seats, ride_start_time, ride_end_time, driver_first_name, driver_last_name, tier_id } = this.props;
-        console.log(this.state.rating, 'rating')
-        return (
-        <div style={{backgroundColor: 'yellow', margin: '10px'}}>
-            <p>{ride_id}</p>
-            <p>Date: {ride_date}</p>
-            <p>Location: {ride_location}</p>
-            <p>Seats: {ride_open_seats}</p>
-            <p>Start Time: {ride_start_time}</p> 
-            <p>End Time: {ride_end_time}</p>
-            <p>Driver: {driver_first_name} {driver_last_name}</p>
-            <p>Tier: {tier_id}</p>
-            <p>Pricing</p>
-            <p>Please rate your trip.</p>
-            <div>
-                <Rating icon='star' maxRating={5} onRate={this.handleRate} />
-                
-            </div>
-        </div>
-        );
+        let { ride_id, ride_date, ride_location, ride_total_seats, ride_open_seats, ride_start_time, ride_end_time, driver_id, tier_id, driver_first_name, driver_last_name, boat_name } = this.props;
+        //Calculate ride price to show
+        let ridePrice = 20 + (tier_id * 10);
+
+        if(this.state.selected === false){
+            return (
+            
+                <section className="availableRideContainer" onClick={this.clickedRide}>
+                    <div className="six wide column" style={{marginLeft: "4%"}}>{ride_date}</div>
+                    <div className="one wide column" style={{marginLeft: "6%"}}>{ride_open_seats}</div>
+                    <div className="one wide column" style={{marginLeft: "13%"}}>{tier_id}</div>
+                    <div className="eight wide column" style={{overflowX: "auto", marginLeft: "9%"}}>{ride_location}</div>
+
+                </section>
+    
+            );
+        }else{
+            return(
+                <section className="selectedRideContainer" style={{height: "30vh"}} onClick={this.clickedRide}>
+                    <div className="selectedRideWhiteBox">
+                        <h2 className="selectedRideH2">{boat_name}</h2>
+                        <div className="selectedRideRowContainer">
+                            <div className="selectedRideParagraph">Location: {ride_location}</div>
+                        </div>
+                        <div className="selectedRideRowContainer">
+                            <div className="selectedRideParagraph">Ride Date: {ride_date}</div>
+                            <div className="selectedRideParagraph">Open Seats: {ride_open_seats}</div>
+                        </div>
+                        <div className="selectedRideRowContainer" >
+                            <div className="selectedRideParagraph" >Driver: {driver_first_name} {driver_last_name}</div>
+                            <div className="selectedRideParagraph">Total Seats: {ride_total_seats}</div>
+                        </div>
+                        <div className="selectedRideRowContainer" style={{marginTop: "8%"}}>
+                            <div className="selectedRideParagraph">Tier: {tier_id}</div>
+                            <div className="selectedRideParagraph">Start Time: {ride_start_time}</div>
+                            <div className="selectedRideParagraph">End Time: {ride_end_time}</div>
+                        </div>
+                        <div className="selectedRideRowContainer" style={{marginBottom: "5%"}}>
+                            <div className="selectedRideParagraph">Location: {ride_location}</div>
+                        </div>
+                        
+                    </div>
+
+                </section>
+            )
+        }
+        
     }
 }
 

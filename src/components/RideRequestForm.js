@@ -24,6 +24,7 @@ class RideRequestForm extends Component{
             riderId: '',
             requestStartTime: '',
             requestEndTime: '',
+            requesterCell: '',
 
             //GoogleMaps States
             showingInfoWindow: false,
@@ -137,7 +138,7 @@ class RideRequestForm extends Component{
                     <input type="number" name="tierId" onChange={this.handleChange} value={this.state.tierId} placeholder="Requested Tier" />
                     <input type="time" step="360000" name="requestStartTime" onChange={this.handleChange} value={this.state.requestStartTime} placeholder="Start Time" />
                     <input type="time" step="360000" name="requestEndTime" onChange={this.handleChange} value={this.state.requestEndTime} placeholder="End Time" />
-
+                    <input type="text"  name="requesterCell" onChange={this.handleChange} value={this.state.requesterCell} placeholder=" ex. 5551234567" />
                     <button onClick={(e) => { this.requestRide(e) }}>Request Your Ride</button>
                 </form>
 
