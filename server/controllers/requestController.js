@@ -5,16 +5,16 @@
 module.exports = {
 
     createRequest: async (req, res) => {
-        let {request_date, request_location_lat, request_location_long, request_seat_number, tier_id, rider_id, request_start_time, request_end_time} = req.body;
+        let {request_date, request_location_lat, request_location_long, request_seat_number, tier_id, rider_id, request_start_time, request_end_time, request_cell_number} = req.body;
         const db = req.app.get("db");
-        let allRequests = await db.create_request(request_date, request_location_lat, request_location_long, request_seat_number, tier_id, rider_id, request_start_time, request_end_time);
+        let allRequests = await db.create_request(request_date, request_location_lat, request_location_long, request_seat_number, tier_id, rider_id, request_start_time, request_end_time, request_cell_number);
         res.status(200).send(allRequests);   
     },
 
     editRequest: async (req, res) => {
-        let {request_id, request_date, request_location_lat, request_location_long, request_seat_number, tier_id, rider_id, request_start_time, request_end_time} = req.body;
+        let {request_id, request_date, request_location_lat, request_location_long, request_seat_number, tier_id, rider_id, request_start_time, request_end_time, request_cell_number} = req.body;
         const db = req.app.get("db");
-        let allRequests = await db.edit_request( [request_id, request_date, request_location_lat, request_location_long, request_seat_number, tier_id, rider_id, request_start_time, request_end_time])
+        let allRequests = await db.edit_request( [request_id, request_date, request_location_lat, request_location_long, request_seat_number, tier_id, rider_id, request_start_time, request_end_time, request_cell_number])
         res.status(200).send(allRequests);
     },
 
