@@ -33,9 +33,9 @@ module.exports = {
     },
 
     createRide: async (req, res) => {
-        let { driverId, date, location, locationLatitude, locationLongitude, openBoatSeats, startTime, endTime } = req.body
+        let { driverId, date, location, locationLatitude, locationLongitude, startTime, endTime } = req.body
         const db = req.app.get('db')
-        let [ride] = await db.create_ride([driverId, date, location, locationLatitude, locationLongitude, openBoatSeats, startTime, endTime])
+        let [ride] = await db.create_ride([driverId, date, location, locationLatitude, locationLongitude, startTime, endTime])
         req.session.ride = {
 
             date: ride.ride_date,
@@ -50,5 +50,12 @@ module.exports = {
             tierId: ride.tier_id
         }
         res.status(200).send(req.session.ride)
+    },
+
+    buyRide: async (req, res) => {
+        let { riderId, rideId, newTubeSeatCount } = req.body
+        const db = req.app.get('db')
+        let rides = await db.buy_ride([+riderId, +rideId, +newTubeSeatCount])
+        res.send(rides)
     },
 }

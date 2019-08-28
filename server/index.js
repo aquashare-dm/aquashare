@@ -69,6 +69,7 @@ app.get("/api/get-rides-by-id/:userId", ridesController.getRidesById);
 app.get("/api/get-rides-by-driver-id/:driverId", ridesController.getRidesByDriverId);
 app.get("/api/get-confirmed-rides-by-driver-id/:driverId", ridesController.getConfirmedRidesByDriverId);
 app.post('/api/create-ride', ridesController.createRide)
+app.post('/api/buy-a-ride', ridesController.buyRide)
 
 //Boat Endpoints
 app.post("/api/create-boat", boatController.createBoat);
@@ -78,4 +79,15 @@ app.put("/api/edit-boat", boatController.editBoat);
 app.post("/api/create-request", requestController.createRequest);
 app.put("/api/edit-request", requestController.editRequest);
 app.get("/api/get-requests/:userId", requestController.getRequestsById);
+<<<<<<< HEAD
 app.get("/api/get-all-requests", requestController.getAvailableRequests);
+=======
+app.get("/api/get-available-requests", requestController.getAvailableRequests);
+
+
+app.use(express.static(__dirname + '/../build'))
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../build/index.html'))
+})
+>>>>>>> 8b88e45196cf53718256c7ca8656998948ea645a

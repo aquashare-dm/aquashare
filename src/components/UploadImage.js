@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Dropzone from 'react-dropzone'
 import request from 'superagent'
+import "./coreStyling.css";
+import "./dashboardStyling.css";
 
 const CLOUDINARY_UPLOAD_PRESET = 'vlmbsf3c'
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dti2va41j/image/upload'
