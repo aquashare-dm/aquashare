@@ -1,8 +1,8 @@
 module.exports = {
     getRides: async function (req, res) {
-        let { locationLatitude, locationLongitude, numberOfRiders, radius } = req.body
+        let { locationLatitude, locationLongitude, radius } = req.body
         const db = req.app.get("db");
-        let rides = await db.get_rides_by_criteria([locationLatitude, locationLongitude, numberOfRiders, radius]);
+        let rides = await db.get_rides_by_criteria([locationLatitude, locationLongitude, radius]);
         res.send(rides)
     },
     getRidesById: async function (req, res) {
@@ -52,10 +52,10 @@ module.exports = {
         res.status(200).send(req.session.ride)
     },
 
-    buyRide: async (req, res) => {
-        let { riderId, rideId, newTubeSeatCount } = req.body
-        const db = req.app.get('db')
-        let rides = await db.buy_ride([+riderId, +rideId, +newTubeSeatCount])
-        res.send(rides)
-    },
+    // buyRide: async (req, res) => {
+    //     let { riderId, rideId, newTubeSeatCount } = req.body
+    //     const db = req.app.get('db')
+    //     let rides = await db.buy_ride([+riderId, +rideId, +newTubeSeatCount])
+    //     res.send(rides)
+    // },
 }
