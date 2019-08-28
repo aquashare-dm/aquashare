@@ -5,9 +5,10 @@
 module.exports = {
 
     createRequest: async (req, res) => {
-        let {request_date, request_location_lat, request_location_long, request_seat_number, tier_id, rider_id, request_start_time, request_end_time, request_cell_number} = req.body;
+        let {id, requestDate, locationLatitude, locationLongitude, requestSeatNum, tierId, requestStartTime, requestEndTime, location, requesterCell} = req.body;
+        console.log('req.body', req.body)
         const db = req.app.get("db");
-        let allRequests = await db.create_request(request_date, request_location_lat, request_location_long, request_seat_number, tier_id, rider_id, request_start_time, request_end_time, request_cell_number);
+        let allRequests = await db.create_request(id, requestDate, locationLatitude, locationLongitude, requestSeatNum, tierId, requestStartTime, requestEndTime, location, requesterCell);
         res.status(200).send(allRequests);   
     },
 

@@ -40,11 +40,11 @@ class RiderHistory extends Component{
                         <h2 className="mapPageContainerHeader">RIDE HISTORY</h2>
 
                         <div className="availableRideContainer" style={{backgroundColor: "white", height: "5vh"}}>
-                            <div className="six wide column" style={{marginLeft: "4%"}}>DATE</div>
-                            <div className="one wide column" style={{marginLeft: "17%"}}>SEATS</div>
-                            <div className="one wide column" style={{marginLeft: "4%"}}>TIER</div>
-                            <div className="eight wide column" style={{overflowX: "auto", marginLeft: "3%"}}>LOCATION</div>
-                        </div>
+                                <div className="six wide column" style={{marginLeft: "4%"}}>DATE</div>
+                                <div className="one wide column" style={{marginLeft: "7%"}}></div>
+                                <div className="one wide column" style={{marginLeft: "16%"}}>TIER</div>
+                                <div className="eight wide column" style={{overflowX: "auto", marginLeft: "5%"}}>LOCATION</div>
+                            </div>
 
                         <div className="allAvailRidesContainer" >{
                             filteredRides.filter( function (ride) {

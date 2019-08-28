@@ -41,7 +41,7 @@ class PastRides extends Component {
             
                 <section className="availableRideContainer" onClick={this.clickedRide}>
                     <div className="six wide column" style={{marginLeft: "4%"}}>{ride_date}</div>
-                    <div className="one wide column" style={{marginLeft: "6%"}}>{ride_open_seats}</div>
+                    {/* <div className="one wide column" style={{marginLeft: "6%"}}>{ride_open_seats}</div> */}
                     <div className="one wide column" style={{marginLeft: "13%"}}>{tier_id}</div>
                     <div className="eight wide column" style={{overflowX: "auto", marginLeft: "9%"}}>{ride_location}</div>
 
