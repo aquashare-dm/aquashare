@@ -8,7 +8,7 @@ class DriverTripRequest extends Component {
     
 
     render() {
-        let { request_date, request_location, request_seat_number, tier_id, rider_id, request_start_time, request_end_time, rider_first_name, rider_last_name} = this.props;
+        let { request_date, request_location, request_seat_number, tier_id, requester_cell_number, request_start_time, request_end_time, rider_first_name, rider_last_name} = this.props;
         
         return (
         <div style={{backgroundColor: 'yellow', margin: '10px'}}>
@@ -21,8 +21,13 @@ class DriverTripRequest extends Component {
             <p>End Time: {request_end_time}</p>
             <p>Rider Name: {rider_first_name} {rider_last_name}</p>
             <p>I want to fill this request.</p>
-            <button>Accept</button>
-            <SMSForm />
+            
+            <SMSForm  request_first_name={this.request_first_name}
+                        request_date={this.request_date}
+                        request_location={this.request_location}
+                        requester_cell_number={this.requester_cell_number}
+                        
+            />
             
         </div>
         );

@@ -22,7 +22,7 @@ class SMSForm extends Component {
     //         this.setState({
     //            message: {...this.state.message, body: `Hi, ${rider_first_name}, 
     //            A driver has accepted your request for a ride on ${request_date} at ${request_location}.  Login to AquaShare to see the details of this ride in the 'Upcoming Rides' section.  (Do not reply to this text).`, 
-    //            to: `1${request_phone}`}
+    //            to: `1${requester_cell_number}`}
     //         })
     //     }
     // }
@@ -91,7 +91,7 @@ class SMSForm extends Component {
                 onChange={this.onHandleChange}
               />
             </div>
-            <button onClick={this.onSubmit}>Send message</button>
+            <button onClick={this.onSubmit}>Accept Request and Send Notification</button>
           </form>
         );
       }
