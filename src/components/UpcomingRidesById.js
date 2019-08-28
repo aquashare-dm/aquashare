@@ -7,10 +7,10 @@ class UpcomingRidesById extends Component {
         return (
         <div style={{backgroundColor: 'yellow', margin: '10px'}}>
             <p>{ride_id}</p>
-            <p>{ride_location}</p>
-            <p>{ride_open_seats}</p>
-            <p>{ride_start_time}</p>
-            <p>{ride_end_time}</p>
+            <p>Location: {ride_location}</p>
+            <p>Seats: {ride_open_seats}</p>
+            <p>Start Time: {ride_start_time}</p>
+            <p>End Time: {ride_end_time}</p>
             <p>Driver: {driver_first_name} {driver_last_name}</p>
             <p>Boat Info: {boat_name}</p>
             <p>Tier: {tier_id}</p>
