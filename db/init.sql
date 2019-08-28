@@ -10,6 +10,7 @@ DROP TABLE tiers;
 CREATE TABLE "requests" (
 	"request_id" serial NOT NULL,
 	"request_date" varchar(255) NOT NULL,
+	"request_location" varchar(1000) NOT NULL,
 	"request_location_lat" FLOAT(30) NOT NULL,
 	"request_location_long" FLOAT(30) NOT NULL,
 	"request_seat_number" integer NOT NULL,
@@ -17,6 +18,7 @@ CREATE TABLE "requests" (
 	"rider_id" integer NOT NULL,
 	"request_start_time" integer NOT NULL,
 	"request_end_time" integer NOT NULL,
+	"requester_cell_number" varchar(255),
 	CONSTRAINT "requests_pk" PRIMARY KEY ("request_id")
 ) WITH (
   OIDS=FALSE
@@ -28,6 +30,7 @@ CREATE TABLE "rides" (
 	"ride_id" serial NOT NULL,
 	"ride_date" varchar(255) NOT NULL,
 	"driver_id" integer NOT NULL,
+	"tier_id" integer NOT NULL,
 	"ride_location" varchar(255) NOT NULL,
 	"ride_location_lat" FLOAT(30) NOT NULL,
 	"ride_location_long" FLOAT(30) NOT NULL,
@@ -35,7 +38,6 @@ CREATE TABLE "rides" (
 	"ride_open_seats" integer NOT NULL,
 	"ride_start_time" integer NOT NULL,
 	"ride_end_time" integer NOT NULL,
-	"tier_id" integer NOT NULL,
 	CONSTRAINT "rides_pk" PRIMARY KEY ("ride_id")
 ) WITH (
   OIDS=FALSE
@@ -110,7 +112,9 @@ CREATE TABLE "boats" (
 
 CREATE TABLE "confirmed_riders" (
 	"ride_id" integer NOT NULL,
-	"rider_id" integer NOT NULL
+	"rider_id" integer NOT NULL,
+	"order_amount" FLOAT(2),
+	"transaction_id" varchar(255)
 ) WITH (
   OIDS=FALSE
 );
@@ -124,7 +128,6 @@ ALTER TABLE "rides" ADD CONSTRAINT "rides_fk0" FOREIGN KEY ("driver_id") REFEREN
 
 
 
-ALTER TABLE "drivers" ADD CONSTRAINT "drivers_fk0" FOREIGN KEY ("boat_id") REFERENCES "boats"("boat_id");
 
 ALTER TABLE "boats" ADD CONSTRAINT "boats_fk0" FOREIGN KEY ("tier_id") REFERENCES "tiers"("tier_id");
 
