@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
-import {getRidesById} from "../redux/ridesReducer"
-import PastRides from './PastRides.js'
+import {getRidesById} from "../redux/ridesReducer";
+import PastRides from './PastRides.js';
+import "./coreStyling.css";
+import "./dashboardStyling.css";
 
 class RiderHistory extends Component{
 
