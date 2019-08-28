@@ -104,6 +104,19 @@ class DriverDashboard extends Component {
         }
     }
 
+    checkIfRegistered = () => {
+        console.log("triggered check for rider register");
+        if (!this.props.user.riderRating) {
+            // return <Redirect to="/rider-dashboard/rider-register" />
+            return this.props.history.push("/rider-dashboard/rider-register")
+            
+        } else {
+            console.log("user regist, redirect to find a ride")
+            return this.props.history.push("/rider-dashboard/find-a-ride")
+            // return(<Redirect to="/rider-dashboard/find-a-ride" />)
+        }
+    }
+
     render() {
         console.log("this.props on DriverDashboard", this.props)
         let { user } = this.props;
