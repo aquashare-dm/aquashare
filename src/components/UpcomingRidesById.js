@@ -35,7 +35,7 @@ class UpcomingRidesById extends Component {
             
                 <section className="availableRideContainer" onClick={this.clickedRide}>
                     <div className="six wide column" style={{marginLeft: "4%"}}>{ride_date}</div>
-                    <div className="one wide column" style={{marginLeft: "6%"}}>{ride_open_seats}</div>
+                    {/* <div className="one wide column" style={{marginLeft: "6%"}}>{ride_open_seats}</div> */}
                     <div className="one wide column" style={{marginLeft: "13%"}}>{tier_id}</div>
                     <div className="eight wide column" style={{overflowX: "auto", marginLeft: "9%"}}>{ride_location}</div>
 
@@ -52,16 +52,16 @@ class UpcomingRidesById extends Component {
                         </div>
                         <div className="selectedRideRowContainer">
                             <div className="selectedRideParagraph">Ride Date: {ride_date}</div>
-                            <div className="selectedRideParagraph">Open Seats: {ride_open_seats}</div>
+                            {/* <div className="selectedRideParagraph">Open Seats: {ride_open_seats}</div> */}
                         </div>
                         <div className="selectedRideRowContainer" >
                             <div className="selectedRideParagraph" >Driver: {driver_first_name} {driver_last_name}</div>
-                            <div className="selectedRideParagraph">Total Seats: {ride_total_seats}</div>
+                            {/* <div className="selectedRideParagraph">Total Seats: {ride_total_seats}</div> */}
                         </div>
                         <div className="selectedRideRowContainer" style={{marginTop: "8%"}}>
                             <div className="selectedRideParagraph">Tier: {tier_id}</div>
-                            <div className="selectedRideParagraph">Start Time: {ride_start_time}</div>
-                            <div className="selectedRideParagraph">End Time: {ride_end_time}</div>
+                            <div className="selectedRideParagraph">{`Start Time: ${ride_start_time}:00`}</div>
+                            <div className="selectedRideParagraph">{`End Time: ${ride_end_time}:00`}</div>
                         </div>
                         <div className="selectedRideRowContainer" style={{marginBottom: "5%"}}>
                             <div className="selectedRideParagraph">Location: {ride_location}</div>
