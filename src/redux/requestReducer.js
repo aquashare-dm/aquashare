@@ -13,13 +13,13 @@ const initialState = {
 
 //REQUEST ACTIONS ----------------------------------------------------------
 
-export const createRequest = (request_date, request_location_lat, request_location_long, request_seat_number, tier_id, rider_id, request_start_time, request_end_time) => {
-    let data = axios.post("/api/create-request", { request_date, request_location_lat, request_location_long, request_seat_number, tier_id, rider_id, request_start_time, request_end_time }).then(res => res.data)
+export const createRequest = (request_date, request_location_lat, request_location_long, request_seat_number, tier_id, rider_id, request_start_time, request_end_time, requester_cell_number) => {
+    let data = axios.post("/api/create-request", { request_date, request_location_lat, request_location_long, request_seat_number, tier_id, rider_id, request_start_time, request_end_time, requester_cell_number }).then(res => res.data)
     return { type: CREATE_REQUEST, payload: data };
 };
 
-export const editRequest = (request_id, request_date, request_location_lat, request_location_long, request_seat_number, tier_id, rider_id, request_start_time, request_end_time) => {
-    let data = axios.put("/api/edit-request", { request_id, request_date, request_location_lat, request_location_long, request_seat_number, tier_id, rider_id, request_start_time, request_end_time }).then(res => res.data)
+export const editRequest = (request_id, request_date, request_location_lat, request_location_long, request_seat_number, tier_id, rider_id, request_start_time, request_end_time, requester_cell_number) => {
+    let data = axios.put("/api/edit-request", { request_id, request_date, request_location_lat, request_location_long, request_seat_number, tier_id, rider_id, request_start_time, request_end_time, requester_cell_number }).then(res => res.data)
     return { type: EDIT_REQUEST, payload: data };
 };
 
