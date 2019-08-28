@@ -37,7 +37,7 @@ export const getRequestsById = (userId) => {
 
 export const getAvailableRequests = () => {
     let data = axios
-        .get(`/api/get-all-requests`)
+        .get(`/api/get-available-requests`)
         .then(res => {
            return  res.data})
     return {
