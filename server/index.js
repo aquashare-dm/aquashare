@@ -21,14 +21,14 @@ app.use(express.json());
 app.post('/api/messages', (req, res) => {
     res.header('Content-Type', 'application/json')
     client.messages
-    .create({
-      from: process.env.TWILIO_PHONE_NUMBER,
-      to: req.body.to,
-      body: req.body.body
-    })
-    .then(() => {
-      res.send(JSON.stringify({ success: true }));
-    }) 
+        .create({
+            from: process.env.TWILIO_PHONE_NUMBER,
+            to: req.body.to,
+            body: req.body.body
+        })
+        .then(() => {
+            res.send(JSON.stringify({ success: true }));
+        })
     console.log('Hit app.post')
     // .catch(err => {
     //   console.log(err);
