@@ -13,8 +13,9 @@ const initialState = {
 
 //REQUEST ACTIONS ----------------------------------------------------------
 
-export const createRequest = (request_date, request_location_lat, request_location_long, request_seat_number, tier_id, rider_id, request_start_time, request_end_time, requester_cell_number) => {
-    let data = axios.post("/api/create-request", { request_date, request_location_lat, request_location_long, request_seat_number, tier_id, rider_id, request_start_time, request_end_time, requester_cell_number }).then(res => res.data)
+export const createRequest = (id, requestDate, locationLatitude, locationLongitude, requestSeatNum, tierId, requestStartTime, requestEndTime, location, requesterCell) => {
+    let data = axios.post("/api/create-request", { id, requestDate, locationLatitude, locationLongitude, requestSeatNum, tierId, requestStartTime, requestEndTime, location, requesterCell }).then(res => res.data)
+    console.log('data in requestReducer', data)
     return { type: CREATE_REQUEST, payload: data };
 };
 
