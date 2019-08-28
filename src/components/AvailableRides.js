@@ -11,10 +11,10 @@ import { whileStatement } from "@babel/types";
 class AvailableRides extends Component{
 
     componentDidMount(prevProps) {
-        let { locationLatitude, locationLongitude, numberOfRiders, radius } = this.props.rides.searchCriteria
+        let { locationLatitude, locationLongitude, radius } = this.props.rides.searchCriteria
         if(prevProps !== this.props) {
-            this.props.getRides( locationLatitude, locationLongitude, numberOfRiders, radius)
-            console.log("compDidMount rides are ",this.props.getRides( locationLatitude, locationLongitude, numberOfRiders, radius))
+            this.props.getRides( locationLatitude, locationLongitude, radius)
+            console.log("compDidMount rides are ",this.props.getRides( locationLatitude, locationLongitude, radius))
         }
     }
     

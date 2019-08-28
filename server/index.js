@@ -8,6 +8,7 @@ const driverController = require("./controllers/driverController.js");
 const ridesController = require("./controllers/ridesController.js");
 const boatController = require("./controllers/boatController.js");
 const requestController = require("./controllers/requestController.js");
+const stripeController = require("./controllers/stripeController.js");
 
 const app = express();
 app.use(express.json());
@@ -48,7 +49,6 @@ app.get("/api/get-rides-by-id/:userId", ridesController.getRidesById);
 app.get("/api/get-rides-by-driver-id/:driverId", ridesController.getRidesByDriverId);
 app.get("/api/get-confirmed-rides-by-driver-id/:driverId", ridesController.getConfirmedRidesByDriverId);
 app.post('/api/create-ride', ridesController.createRide)
-app.post('/api/buy-a-ride', ridesController.buyRide)
 
 //Boat Endpoints
 app.post("/api/create-boat", boatController.createBoat);
@@ -59,6 +59,9 @@ app.post("/api/create-request", requestController.createRequest);
 app.put("/api/edit-request", requestController.editRequest);
 app.get("/api/get-requests/:userId", requestController.getRequestsById);
 app.get("/api/get-available-requests", requestController.getAvailableRequests);
+
+//Stripe Endpoint
+app.post('/api/payment/:userId', stripeController.pay)
 
 
 app.use(express.static(__dirname + '/../build'))

@@ -115,18 +115,18 @@ class RideSearch extends Component{
             {label:"100 Miles", value: 100, name: "radius"},
             {label:"200 Miles", value: 200, name: "radius"}
         ];
-        let seatOptions = [
-            {label:"1 Seat", value: 1, name: "numberOfRiders"},
-            {label:"2 Seats", value: 2, name: "numberOfRiders"},
-            {label:"3 Seats", value: 3, name: "numberOfRiders"},
-            {label:"4 Seats", value: 4, name: "numberOfRiders"},
-            {label:"5 Seats", value: 5, name: "numberOfRiders"},
-            {label:"6 Seats", value: 6, name: "numberOfRiders"},
-            {label:"7 Seats", value: 7, name: "numberOfRiders"},
-            {label:"8 Seats", value: 8, name: "numberOfRiders"},
-            {label:"9 Seats", value: 9, name: "numberOfRiders"},
-            {label:"10 Seats", value: 10, name: "numberOfRiders"},
-        ];
+        // let seatOptions = [
+        //     {label:"1 Seat", value: 1, name: "numberOfRiders"},
+        //     {label:"2 Seats", value: 2, name: "numberOfRiders"},
+        //     {label:"3 Seats", value: 3, name: "numberOfRiders"},
+        //     {label:"4 Seats", value: 4, name: "numberOfRiders"},
+        //     {label:"5 Seats", value: 5, name: "numberOfRiders"},
+        //     {label:"6 Seats", value: 6, name: "numberOfRiders"},
+        //     {label:"7 Seats", value: 7, name: "numberOfRiders"},
+        //     {label:"8 Seats", value: 8, name: "numberOfRiders"},
+        //     {label:"9 Seats", value: 9, name: "numberOfRiders"},
+        //     {label:"10 Seats", value: 10, name: "numberOfRiders"},
+        // ];
 
         if(!user.loggedIn){
             return <Redirect to="/" />
@@ -171,7 +171,7 @@ class RideSearch extends Component{
                         </div>
                         <div className="rowContainerSpaceBetween">
                             <Select className="ui search dropdown dropdownBoxContainer" placeholder="Mile Radius" label="radius" options={radiusOptions} onChange={this.handleDropDownChange}></Select>
-                            <Select className="ui search dropdown dropdownBoxContainer" placeholder="Seats Needed" label="numberOfRiders" options={seatOptions} onChange={this.handleDropDownChange}></Select>
+                            {/* <Select className="ui search dropdown dropdownBoxContainer" placeholder="Seats Needed" label="numberOfRiders" options={seatOptions} onChange={this.handleDropDownChange}></Select> */}
                         </div>
                         <button className="ui inverted blue button" onClick={this.searchRides}>FIND RIDE</button> 
                     </div>
