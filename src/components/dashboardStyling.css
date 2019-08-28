@@ -1,279 +1,282 @@
 /* Mobile View */
-@media (min-width: 300px) and (max-width: 991px){
-    .navBarTopPadding{
-        height: 10vh;
-    }
-    .navOptionsCont{
-        z-index: 9;
-        width: 80%;
-        height: 100vh;
-        background-color: rgb(36, 36, 36);
-        color: white;
-        display: flex;
-        flex-direction: column;
-    }
-    .navLinkOption:hover{
-        color: #fed136;
-        cursor: pointer;
-    }
-    .heroButton:hover{
-        background-color: #a88d2cd8;
-        cursor: pointer;
-    }
-    .hideNavOptionsCont{
-        display: none;
-    }
-    .hideMobileIconCont{
-        display: none;
-    }
-    .showMobileIconCont{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 4px;
-        width: 40px;
-        height: 40px;
-        background-color: rgba(67,206,162,1);
-        color: black;
-        font-size: 25px;
-      }
-      .showNavOptionsCont{
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-        width: 70%;
-        color: white;
-      }
-      .navLinkOption{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: 'Montserrat', sans-serif;
-        padding-right: 15px;
-        color: #fff;
-      }
+@media (min-width: 300px) and (max-width: 991px) {
+  .navBarTopPadding {
+    height: 10vh;
+  }
+  .navOptionsCont {
+    z-index: 9;
+    width: 80%;
+    height: 100vh;
+    background-color: rgb(36, 36, 36);
+    color: white;
+    display: flex;
+    flex-direction: column;
+  }
+  .navLinkOption:hover {
+    color: #fed136;
+    cursor: pointer;
+  }
+  .heroButton:hover {
+    background-color: #a88d2cd8;
+    cursor: pointer;
+  }
+  .hideNavOptionsCont {
+    display: none;
+  }
+  .hideMobileIconCont {
+    display: none;
+  }
+  .showMobileIconCont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(67, 206, 162, 1);
+    color: black;
+    font-size: 25px;
+  }
+  .showNavOptionsCont {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 70%;
+    color: white;
+  }
+  .navLinkOption {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Montserrat", sans-serif;
+    padding-right: 15px;
+    color: #fff;
+  }
 
-      /* Container Styling */
-    .mainDashCont{
-        position: fixed;
-        top: 0;
-        width: 100%;
-    }
-    .mainDashNavCont{
+  /* Container Styling */
+  .mainDashCont {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+  .mainDashNavCont {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 10vh;
+    padding: 5%;
+    color: white;
+    border: none;
+    background-color: rgb(36, 36, 36);
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+  }
+  .normalPageContainer {
+    background: linear-gradient(
+      166deg,
+      rgba(67, 206, 162, 1) 0%,
+      rgba(37, 133, 215, 1) 70%
+    );
+    height: 90vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5% 5%;
+  }
+  .normalPageWhiteBox {
+    height: 95%;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 4%;
+    overflow: auto;
+  }
+  .profilePageWhiteBox {
+    height: 95%;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4%;
+    overflow-y: auto;
+  }
+  .profilePageProfPic {
+    margin-top: 10%;
+    border-radius: 50%;
+    width: 35vw;
+    height: 21vh;
+  }
+  .profilePageContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .profilePageContentCont {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 5%;
+  }
+  .profilePageH2 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 26px;
+    display: flex;
+    align-items: flex-start;
+    color: black;
+    margin: none;
+  }
+  .allAvailRidesContainer {
+    width: 100%;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  .availableRideContainer {
+    width: 82vw;
+    height: 6vh;
+    margin-bottom: 3%;
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(223, 223, 223);
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .selectedRideContainer {
+    width: 82vw;
+    height: 70vh;
+    margin-bottom: 3%;
+    background-color: rgb(223, 223, 223);
+    padding: 5%;
+  }
+  .selectedRideWhiteBox {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    justify-content: flex-start;
+    padding: 3%;
+  }
+  .selectedRideH2 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 22px;
+    display: flex;
+    align-items: flex-start;
+    color: black;
+    margin: none;
+  }
+  .selectedRideParagraph {
+    font-family: "Railway", sans-serif;
+    font-weight: 500;
+    letter-spacing: 1px;
+    font-size: 13px;
+    display: flex;
+    align-items: flex-start;
+    color: black;
+    margin: none;
+  }
+  .selectedRideRowContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  .selectedRideButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5vh;
+    font-size: 12px;
+  }
+  .mapPageBottomContainer {
+    background: linear-gradient(
+      166deg,
+      rgba(67, 206, 162, 1) 0%,
+      rgba(37, 133, 215, 1) 70%
+    );
+    height: 50vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5% 5%;
+  }
+  .mapPageBottomContainerWhiteBox {
+    height: 95%;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 4%;
+    justify-content: space-evenly;
+    overflow: auto;
+  }
+  .rowContainerSpaceBetween {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+  }
+  .labeledInputBox {
+    margin-bottom: 2%;
+  }
+  .dropdownBoxContainer {
+    width: 48%;
+    margin-bottom: 4%;
+  }
 
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        height: 10vh;
-        padding: 5%;
-        color: white;
-        border: none;
-        background-color: rgb(36, 36, 36);
-        align-items: center;
-        text-align: center;
-        justify-content: space-between;
-    }
-    .normalPageContainer{
-        background: linear-gradient(166deg, rgba(67,206,162,1) 0%, rgba(37,133,215,1) 70%);
-        height: 90vh;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 5% 5%;
-    }
-    .normalPageWhiteBox{
-        height: 95%;
-        width: 100%;
-        background-color: white;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 4%;
-        overflow: auto;
-    }
-    .profilePageWhiteBox{
-        height: 95%;
-        width: 100%;
-        background-color: white;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 4%;
-    }
-    .profilePageProfPic{
-        margin-top: 10%;
-        border-radius: 50%;
-        width: 35vw;
-        height: 21vh;
-    }
-    .profilePageContainer{
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    .profilePageContentCont{
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        margin-bottom: 5%;
-    }
-    .profilePageH2
-    {
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 600;
-        letter-spacing: 1px;
-        font-size: 26px;
-        display: flex;
-        align-items: flex-start;
-        color: black;
-        margin: none;
-    }
-    .allAvailRidesContainer{
-        width: 100%;
-        height: 75%;
-        display: flex;
-        flex-direction: column;
-        overflow-y: auto;
-    }
-    .availableRideContainer{
-        width: 82vw;
-        height: 6vh;
-        margin-bottom: 3%;
-        display: flex;
-        flex-direction: row;
-        background-color: rgb(223, 223, 223);
-        justify-content: flex-start;
-        align-items: center;
-    }
-    .selectedRideContainer{
-        width: 82vw;
-        height: 70vh;
-        margin-bottom: 3%;
-        background-color: rgb(223, 223, 223);
-        padding: 5%;
-        
-    }
-    .selectedRideWhiteBox{
-        height: 100%;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        background-color: white;
-        justify-content: flex-start;
-        padding: 3%;
-    }
-    .selectedRideH2{
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 600;
-        letter-spacing: 1px;
-        font-size: 22px;
-        display: flex;
-        align-items: flex-start;
-        color: black;
-        margin: none;
-    }
-    .selectedRideParagraph{
-        font-family: 'Railway', sans-serif;
-        font-weight: 500;
-        letter-spacing: 1px;
-        font-size: 13px;
-        display: flex;
-        align-items: flex-start;
-        color: black;
-        margin: none;
-    }
-    .selectedRideRowContainer{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-    }
-    .selectedRideButton{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        margin-top: 5vh;
-        font-size: 12px;
-    }
-    .mapPageBottomContainer{
-        
-        background: linear-gradient(166deg, rgba(67,206,162,1) 0%, rgba(37,133,215,1) 70%);
-        height: 50vh;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 5% 5%;
-    }
-    .mapPageBottomContainerWhiteBox{
-        height: 95%;
-        width: 100%;
-        background-color: white;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 4%;
-        justify-content: space-evenly;
-        overflow: auto;
-    }
-    .rowContainerSpaceBetween{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        width: 80%;
-    }
-    .labeledInputBox{
-        margin-bottom: 2%;
-    }
-    .dropdownBoxContainer{
-        width: 48%;
-        margin-bottom: 4%;
-    }
-
-
-    /* Header and Paragraph Styling */
-    .dashLogoH1{
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 700;
-        letter-spacing: 3px;
-        font-size: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        margin-top: 0;
-    }
-    .mapPageContainerHeader{
-        font-family: 'Railway', sans-serif;
-        font-weight: 700;
-        letter-spacing: 3px;
-        font-size: 18px;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        color: black;
-        margin: none;
-    }
-    .normalContentHeader{
-        font-family: 'Railway', sans-serif;
-        font-weight: 600;
-        letter-spacing: 1px;
-        font-size: 14px;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        color: black;
-        margin: none;
-    }
-
+  /* Header and Paragraph Styling */
+  .dashLogoH1 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    letter-spacing: 3px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-top: 0;
+  }
+  .mapPageContainerHeader {
+    font-family: "Railway", sans-serif;
+    font-weight: 700;
+    letter-spacing: 3px;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    color: black;
+    margin: none;
+  }
+  .normalContentHeader {
+    font-family: "Railway", sans-serif;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    color: black;
+    margin: none;
+  }
 }

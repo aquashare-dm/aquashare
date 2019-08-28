@@ -4,6 +4,8 @@ import { riderSignup } from "../redux/userReducer.js";
 import { Redirect, Link } from "react-router-dom";
 import "./coreStyling.css";
 import "./mainEntryAuth.css";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 class RiderSignup extends Component {
 
@@ -37,8 +39,20 @@ class RiderSignup extends Component {
             this.props.riderSignup(username, password);
         } else {
             //this.signUpToastError(numOfEmptyBoxes, inputBoxesEmpty)
-            alert("Missing inputs", numOfEmptyBoxes, inputBoxesEmpty);
+            // alert("Missing inputs", numOfEmptyBoxes, inputBoxesEmpty);
+            this.notify()
         }
+    }
+
+    notify = () => {
+        toast.error("Missing inputs", {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true
+        })
     }
 
     // signUpToastError = (numOfEmptyBoxes, inputBoxNames) => {
