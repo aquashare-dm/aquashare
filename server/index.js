@@ -80,12 +80,6 @@ app.put("/api/edit-boat", boatController.editBoat);
 app.post("/api/create-request", requestController.createRequest);
 app.put("/api/edit-request", requestController.editRequest);
 app.get("/api/get-requests/:userId", requestController.getRequestsById);
-<<<<<<< HEAD
-
-app.get("/api/get-all-requests", requestController.getAvailableRequests);
-
-=======
->>>>>>> master
 app.get("/api/get-available-requests", requestController.getAvailableRequests);
 
 
@@ -94,7 +88,3 @@ app.use(express.static(__dirname + '/../build'))
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../build/index.html'))
 })
-<<<<<<< HEAD
-
-=======
->>>>>>> master
