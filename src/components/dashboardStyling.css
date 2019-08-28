@@ -109,6 +109,32 @@
         width: 35vw;
         height: 21vh;
     }
+    .profilePageContainer{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .profilePageContentCont{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-bottom: 5%;
+    }
+    .profilePageH2
+    {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        letter-spacing: 1px;
+        font-size: 26px;
+        display: flex;
+        align-items: flex-start;
+        color: black;
+        margin: none;
+    }
     .allAvailRidesContainer{
         width: 100%;
         height: 75%;
@@ -144,7 +170,7 @@
         padding: 3%;
     }
     .selectedRideH2{
-        font-family: 'Railway', sans-serif;
+        font-family: 'Montserrat', sans-serif;
         font-weight: 600;
         letter-spacing: 1px;
         font-size: 22px;

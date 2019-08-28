@@ -8,6 +8,7 @@ const driverController = require("./controllers/driverController.js");
 const ridesController = require("./controllers/ridesController.js");
 const boatController = require("./controllers/boatController.js");
 const requestController = require("./controllers/requestController.js");
+const path = require('path')
 
 const client = require('twilio')(
     process.env.TWILIO_ACCOUNT_SID,
@@ -20,14 +21,14 @@ app.use(express.json());
 app.post('/api/messages', (req, res) => {
     res.header('Content-Type', 'application/json')
     client.messages
-    .create({
-      from: process.env.TWILIO_PHONE_NUMBER,
-      to: req.body.to,
-      body: req.body.body
-    })
-    .then(() => {
-      res.send(JSON.stringify({ success: true }));
-    }) 
+        .create({
+            from: process.env.TWILIO_PHONE_NUMBER,
+            to: req.body.to,
+            body: req.body.body
+        })
+        .then(() => {
+            res.send(JSON.stringify({ success: true }));
+        })
     console.log('Hit app.post')
     // .catch(err => {
     //   console.log(err);
@@ -79,9 +80,12 @@ app.put("/api/edit-boat", boatController.editBoat);
 app.post("/api/create-request", requestController.createRequest);
 app.put("/api/edit-request", requestController.editRequest);
 app.get("/api/get-requests/:userId", requestController.getRequestsById);
+<<<<<<< HEAD
 
 app.get("/api/get-all-requests", requestController.getAvailableRequests);
 
+=======
+>>>>>>> master
 app.get("/api/get-available-requests", requestController.getAvailableRequests);
 
 
@@ -90,4 +94,7 @@ app.use(express.static(__dirname + '/../build'))
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../build/index.html'))
 })
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
