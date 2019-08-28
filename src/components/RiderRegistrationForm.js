@@ -36,7 +36,7 @@ class RiderRegistrationForm extends Component {
     }
 
     redirectTo = () => {
-        this.props.history.push("/rider-dashboard/request-a-ride")
+        this.props.history.push("/rider-dashboard/find-a-ride")
     }
 
 
