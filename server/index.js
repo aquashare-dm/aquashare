@@ -8,7 +8,7 @@ const driverController = require("./controllers/driverController.js");
 const ridesController = require("./controllers/ridesController.js");
 const boatController = require("./controllers/boatController.js");
 const requestController = require("./controllers/requestController.js");
-const path = require('path')
+const path = require('path');
 
 const client = require('twilio')(
     process.env.TWILIO_ACCOUNT_SID,

@@ -24,7 +24,8 @@ class RiderLogin extends Component {
     loginRider = () => {
         let { username, password } = this.state;
         this.props.riderLogin(username, password);
-        return this.props.history.push("/rider-dashboard/find-a-ride")
+        // return this.props.history.push("/rider-dashboard/find-a-ride")
+        return(<Redirect to="/rider-dashboard/find-a-ride"/>)
     }
 
     render() {
