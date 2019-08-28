@@ -96,10 +96,9 @@ class RiderDashboard extends Component {
 
     checkIfRegistered = () => {
         if (!this.props.user.riderRating) {
-            // return <Redirect to="/rider-dashboard/rider-register" />
             return this.props.history.push("/rider-dashboard/rider-register")
         } else {
-            return <Redirect to="/rider-dashboard/find-a-ride" />
+            return this.props.history.push("/rider-dashboard/find-a-ride")
         }
     }
 
@@ -149,7 +148,6 @@ class RiderDashboard extends Component {
                         </Link>
                         <div className="navLinkOption" onClick={() => { this.logout(); this.menuClick() }}>LOGOUT</div>
                     </div>
-
                 </section>
                 <Switch>
                     <Route path="/rider-dashboard/find-a-ride" render={() => {
