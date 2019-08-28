@@ -26,13 +26,15 @@ class RiderTripRequests extends Component {
         // }
 
 
-        let { user } = this.props.user;
+        // let { user } = this.props.user;
         let { requests } = this.props
-        let { request_date, request_end_time } = this.props.requests.allRequests[0]
+        // let { request_date, request_end_time } = this.props.requests.allRequests
 
         let requestsDisplay = requests.allRequests.map(request => (
             <TripRequest key={request.rider_id} {...request} />
         ))
+
+        console.log('this.props for riderTripRequests', this.props)
         return (
 
             <div>
