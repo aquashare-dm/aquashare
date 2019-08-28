@@ -29,7 +29,7 @@ class SearchedRides extends Component {
             this.clickedRide();
         }
         
-      }
+    }
 
     render() {
 
