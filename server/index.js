@@ -8,11 +8,33 @@ const driverController = require("./controllers/driverController.js");
 const ridesController = require("./controllers/ridesController.js");
 const boatController = require("./controllers/boatController.js");
 const requestController = require("./controllers/requestController.js");
+const path = require('path')
 
+const client = require('twilio')(
+    process.env.TWILIO_ACCOUNT_SID,
+    process.env.TWILIO_AUTH_TOKEN
+)
 const app = express();
 app.use(express.json());
 
 
+app.post('/api/messages', (req, res) => {
+    res.header('Content-Type', 'application/json')
+    client.messages
+    .create({
+      from: process.env.TWILIO_PHONE_NUMBER,
+      to: req.body.to,
+      body: req.body.body
+    })
+    .then(() => {
+      res.send(JSON.stringify({ success: true }));
+    }) 
+    console.log('Hit app.post')
+    // .catch(err => {
+    //   console.log(err);
+    //   res.send(JSON.stringify({ success: false }));
+    // });
+})
 
 app.use(session({
     secret: SESSION_SECRET,
@@ -58,6 +80,9 @@ app.put("/api/edit-boat", boatController.editBoat);
 app.post("/api/create-request", requestController.createRequest);
 app.put("/api/edit-request", requestController.editRequest);
 app.get("/api/get-requests/:userId", requestController.getRequestsById);
+<<<<<<< HEAD
+app.get("/api/get-all-requests", requestController.getAvailableRequests);
+=======
 app.get("/api/get-available-requests", requestController.getAvailableRequests);
 
 
@@ -66,3 +91,4 @@ app.use(express.static(__dirname + '/../build'))
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../build/index.html'))
 })
+>>>>>>> 8b88e45196cf53718256c7ca8656998948ea645a

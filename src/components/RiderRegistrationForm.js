@@ -19,6 +19,7 @@ class RiderRegistrationForm extends Component {
         }
     }
 
+
     handleChange = (event) => {
         let { name, value } = event.target;
         this.setState({
@@ -34,9 +35,6 @@ class RiderRegistrationForm extends Component {
         this.redirect()
     }
 
-    redirect = () => {
-        return this.props.history.push("/rider-dashboard/find-a-ride")
-    }
 
     handleImage = (imgUrl) => {
         this.setState({ riderImage: imgUrl })
