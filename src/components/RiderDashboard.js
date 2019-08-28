@@ -157,10 +157,11 @@ class RiderDashboard extends Component {
                     <Route path="/rider-dashboard/find-a-ride" render={() => {
                         return (<RideSearch navMenuOpen={this.state.navMenuOpen} />)
                     }} />
-                    
+                    <Route path="/rider-dashboard/request-a-ride" render={() => {
+                        return (<RideRequestForm navMenuOpen={this.state.navMenuOpen} />)
+                    }} />
                     <Route path="/rider-dashboard/available-rides" component={AvailableRides} />
                     <Route path="/rider-dashboard/upcoming-rides" component={UpcomingRides} />
-                    <Route path="/rider-dashboard/request-a-ride" component={RideRequestForm} />
                     <Route path="/rider-dashboard/ride-requests" component={RiderTripRequests} />
                     <Route path="/rider-dashboard/ride-history" component={RiderHistory} />
                     <Route path="/rider-dashboard/rider-profile" component={RiderProfile} />

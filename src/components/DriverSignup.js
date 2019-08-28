@@ -39,10 +39,6 @@ class DriverSignup extends Component {
             //this.signUpToastError(numOfEmptyBoxes, inputBoxesEmpty)
             alert("Missing inputs", numOfEmptyBoxes, inputBoxesEmpty);
         }
-
-
-
-
     }
 
     // signUpToastError = (numOfEmptyBoxes, inputBoxNames) => {
