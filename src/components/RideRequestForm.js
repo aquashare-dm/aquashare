@@ -67,11 +67,12 @@ class RideRequestForm extends Component{
 
         e.preventDefault()
         await this.submitAddressForGeocoding();
-        console.log("this.props is ", this.props);
-        let {requestDate, locationLatitude, locationLongitude, requestSeatNum, tierId, requestStartTime, requestEndTime, requesterCell} = this.state;
+        console.log("this.props.user is ", this.props.user);
+        let {requestDate, locationLatitude, locationLongitude, requestSeatNum, tierId, requestStartTime, requestEndTime, location, requesterCell } = this.state;
+        let { id } = this.props.user
         let correctedStartTime = this.correctTimeForDatabase(requestStartTime)
         let correctedEndTime = this.correctTimeForDatabase(requestEndTime)
-        await this.props.createRequest(requestDate, locationLatitude, locationLongitude, requestSeatNum, tierId, this.props.user.id, correctedStartTime, correctedEndTime, requesterCell);
+        await this.props.createRequest(id, requestDate, locationLatitude, locationLongitude, requestSeatNum, tierId, correctedStartTime, correctedEndTime, location, requesterCell);
         this.props.history.push('/rider-dashboard/ride-requests');
     };
 
@@ -132,7 +133,8 @@ class RideRequestForm extends Component{
     }
 
     render(){
-        
+        console.log('this.props on RideRequestForm', this.props)
+        console.log("id in RiderRequestForm", this.props.user.id)
         let { requestDate, location, requestSeatNum, tierId, requestStartTime, requestEndTime, requesterCell } = this.state
         let { user } = this.props;
         if(!user.loggedIn){
