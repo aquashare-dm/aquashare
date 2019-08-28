@@ -62,7 +62,7 @@ class RiderProfile extends Component {
                     <section className="profilePageWhiteBox" style={{ height: "70%" }}>
                         {this.state.editing ? (
                             <div>
-                                <h3>Upload New Image</h3>
+                                <h1>Upload New Image</h1>
                                 <div>
                                     <UploadImage action={this.props.handleUploadedImage} handleImage={this.handleImage} newImageUrl={this.state.newRiderImage} />
                                 </div>

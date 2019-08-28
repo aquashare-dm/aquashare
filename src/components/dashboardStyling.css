@@ -52,6 +52,7 @@
     padding-right: 15px;
     color: #fff;
   }
+
   /* Container Styling */
   .mainDashCont {
     position: fixed;
@@ -264,6 +265,7 @@
     width: 48%;
     margin-bottom: 4%;
   }
+
   /* Header and Paragraph Styling */
   .dashLogoH1 {
     font-family: "Montserrat", sans-serif;
