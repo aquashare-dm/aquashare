@@ -8,6 +8,7 @@ const driverController = require("./controllers/driverController.js");
 const ridesController = require("./controllers/ridesController.js");
 const boatController = require("./controllers/boatController.js");
 const requestController = require("./controllers/requestController.js");
+const path = require('path')
 
 const app = express();
 app.use(express.json());
