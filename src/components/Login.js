@@ -22,10 +22,10 @@ class Login extends Component{
                     <h2 className="startPagesH2" style={{marginBottom: "10%"}}>LOGIN AS A</h2>
                     <div className="doubleInputCont" >
                         
-                        <Link to="login/rider-login" className="fluid ui button">
+                        <Link to="login/rider-login" id="rider-login-button" data-cy-btn className="fluid ui button">
                             <p className="buttonInsideText">RIDER</p>
                         </Link>
-                        <Link to="login/driver-login" className="fluid ui blue button">
+                        <Link to="login/driver-login" data-cy-btn className="fluid ui blue button">
                             <p className="buttonInsideText">DRIVER</p>
                         </Link>
                     </div>

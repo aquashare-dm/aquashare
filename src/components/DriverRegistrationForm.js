@@ -100,7 +100,7 @@ class DriverRegistrationForm extends Component {
                                 <div>
                                     <button className="ui inverted blue button" onClick={this.handleFormSubmit}>SUBMIT</button>
                                 </div>
-                            </div>
+                            
                         </section>
                     </section>
                 </div>

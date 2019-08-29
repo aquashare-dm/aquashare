@@ -45,7 +45,7 @@ class RiderLogin extends Component {
                     <div className="startPageLogoContainer" style={{ marginBottom: "15%" }}>
                         <h1 className="logoH1">AQUASHARE</h1>
                     </div>
-                    <h2 className="startPagesH2" style={{ marginBottom: "10%" }}>RIDER LOGIN</h2>
+                    <h2 className="startPagesH2" id="rider-login-h2-title" style={{ marginBottom: "10%" }}>RIDER LOGIN</h2>
                     <div className="doubleInputCont" style={{ height: "20%" }}>
                         <div className="fluid ui icon input" style={{ width: "100%" }}>
                             <input placeholder="Username" type="text" value={username} name="username" onChange={this.handleChange} />
