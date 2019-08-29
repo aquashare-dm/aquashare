@@ -51,6 +51,7 @@ export default class UploadImage extends Component {
 
             }
         });
+        console.log("DELETE THIS TEST LINE");
     }
 
     handleOnCropChange = (crop) => {
