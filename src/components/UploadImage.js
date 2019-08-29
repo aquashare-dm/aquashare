@@ -4,6 +4,8 @@ import request from 'superagent'
 import "./coreStyling.css";
 import "./dashboardStyling.css";
 
+import uploadPlaceholderImg from "./uploadImagePlaceholder.png"
+
 const CLOUDINARY_UPLOAD_PRESET = 'vlmbsf3c'
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dti2va41j/image/upload'
 
@@ -63,20 +65,27 @@ export default class UploadImage extends Component {
                     <Dropzone onDrop={acceptedFiles => this.onImageDrop(acceptedFiles)}>
                         {({ getRootProps, getInputProps }) => (
                             <section>
+                                {this.state.uploadedFileCloudinaryUrl === '' ? 
+                                
                                 <div {...getRootProps()}>
                                     <input {...getInputProps()} />
-                                    <p>Drag 'n' drop some files here, or click to select files</p>
+                                    <img src={uploadPlaceholderImg}/>
+                                    <p>Drag and drop some files here, or click to select files</p>
                                 </div>
+                                
+                                :
+                                <div className="profileImageContBox" {...getRootProps()}>
+                                    <input {...getInputProps()} />
+                                    <img className="profilePageProfPic" src={this.state.uploadedFileCloudinaryUrl}/>
+                                </div>
+                                }
+                                
                             </section>
                         )}
                     </Dropzone>
                 </div>
                 <div>
-                    {this.state.uploadedFileCloudinaryUrl === '' ? null :
-                        <div>
-                            <img src={this.state.uploadedFileCloudinaryUrl} />
-                        </div>
-                    }
+                    
                 </div>
             </div>
 

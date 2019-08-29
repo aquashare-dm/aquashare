@@ -21,7 +21,7 @@ class SMSForm extends Component {
         if(prevProps !== this.props) {
             this.render()
         }
-      }
+    }
     
     onHandleChange= (event) => {
         const name = event.target.getAttribute('name');
@@ -45,14 +45,6 @@ class SMSForm extends Component {
           .then(res => res.json())
           .then(data => {
             if (data.success) {
-              this.setState({
-                error: false,
-                submitting: false,
-                message: {
-                  to: '',
-                  body: ''
-                }
-              })
               alert("Text sent successfully! ")
             //   return this.props.closeModal
             } else {
@@ -61,11 +53,14 @@ class SMSForm extends Component {
                 submitting: false
               });
             }
-          });
+          })
+          // this.notify()
+          // alert("Text sent successfully! ")
+          //   return this.props.closeModal
         this.props.requestAccepted(this.props.request_id)
       }
 
-      handleShow=()=> {
+    handleShow=()=> {
         this.setState({show: !this.state.show})   
     }
    
@@ -83,8 +78,8 @@ class SMSForm extends Component {
             </button>
           </form>
         </div>
-        );
-      }
+      );
+    }
 }
 
 function mapStateToProps(state){
