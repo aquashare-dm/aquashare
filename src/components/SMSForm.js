@@ -82,7 +82,8 @@ class SMSForm extends Component {
           className={this.state.err ? 'err sms-form' : 'sms-form'}
         >
           <button className="ui inverted blue button" style={{ marginTop: "5%", width: "80%", height:"5vh" }}
-            type="submit"
+            type="button"
+            onClick={this.onSubmit}
             disabled={this.state.submitting}
           >Accept Request
             </button>

@@ -92,10 +92,11 @@ module.exports = {
     },
 
     async editDriverProfile(req, res) {
-        let { driverUsername, newDriverFirst, newDriverLast, newDriverImage, newDriverLicense } = req.body;
+        let { driverId, newDriverEmail, newDriverFirst, newDriverLast, newDriverImage, newDriverLicense } = req.body;
         const db = req.app.get('db');
         let [user] = await db.edit_driver_profile([
-            driverUsername,
+            driverId,
+            newDriverEmail,
             newDriverFirst,
             newDriverLast,
             newDriverImage,
@@ -110,6 +111,7 @@ module.exports = {
             driverImage: user.driver_image_url,
             driverRating: user.driver_rating,
             driverLicense: user.driver_license,
+            isDriver: true,
             loggedIn: true
         }
         res.send(req.session.user);

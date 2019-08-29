@@ -22,7 +22,7 @@ class RiderProfile extends Component {
         }
     }
 
-        componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps) {
         if (prevProps !== this.props) {
             this.render()
         }
@@ -40,10 +40,6 @@ class RiderProfile extends Component {
         this.props.editRiderProfile(this.props.user.riderUsername, newRiderEmail, newRiderFirst, newRiderLast, newRiderImage)
     }
 
-    goBack = () => {
-        this.props.history.goBack()
-    }
-
     handleUploadedImage = (imgUrl) => {
         this.setState({ editImage: true, riderImage: imgUrl })
     }
@@ -53,6 +49,7 @@ class RiderProfile extends Component {
     handleImage = (imageUrl) => {
         this.setState({ newRiderImage: imageUrl })
     }
+
     onSubmitClick = () => {
         this.handleFormSubmit()
         this.flipEdit()
@@ -68,56 +65,38 @@ class RiderProfile extends Component {
         return (
             <div className="mainAppWindow">
                 <section className="normalPageContainer">
-                    <section className="profilePageWhiteBox" style={{ height: "70%"}}>
-                        {this.state.editing ? (
-                            <div style={{visibility: !this.props.navMenuOpen?"visible":"hidden"}}>
-                                {/* <h1>Upload New Image</h1>
-                                <div>
-                                    <UploadImage action={this.props.handleUploadedImage} handleImage={this.handleImage} newImageUrl={this.state.newRiderImage} />
-                                </div>
-                                <input
-                                    value={newRiderFirst}
-                                    onChange={this.handleChange}
-                                    name="newRiderFirst"
-                                />
-                                <input
-                                    value={newRiderLast}
-                                    onChange={this.handleChange}
-                                    name="newRiderLast"
-                                />
-                                <input
-                                    value={newRiderEmail}
-                                    onChange={this.handleChange}
-                                    name="newRiderEmail"
-                                />
-                                <div>
-                                    <button onClick={() => {
-                                        this.handleFormSubmit()
-                                        this.flipEdit()
-                                    }}>Save</button>
-                                    <button onClick={this.flipEdit}>Cancel</button>
-                                </div> */}
-                                <h2 className="profilePageH2" style={{justifyContent: "center", alignItems: "center"}}>EDIT PROFILE</h2>
-                                <div>
-                                    <UploadImage action={this.props.handleUploadedImage} handleImage={this.handleImage} newImageUrl={this.state.newRiderImage} />
-                                </div>
-                                <div className="ui labeled input labeledInputBox" style={{width: "100%", marginTop: "20%"}}>
-                                    <div className="ui blue label">Email</div>
-                                    <input onChange={this.handleChange} type="text" name="newRiderEmail" value={this.state.newRiderEmail} placeholder="Email"/>
-                                </div>
-                                <div className="ui labeled input labeledInputBox" style={{width: "100%"}}>
-                                    <div className="ui blue label">First Name</div>
-                                    <input onChange={this.handleChange} type="text" name="newRiderFirst" value={this.state.newRiderFirst} placeholder="First Name"/>
-                                </div>
-                                <div className="ui labeled input labeledInputBox" style={{width: "100%"}}>
-                                    <div className="ui blue label">Last Name</div>
-                                    <input onChange={this.handleChange} type="text" name="newRiderLast" value={this.state.newRiderLast} placeholder="Last Name"/>
-                                </div>
-                                <button className="ui inverted blue button" style={{marginTop:"5%"}} onClick={this.onSubmitClick}>SUBMIT</button> 
-                            </div>
-                        ) : (
+                    {this.state.editing ? (
+                        <div style={{visibility: !this.props.navMenuOpen?"visible":"hidden", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                            <section className="profilePageWhiteBox" style={{ height: "60%", width: "90vw" }}>
+                                <h2 className="mapPageContainerHeader">EDIT PROFILE</h2>
                                 <div className="profilePageContainer">
-                                    <img src={`${this.props.user.riderImage}`} className="profilePageProfPic" />
+                                    <div style={{marginTop: "17vh"}}>
+                                        <UploadImage action={this.props.handleUploadedImage} handleImage={this.handleImage} newImageUrl={this.state.newRiderImage} />
+                                    </div>
+                                    <div className="ui labeled input labeledInputBox" style={{width: "100%", marginTop: "20%"}}>
+                                        <div className="ui blue label">Email</div>
+                                        <input onChange={this.handleChange} type="text" name="newRiderEmail" value={this.state.newRiderEmail} placeholder="Email"/>
+                                    </div>
+                                    <div className="ui labeled input labeledInputBox" style={{width: "100%"}}>
+                                        <div className="ui blue label">First Name</div>
+                                        <input onChange={this.handleChange} type="text" name="newRiderFirst" value={this.state.newRiderFirst} placeholder="First Name"/>
+                                    </div>
+                                    <div className="ui labeled input labeledInputBox" style={{width: "100%"}}>
+                                        <div className="ui blue label">Last Name</div>
+                                        <input onChange={this.handleChange} type="text" name="newRiderLast" value={this.state.newRiderLast} placeholder="Last Name"/>
+                                    </div>
+                                    <div>
+                                        <button className="ui inverted blue button" style={{marginTop:"5%"}} onClick={this.onSubmitClick}>SUBMIT</button> 
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    ) : (
+                        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                            <section className="profilePageWhiteBox" style={{ height: "85%", width: "90vw" }}>
+                                <h2 className="mapPageContainerHeader">PROFILE INFORMATION</h2>
+                                <div className="profilePageContainer">
+                                    <img src={`${this.props.user.riderImage}`} className="profilePageProfPic" style={{height: "20vh", marginTop: "5vh"}}/>
                                     <h2 className="profilePageH2">{this.props.user.riderFirst} {this.props.user.riderLast}</h2>
                                     <div className="ui divided selection list" style={{ width: "75%" }}>
                                         <div className="profilePageContentCont">
@@ -133,8 +112,9 @@ class RiderProfile extends Component {
                                         <button className="ui inverted blue button" onClick={this.flipEdit} style={{ marginTop: "5%" }}>EDIT PROFILE</button>
                                     </div>
                                 </div>
-                            )}
-                    </section>
+                            </section>
+                        </div>
+                    )}
                 </section>
             </div>
         );
