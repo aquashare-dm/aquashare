@@ -11,8 +11,8 @@ import "./dashboardStyling.css";
 
 
 class BoatRegistrationForm extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             boatName: '',
             tierId: 0,
@@ -79,7 +79,7 @@ class BoatRegistrationForm extends Component {
             <div className="mainAppWindow">
                 <section className="normalPageContainer">
                     <section className="profilePageWhiteBox" style={{height: "90%"}}>
-                            <div className="profilePageContentCont" style={{width: "94%"}}>
+                            <div className="profilePageContentCont" style={{visibility: !this.props.navMenuOpen?"visible":"hidden", width: "94%"}}>
                                 <h2 className="profilePageH2" style={{justifyContent: "center", alignItems: "center"}}>BOAT REGISTRATION</h2>
                                 <div>
                                     <UploadImage action={this.props.handleUploadedImage} handleImage={this.handleImage} newImageUrl={this.state.driverImage} />

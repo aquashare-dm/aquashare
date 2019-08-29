@@ -70,6 +70,7 @@ class DriverDashboard extends Component {
             current.classList.remove("navOptionsCont");
             this.setState({ navMenuOpen: false });
         }
+
     }
     logout = () => {
         this.props.logout();
@@ -143,8 +144,12 @@ class DriverDashboard extends Component {
                 </section>
 
                 <Switch>
-                    <Route path="/driver-dashboard/driver-register" component={DriverRegistrationForm} />
-                    <Route path="/driver-dashboard/boat-register" component={BoatRegistrationForm} />
+                    <Route path="/driver-dashboard/driver-register" render={() => {
+                        return (<DriverRegistrationForm navMenuOpen={this.state.navMenuOpen} />)
+                    }} />
+                    <Route path="/driver-dashboard/boat-register" render={() => {
+                        return (<BoatRegistrationForm navMenuOpen={this.state.navMenuOpen} />)
+                    }} />
                     <Route path="/driver-dashboard/upcoming-rides" component={DriverUpcomingRides} />
                     <Route path="/driver-dashboard/create-a-ride" component={DriverRideCreationForm} />
                     <Route path="/driver-dashboard/created-rides" component={DriverCreatedRides} />
