@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import { connect } from "react-redux"
 import axios from 'axios'
 import { requestAccepted } from '../redux/requestReducer'
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 class SMSForm extends Component {
     constructor(props) {
@@ -9,7 +11,7 @@ class SMSForm extends Component {
         this.state = {
             message: {
                 to: `1${props.requester_cell_number}`,
-                body: `Hi, ${props.rider_first_name}, A driver has accepted your request for a ride on ${props.request_date} at ${props.request_location}.  Login to AquaShare to see the details of this ride in the 'Upcoming Rides' section.  (Do not reply to this text).`
+                body: `Hi, ${props.rider_first_name}, A driver has accepted your request for a ride on ${props.request_date} at ${props.request_location}.  Your account will be charged accordingly.  Please login to AquaShare to see the details of this ride in the 'Upcoming Rides' section.  (Do not reply to this text).`
             },
             error: false,
             submitting: false, 
@@ -30,6 +32,16 @@ class SMSForm extends Component {
         });
       }
 
+      notify = () => {
+        toast.info("Text Sent Successfully", {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true
+        })
+      }
 
       onSubmit = (event) => {
         let { request_id } = this.props
@@ -45,7 +57,8 @@ class SMSForm extends Component {
           .then(res => res.json())
           .then(data => {
             if (data.success) {
-              alert("Text sent successfully! ")
+              this.notify()
+              // alert("Text sent successfully! ")
             //   return this.props.closeModal
             } else {
               this.setState({
@@ -54,10 +67,7 @@ class SMSForm extends Component {
               });
             }
           })
-          // this.notify()
-          // alert("Text sent successfully! ")
-          //   return this.props.closeModal
-        this.props.requestAccepted(this.props.request_id)
+        this.props.requestAccepted(this.props.request_id, this.props.user.user.id)
       }
 
     handleShow=()=> {

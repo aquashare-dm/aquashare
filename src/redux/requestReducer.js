@@ -36,9 +36,9 @@ export const getRequestsById = (userId) => {
     }
 }
 
-export const getAvailableRequests = () => {
+export const getAvailableRequests = (driverId) => {
     let data = axios
-        .get(`/api/get-available-requests`)
+        .get(`/api/get-available-requests/${driverId}`)
         .then(res => {
            return  res.data})
     return {
@@ -48,9 +48,9 @@ export const getAvailableRequests = () => {
     }
 }
 
-export const requestAccepted = (requestId) => {
+export const requestAccepted = (requestId, driverId) => {
     let data = axios
-        .put(`/api/request-accepted`, requestId)
+        .put(`/api/request-accepted`, {requestId, driverId})
         .then(res => res.data)
     return {
         type: REQUEST_ACCEPTED,

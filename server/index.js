@@ -80,7 +80,7 @@ app.put("/api/edit-boat", boatController.editBoat);
 app.post("/api/create-request", requestController.createRequest);
 app.put("/api/edit-request", requestController.editRequest);
 app.get("/api/get-requests/:userId", requestController.getRequestsById);
-app.get("/api/get-available-requests", requestController.getAvailableRequests);
+app.get("/api/get-available-requests/:driverId", requestController.getAvailableRequests);
 
 //Stripe Endpoint
 app.post('/api/payment/:userId', stripeController.pay)
