@@ -26,7 +26,7 @@ export default class UploadImage extends Component {
         this.handleImageUpload(files[0]);
     }
 
-    handleImageUpload = (file) => {
+    handleImage = (file) => {
         let upload = request.post(CLOUDINARY_UPLOAD_URL)
             .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
             .field('file', file);
@@ -66,27 +66,27 @@ export default class UploadImage extends Component {
                     <Dropzone onDrop={acceptedFiles => this.onImageDrop(acceptedFiles)}>
                         {({ getRootProps, getInputProps }) => (
                             <section>
-                                {this.state.uploadedFileCloudinaryUrl === '' ? 
-                                
-                                <div {...getRootProps()}>
-                                    <input {...getInputProps()} />
-                                    <img src={uploadPlaceholderImg}/>
-                                    <p>Drag and drop some files here, or click to select files</p>
-                                </div>
-                                
-                                :
-                                <div className="profileImageContBox" {...getRootProps()}>
-                                    <input {...getInputProps()} />
-                                    <img className="profilePageProfPic" src={this.state.uploadedFileCloudinaryUrl}/>
-                                </div>
+                                {this.state.uploadedFileCloudinaryUrl === '' ?
+
+                                    <div {...getRootProps()}>
+                                        <input {...getInputProps()} />
+                                        <img src={uploadPlaceholderImg} />
+                                        <p>Drag and drop some files here, or click to select files</p>
+                                    </div>
+
+                                    :
+                                    <div className="profileImageContBox" {...getRootProps()}>
+                                        <input {...getInputProps()} />
+                                        <img className="profilePageProfPic" src={this.state.uploadedFileCloudinaryUrl} />
+                                    </div>
                                 }
-                                
+
                             </section>
                         )}
                     </Dropzone>
                 </div>
                 <div>
-                    
+
                 </div>
             </div>
 
