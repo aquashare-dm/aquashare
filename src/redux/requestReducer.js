@@ -1,6 +1,6 @@
 import axios from "axios";
 import {
-    CREATE_REQUEST, EDIT_REQUEST, DELETE_REQUEST, GET_REQUESTS_BY_ID, GET_AVAILABLE_REQUESTS
+    CREATE_REQUEST, EDIT_REQUEST, REQUEST_ACCEPTED, GET_REQUESTS_BY_ID, GET_AVAILABLE_REQUESTS
 } from "./actionTypes.js";
 
 const initialState = {
@@ -48,6 +48,17 @@ export const getAvailableRequests = () => {
     }
 }
 
+export const requestAccepted = (requestId) => {
+    let data = axios
+        .put(`/api/request-accepted`, requestId)
+        .then(res => res.data)
+    return {
+        type: REQUEST_ACCEPTED,
+        payload: data,
+        error: false
+    }
+}
+
 //Default Function
 export default function (state = initialState, action) {
     let { type, payload } = action;
@@ -66,7 +77,18 @@ export default function (state = initialState, action) {
         case GET_REQUESTS_BY_ID + "_FULFILLED":
             return {...state, allRequests: payload};
         case GET_REQUESTS_BY_ID + "_REJECTED":
-            return {...state, error: true};    
+            return {...state, error: true};
+        
+        case GET_AVAILABLE_REQUESTS + "_FULFILLED":
+            return {...state, allRequests: payload};
+        case GET_AVAILABLE_REQUESTS + "_REJECTED":
+            return {...state, error: true};
+
+        case REQUEST_ACCEPTED + "_FULFILLED":
+            return {...state, allRequests: payload};
+        case REQUEST_ACCEPTED + "_REJECTED":
+            return {...state, error: true};
+
         default:
             return state;
     }

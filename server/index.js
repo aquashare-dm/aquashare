@@ -85,6 +85,9 @@ app.get("/api/get-available-requests", requestController.getAvailableRequests);
 //Stripe Endpoint
 app.post('/api/payment/:userId', stripeController.pay)
 
+//Twilio Endpoint
+app.put('/api/request-accepted', requestController.requestAccepted)
+
 
 app.use(express.static(__dirname + '/../build'))
 

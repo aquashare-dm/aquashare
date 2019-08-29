@@ -1,12 +1,15 @@
 import React, {Component} from 'react'
+import { connect } from "react-redux"
+import axios from 'axios'
+import { requestAccepted } from '../redux/requestReducer'
 
 class SMSForm extends Component {
     constructor(props) {
-        super()
+        super(props)
         this.state = {
             message: {
-                to: '',
-                body: ''
+                to: `1${props.requester_cell_number}`,
+                body: `Hi, ${props.rider_first_name}, A driver has accepted your request for a ride on ${props.request_date} at ${props.request_location}.  Login to AquaShare to see the details of this ride in the 'Upcoming Rides' section.  (Do not reply to this text).`
             },
             error: false,
             submitting: false, 
@@ -15,29 +18,21 @@ class SMSForm extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        console.log()
         if(prevProps !== this.props) {
-            console.log('these are the current props:', this.props)
-            const { request_date, request_location, requester_cell_number, rider_first_name}= this.props
-            
-            this.setState({
-               message: {...this.state.message, body: `Hi, ${rider_first_name}, 
-               A driver has accepted your request for a ride on ${request_date} at ${request_location}.  Login to AquaShare to see the details of this ride in the 'Upcoming Rides' section.  (Do not reply to this text).`, 
-               to: `1${requester_cell_number}`}
-            })
+            this.render()
         }
-    }
+      }
     
     onHandleChange= (event) => {
         const name = event.target.getAttribute('name');
         this.setState({
           message: { ...this.state.message, [name]: event.target.value }
         });
-        
       }
 
 
       onSubmit = (event) => {
+        let { request_id } = this.props
         event.preventDefault();
         this.setState({ submitting: true });
         fetch('/api/messages', {
@@ -67,6 +62,7 @@ class SMSForm extends Component {
               });
             }
           });
+        this.props.requestAccepted(this.props.request_id)
       }
 
       handleShow=()=> {
@@ -74,54 +70,25 @@ class SMSForm extends Component {
     }
    
     render() {
-      console.log('to', this.state.message.to)
-      console.log('sendtexts', this.props)
-      const {show} = this.state
-      const {request_first_name, request_date, request_location, requester_cell_number}= this.props
-      
-      console.log(request_first_name, request_date, request_location, requester_cell_number)
       return (
         <div>
-            {show ? (
-        <form 
-          onSubmit={this.onSubmit}
-          className={this.state.err? 'err sms-form': 'sms-form'}
-        >
-          <div >
-            
-            <label htmlFor="to">To:</label>
-            <input 
-               type="tel"
-               name="to"
-               id="to"
-               value={requester_cell_number}
-               onChange={this.onHandleChange}
-            />
-          
-          <div>
-            <label htmlFor="body">Body:</label><br/>
-            <textarea name="body" id="body"
-              value={this.state.message.body}
-              onChange={this.onHandleChange}
-              
-            ></textarea>
-          </div>
-          </div>
-          <button 
-              
-              type="submit"
-              disabled={this.state.submitting}
-          >Accept Request and Send Notification
-          </button>
-        </form>
-            ): (
-              <button onClick={() => this.handleShow()}>Accept Request</button>    
-            )}
+          <form 
+            onSubmit={this.onSubmit}
+            className={this.state.err? 'err sms-form': 'sms-form'}
+          >
+            <button
+                type="submit"
+                disabled={this.state.submitting}
+            >Accept Request and Send Notification
+            </button>
+          </form>
         </div>
         );
       }
 }
 
+function mapStateToProps(state){
+  return state
+}
 
-
-export default SMSForm
+export default connect(mapStateToProps, { requestAccepted })(SMSForm)
