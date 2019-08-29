@@ -118,14 +118,7 @@ module.exports = {
     async rateRider(req, res) {
         const db = req.app.get('db');
         let { rating, rideId, riderId } = req.body
-        let result = await db.rate_rider(rating, rideId, riderId)
+        let result = await db.rate_rider([rating, rideId, riderId])
         res.status(200).send(result)
     },
-
-    async getRiderRatings(req, res) {
-        const db = req.app.get('db');
-        let { rideId, riderId } = req.body
-        let result = await db.get_rider_rating(rideId, riderId)
-        res.status(200).send(result)
-    }
 }
