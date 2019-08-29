@@ -22,7 +22,6 @@ class DriverTripRequest extends Component {
             <p>Start Time: {request_start_time}</p>
             <p>End Time: {request_end_time}</p>
             <p>Rider Name: {rider_first_name} {rider_last_name}</p>
-            <p>I want to fill this request.</p>
             
             <SMSForm
                 rider_first_name={rider_first_name}

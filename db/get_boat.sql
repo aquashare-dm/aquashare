@@ -1,2 +1,2 @@
 select * from boats
-Where driver_id = $1
+Where driver_id = $1;

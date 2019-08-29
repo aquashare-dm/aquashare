@@ -15,5 +15,9 @@ WHERE ride_open_seats > 0
 AND ST_DistanceSphere(
     ST_SetSRID(ST_MakePoint(ride_location_long, ride_location_lat), 4326),
     ST_SetSRID(ST_MakePoint($7, $6), 4326)
-) <= $8 * 1609.34;
+) <= $8 * 1609.34
+ORDER BY
+    rides.ride_date ASC,
+    rides.ride_start_time ASC,
+    rides.ride_end_time ASC;
 
