@@ -114,7 +114,9 @@ CREATE TABLE "confirmed_riders" (
 	"ride_id" integer NOT NULL,
 	"rider_id" integer NOT NULL,
 	"order_amount" FLOAT(2),
-	"transaction_id" varchar(255)
+	"transaction_id" varchar(255),
+	"rider_rating" FLOAT(1),
+	"driver_rating" FLOAT(1)
 ) WITH (
   OIDS=FALSE
 );
