@@ -33,7 +33,7 @@ class DriverProfile extends Component {
 
     handleFormSubmit = (e) => {
         let { newDriverEmail, newDriverFirst, newDriverLast, newDriverImage, newDriverLicense } = this.state
-        this.props.editDriverProfile(this.props.user.riderUsername, newDriverEmail, newDriverFirst, newDriverLast, newDriverImage, newDriverLicense)
+        this.props.editDriverProfile(this.props.user.driverUsername, newDriverEmail, newDriverFirst, newDriverLast, newDriverImage, newDriverLicense)
     }
 
     goBack = () => {
@@ -45,6 +45,11 @@ class DriverProfile extends Component {
     }
 
     flipEdit = () => this.setState({ editing: !this.state.editing })
+
+
+    handleImage = (imageUrl) => {
+        this.setState({ newDriverImage: imageUrl })
+    }
 
     render() {
         let { user } = this.props;
@@ -61,7 +66,7 @@ class DriverProfile extends Component {
                             <div>
                                 <h3>Upload New Image</h3>
                                 <div>
-                                    <UploadImage action={this.handleUploadedImage} />
+                                    <UploadImage action={this.handleUploadedImage} handleImage={this.handleImage} newImageUrl={this.state.newDriverImage} />
                                 </div>
                                 <input
                                     value={newDriverFirst}
@@ -111,10 +116,13 @@ class DriverProfile extends Component {
                                             </a>
                                         </div>
                                         <button className="ui inverted blue button" onClick={this.flipEdit} style={{ marginTop: "5%", marginBottom: "20%" }}>EDIT PROFILE</button>
+                                        <BoatProfile />
                                     </div>
+
                                 </div>
+
                             )}
-                        <BoatProfile />
+
                     </section>
                 </section>
             </div>

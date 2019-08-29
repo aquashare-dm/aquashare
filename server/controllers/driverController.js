@@ -30,6 +30,7 @@ module.exports = {
             res.status(401).send("Username or Password is Incorrect");
         }
     },
+
     signup: async function (req, res) {
 
         let { driverUsername, driverPassword } = req.body;
@@ -53,10 +54,12 @@ module.exports = {
         res.send(req.session.user);
 
     },
+
     logout: async function (req, res) {
         req.session.destroy();
         res.sendStatus(200);
     },
+
     getDriver: async function (req, res) {
         if (req.session.user) {
             if (req.session.user.loggedIn) {
@@ -66,6 +69,7 @@ module.exports = {
             }
         }
     },
+
     driverRegister: async (req, res) => {
         let { driverUsername, driverEmail, driverFirst, driverLast, driverImage, driverLicense, startRating } = req.body;
         const db = req.app.get("db");
@@ -86,6 +90,7 @@ module.exports = {
         }
         res.status(200).send(req.session.user);
     },
+
     async editDriverProfile(req, res) {
         let { driverUsername, newDriverFirst, newDriverLast, newDriverImage, newDriverLicense } = req.body;
         const db = req.app.get('db');
@@ -110,4 +115,17 @@ module.exports = {
         res.send(req.session.user);
     },
 
+    async rateRider(req, res) {
+        const db = req.app.get('db');
+        let { rating, rideId, riderId } = req.body
+        let result = await db.rate_rider(rating, rideId, riderId)
+        res.status(200).send(result)
+    },
+
+    async getRiderRatings(req, res) {
+        const db = req.app.get('db');
+        let { rideId, riderId } = req.body
+        let result = await db.get_rider_rating(rideId, riderId)
+        res.status(200).send(result)
+    }
 }

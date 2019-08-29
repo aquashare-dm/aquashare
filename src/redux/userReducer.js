@@ -71,7 +71,7 @@ export const driverRegister = (driverUsername, driverEmail, driverFirst, driverL
     return { type: DRIVER_REGISTER, payload: data }
 }
 export const editDriverProfile = (driverUsername, newDriverEmail, newDriverFirst, newDriverLast, newDriverImage) => {
-    let data = axios.put('/api/edit-rider', { driverUsername, newDriverEmail, newDriverFirst, newDriverLast, newDriverImage }).then(res => res.data)
+    let data = axios.put('/api/edit-driver', { driverUsername, newDriverEmail, newDriverFirst, newDriverLast, newDriverImage }).then(res => res.data)
     return { type: EDIT_DRIVER_PROFILE, payload: data }
 }
 
