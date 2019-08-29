@@ -51,6 +51,7 @@ export default class UploadImage extends Component {
 
             }
         });
+        console.log("DELETE THIS TEST LINE");
     }
 
     handleOnCropChange = (crop) => {
@@ -65,27 +66,27 @@ export default class UploadImage extends Component {
                     <Dropzone onDrop={acceptedFiles => this.onImageDrop(acceptedFiles)}>
                         {({ getRootProps, getInputProps }) => (
                             <section>
-                                {this.state.uploadedFileCloudinaryUrl === '' ?
-
-                                    <div {...getRootProps()}>
-                                        <input {...getInputProps()} />
-                                        <img src={uploadPlaceholderImg} />
-                                        <p>Drag and drop some files here, or click to select files</p>
-                                    </div>
-
-                                    :
-                                    <div className="profileImageContBox" {...getRootProps()}>
-                                        <input {...getInputProps()} />
-                                        <img className="profilePageProfPic" src={this.state.uploadedFileCloudinaryUrl} />
-                                    </div>
+                                {this.state.uploadedFileCloudinaryUrl === '' ? 
+                                
+                                <div {...getRootProps()}>
+                                    <input {...getInputProps()} />
+                                    <img src={uploadPlaceholderImg}/>
+                                    <p>Drag and drop some files here, or click to select files</p>
+                                </div>
+                                
+                                :
+                                <div className="profileImageContBox" {...getRootProps()}>
+                                    <input {...getInputProps()} />
+                                    <img className="profilePageProfPic" src={this.state.uploadedFileCloudinaryUrl}/>
+                                </div>
                                 }
-
+                                
                             </section>
                         )}
                     </Dropzone>
                 </div>
                 <div>
-
+                    
                 </div>
             </div>
 
