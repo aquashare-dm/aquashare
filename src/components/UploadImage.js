@@ -26,7 +26,7 @@ export default class UploadImage extends Component {
         this.handleImageUpload(files[0]);
     }
 
-    handleImage = (file) => {
+    handleImageUpload = (file) => {
         let upload = request.post(CLOUDINARY_UPLOAD_URL)
             .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
             .field('file', file);
