@@ -61,7 +61,7 @@ class DriverProfile extends Component {
         return (
             <div className="mainAppWindow">
                 <section className="normalPageContainer">
-                    <section className="profilePageWhiteBox" style={{ height: "90%" }}>
+                    <section className="profilePageWhiteBox" style={{ height: "100%" }}>
                         {this.state.editing ? (
                             <div>
                                 <h3>Upload New Image</h3>
