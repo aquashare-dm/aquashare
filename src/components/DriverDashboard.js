@@ -123,6 +123,9 @@ class DriverDashboard extends Component {
                         <Link to="/driver-dashboard/create-a-ride" className="navLinkOption" onClick={this.menuClick}>
                             <div>Create a Ride</div>
                         </Link>
+                        <Link to="/driver-dashboard/created-rides" className="navLinkOption" onClick={this.menuClick}>
+                            <div>Unfilled Ride Posts</div>
+                        </Link>
                         <Link to="/driver-dashboard/upcoming-rides" className="navLinkOption" onClick={this.menuClick}>
                             <div>Upcoming Rides</div>
                         </Link>

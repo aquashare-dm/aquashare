@@ -7,7 +7,7 @@ import DriverTripRequest from './DriverTripRequest'
 class DriverTripRequests extends Component{
 
     componentDidMount() {
-        this.props.getAvailableRequests()
+        this.props.getAvailableRequests(this.props.user.user.id)
     } 
 
     goBack = () => {
