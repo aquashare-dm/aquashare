@@ -29,8 +29,7 @@ class RiderRegistrationForm extends Component {
         })
     };
 
-    handleFormSubmit = (e) => {
-        e.preventDefault()
+    handleFormSubmit = () => {
         let { riderEmail, riderFirst, riderLast, riderImage } = this.state
         const newStartRating = 5.0
         this.props.riderRegister(this.props.user.riderUsername, riderEmail, riderFirst, riderLast, riderImage, newStartRating)
@@ -41,6 +40,9 @@ class RiderRegistrationForm extends Component {
         this.props.history.push("/rider-dashboard/find-a-ride")
     }
 
+    onSubmitClick = () => {
+        this.handleFormSubmit()
+    }
 
 
 
@@ -75,10 +77,7 @@ class RiderRegistrationForm extends Component {
                                 <div className="ui blue label">Last Name</div>
                                 <input onChange={this.handleChange} type="text" name="riderLast" value={this.state.riderLast} placeholder="Last Name"/>
                             </div>
-                            <button className="ui inverted blue button" style={{marginTop:"5%"}} onClick={() => {
-                                this.handleFormSubmit()
-                                this.flipEdit()
-                            }}>SUBMIT</button> 
+                            <button className="ui inverted blue button" style={{marginTop:"5%"}} onClick={this.onSubmitClick}>SUBMIT</button> 
 
                         </div>
                    </section>
