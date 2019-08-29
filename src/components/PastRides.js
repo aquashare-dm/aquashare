@@ -21,14 +21,14 @@ class PastRides extends Component {
 
     clickedRide = () => {
         let currentSelectedState = this.state.selected;
-        this.setState({selected: !currentSelectedState})
+        this.setState({ selected: !currentSelectedState })
     }
 
     handleClickOutside = () => {
-        if(this.state.selected === true){
+        if (this.state.selected === true) {
             this.clickedRide();
         }
-        
+
     }
 
     render() {
@@ -82,4 +82,4 @@ class PastRides extends Component {
     }
 }
 
-export default connect( null, null)(PastRides);
+export default connect( null, null)(onClickOutside(PastRides));
