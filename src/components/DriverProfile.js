@@ -24,6 +24,12 @@ class DriverProfile extends Component {
         }
     }
 
+    componentDidUpdate(prevProps) {
+        if (prevProps !== this.props) {
+            this.render()
+        }
+    }
+
     handleChange = (event) => {
         let { name, value } = event.target;
         this.setState({
@@ -33,11 +39,7 @@ class DriverProfile extends Component {
 
     handleFormSubmit = (e) => {
         let { newDriverEmail, newDriverFirst, newDriverLast, newDriverImage, newDriverLicense } = this.state
-        this.props.editDriverProfile(this.props.user.driverUsername, newDriverEmail, newDriverFirst, newDriverLast, newDriverImage, newDriverLicense)
-    }
-
-    goBack = () => {
-        this.props.history.goBack()
+        this.props.editDriverProfile(this.props.user.id, newDriverEmail, newDriverFirst, newDriverLast, newDriverImage, newDriverLicense)
     }
 
     handleUploadedImage = (imgUrl) => {
@@ -51,55 +53,58 @@ class DriverProfile extends Component {
         this.setState({ newDriverImage: imageUrl })
     }
 
+    onSubmitClick = () => {
+        this.handleFormSubmit()
+        this.flipEdit()
+    }
+
     render() {
         let { user } = this.props;
         if (!user.loggedIn) {
             return <Redirect to="/" />
         }
-        //
+        
         let { newDriverImage, newDriverUsername, newDriverFirst, newDriverLast, newDriverEmail, newDriverLicense } = this.state
         return (
             <div className="mainAppWindow">
                 <section className="normalPageContainer">
-                    <section className="profilePageWhiteBox" style={{ height: "90%" }}>
-                        {this.state.editing ? (
-                            <div>
-                                <h3>Upload New Image</h3>
-                                <div>
-                                    <UploadImage action={this.handleUploadedImage} handleImage={this.handleImage} newImageUrl={this.state.newDriverImage} />
-                                </div>
-                                <input
-                                    value={newDriverFirst}
-                                    onChange={this.handleChange}
-                                    name="newDriverFirst"
-                                />
-                                <input
-                                    value={newDriverLast}
-                                    onChange={this.handleChange}
-                                    name="newDriverLast"
-                                />
-                                <input
-                                    value={newDriverEmail}
-                                    onChange={this.handleChange}
-                                    name="newDriverEmail"
-                                />
-                                <input
-                                    value={newDriverLicense}
-                                    onChange={this.handleChange}
-                                    name="newDriverLicense"
-                                />
-                                <div>
-                                    <button onClick={() => {
-                                        this.handleFormSubmit()
-                                        this.flipEdit()
-                                    }}>Save</button>
-                                    <button onClick={this.flipEdit}>Cancel</button>
-                                </div>
-                            </div>
-                        ) : (
+                    {this.state.editing ? (
+                        <div style={{visibility: !this.props.navMenuOpen?"visible":"hidden", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                            <section className="profilePageWhiteBox" style={{ height: "72%", width: "90vw" }}>
+                                <h2 className="mapPageContainerHeader">EDIT PROFILE</h2>
                                 <div className="profilePageContainer">
-                                    <img src={`${this.props.user.driverImage}`} className="profilePageProfPic" />
-                                    <h2 className="profilePageH2">{this.props.user.driverFirst} {this.props.user.driverLast}</h2>
+                                    <div style={{marginTop: "15vh"}}>
+                                        <UploadImage action={this.handleUploadedImage} handleImage={this.handleImage} newImageUrl={this.state.newDriverImage} />
+                                    </div>
+                                    <div className="ui labeled input labeledInputBox" style={{width: "100%", marginTop: "20%"}}>
+                                        <div className="ui blue label">First Name</div>
+                                        <input onChange={this.handleChange} type="text" name="newDriverFirst" value={newDriverFirst} placeholder="First Name"/>
+                                    </div>
+                                    <div className="ui labeled input labeledInputBox" style={{width: "100%"}}>
+                                        <div className="ui blue label">Last Name</div>
+                                        <input onChange={this.handleChange} type="text" name="newDriverLast" value={newDriverLast} placeholder="Last Name"/>
+                                    </div>
+                                    <div className="ui labeled input labeledInputBox" style={{width: "100%"}}>
+                                        <div className="ui blue label">Email</div>
+                                        <input onChange={this.handleChange} type="text" name="newDriverEmail" value={newDriverEmail} placeholder="Email"/>
+                                    </div>
+                                    <div className="ui labeled input labeledInputBox" style={{width: "100%"}}>
+                                        <div className="ui blue label">Driver License</div>
+                                        <input onChange={this.handleChange} type="text" name="newDriverLicense" value={newDriverLicense} placeholder="Email"/>
+                                    </div>
+                                    <div>
+                                        <button className="ui inverted blue button" style={{marginTop:"5%"}} onClick={this.onSubmitClick}>SUBMIT</button>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    ) : (
+                        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                            <section className="profilePageWhiteBox" style={{ height: "85%", width: "90vw" }}>
+                                <h2 className="mapPageContainerHeader">PROFILE INFORMATION</h2>
+                                <div className="profilePageContainer">
+                                    <img src={`${this.props.user.driverImage}`} className="profilePageProfPic" style={{height: "20vh", marginTop: "10vh"}}/>
+                                    <h2 className="profilePageH2">{newDriverFirst} {newDriverLast}</h2>
                                     <div className="ui divided selection list" style={{ width: "75%" }}>
                                         <div className="profilePageContentCont">
                                             <a className="item" style={{ marginBottom: "1vh" }}>
@@ -116,14 +121,12 @@ class DriverProfile extends Component {
                                             </a>
                                         </div>
                                         <button className="ui inverted blue button" onClick={this.flipEdit} style={{ marginTop: "5%", marginBottom: "20%" }}>EDIT PROFILE</button>
-                                        <BoatProfile />
+                                        {/* <BoatProfile /> */}
                                     </div>
-
                                 </div>
-
-                            )}
-
-                    </section>
+                            </section>
+                        </div>
+                    )}
                 </section>
             </div>
         );

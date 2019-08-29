@@ -23,7 +23,7 @@ class DriverUpcomingRidesById extends Component {
     }
 
     render() {
-        let { ride_date, ride_location, ride_start_time, ride_end_time, rider_first_name, rider_last_name, tier_id } = this.props;
+        let { boat_name, ride_date, ride_location, ride_start_time, ride_end_time, rider_first_name, rider_last_name, tier_id } = this.props;
         if (this.state.selected === false) {
             return (
 
@@ -40,15 +40,22 @@ class DriverUpcomingRidesById extends Component {
                     <div className="selectedRideWhiteBox">
                         <div>
                             <div className="selectedRideRowContainer" style={{ marginTop: "8%" }}>
+                                <h2 className="selectedRideH2">{boat_name}</h2>
+                            </div>
+                            <div className="selectedRideRowContainer" style={{ marginTop: "5%" }}>
                                 <div className="selectedRideParagraph">Rider Name: {rider_first_name} {rider_last_name}</div>
                             </div>
-                            <div className="selectedRideRowContainer" style={{ marginTop: "8%" }}>
+                            <div className="selectedRideRowContainer" style={{ marginTop: "5%" }}>
                                 <div className="selectedRideParagraph">Ride Date: {ride_date}</div>
+                            </div>
+                            <div className="selectedRideRowContainer" style={{ marginTop: "5%" }}>
                                 <div className="selectedRideParagraph">Location: {ride_location}</div>
                             </div>
-                            <div className="selectedRideRowContainer" style={{ marginTop: "8%" }}>
+                            <div className="selectedRideRowContainer" style={{ marginTop: "5%" }}>
                                 <div className="selectedRideParagraph">Start Time: {ride_start_time}</div>
                                 <div className="selectedRideParagraph">End Time: {ride_end_time}</div>
+                            </div>
+                            <div className="selectedRideRowContainer" style={{ marginTop: "5%" }}>
                                 <div className="selectedRideParagraph">Tier: {tier_id}</div>
                             </div>
                         </div>
