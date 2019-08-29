@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
 import { driverRegister } from '../redux/userReducer'
 import UploadImage from './UploadImage'
-
+import "./coreStyling.css";
+import "./dashboardStyling.css";
 
 class DriverRegistrationForm extends Component {
     constructor() {
@@ -32,13 +33,10 @@ class DriverRegistrationForm extends Component {
         })
     }
 
-    handleFormSubmit = (e) => {
-        console.log(this.props.user)
-        e.preventDefault()
+    handleFormSubmit = () => {
         let { driverEmail, driverFirst, driverLast, driverImage, driverLicense } = this.state
         const newStartRating = 5.0;
         this.props.driverRegister(this.props.user.driverUsername, driverEmail, driverFirst, driverLast, driverImage, driverLicense, newStartRating)
-        console.log(this.props.user.driverUsername)
         this.registrationFormSwitch();
     }
     handleImage = (imgUrl) => {
@@ -47,7 +45,6 @@ class DriverRegistrationForm extends Component {
 
     render() {
         let { boat, user } = this.props;
-        console.log("this.props on registration", this.props)
         if (!user.loggedIn) {
             return <Redirect to='/' />
         }
@@ -56,19 +53,36 @@ class DriverRegistrationForm extends Component {
             return (<div></div>)
         } else {
             return (
-                <div>
-                    <h1>{this.props.user.riderUsername}</h1>
-                    <div>
-                        <UploadImage action={this.props.handleUploadedImage} handleImage={this.handleImage} newImageUrl={this.state.driverImage} />
-                    </div>
-                    <form>
-                        <input type="hidden" name="driverImage" value={this.state.driverImage} placeholder="Image" />
-                        <input type="text" name="driverEmail" onChange={this.handleChange} value={this.state.driverEmail} placeholder="Email" />
-                        <input type="text" name="driverFirst" onChange={this.handleChange} value={this.state.driverFirst} placeholder="First Name" />
-                        <input type="text" name="driverLast" onChange={this.handleChange} value={this.state.driverLast} placeholder="Last Name" />
-                        <input type="text" name="driverLicense" onChange={this.handleChange} value={this.state.driverLicense} placeholder="Driver's License Number" />
-                        <button onClick={(e) => { this.handleFormSubmit(e) }}>Submit</button>
-                    </form>
+                <div className="mainAppWindow">
+                    <section className="normalPageContainer">
+                        <section className="profilePageWhiteBox" style={{ height: "90%" }}>
+                            <div className="profilePageContentCont" style={{ width: "92%" }}>
+                                <h2 className="profilePageH2" style={{ justifyContent: "center", alignItems: "center" }}>DRIVER REGISTRATION</h2>
+                                <div>
+                                    <UploadImage action={this.props.handleUploadedImage} handleImage={this.handleImage} newImageUrl={this.state.driverImage} />
+                                </div>
+                                <div className="ui labeled input labeledInputBox" style={{ width: "100%", marginTop: "20%" }}>
+                                    <div className="ui blue label">Email</div>
+                                    <input onChange={this.handleChange} type="text" name="driverEmail" value={this.state.driverEmail} placeholder="Email" />
+                                </div>
+                                <div className="ui labeled input labeledInputBox" style={{ width: "100%" }}>
+                                    <div className="ui blue label">First Name</div>
+                                    <input onChange={this.handleChange} type="text" name="driverFirst" value={this.state.driverFirst} placeholder="First Name" />
+                                </div>
+                                <div className="ui labeled input labeledInputBox" style={{ width: "100%" }}>
+                                    <div className="ui blue label">Last Name</div>
+                                    <input onChange={this.handleChange} type="text" name="driverLast" value={this.state.driverLast} placeholder="Last Name" />
+                                </div>
+                                <div className="ui labeled input labeledInputBox" style={{ width: "100%" }}>
+                                    <div className="ui blue label">Driver's License</div>
+                                    <input onChange={this.handleChange} type="text" name="driverLicense" value={this.state.driverLicense} placeholder="Driver's License" />
+                                </div>
+                                <div>
+                                    <button className="ui inverted blue button" onClick={this.handleFormSubmit}>SUBMIT</button>
+                                </div>
+                            </div>
+                        </section>
+                    </section>
                 </div>
             );
         }

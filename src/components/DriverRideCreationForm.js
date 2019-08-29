@@ -54,9 +54,9 @@ class DriverRideCreationForm extends Component {
 
     correctTimeForDatabase = (str) => {
         if (str[1] === ":") {
-            return +str.slice(0,1)
+            return +str.slice(0, 1)
         } else {
-            return +str.slice(0,2)
+            return +str.slice(0, 2)
         }
     }
 
@@ -125,7 +125,7 @@ class DriverRideCreationForm extends Component {
         }
         return (
 
-            <div>
+            <div className="mainAppWindow">
 
                 <header>
                     <button onClick={this.goBack}>{`<Back`}</button>
