@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {Rating} from 'semantic-ui-react';
+import { Rating } from 'semantic-ui-react';
 import onClickOutside from 'react-onclickoutside';
+import "./coreStyling.css";
+import "./dashboardStyling.css";
 
 class PastRides extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
-        this.state={
+        this.state = {
             selected: false,
             rating: 0,
             maxRating: 5
         }
     }
-    
-    handleRate = (e, { rating, maxRating }) => this.setState({ rating, maxRating }) 
+
+    handleRate = (e, { rating, maxRating }) => this.setState({ rating, maxRating })
 
     buyRide = () => {
         console.log('Buy a ride button triggered!')
@@ -36,21 +38,21 @@ class PastRides extends Component {
         //Calculate ride price to show
         let ridePrice = 20 + (tier_id * 10);
 
-        if(this.state.selected === false){
+        if (this.state.selected === false) {
             return (
-            
+
                 <section className="availableRideContainer" onClick={this.clickedRide}>
-                    <div className="six wide column" style={{marginLeft: "4%"}}>{ride_date}</div>
+                    <div className="six wide column" style={{ marginLeft: "4%" }}>{ride_date}</div>
                     {/* <div className="one wide column" style={{marginLeft: "6%"}}>{ride_open_seats}</div> */}
-                    <div className="one wide column" style={{marginLeft: "13%"}}>{tier_id}</div>
-                    <div className="eight wide column" style={{overflowX: "auto", marginLeft: "9%"}}>{ride_location}</div>
+                    <div className="one wide column" style={{ marginLeft: "13%" }}>{tier_id}</div>
+                    <div className="eight wide column" style={{ overflowX: "auto", marginLeft: "9%" }}>{ride_location}</div>
 
                 </section>
-    
+
             );
-        }else{
-            return(
-                <section className="selectedRideContainer" style={{height: "30vh"}} onClick={this.clickedRide}>
+        } else {
+            return (
+                <section className="selectedRideContainer" style={{ height: "30vh" }} onClick={this.clickedRide}>
                     <div className="selectedRideWhiteBox">
                         <h2 className="selectedRideH2">{boat_name}</h2>
                         <div className="selectedRideRowContainer">
@@ -64,22 +66,22 @@ class PastRides extends Component {
                             <div className="selectedRideParagraph" >Driver: {driver_first_name} {driver_last_name}</div>
                             <div className="selectedRideParagraph">Total Seats: {ride_total_seats}</div>
                         </div>
-                        <div className="selectedRideRowContainer" style={{marginTop: "8%"}}>
+                        <div className="selectedRideRowContainer" style={{ marginTop: "8%" }}>
                             <div className="selectedRideParagraph">Tier: {tier_id}</div>
                             <div className="selectedRideParagraph">Start Time: {ride_start_time}</div>
                             <div className="selectedRideParagraph">End Time: {ride_end_time}</div>
                         </div>
-                        <div className="selectedRideRowContainer" style={{marginBottom: "5%"}}>
+                        <div className="selectedRideRowContainer" style={{ marginBottom: "5%" }}>
                             <div className="selectedRideParagraph">Location: {ride_location}</div>
                         </div>
-                        
+
                     </div>
 
                 </section>
             )
         }
-        
+
     }
 }
 
-export default connect( null, null)(onClickOutside(PastRides));
+export default connect(null, null)(onClickOutside(PastRides));
