@@ -150,9 +150,13 @@ class DriverDashboard extends Component {
                     <Route path="/driver-dashboard/boat-register" render={() => {
                         return (<BoatRegistrationForm navMenuOpen={this.state.navMenuOpen} />)
                     }} />
+                    <Route path="/driver-dashboard/create-a-ride" render={() => {
+                        return (<DriverRideCreationForm navMenuOpen={this.state.navMenuOpen} />)
+                    }} />
+                    <Route path="/driver-dashboard/created-rides" render={() => {
+                        return (<DriverCreatedRides navMenuOpen={this.state.navMenuOpen} />)
+                    }} />
                     <Route path="/driver-dashboard/upcoming-rides" component={DriverUpcomingRides} />
-                    <Route path="/driver-dashboard/create-a-ride" component={DriverRideCreationForm} />
-                    <Route path="/driver-dashboard/created-rides" component={DriverCreatedRides} />
                     {/* <Route path="/rider-dashboard/request-a-ride" component={RideRequestForm} /> */}
                     <Route path="/driver-dashboard/ride-requests" component={DriverTripRequests} />
                     <Route path="/driver-dashboard/ride-history" component={DriverHistory} />
