@@ -5,6 +5,9 @@ import { GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import Geocode from "react-geocode";
 import CurrentLocation from "./RideSearch/Map.js";
 import { createRide } from '../redux/ridesReducer'
+import Select from "react-select";
+import "./coreStyling.css";
+import "./dashboardStyling.css";
 
 require("dotenv").config({ path: __dirname + "/../../.env" });
 const { REACT_APP_GOOGLE_API_KEY } = process.env;
@@ -60,8 +63,7 @@ class DriverRideCreationForm extends Component {
         }
     }
 
-    createRide = async (e) => {
-        e.preventDefault()
+    createRide = async () => {
         await this.submitAddressForGeocoding();
         console.log("this.props is ", this.props);
         let { date, location, locationLatitude, locationLongitude, startTime, endTime } = this.state;
@@ -115,36 +117,47 @@ class DriverRideCreationForm extends Component {
         );
     }
 
+    handleChange = e => {
+        let { name, value } = e.target
+        this.setState({ [name]: value })
+    }
+    handleDropDownChange = (event) => {
+        let { name, value } = event;
+        this.setState({
+            [name]: value
+        })
+    }
+
     render() {
-
-        console.log('ride creation form props', this.props)
-
         let { user } = this.props;
         if (!user.loggedIn) {
             return <Redirect to="/" />
         }
+        //Drop Down Selection Variables
+        let tierIdOptions = [
+            { label: "Tier 1", value: 1, name: "tierId" },
+            { label: "Tier 2", value: 2, name: "tierId" },
+            { label: "Tier 3", value: 3, name: "tierId" },
+            { label: "Tier 4", value: 4, name: "tierId" }
+        ];
+        let requestSeatNumOptions = [
+            { label: "1 Seat", value: 1, name: "requestSeatNum" },
+            { label: "2 Seats", value: 2, name: "requestSeatNum" },
+            { label: "3 Seats", value: 3, name: "requestSeatNum" },
+            { label: "4 Seats", value: 4, name: "requestSeatNum" },
+            { label: "5 Seats", value: 5, name: "requestSeatNum" },
+            { label: "6 Seats", value: 6, name: "requestSeatNum" },
+            { label: "7 Seats", value: 7, name: "requestSeatNum" },
+            { label: "8 Seats", value: 8, name: "requestSeatNum" },
+            { label: "9 Seats", value: 9, name: "requestSeatNum" },
+            { label: "10 Seats", value: 10, name: "requestSeatNum" },
+        ];
+
         return (
 
-            <div className="mainAppWindow">
-
-                <header>
-                    <button onClick={this.goBack}>{`<Back`}</button>
-                    <h1>Create a Ride</h1>
-                </header>
-                <form>
-                    <input type="date" name="date" onChange={this.handleChange} value={this.state.requestDate} placeholder="Date" />
-                    <input type="text" id="location-address-input" name="location" onChange={this.handleChange} value={this.state.location} placeholder="Location" />
-                    {/* <input type="text" name="totalBoatSeatNum" onChange={this.handleChange} value={this.state.totalBoatSeatNum} placeholder="Number of Seats" /> */}
-                    {/* <input type="number" name="openBoatSeats" onChange={this.handleChange} value={this.state.openBoatSeats} placeholder="Available Seats on Tube" /> */}
-                    {/* <input type="text" name="tierId" onChange={this.handleChange} value={this.state.tierId} placeholder="Requested Tier" /> */}
-                    <input type="time" step="360000" name="startTime" onChange={this.handleChange} value={this.state.startTime} placeholder="Start Time" />
-                    <input type="time" step="360000" name="endTime" onChange={this.handleChange} value={this.state.endTime} placeholder="End Time" />
-
-                    <button onClick={(e) => { this.createRide(e) }}>Create Ride</button>
-                </form>
-
-                <div className="mapRightCont" style={{ marginTop: "50px" }}>
-                    <CurrentLocation centerAroundCurrentLocation width={"500px"} height={"300px"} google={this.props.google} lat={this.state.locationLatitude} lng={this.state.locationLongitude} >
+            <div className="mainAppWindow" style={{ height: "100vh" }}>
+                <div className="mapRightCont" id="google-maps-container" style={{ visibility: !this.props.navMenuOpen ? "visible" : "hidden" }}>
+                    <CurrentLocation centerAroundCurrentLocation width={"100vw"} height={"40vh"} google={this.props.google} lat={this.state.locationLatitude} lng={this.state.locationLongitude}>
                         <Marker
                             position={{ lat: this.state.locationLatitude, lng: this.state.locationLongitude }}
                             onClick={this.onMarkerClick}
@@ -161,6 +174,34 @@ class DriverRideCreationForm extends Component {
                         </InfoWindow>
                     </CurrentLocation>
                 </div>
+                <section className="mapPageBottomContainer">
+                    <div className="mapPageBottomContainerWhiteBox" style={{ visibility: !this.props.navMenuOpen ? "visible" : "hidden" }}>
+                        <h2 className="mapPageContainerHeader">CREATE A RIDE</h2>
+                        <div className="ui labeled input labeledInputBox" style={{ width: "100%" }}>
+                            <div className="ui label">Ride Date</div>
+                            <input onChange={this.handleChange} type="date" name="requestDate" value={this.state.requestDate} placeholder="08/31/2019" />
+                        </div>
+                        <div className="ui labeled input labeledInputBox" style={{ width: "100%" }}>
+                            <div className="ui label">Location</div>
+                            <input onChange={this.handleChange} id="location-address-input" type="text" name="location" value={this.state.location} placeholder="Lake Powell, UT." />
+                        </div>
+                        <div className="ui labeled input labeledInputBox" style={{ width: "100%" }}>
+                            <div className="ui label">Start Time</div>
+                            <input type="time" step="360000" onChange={this.handleChange} name="requestStartTime" value={this.state.startTime} placeholder="8:00" />
+                        </div>
+                        <div className="ui labeled input labeledInputBox" style={{ width: "100%" }}>
+                            <div className="ui label">End Time</div>
+                            <input type="time" step="360000" onChange={this.handleChange} name="requestEndTime" value={this.state.endTime} placeholder="11:00" />
+                        </div>
+                        <div className="rowContainerSpaceBetween">
+                            <Select className="ui search dropdown dropdownBoxContainer" placeholder="Seats Requested" label="requestSeatNum" options={requestSeatNumOptions} onChange={this.handleDropDownChange}></Select>
+                            <Select className="ui search dropdown dropdownBoxContainer" placeholder="Tier Desired" label="tierId" options={tierIdOptions} onChange={this.handleDropDownChange}></Select>
+                        </div>
+                        <div className="labeledInputBox">
+                            <button className="ui inverted blue button" onClick={this.createRide}>CREATE A RIDE</button>
+                        </div>
+                    </div>
+                </section>
             </div>
         );
     };

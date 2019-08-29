@@ -9,13 +9,13 @@ import Select from "react-select";
 import "./coreStyling.css";
 import "./dashboardStyling.css";
 
-require("dotenv").config({path: __dirname + "/../../.env"});
-const {REACT_APP_GOOGLE_API_KEY} = process.env;
+require("dotenv").config({ path: __dirname + "/../../.env" });
+const { REACT_APP_GOOGLE_API_KEY } = process.env;
 //Geocoding Functionality
 Geocode.setApiKey(REACT_APP_GOOGLE_API_KEY);
 
-class RideRequestForm extends Component{
-    constructor(props){
+class RideRequestForm extends Component {
+    constructor(props) {
         super(props);
         this.state = {
             requestDate: '',
@@ -39,14 +39,14 @@ class RideRequestForm extends Component{
         }
     }
 
-    componentDidUpdate(prevProps, prevState){
-        if(document.activeElement.id === "location-address-input" && this.state.inInputBox === false){
-            this.setState({inInputBox: true})
+    componentDidUpdate(prevProps, prevState) {
+        if (document.activeElement.id === "location-address-input" && this.state.inInputBox === false) {
+            this.setState({ inInputBox: true })
         }
 
         //Check if focus was removed from input box
-        if(document.activeElement.id !== "location-address-input" && this.state.inInputBox === true){
-            this.setState({inInputBox: false});
+        if (document.activeElement.id !== "location-address-input" && this.state.inInputBox === true) {
+            this.setState({ inInputBox: false });
             this.submitAddressForGeocoding();
         }
     }
@@ -57,18 +57,18 @@ class RideRequestForm extends Component{
 
     correctTimeForDatabase = (str) => {
         if (str[1] === ":") {
-            return +str.slice(0,1)
+            return +str.slice(0, 1)
         } else {
-            return +str.slice(0,2)
+            return +str.slice(0, 2)
         }
     }
-    
+
     requestRide = async (e) => {
 
         e.preventDefault()
         await this.submitAddressForGeocoding();
         console.log("this.props.user is ", this.props.user);
-        let {requestDate, locationLatitude, locationLongitude, requestSeatNum, tierId, requestStartTime, requestEndTime, location, requesterCell } = this.state;
+        let { requestDate, locationLatitude, locationLongitude, requestSeatNum, tierId, requestStartTime, requestEndTime, location, requesterCell } = this.state;
         let { id } = this.props.user
         let correctedStartTime = this.correctTimeForDatabase(requestStartTime)
         let correctedEndTime = this.correctTimeForDatabase(requestEndTime)
@@ -95,7 +95,7 @@ class RideRequestForm extends Component{
     }
 
     onClose = (props) => {
-        if(this.state.showingInfoWindow){
+        if (this.state.showingInfoWindow) {
             this.setState({
                 showingInfoWindow: false,
                 activeMarker: null
@@ -123,52 +123,50 @@ class RideRequestForm extends Component{
 
     handleChange = e => {
         let { name, value } = e.target
-        this.setState ({ [name]: value })
+        this.setState({ [name]: value })
     }
     handleDropDownChange = (event) => {
-        let {name, value} = event;
+        let { name, value } = event;
         this.setState({
             [name]: value
         })
     }
 
-    render(){
-        console.log('this.props on RideRequestForm', this.props)
-        console.log("id in RiderRequestForm", this.props.user.id)
+    render() {
         let { requestDate, location, requestSeatNum, tierId, requestStartTime, requestEndTime, requesterCell } = this.state
         let { user } = this.props;
-        if(!user.loggedIn){
+        if (!user.loggedIn) {
             return <Redirect to="/" />
         }
 
         //Drop Down Selection Variables
         let tierIdOptions = [
-            {label:"Tier 1", value: 1, name: "tierId"},
-            {label:"Tier 2", value: 2, name: "tierId"},
-            {label:"Tier 3", value: 3, name: "tierId"},
-            {label:"Tier 4", value: 4, name: "tierId"}
+            { label: "Tier 1", value: 1, name: "tierId" },
+            { label: "Tier 2", value: 2, name: "tierId" },
+            { label: "Tier 3", value: 3, name: "tierId" },
+            { label: "Tier 4", value: 4, name: "tierId" }
         ];
         let requestSeatNumOptions = [
-            {label:"1 Seat", value: 1, name: "requestSeatNum"},
-            {label:"2 Seats", value: 2, name: "requestSeatNum"},
-            {label:"3 Seats", value: 3, name: "requestSeatNum"},
-            {label:"4 Seats", value: 4, name: "requestSeatNum"},
-            {label:"5 Seats", value: 5, name: "requestSeatNum"},
-            {label:"6 Seats", value: 6, name: "requestSeatNum"},
-            {label:"7 Seats", value: 7, name: "requestSeatNum"},
-            {label:"8 Seats", value: 8, name: "requestSeatNum"},
-            {label:"9 Seats", value: 9, name: "requestSeatNum"},
-            {label:"10 Seats", value: 10, name: "requestSeatNum"},
+            { label: "1 Seat", value: 1, name: "requestSeatNum" },
+            { label: "2 Seats", value: 2, name: "requestSeatNum" },
+            { label: "3 Seats", value: 3, name: "requestSeatNum" },
+            { label: "4 Seats", value: 4, name: "requestSeatNum" },
+            { label: "5 Seats", value: 5, name: "requestSeatNum" },
+            { label: "6 Seats", value: 6, name: "requestSeatNum" },
+            { label: "7 Seats", value: 7, name: "requestSeatNum" },
+            { label: "8 Seats", value: 8, name: "requestSeatNum" },
+            { label: "9 Seats", value: 9, name: "requestSeatNum" },
+            { label: "10 Seats", value: 10, name: "requestSeatNum" },
         ];
 
-        return(
-    
+        return (
+
             <div className="mainAppWindow">
 
-                <div className="mapRightCont" id="google-maps-container" style={{visibility: !this.props.navMenuOpen?"visible":"hidden"}}>
+                <div className="mapRightCont" id="google-maps-container" style={{ visibility: !this.props.navMenuOpen ? "visible" : "hidden" }}>
                     <CurrentLocation centerAroundCurrentLocation width={"100vw"} height={"40vh"} google={this.props.google} lat={this.state.locationLatitude} lng={this.state.locationLongitude}>
                         <Marker
-                            position={{lat:this.state.locationLatitude, lng:this.state.locationLongitude}}
+                            position={{ lat: this.state.locationLatitude, lng: this.state.locationLongitude }}
                             onClick={this.onMarkerClick}
                             name={'Your current location'}
                         />
@@ -180,27 +178,27 @@ class RideRequestForm extends Component{
                             <div>
                                 <h4>{this.state.selectedPlace.name}</h4>
                             </div>
-                            
+
                         </InfoWindow>
                     </CurrentLocation>
                 </div>
-                
+
                 <section className="mapPageBottomContainer">
-                    <div className="mapPageBottomContainerWhiteBox" style={{visibility: !this.props.navMenuOpen?"visible":"hidden"}}>
+                    <div className="mapPageBottomContainerWhiteBox" style={{ visibility: !this.props.navMenuOpen ? "visible" : "hidden" }}>
                         <h2 className="mapPageContainerHeader">REQUEST A RIDE</h2>
-                        <div className="ui labeled input labeledInputBox" style={{width: "100%"}}>
+                        <div className="ui labeled input labeledInputBox" style={{ width: "100%" }}>
                             <div className="ui label">Ride Date</div>
                             <input onChange={this.handleChange} type="date" name="requestDate" value={requestDate} placeholder="08/31/2019" />
                         </div>
-                        <div className="ui labeled input labeledInputBox" style={{width: "100%"}}>
+                        <div className="ui labeled input labeledInputBox" style={{ width: "100%" }}>
                             <div className="ui label">Location</div>
                             <input onChange={this.handleChange} id="location-address-input" type="text" name="location" value={location} placeholder="Lake Powell, UT." />
                         </div>
-                        <div className="ui labeled input labeledInputBox" style={{width: "100%"}}>
+                        <div className="ui labeled input labeledInputBox" style={{ width: "100%" }}>
                             <div className="ui label">Start Time</div>
                             <input type="time" step="360000" onChange={this.handleChange} name="requestStartTime" value={requestStartTime} placeholder="8:00" />
                         </div>
-                        <div className="ui labeled input labeledInputBox" style={{width: "100%"}}>
+                        <div className="ui labeled input labeledInputBox" style={{ width: "100%" }}>
                             <div className="ui label">End Time</div>
                             <input type="time" step="360000" onChange={this.handleChange} name="requestEndTime" value={requestEndTime} placeholder="11:00" />
                         </div>
@@ -208,14 +206,14 @@ class RideRequestForm extends Component{
                             <Select className="ui search dropdown dropdownBoxContainer" placeholder="Seats Requested" label="requestSeatNum" options={requestSeatNumOptions} onChange={this.handleDropDownChange}></Select>
                             <Select className="ui search dropdown dropdownBoxContainer" placeholder="Tier Desired" label="tierId" options={tierIdOptions} onChange={this.handleDropDownChange}></Select>
                         </div>
-                        <div className="ui labeled input labeledInputBox" style={{width: "100%"}}>
+                        <div className="ui labeled input labeledInputBox" style={{ width: "100%" }}>
                             <div className="ui label">Contact Number</div>
                             <input onChange={this.handleChange} id="location-address-input" name="requesterCell" value={requesterCell} placeholder="5005005000" />
                         </div>
                         <div className="labeledInputBox">
-                            <button className="ui inverted blue button" onClick={this.requestRide}>REQUEST RIDE</button> 
+                            <button className="ui inverted blue button" onClick={this.requestRide}>REQUEST RIDE</button>
                         </div>
-                        
+
                     </div>
                 </section>
             </div>
@@ -223,10 +221,10 @@ class RideRequestForm extends Component{
     };
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
     return state.user
-  }
+}
 
-  export default GoogleApiWrapper({
+export default GoogleApiWrapper({
     apiKey: REACT_APP_GOOGLE_API_KEY
-}) (connect(mapStateToProps, {createRequest})(withRouter(RideRequestForm)));
+})(connect(mapStateToProps, { createRequest })(withRouter(RideRequestForm)));

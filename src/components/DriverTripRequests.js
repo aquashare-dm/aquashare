@@ -33,7 +33,6 @@ class DriverTripRequests extends Component {
             <DriverTripRequest key={request.request_id} {...request} />
         ))
         return (
-
             <div className="mainAppWindow">
                 <section className="normalPageContainer">
                     <section className="normalPageWhiteBox">
