@@ -27,7 +27,6 @@ class RiderHistory extends Component {
             return <Redirect to="/" />
         }
 
-        console.log(this.props, "this.props")
         let { filteredRides } = this.props.rides
 
         return (

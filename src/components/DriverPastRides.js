@@ -4,12 +4,13 @@ import { Rating } from 'semantic-ui-react'
 import "./coreStyling.css";
 import "./dashboardStyling.css";
 import onClickOutside from 'react-onclickoutside';
+import axios from "axios"
 
 class DriverPastRides extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            rating: 0,
+            rating: this.props.rider_rating,
             maxRating: 5,
             selected: false
         }
@@ -29,6 +30,13 @@ class DriverPastRides extends Component {
             this.clickedRide();
         }
 
+    }
+    handleRate = (e, { rating, maxRating }) => {
+        this.setState({ rating, maxRating })
+        let riderId = this.props.rider_id
+        let rideId = this.props.ride_id
+        let data = axios.put('/api/rate-rider', { rating, rideId, riderId }).then(res => res.data)
+        this.setState({ rating: data })
     }
 
     buyRide = () => {
@@ -73,7 +81,7 @@ class DriverPastRides extends Component {
                             <div className="selectedRideParagraph" style={{ marginTop: "10%" }}>Please rate the trip </div>
                         </div>
                         <div className="selectedRideRowContainer" style={{ marginBottom: "5%" }}>
-                            <Rating icon='star' maxRating={5} onRate={this.handleRate} />
+                            <Rating defaultRating={this.state.rating} icon='star' maxRating={5} onRate={this.handleRate} />
                         </div>
                     </div>
                 </section>

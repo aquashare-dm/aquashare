@@ -84,4 +84,4 @@ class PastRides extends Component {
     }
 }
 
-export default connect(null, null)(PastRides);
+export default connect(null, null)(onClickOutside(PastRides));
