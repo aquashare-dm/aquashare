@@ -30,7 +30,17 @@ module.exports = {
     getAvailableRequests: async function(req, res) {
         console.log('Hit the getAvailableRides in controller')
         const db = req.app.get("db");
-        let allRequests = await db.get_available_requests();
+        let { driverId } = req.params
+        let allRequests = await db.get_available_requests(+driverId);
+        console.log(allRequests, 'allRequests')
         res.send(allRequests)
+    },
+
+    requestAccepted: async function (req, res) {
+        console.log('Hit the acceptedRides function in controller')
+        let { requestId, driverId } = req.body
+        const db = req.app.get("db")
+        let requests = await db.request_accepted(requestId, driverId);
+        res.status(200).send(requests)
     }
 }

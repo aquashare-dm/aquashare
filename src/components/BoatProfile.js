@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
 import { editBoat, getBoatInfo } from '../redux/boatReducer'
 import UploadImage from './UploadImage'
+import "./coreStyling.css";
+import "./dashboardStyling.css";
 
 class BoatProfile extends Component {
     constructor(props) {
@@ -121,19 +123,54 @@ class BoatProfile extends Component {
                         </div>
                     </div>
                 ) : (
-                        <div>
-                            <h3>Boat Name: {boat.boatName}</h3>
-                            <h3>Description: {boat.boatDescription}</h3>
-                            <h1>License Number: {boat.boatLicense}</h1>
-                            <h3>Boat Registration Number:{boat.boatRegistration} </h3>
-                            <h3>Boat Make: {boat.boatMake}</h3>
-                            <h3>Boat Model: {boat.boatModel}</h3>
-                            <h3>Number of Seats: {boat.boatSeatNumber}</h3>
-                            <img src={`${boat.boatImageOne}`} />
-                            <div>
-                                <button onClick={this.flipEdit}>Edit</button>
+
+                        <div className="profilePageContainer">
+                            <h2 className="profilePageH2">Boat Information</h2>
+                            <img src={`${boat.boatImageOne}`} className="profilePageProfPic" />
+                            <h2 className="profilePageH2">{boat.boatName}</h2>
+                            <div className="ui divided selection list" style={{ width: "75%" }}>
+                                <div className="profilePageContentCont">
+                                    <a className="item" style={{ marginBottom: "1vh" }}>
+                                        <div className="large ui blue horizontal label">Boat Description</div>
+                                        {boat.boatDescription}
+                                    </a>
+                                    <a className="item" style={{ marginBottom: "1vh" }}>
+                                        <div className="large ui blue horizontal label">Boat License</div>
+                                        {boat.boatLicense}
+                                    </a>
+                                    <a className="item" style={{ marginBottom: "1vh" }}>
+                                        <div className="large ui blue horizontal label">Boat Registration:</div>
+                                        {boat.boatRegistration}
+                                    </a>
+                                    <a className="item" style={{ marginBottom: "1vh" }}>
+                                        <div className="large ui blue horizontal label">Make:</div>
+                                        {boat.boatMake}
+                                    </a>
+                                    <a className="item" style={{ marginBottom: "1vh" }}>
+                                        <div className="large ui blue horizontal label">Model:</div>
+                                        {boat.boatModel}
+                                    </a>
+                                    <a className="item" style={{ marginBottom: "1vh" }}>
+                                        <div className="large ui blue horizontal label">Number of Seats:</div>
+                                        {boat.boatSeatNumber}
+                                    </a>
+                                </div>
+                                <button className="ui inverted blue button" onClick={this.flipEdit} style={{ marginTop: "5%" }}>EDIT BOAT</button>
                             </div>
                         </div>
+                        // <div>
+                        //     <h3>Boat Name: {boat.boatName}</h3>
+                        //     <h3>Description: {boat.boatDescription}</h3>
+                        //     <h1>License Number: {boat.boatLicense}</h1>
+                        //     <h3>Boat Registration Number:{boat.boatRegistration} </h3>
+                        //     <h3>Boat Make: {boat.boatMake}</h3>
+                        //     <h3>Boat Model: {boat.boatModel}</h3>
+                        //     <h3>Number of Seats: {boat.boatSeatNumber}</h3>
+                        //     <img src={`${boat.boatImageOne}`} />
+                        //     <div>
+                        //         <button onClick={this.flipEdit}>Edit</button>
+                        //     </div>
+                        // </div>
                     )}
 
             </div>

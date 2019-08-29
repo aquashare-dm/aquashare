@@ -4,6 +4,8 @@ import { Redirect, withRouter } from "react-router-dom";
 import { editDriverProfile } from '../redux/userReducer'
 import UploadImage from './UploadImage'
 import BoatProfile from './BoatProfile'
+import "./coreStyling.css";
+import "./dashboardStyling.css";
 
 class DriverProfile extends Component {
     constructor(props) {
@@ -52,57 +54,69 @@ class DriverProfile extends Component {
         //
         let { newDriverImage, newDriverUsername, newDriverFirst, newDriverLast, newDriverEmail, newDriverLicense } = this.state
         return (
-            <div>
-                {this.state.editing ? (
-                    <div>
-                        <h3>Upload New Image</h3>
-                        <div>
-                            <UploadImage action={this.handleUploadedImage} />
-                        </div>
-                        <input
-                            value={newDriverFirst}
-                            onChange={this.handleChange}
-                            name="newDriverFirst"
-                        />
-                        <input
-                            value={newDriverLast}
-                            onChange={this.handleChange}
-                            name="newDriverLast"
-                        />
-                        <input
-                            value={newDriverEmail}
-                            onChange={this.handleChange}
-                            name="newDriverEmail"
-                        />
-                        <input
-                            value={newDriverLicense}
-                            onChange={this.handleChange}
-                            name="newDriverLicense"
-                        />
-                        <div>
-                            <button onClick={() => {
-                                this.handleFormSubmit()
-                                this.flipEdit()
-                            }}>Save</button>
-                            <button onClick={this.flipEdit}>Cancel</button>
-                        </div>
-                    </div>
-                ) : (
-                        <div>
-                            <img src={`${this.props.user.driverImage}`} />
-                            <h3>{this.props.user.driverRating}</h3>
-                            <h1>Username: {this.props.user.driverUsername}</h1>
-                            <h3>First Name: {this.props.user.driverFirst} </h3>
-                            <h3>Last Name:{this.props.user.DriverLast}</h3>
-                            <h3>Email: {this.props.user.driverEmail}</h3>
-                            <h3>Boat License Number: {this.props.user.driverLicense}</h3>
+            <div className="mainAppWindow">
+                <section className="normalPageContainer">
+                    <section className="profilePageWhiteBox" style={{ height: "90%" }}>
+                        {this.state.editing ? (
                             <div>
-                                <button onClick={this.flipEdit}>Edit</button>
+                                <h3>Upload New Image</h3>
+                                <div>
+                                    <UploadImage action={this.handleUploadedImage} />
+                                </div>
+                                <input
+                                    value={newDriverFirst}
+                                    onChange={this.handleChange}
+                                    name="newDriverFirst"
+                                />
+                                <input
+                                    value={newDriverLast}
+                                    onChange={this.handleChange}
+                                    name="newDriverLast"
+                                />
+                                <input
+                                    value={newDriverEmail}
+                                    onChange={this.handleChange}
+                                    name="newDriverEmail"
+                                />
+                                <input
+                                    value={newDriverLicense}
+                                    onChange={this.handleChange}
+                                    name="newDriverLicense"
+                                />
+                                <div>
+                                    <button onClick={() => {
+                                        this.handleFormSubmit()
+                                        this.flipEdit()
+                                    }}>Save</button>
+                                    <button onClick={this.flipEdit}>Cancel</button>
+                                </div>
                             </div>
-                        </div>
-                    )}
-                <BoatProfile />
-
+                        ) : (
+                                <div className="profilePageContainer">
+                                    <img src={`${this.props.user.driverImage}`} className="profilePageProfPic" />
+                                    <h2 className="profilePageH2">{this.props.user.driverFirst} {this.props.user.driverLast}</h2>
+                                    <div className="ui divided selection list" style={{ width: "75%" }}>
+                                        <div className="profilePageContentCont">
+                                            <a className="item" style={{ marginBottom: "1vh" }}>
+                                                <div className="large ui blue horizontal label">Username</div>
+                                                {this.props.user.driverUsername}
+                                            </a>
+                                            <a className="item" style={{ marginBottom: "1vh" }}>
+                                                <div className="large ui blue horizontal label">Email</div>
+                                                {this.props.user.driverEmail}
+                                            </a>
+                                            <a className="item" style={{ marginBottom: "1vh" }}>
+                                                <div className="large ui blue horizontal label">License Number:</div>
+                                                {this.props.user.driverLicense}
+                                            </a>
+                                        </div>
+                                        <button className="ui inverted blue button" onClick={this.flipEdit} style={{ marginTop: "5%", marginBottom: "20%" }}>EDIT PROFILE</button>
+                                    </div>
+                                </div>
+                            )}
+                        <BoatProfile />
+                    </section>
+                </section>
             </div>
         );
     };
@@ -113,3 +127,4 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { editDriverProfile })(withRouter(DriverProfile));
+

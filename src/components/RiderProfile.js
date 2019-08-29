@@ -59,57 +59,57 @@ class RiderProfile extends Component {
         return (
             <div className="mainAppWindow">
                 <section className="normalPageContainer">
-                   <section className="profilePageWhiteBox" style={{height: "70%"}}>
-                    {this.state.editing ? (
-                        <div>
-                            <h1>Upload New Image</h1>
+                    <section className="profilePageWhiteBox" style={{ height: "70%" }}>
+                        {this.state.editing ? (
                             <div>
-                                <UploadImage action={this.props.handleUploadedImage} handleImage={this.handleImage} newImageUrl={this.state.newRiderImage} />
-                            </div>
-                            <input
-                                value={newRiderFirst}
-                                onChange={this.handleChange}
-                                name="newRiderFirst"
-                            />
-                            <input
-                                value={newRiderLast}
-                                onChange={this.handleChange}
-                                name="newRiderLast"
-                            />
-                            <input
-                                value={newRiderEmail}
-                                onChange={this.handleChange}
-                                name="newRiderEmail"
-                            />
-                            <div>
-                                <button onClick={() => {
-                                    this.handleFormSubmit()
-                                    this.flipEdit()
-                                }}>Save</button>
-                                <button onClick={this.flipEdit}>Cancel</button>
-                            </div>
-                        </div>
-                    ) : (
-                            <div className="profilePageContainer">
-                                <img src={`${this.props.user.riderImage}`} className="profilePageProfPic" />
-                                <h2 className="profilePageH2">{this.props.user.riderFirst} {this.props.user.riderLast}</h2>
-                                <div className="ui divided selection list" style={{width: "75%"}}>
-                                    <div className="profilePageContentCont">
-                                        <a className="item" style={{marginBottom: "1vh"}}>
-                                            <div className="large ui blue horizontal label">Username</div>
-                                            {this.props.user.riderUsername}
-                                        </a>
-                                        <a className="item" style={{marginBottom: "1vh"}}>
-                                            <div className="large ui blue horizontal label">Email</div>
-                                            {this.props.user.riderEmail}
-                                        </a>
-                                    </div>
-                                    <button className="ui inverted blue button" onClick={this.flipEdit} style={{marginTop:"5%"}}>EDIT PROFILE</button> 
+                                <h1>Upload New Image</h1>
+                                <div>
+                                    <UploadImage action={this.props.handleUploadedImage} handleImage={this.handleImage} newImageUrl={this.state.newRiderImage} />
+                                </div>
+                                <input
+                                    value={newRiderFirst}
+                                    onChange={this.handleChange}
+                                    name="newRiderFirst"
+                                />
+                                <input
+                                    value={newRiderLast}
+                                    onChange={this.handleChange}
+                                    name="newRiderLast"
+                                />
+                                <input
+                                    value={newRiderEmail}
+                                    onChange={this.handleChange}
+                                    name="newRiderEmail"
+                                />
+                                <div>
+                                    <button onClick={() => {
+                                        this.handleFormSubmit()
+                                        this.flipEdit()
+                                    }}>Save</button>
+                                    <button onClick={this.flipEdit}>Cancel</button>
                                 </div>
                             </div>
-                        )} 
-                   </section>
-                </section>        
+                        ) : (
+                                <div className="profilePageContainer">
+                                    <img src={`${this.props.user.riderImage}`} className="profilePageProfPic" />
+                                    <h2 className="profilePageH2">{this.props.user.riderFirst} {this.props.user.riderLast}</h2>
+                                    <div className="ui divided selection list" style={{ width: "75%" }}>
+                                        <div className="profilePageContentCont">
+                                            <a className="item" style={{ marginBottom: "1vh" }}>
+                                                <div className="large ui blue horizontal label">Username</div>
+                                                {this.props.user.riderUsername}
+                                            </a>
+                                            <a className="item" style={{ marginBottom: "1vh" }}>
+                                                <div className="large ui blue horizontal label">Email</div>
+                                                {this.props.user.riderEmail}
+                                            </a>
+                                        </div>
+                                        <button className="ui inverted blue button" onClick={this.flipEdit} style={{ marginTop: "5%" }}>EDIT PROFILE</button>
+                                    </div>
+                                </div>
+                            )}
+                    </section>
+                </section>
             </div>
         );
     };

@@ -4,6 +4,10 @@ import { driverSignup } from "../redux/userReducer.js";
 import { Redirect, Link } from "react-router-dom";
 import "./coreStyling.css";
 import "./mainEntryAuth.css";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+
 class DriverSignup extends Component {
     constructor() {
         super();
@@ -30,9 +34,21 @@ class DriverSignup extends Component {
             this.props.driverSignup(username, password);
         } else {
             //this.signUpToastError(numOfEmptyBoxes, inputBoxesEmpty)
-            alert("Missing inputs", numOfEmptyBoxes, inputBoxesEmpty);
+            // alert("Missing inputs", numOfEmptyBoxes, inputBoxesEmpty);
+            this.notify()
         }
     }
+    notify = () => {
+        toast.error("Missing inputs", {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true
+        })
+    }
+
     // signUpToastError = (numOfEmptyBoxes, inputBoxNames) => {
     //     console.log("Empty boxes are ", numOfEmptyBoxes);
     //     if(numOfEmptyBoxes === 1){
