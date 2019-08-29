@@ -65,7 +65,6 @@ app.post("/api/driver-login", driverController.login);
 app.post("/api/driver-signup", driverController.signup);
 app.put("/api/driver-register", driverController.driverRegister);
 app.put('/api/rate-rider', driverController.rateRider);
-app.get('/api/rider-ratings', driverController.getRiderRatings);
 app.put('/api/edit-driver', driverController.editDriverProfile);
 
 //Rides Endpoints

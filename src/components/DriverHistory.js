@@ -15,10 +15,6 @@ class DriverHistory extends Component{
         this.props.history.goBack()
     }
 
-    // goToSearchPage = () => {
-    //     this.props.history.push('/driver-dashboard/create-a-ride')
-    // }
-
     render(){
         let { user } = this.props.user;
         if(!user.loggedIn){

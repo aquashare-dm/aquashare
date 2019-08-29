@@ -7,19 +7,9 @@ class DriverPastRides extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            rating: 0,
+            rating: this.props.rider_rating,
             maxRating: 5
         }
-    }
-
-    componentDidMount(props) {
-        console.log('Component Mounting!!!!!!!!!!!')
-        let riderId = this.props.rider_id
-        let rideId = this.props.ride_id
-        let data = axios.get('/api/rider-ratings', {rideId, riderId}).then(res => res.data)
-        console.log('data in DriverPastRides', data)
-        this.setState({rating: data})
-        console.log('this.state.rating', this.state.rating)
     }
     
     handleRate = (e, { rating, maxRating }) => {
@@ -45,7 +35,7 @@ class DriverPastRides extends Component {
             <p>Tier: {tier_id}</p>
             <p>Please rate the trip.</p>
             <div>
-                <Rating value={this.state.rating} icon='star' maxRating={5} onRate={this.handleRate} /> 
+                <Rating defaultRating={this.state.rating} icon='star' maxRating={5} onRate={this.handleRate} /> 
             </div>
         </div>
         );
