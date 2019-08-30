@@ -67,7 +67,7 @@ class RiderProfile extends Component {
                 <section className="normalPageContainer">
                     {this.state.editing ? (
                         <div style={{visibility: !this.props.navMenuOpen?"visible":"hidden", display: "flex", justifyContent: "center", alignItems: "center"}}>
-                            <section className="profilePageWhiteBox" style={{ height: "60%", width: "90vw" }}>
+                            <section className="profilePageWhiteBox" style={{ height: "80%", width: "90vw" }}>
                                 <h2 className="mapPageContainerHeader">EDIT PROFILE</h2>
                                 <div className="profilePageContainer">
                                     <div style={{marginTop: "17vh"}}>
@@ -96,7 +96,7 @@ class RiderProfile extends Component {
                             <section className="profilePageWhiteBox" style={{ height: "85%", width: "90vw" }}>
                                 <h2 className="mapPageContainerHeader">PROFILE INFORMATION</h2>
                                 <div className="profilePageContainer">
-                                    <img src={`${this.props.user.riderImage}`} className="profilePageProfPic" style={{height: "20vh", marginTop: "5vh"}}/>
+                                    <img src={`${this.props.user.riderImage}`} className="profilePageProfPic" style={{height: "28vh", marginTop: "5vh"}}/>
                                     <h2 className="profilePageH2">{this.props.user.riderFirst} {this.props.user.riderLast}</h2>
                                     <div className="ui divided selection list" style={{ width: "75%" }}>
                                         <div className="profilePageContentCont">
