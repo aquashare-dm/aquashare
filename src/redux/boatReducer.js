@@ -27,13 +27,13 @@ export const createBoat = (boatName, tierId, boatDescription, boatLicense, boatR
     return { type: CREATE_BOAT, payload: data };
 };
 
-export const editBoat = (driverId, newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne) => {
-    let data = axios.put("/api/edit-boat", { driverId, newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne }).then(res => res.data)
+export const editBoat = (driverId, newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne, newTubeSeatNumber, newTierId) => {
+    let data = axios.put("/api/edit-boat", { driverId, newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne, newTubeSeatNumber, newTierId }).then(res => res.data)
     return { type: EDIT_BOAT, payload: data };
 };
 
 export const getBoatInfo = (driverId) => {
-    let data = axios.get('/api/boat', driverId).then(res => res.data)
+    let data = axios.post(`/api/boat/${driverId}`).then(res => res.data)
     return { type: GET_BOAT, payload: data }
 }
 

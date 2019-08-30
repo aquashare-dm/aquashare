@@ -35,7 +35,9 @@ module.exports = {
             newBoatMake,
             newBoatModel,
             newBoatSeatNumber,
-            newBoatImageOne
+            newBoatImageOne,
+            newTubeSeatNumber,
+            newTierId
         } = req.body;
         const db = req.app.get("db");
         console.log(req.body)
@@ -48,9 +50,10 @@ module.exports = {
             newBoatMake,
             newBoatModel,
             +newBoatSeatNumber,
-            newBoatImageOne
+            newBoatImageOne,
+            +newTubeSeatNumber,
+            +newTierId
         ])
-        console.log('boat', boat)
         req.session.boat = {
             boatId: boat.boat_id,
             boatName: boat.boat_name,
@@ -60,16 +63,19 @@ module.exports = {
             boatMake: boat.boat_make,
             boatModel: boat.boat_model,
             boatSeatNumber: boat.boat_seat_number,
+            tubeSeatNumber: boat.boat_tube_seats,
+            tierId: boat.tier_id,
             boatImageOne: boat.boat_image_one
         }
-        console.log(req.session.boat)
         res.status(200).send(req.session.boat);
     },
 
-    getBoat: async (req, res) => {
-        let { driverId } = req.body
+    getBoatByDriverId: async (req, res) => {
+        let { driverId } = req.params
+        console.log("req.body", req.params)
         const db = req.app.get('db')
         let [boat] = await db.get_boat(driverId)
+        console.log("boat returned from sql", boat)
 
         req.session.boat = {
             boatId: boat.boat_id,
@@ -80,6 +86,8 @@ module.exports = {
             boatMake: boat.boat_make,
             boatModel: boat.boat_model,
             boatSeatNumber: boat.boat_seat_number,
+            tubeSeatNumber: boat.boat_tube_seats,
+            tierId: boat.tier_id,
             boatImageOne: boat.boat_image_one
         }
 

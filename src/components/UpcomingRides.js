@@ -23,27 +23,12 @@ class UpcomingRides extends Component{
             return <Redirect to="/" />
         }
        
-        console.log(this.props, "this.props")
         let {filteredRides} = this.props.rides
-        
-        let ridesDisplay = filteredRides.filter( function (ride) {
-            if (JSON.stringify(ride.ride_end_time).length === 1) {
-                let currentFlag = Date.parse(`${ride.ride_date} 00:0${JSON.stringify(ride.ride_end_time)}:00:00`) - Date.now()
-                return currentFlag >= 0
-            } else {
-                let currentFlag = Date.parse(`${ride.ride_date} 00:${JSON.stringify(ride.ride_end_time)}:00:00`) - Date.now()
-                return currentFlag >= 0
-            }})
-            .map( ride => (
-                <UpcomingRidesById key={ride.ride_id} {...ride} />
-            ))
 
         return(
-
             <div className="mainAppWindow">
                 <section className="normalPageContainer">
                    <section className="normalPageWhiteBox">
-                            {/* <button onClick={this.goBack}>{`<Back`}</button> */}
                             <h2 className="mapPageContainerHeader">UPCOMING RIDES</h2>
 
                             <div className="availableRideContainer" style={{backgroundColor: "white", height: "5vh"}}>
@@ -67,11 +52,7 @@ class UpcomingRides extends Component{
                                     ))
                             }</div>
                    </section>
-                    
-                
                 </section>
-
-                
             </div>
         );
     };

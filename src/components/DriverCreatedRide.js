@@ -52,8 +52,8 @@ class DriverPastRides extends Component {
                             <div className="selectedRideParagraph">Seats: {ride_open_seats}</div>
                         </div>
                         <div className="selectedRideRowContainer" >
-                            <div className="selectedRideParagraph" >Start Time: {ride_start_time}</div>
-                            <div className="selectedRideParagraph">End Time: {ride_end_time}</div>
+                            <div className="selectedRideParagraph">{`Start Time: ${ride_start_time}:00`}</div>
+                            <div className="selectedRideParagraph">{`End Time: ${ride_end_time}:00`}</div>
                         </div>
                     </div>
                 </section>

@@ -91,8 +91,8 @@ class SearchedRides extends Component {
                         </div>
                         <div className="selectedRideRowContainer" style={{ marginTop: "8%" }}>
                             <div className="selectedRideParagraph">Tier: {tier_id}</div>
-                            <div className="selectedRideParagraph">Start Time: {ride_start_time}</div>
-                            <div className="selectedRideParagraph">End Time: {ride_end_time}</div>
+                            <div className="selectedRideParagraph">{`Start Time: ${ride_start_time}:00`}</div>
+                            <div className="selectedRideParagraph">{`End Time: ${ride_end_time}:00`}</div>
                         </div>
                         <div className="selectedRideRowContainer" style={{ marginBottom: "5%" }}>
                             <div className="selectedRideParagraph">Location: {ride_location}</div>

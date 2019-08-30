@@ -26,18 +26,6 @@ class DriverUpcomingRides extends Component {
         console.log(this.props, "this.props")
         let { filteredRides } = this.props.rides
 
-        let ridesDisplay = filteredRides.filter(function (ride) {
-            if (JSON.stringify(ride.ride_end_time).length === 1) {
-                let currentFlag = Date.parse(`${ride.ride_date} 00:0${JSON.stringify(ride.ride_end_time)}:00:00`) - Date.now()
-                return currentFlag >= 0
-            } else {
-                let currentFlag = Date.parse(`${ride.ride_date} 00:${JSON.stringify(ride.ride_end_time)}:00:00`) - Date.now()
-                return currentFlag >= 0
-            }
-        })
-            .map(ride => (
-                <DriverUpcomingRidesById key={ride.ride_id} {...ride} />
-            ))
         return (
             <div className="mainAppWindow">
                 <section className="normalPageContainer">
@@ -53,10 +41,10 @@ class DriverUpcomingRides extends Component {
                             filteredRides.filter(function (ride) {
                                 if (JSON.stringify(ride.ride_end_time).length === 1) {
                                     let currentFlag = Date.parse(`${ride.ride_date} 00:0${JSON.stringify(ride.ride_end_time)}:00:00`) - Date.now()
-                                    return currentFlag <= 0
+                                    return currentFlag >= 0
                                 } else {
                                     let currentFlag = Date.parse(`${ride.ride_date} 00:${JSON.stringify(ride.ride_end_time)}:00:00`) - Date.now()
-                                    return currentFlag <= 0
+                                    return currentFlag >= 0
                                 }
                             })
                                 .map(ride => (

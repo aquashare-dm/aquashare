@@ -121,6 +121,7 @@ module.exports = {
         const db = req.app.get('db');
         let { rating, rideId, riderId } = req.body
         let result = await db.rate_rider([rating, rideId, riderId])
+        console.log('Driver rating result', result)
         res.status(200).send(result)
     },
 }

@@ -108,5 +108,13 @@ module.exports = {
         }
         console.log(req.session.user)
         res.send(req.session.user);
-    }
+    },
+
+    async rateRider(req, res) {
+        const db = req.app.get('db');
+        let { rating, rideId, driverId } = req.body
+        let result = await db.rate_driver([rating, rideId, driverId])
+        console.log('Rider rating result', result)
+        res.status(200).send(result)
+    },
 }

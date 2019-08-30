@@ -132,9 +132,7 @@ class RideSearch extends Component{
             return <Redirect to="/" />
         }
         return(
-        
-            <div className="mainAppWindow">
-
+            <div className="mainAppWindow"  style={{ height: "100vh" }}>
                 <div className="mapRightCont" id="google-maps-container" style={{visibility: !this.props.navMenuOpen?"visible":"hidden"}}>
                     <CurrentLocation centerAroundCurrentLocation width={"100vw"} height={"40vh"} google={this.props.google} lat={this.state.locationLatitude} lng={this.state.locationLongitude}>
                         <Marker

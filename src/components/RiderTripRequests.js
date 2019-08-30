@@ -67,7 +67,7 @@ class RiderTripRequests extends Component {
                                 ))
                         }</div>
                         <div>
-                            <button className="ui inverted blue button" onClick={this.goToRideRequestPage}>REQUEST A RIDE</button> 
+                            <button className="ui inverted blue button" onClick={this.goToRideRequestPage}>REQUEST ANOTHER RIDE</button> 
                         </div>
                     </section>
                 </section>
