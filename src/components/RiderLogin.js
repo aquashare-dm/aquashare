@@ -45,17 +45,17 @@ class RiderLogin extends Component {
                     <div className="startPageLogoContainer" style={{ marginBottom: "15%" }}>
                         <h1 className="logoH1">AQUASHARE</h1>
                     </div>
-                    <h2 className="startPagesH2" style={{ marginBottom: "10%" }}>RIDER LOGIN</h2>
+                    <h2 id="rider-login-h2-title" className="startPagesH2" style={{ marginBottom: "10%" }}>RIDER LOGIN</h2>
                     <div className="doubleInputCont" style={{ height: "20%" }}>
                         <div className="fluid ui icon input" style={{ width: "100%" }}>
-                            <input placeholder="Username" type="text" value={username} name="username" onChange={this.handleChange} />
+                            <input id="rider-login-input-one" placeholder="Username" type="text" value={username} name="username" onChange={this.handleChange} />
                             <i className="fas fa-user icon" style={{ color: "#337AB7" }}></i>
                         </div>
                         <div className="ui fluid icon input" style={{ width: "100%" }}>
-                            <input placeholder="Password" type="password" value={password} name="password" onChange={this.handleChange} />
+                            <input id="rider-login-input-two" placeholder="Password" type="password" value={password} name="password" onChange={this.handleChange} />
                             <i className="fas fa-unlock icon" style={{ color: "#337AB7" }}></i>
                         </div>
-                        <button className="ui fluid inverted blue button" onClick={this.loginRider}>
+                        <button id="rider-login-button" className="ui fluid inverted blue button"  onClick={this.loginRider}>
                             <p className="buttonInsideText">LOGIN</p>
                         </button>
                     </div>

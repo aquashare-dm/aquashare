@@ -17,10 +17,10 @@ class StartPage extends Component {
                         </div>
                         <h2 className="startPagesH2" style={{ marginBottom: "10%" }}>WELCOME</h2>
                         <div className="doubleInputCont">
-                            <Link to="/login" className="fluid ui inverted blue button">
+                            <Link to="/login" data-cy-btn className="fluid ui inverted blue button">
                                 <p className="buttonInsideText">LOGIN</p>
                             </Link>
-                            <Link to="/signup" className="fluid ui inverted blue button">
+                            <Link to="/signup" data-cy-btn className="fluid ui inverted blue button">
                                 <p className="buttonInsideText">SIGNUP</p>
                             </Link>
                         </div>
