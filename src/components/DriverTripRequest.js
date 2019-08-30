@@ -60,8 +60,8 @@ class DriverTripRequest extends Component {
                             <div className="selectedRideParagraph">Seats: {request_seat_number}</div>
                         </div>
                         <div className="selectedRideRowContainer" >
-                            <div className="selectedRideParagraph" >Start Time: {request_start_time}</div>
-                            <div className="selectedRideParagraph">End Time: {request_end_time}</div>
+                            <div className="selectedRideParagraph">{`Start Time: ${request_start_time}:00`}</div>
+                            <div className="selectedRideParagraph">{`End Time: ${request_end_time}:00`}</div>
                         </div>
 
                         <SMSForm

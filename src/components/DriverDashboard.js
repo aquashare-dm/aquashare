@@ -13,7 +13,7 @@ import DriverHistory from "./DriverHistory.js";
 import DriverUpcomingRides from "./DriverUpcomingRides.js";
 import DriverRideCreationForm from "./DriverRideCreationForm.js";
 import DriverCreatedRides from "./DriverCreatedRides.js";
-
+import BoatProfile from './BoatProfile'
 
 class DriverDashboard extends Component {
     constructor(props) {
@@ -161,6 +161,7 @@ class DriverDashboard extends Component {
                     <Route path="/driver-dashboard/ride-requests" component={DriverTripRequests} />
                     <Route path="/driver-dashboard/ride-history" component={DriverHistory} />
                     <Route path="/driver-dashboard/driver-profile" component={DriverProfile} />
+                    <Route path="/driver-dashboard/boat-profile" component={BoatProfile} />
                 </Switch>
             </section>
         );

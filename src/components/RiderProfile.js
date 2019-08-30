@@ -65,15 +65,15 @@ class RiderProfile extends Component {
         return (
             <div className="mainAppWindow">
                 <section className="normalPageContainer">
-                    {this.state.editing ? (
-                        <div style={{visibility: !this.props.navMenuOpen?"visible":"hidden", display: "flex", justifyContent: "center", alignItems: "center"}}>
-                            <section className="profilePageWhiteBox" style={{ height: "60%", width: "90vw" }}>
+                    <section className="profilePageWhiteBox" style={{height: "80%"}}>
+                        {this.state.editing ? (
+                            <div style={{visibility: !this.props.navMenuOpen?"visible":"hidden"}}>
                                 <h2 className="mapPageContainerHeader">EDIT PROFILE</h2>
                                 <div className="profilePageContainer">
-                                    <div style={{marginTop: "17vh"}}>
+                                    <div>
                                         <UploadImage action={this.props.handleUploadedImage} handleImage={this.handleImage} newImageUrl={this.state.newRiderImage} />
                                     </div>
-                                    <div className="ui labeled input labeledInputBox" style={{width: "100%", marginTop: "20%"}}>
+                                    <div className="ui labeled input labeledInputBox" style={{width: "100%", marginTop: "10%"}}>
                                         <div className="ui blue label">Email</div>
                                         <input onChange={this.handleChange} type="text" name="newRiderEmail" value={this.state.newRiderEmail} placeholder="Email"/>
                                     </div>
@@ -89,14 +89,12 @@ class RiderProfile extends Component {
                                         <button className="ui inverted blue button" style={{marginTop:"5%"}} onClick={this.onSubmitClick}>SUBMIT</button> 
                                     </div>
                                 </div>
-                            </section>
-                        </div>
-                    ) : (
-                        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                            <section className="profilePageWhiteBox" style={{ height: "85%", width: "90vw" }}>
+                            </div>
+                        ) : (
+                            <div>
                                 <h2 className="mapPageContainerHeader">PROFILE INFORMATION</h2>
                                 <div className="profilePageContainer">
-                                    <img src={`${this.props.user.riderImage}`} className="profilePageProfPic" style={{height: "20vh", marginTop: "5vh"}}/>
+                                    <img src={`${this.props.user.riderImage}`} className="profilePageProfPic" style={{height: "20vh"}}/>
                                     <h2 className="profilePageH2">{this.props.user.riderFirst} {this.props.user.riderLast}</h2>
                                     <div className="ui divided selection list" style={{ width: "75%" }}>
                                         <div className="profilePageContentCont">
@@ -112,9 +110,9 @@ class RiderProfile extends Component {
                                         <button className="ui inverted blue button" onClick={this.flipEdit} style={{ marginTop: "5%" }}>EDIT PROFILE</button>
                                     </div>
                                 </div>
-                            </section>
-                        </div>
-                    )}
+                            </div>
+                        )}
+                    </section>
                 </section>
             </div>
         );

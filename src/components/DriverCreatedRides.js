@@ -15,25 +15,10 @@ class DriverCreatedRides extends Component {
         this.props.history.goBack()
     }
 
-    // goToSearchPage = () => {
-    //     this.props.history.push('/driver-dashboard/create-a-ride')
-    // }
-
     render() {
         let { filteredRides } = this.props.rides
+        console.log("user on DriverCreatedRides", this.props.user)
 
-        let ridesDisplay = filteredRides.filter(function (ride) {
-            if (JSON.stringify(ride.ride_end_time).length === 1) {
-                let currentFlag = Date.parse(`${ride.ride_date} 00:0${JSON.stringify(ride.ride_end_time)}:00:00`) - Date.now()
-                return currentFlag >= 0
-            } else {
-                let currentFlag = Date.parse(`${ride.ride_date} 00:${JSON.stringify(ride.ride_end_time)}:00:00`) - Date.now()
-                return currentFlag >= 0
-            }
-        })
-            .map(ride => (
-                <DriverCreatedRide key={ride.ride_id} {...ride} />
-            ))
         return (
             <div className="mainAppWindow">
                 <section className="normalPageContainer">
@@ -52,10 +37,10 @@ class DriverCreatedRides extends Component {
                                 filteredRides.filter(function (ride) {
                                     if (JSON.stringify(ride.ride_end_time).length === 1) {
                                         let currentFlag = Date.parse(`${ride.ride_date} 00:0${JSON.stringify(ride.ride_end_time)}:00:00`) - Date.now()
-                                        return currentFlag <= 0
+                                        return currentFlag >= 0
                                     } else {
                                         let currentFlag = Date.parse(`${ride.ride_date} 00:${JSON.stringify(ride.ride_end_time)}:00:00`) - Date.now()
-                                        return currentFlag <= 0
+                                        return currentFlag >= 0
                                     }
                                 })
                                     .map(ride => (

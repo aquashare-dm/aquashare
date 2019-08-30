@@ -58,6 +58,7 @@ app.post("/api/rider-login", riderController.login);
 app.post("/api/rider-signup", riderController.signup);
 app.delete("/api/logout", riderController.logout);
 app.put("/api/rider-register", riderController.riderRegister);
+app.put('/api/rate-driver', riderController.rateRider);
 app.put('/api/edit-rider', riderController.editRiderProfile);
 
 //Driver Endpoints
@@ -70,12 +71,13 @@ app.put('/api/edit-driver', driverController.editDriverProfile);
 //Rides Endpoints
 app.post("/api/get-rides", ridesController.getRides);
 app.get("/api/get-rides-by-id/:userId", ridesController.getRidesById);
-app.get("/api/get-rides-by-driver-id/:driverId", ridesController.getRidesByDriverId);
+app.get("/api/get-rides-by-driver-id/:userId", ridesController.getRidesByDriverId);
 app.get("/api/get-confirmed-rides-by-driver-id/:driverId", ridesController.getConfirmedRidesByDriverId);
 app.post('/api/create-ride', ridesController.createRide)
 
 //Boat Endpoints
 app.post("/api/create-boat", boatController.createBoat);
+app.post("/api/boat/:driverId", boatController.getBoatByDriverId);
 app.put("/api/edit-boat", boatController.editBoat);
 
 //Ride Request Endpoints

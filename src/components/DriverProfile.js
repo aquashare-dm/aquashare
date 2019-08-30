@@ -68,15 +68,15 @@ class DriverProfile extends Component {
         return (
             <div className="mainAppWindow">
                 <section className="normalPageContainer">
-                    {this.state.editing ? (
-                        <div style={{visibility: !this.props.navMenuOpen?"visible":"hidden", display: "flex", justifyContent: "center", alignItems: "center"}}>
-                            <section className="profilePageWhiteBox" style={{ height: "72%", width: "90vw" }}>
+                    <section className="profilePageWhiteBox" style={{ height: "80%"}}>
+                        {this.state.editing ? (
+                            <div style={{visibility: !this.props.navMenuOpen?"visible":"hidden"}}>
                                 <h2 className="mapPageContainerHeader">EDIT PROFILE</h2>
                                 <div className="profilePageContainer">
-                                    <div style={{marginTop: "15vh"}}>
+                                    <div>
                                         <UploadImage action={this.handleUploadedImage} handleImage={this.handleImage} newImageUrl={this.state.newDriverImage} />
                                     </div>
-                                    <div className="ui labeled input labeledInputBox" style={{width: "100%", marginTop: "20%"}}>
+                                    <div className="ui labeled input labeledInputBox" style={{width: "100%", marginTop: "10%"}}>
                                         <div className="ui blue label">First Name</div>
                                         <input onChange={this.handleChange} type="text" name="newDriverFirst" value={newDriverFirst} placeholder="First Name"/>
                                     </div>
@@ -96,14 +96,12 @@ class DriverProfile extends Component {
                                         <button className="ui inverted blue button" style={{marginTop:"5%"}} onClick={this.onSubmitClick}>SUBMIT</button>
                                     </div>
                                 </div>
-                            </section>
-                        </div>
-                    ) : (
-                        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                            <section className="profilePageWhiteBox" style={{ height: "85%", width: "90vw" }}>
+                            </div>
+                        ) : (
+                            <div>
                                 <h2 className="mapPageContainerHeader">PROFILE INFORMATION</h2>
                                 <div className="profilePageContainer">
-                                    <img src={`${this.props.user.driverImage}`} className="profilePageProfPic" style={{height: "20vh", marginTop: "10vh"}}/>
+                                    <img src={`${this.props.user.driverImage}`} className="profilePageProfPic" style={{height: "20vh"}}/>
                                     <h2 className="profilePageH2">{newDriverFirst} {newDriverLast}</h2>
                                     <div className="ui divided selection list" style={{ width: "75%" }}>
                                         <div className="profilePageContentCont">
@@ -120,13 +118,14 @@ class DriverProfile extends Component {
                                                 {this.props.user.driverLicense}
                                             </a>
                                         </div>
-                                        <button className="ui inverted blue button" onClick={this.flipEdit} style={{ marginTop: "5%", marginBottom: "20%" }}>EDIT PROFILE</button>
+                                        <button className="ui inverted blue button" onClick={this.flipEdit} style={{ marginTop: "3%"}}>EDIT PROFILE</button>
+                                        <button className="ui inverted blue button" onClick={() => this.props.history.push('/driver-dashboard/boat-profile')} style={{ marginTop: "5%"}}>VIEW BOAT INFO</button>
                                         {/* <BoatProfile /> */}
                                     </div>
                                 </div>
-                            </section>
-                        </div>
-                    )}
+                            </div>
+                        )}
+                    </section>
                 </section>
             </div>
         );

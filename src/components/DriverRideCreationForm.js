@@ -179,7 +179,7 @@ class DriverRideCreationForm extends Component {
                         <h2 className="mapPageContainerHeader">CREATE A RIDE</h2>
                         <div className="ui labeled input labeledInputBox" style={{ width: "100%" }}>
                             <div className="ui label">Ride Date</div>
-                            <input onChange={this.handleChange} type="date" name="requestDate" value={this.state.requestDate} placeholder="08/31/2019" />
+                            <input onChange={this.handleChange} type="date" name="date" value={this.state.requestDate} placeholder="08/31/2019" />
                         </div>
                         <div className="ui labeled input labeledInputBox" style={{ width: "100%" }}>
                             <div className="ui label">Location</div>
@@ -187,15 +187,11 @@ class DriverRideCreationForm extends Component {
                         </div>
                         <div className="ui labeled input labeledInputBox" style={{ width: "100%" }}>
                             <div className="ui label">Start Time</div>
-                            <input type="time" step="360000" onChange={this.handleChange} name="requestStartTime" value={this.state.startTime} placeholder="8:00" />
+                            <input type="time" step="360000" onChange={this.handleChange} name="startTime" value={this.state.startTime} placeholder="8:00" />
                         </div>
                         <div className="ui labeled input labeledInputBox" style={{ width: "100%" }}>
                             <div className="ui label">End Time</div>
-                            <input type="time" step="360000" onChange={this.handleChange} name="requestEndTime" value={this.state.endTime} placeholder="11:00" />
-                        </div>
-                        <div className="rowContainerSpaceBetween">
-                            <Select className="ui search dropdown dropdownBoxContainer" placeholder="Seats Requested" label="requestSeatNum" options={requestSeatNumOptions} onChange={this.handleDropDownChange}></Select>
-                            <Select className="ui search dropdown dropdownBoxContainer" placeholder="Tier Desired" label="tierId" options={tierIdOptions} onChange={this.handleDropDownChange}></Select>
+                            <input type="time" step="360000" onChange={this.handleChange} name="endTime" value={this.state.endTime} placeholder="11:00" />
                         </div>
                         <div className="labeledInputBox">
                             <button className="ui inverted blue button" onClick={this.createRide}>CREATE A RIDE</button>
