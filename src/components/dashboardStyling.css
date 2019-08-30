@@ -11,6 +11,10 @@
     color: white;
     display: flex;
     flex-direction: column;
+
+    
+    transition-duration: 4s;
+    transition-delay: 2s;
   }
   .navLinkOption:hover {
     color: #fed136;
@@ -21,6 +25,8 @@
     cursor: pointer;
   }
   .hideNavOptionsCont {
+    transition: 1s;
+    left: -400px;
     display: none;
   }
   .hideMobileIconCont {
@@ -72,6 +78,7 @@
     align-items: center;
     text-align: center;
     justify-content: space-between;
+
   }
   .normalPageContainer {
     background: linear-gradient(
