@@ -2,6 +2,7 @@ import axios from "axios";
 import {
     CREATE_BOAT, EDIT_BOAT, RESET_STATE_ON_LOGOUT, GET_BOAT
 } from "./actionTypes.js";
+import { utimes } from "fs";
 
 const initialState = {
     boat: {},
@@ -67,3 +68,16 @@ export default function (state = initialState, action) {
             return state;
     }
 }
+
+
+editDogRating = (rating, id) => {
+    axios
+        .put(`/api/dogs/${id}?newRating=${rating}`)
+        .then(res => {
+            this.setState({ favoriteDogs: res.data });
+        })
+        .catch(err => {
+            console.log('err after update', err);
+        });
+};
+

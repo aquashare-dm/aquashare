@@ -11,7 +11,7 @@ module.exports = {
         let rides = await db.get_rides_by_username(+userId);
         res.send(rides)
     },
-    
+
     getRidesByDriverId: async function (req, res) {
         let { userId } = req.params;
         console.log("req.params", req.params)
