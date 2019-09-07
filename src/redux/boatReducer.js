@@ -70,14 +70,3 @@ export default function (state = initialState, action) {
 }
 
 
-editDogRating = (rating, id) => {
-    axios
-        .put(`/api/dogs/${id}?newRating=${rating}`)
-        .then(res => {
-            this.setState({ favoriteDogs: res.data });
-        })
-        .catch(err => {
-            console.log('err after update', err);
-        });
-};
-
