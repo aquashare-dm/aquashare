@@ -114,6 +114,7 @@
     align-items: center;
     padding: 4%;
     overflow-y: auto;
+    overflow-x: hidden;
   }
   .profilePageProfPic {
     margin-top: 10%;
@@ -137,6 +138,7 @@
     align-items: flex-start;
     margin-bottom: 5%;
     overflow-y: auto;
+    overflow-x: hidden;
   }
   .profilePageH2 {
     font-family: "Montserrat", sans-serif;
