@@ -2,7 +2,6 @@ const stripe = require('stripe')(process.env.REACT_APP_STRIPE_KEY)
 
 module.exports = {
     pay: (req, res) => {
-        console.log('Req stuff',req.params, req.body)
         const db = req.app.get('db')
         const {userId} = req.params
         const {token: {id}, ridePrice, ride_id, newTubeSeatCount, locationLatitude, locationLongitude, radius } = req.body

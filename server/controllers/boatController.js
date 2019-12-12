@@ -40,7 +40,6 @@ module.exports = {
             newTierId
         } = req.body;
         const db = req.app.get("db");
-        console.log(req.body)
         let [boat] = await db.edit_boat([
             driverId,
             newBoatName,
@@ -72,10 +71,8 @@ module.exports = {
 
     getBoatByDriverId: async (req, res) => {
         let { driverId } = req.params
-        console.log("req.body", req.params)
         const db = req.app.get('db')
         let [boat] = await db.get_boat(driverId)
-        console.log("boat returned from sql", boat)
 
         req.session.boat = {
             boatId: boat.boat_id,

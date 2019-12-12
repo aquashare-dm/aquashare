@@ -15,7 +15,6 @@ const initialState = {
 
 export const createRequest = (id, requestDate, locationLatitude, locationLongitude, requestSeatNum, tierId, requestStartTime, requestEndTime, location, requesterCell) => {
     let data = axios.post("/api/create-request", { id, requestDate, locationLatitude, locationLongitude, requestSeatNum, tierId, requestStartTime, requestEndTime, location, requesterCell }).then(res => res.data)
-    console.log('data in requestReducer', data)
     return { type: CREATE_REQUEST, payload: data };
 };
 

@@ -36,7 +36,6 @@ class PastRides extends Component {
     }
 
     render() {
-        console.log("this.props on PastRides", this.props)
         let { ride_date, ride_location, ride_start_time, ride_end_time, tier_id, driver_first_name, driver_last_name, boat_name } = this.props;
         //Calculate ride price to show
         // let ridePrice = 20 + (tier_id * 10);

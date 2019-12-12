@@ -62,7 +62,6 @@ class RiderDashboard extends Component {
     }
     menuClick = () => {
         let { current } = this.navOptionsRowCont;
-        console.log(current.classList);
         if (this.state.navMenuOpen === false) {
             current.classList.add("navOptionsCont");
             current.classList.remove("hideNavOptionsCont");
@@ -95,26 +94,22 @@ class RiderDashboard extends Component {
     // }
 
     checkIfRegistered = () => {
-        console.log("triggered check for rider register");
         if (!this.props.user.riderRating) {
             return this.props.history.push("/rider-dashboard/rider-register")
 
         } else {
-            console.log("user regist, redirect to find a ride")
             return this.props.history.push("/rider-dashboard/find-a-ride")
 
         }
     }
 
     render() {
-        console.log('this.props', this.props)
         let { user } = this.props;
         if (!user.loggedIn) {
             return <Redirect to="/" />
         }
         if (user) {
             if (user.loggedIn && user.isDriver) {
-                console.log("redirect to driver dashboard");
                 return <Redirect to="/driver-dashboard/" />
             }
         }

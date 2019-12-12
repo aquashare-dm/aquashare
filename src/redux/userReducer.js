@@ -44,7 +44,6 @@ export const riderRegister = (riderUsername, riderEmail, riderFirst, riderLast, 
 };
 
 export const editRiderProfile = (riderUsername, newRiderEmail, newRiderFirst, newRiderLast, newRiderImage) => {
-    console.log('hitting edit Rider Profile', newRiderImage)
     let data = axios.put('/api/edit-rider', { riderUsername, newRiderEmail, newRiderFirst, newRiderLast, newRiderImage }).then(res => res.data)
     return { type: EDIT_RIDER_PROFILE, payload: data }
 }
@@ -140,7 +139,6 @@ export default function (state = initialState, action) {
             return { ...state, error: payload }
 
         default:
-            console.log('hitting default')
             return state;
     }
 }

@@ -14,7 +14,6 @@ class AvailableRides extends Component{
         let { locationLatitude, locationLongitude, radius } = this.props.rides.searchCriteria
         if(prevProps !== this.props) {
             this.props.getRides( locationLatitude, locationLongitude, radius)
-            console.log("compDidMount rides are ",this.props.getRides( locationLatitude, locationLongitude, radius))
         }
     }
     
@@ -26,15 +25,14 @@ class AvailableRides extends Component{
         this.props.history.push('/rider-dashboard/request-a-ride')
     }
 
-    getRideData = (rideKey) => {
-        console.log("clicked on ride")
-    }
+    // getRideData = (rideKey) => {
+    //     console.log("clicked on ride")
+    // }
 
     render(){
         let { rides } = this.props.rides
         let { user } = this.props.user
         let { firstDate, secondDate } = this.props.rides.searchCriteria
-        console.log("rides is ", this.rides)
 
         if(!user.loggedIn){
             return <Redirect to="/" />

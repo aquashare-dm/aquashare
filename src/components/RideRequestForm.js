@@ -67,7 +67,6 @@ class RideRequestForm extends Component {
 
         e.preventDefault()
         await this.submitAddressForGeocoding();
-        console.log("this.props.user is ", this.props.user);
         let { requestDate, locationLatitude, locationLongitude, requestSeatNum, tierId, requestStartTime, requestEndTime, location, requesterCell } = this.state;
         let { id } = this.props.user
         let correctedStartTime = this.correctTimeForDatabase(requestStartTime)
