@@ -19,7 +19,6 @@ class DriverTripRequests extends Component {
     }
 
     render() {
-        console.log("Props on request page", this.props)
         let { user } = this.props.user;
         let { requests } = this.props
 
@@ -27,7 +26,6 @@ class DriverTripRequests extends Component {
         if (!user.loggedIn) {
             return <Redirect to="/" />
         }
-        console.log(requests, 'requests')
 
         let requestsDisplay = requests.allRequests.map(request => (
             <DriverTripRequest key={request.request_id} {...request} />

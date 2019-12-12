@@ -51,15 +51,12 @@ export default class UploadImage extends Component {
 
             }
         });
-        console.log("DELETE THIS TEST LINE");
     }
 
     handleOnCropChange = (crop) => {
-        console.log(crop)
         this.setState({ crop: crop })
     }
     render() {
-        console.log('prevProps: ', this.props)
         return (
             <div>
                 <div className="FileUpload">

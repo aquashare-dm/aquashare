@@ -30,7 +30,6 @@ app.post('/api/messages', (req, res) => {
         .then(() => {
             res.send(JSON.stringify({ success: true }));
         })
-    console.log('Hit app.post')
     // .catch(err => {
     //   console.log(err);
     //   res.send(JSON.stringify({ success: false }));
@@ -48,9 +47,6 @@ massive(CONNECTION_STRING).then(db => {
     app.set("db", db);
     app.listen(SERVER_PORT, () => { console.log("Server Listening on Port", SERVER_PORT) });
     console.log("DB connected");
-    // console.log(Date.parse('08/31/19') - 21600000)
-    // console.log(Date.now() + 61200000)
-    // console.log(Date.now() - Date.parse('08/21/19 21:24:00'))
 });
 
 //Rider Endpoints

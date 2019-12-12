@@ -20,7 +20,6 @@ const initialState = {
 
 export const getRides = (locationLatitude, locationLongitude, radius) => {
     let data = axios.post("/api/get-rides", { locationLatitude, locationLongitude, radius }).then(res => res.data)
-    console.log("ride data in reducer is", data);
     return {
         type: GET_RIDES,
         payload: data
@@ -116,7 +115,6 @@ export default function (state = initialState, action) {
             return { ...state, error: payload };
 
         case GET_RIDES_BY_DRIVER_ID + "_FULFILLED":
-            console.log('')
             return { ...state, filteredRides: payload };
         case GET_RIDES_BY_DRIVER_ID + "_REJECTED":
             return { ...state, error: payload };
@@ -126,7 +124,6 @@ export default function (state = initialState, action) {
         case GET_CONFIRMED_RIDES_BY_DRIVER_ID + "_REJECTED":
             return { ...state, error: payload };    
         default:
-            console.log('Hit the default action type')
             return state;
 
     }

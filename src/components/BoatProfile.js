@@ -44,7 +44,6 @@ class BoatProfile extends Component {
 
     handleFormSubmit = (e) => {
         let { newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne, newTubeSeatNumber, newTierId } = this.state
-        console.log("this.props in Boat Profile", this.props)
         this.props.editBoat(this.props.user.user.id, newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne, newTubeSeatNumber, newTierId)
     }
 
@@ -64,7 +63,6 @@ class BoatProfile extends Component {
     }
 
     render() {
-        console.log("This.props on BoatProfile", this.props)
         let { boat } = this.props.boat;
         let { newBoatName, newBoatDescription, newBoatLicense, newBoatRegistration, newBoatMake, newBoatModel, newBoatSeatNumber, newBoatImageOne, newTubeSeatNumber, newTierId } = this.state
         return (

@@ -17,7 +17,6 @@ class DriverCreatedRides extends Component {
 
     render() {
         let { filteredRides } = this.props.rides
-        console.log("user on DriverCreatedRides", this.props.user)
 
         return (
             <div className="mainAppWindow">

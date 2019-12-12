@@ -11,9 +11,9 @@ class TripRequest extends Component {
         }
     }
 
-    buyRide = () => {
-        console.log('Buy a ride button triggered!')
-    }
+    // buyRide = () => {
+    //     console.log('Buy a ride button triggered!')
+    // }
 
     clickedRide = () => {
         let currentSelectedState = this.state.selected;

@@ -48,7 +48,7 @@ class SearchedRides extends Component {
         let { ride_id, ride_open_seats } = this.props
         let { ridePrice } = this.state
         let newTubeSeatCount = ride_open_seats - 1
-        console.log(token)
+        // console.log(token)
         token.card = void 0
         // axios.post(`/api/payment/${userId}`, { token, ridePrice: this.state.ridePrice * 100, ride_id, newTubeSeatCount }).then(res => {
         //     console.log(res)

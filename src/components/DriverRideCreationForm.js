@@ -65,7 +65,6 @@ class DriverRideCreationForm extends Component {
 
     createRide = async () => {
         await this.submitAddressForGeocoding();
-        console.log("this.props is ", this.props);
         let { date, location, locationLatitude, locationLongitude, startTime, endTime } = this.state;
         let correctedStartTime = this.correctTimeForDatabase(startTime)
         let correctedEndTime = this.correctTimeForDatabase(endTime)

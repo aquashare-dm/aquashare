@@ -60,7 +60,6 @@ class DriverDashboard extends Component {
     }
     menuClick = () => {
         let { current } = this.navOptionsRowCont;
-        console.log(current.classList);
         if (this.state.navMenuOpen === false) {
             current.classList.add("navOptionsCont");
             current.classList.remove("hideNavOptionsCont");
@@ -78,8 +77,6 @@ class DriverDashboard extends Component {
     }
     registrationForm = () => {
         let { user } = this.props;
-        console.log("Checking if user registered");
-        console.log("User's rider rating is ", user.driverRating);
         if (user.driverRating < 0 || !user.driverRating) {
             return (
                 <DriverRegistrationForm />
@@ -90,19 +87,16 @@ class DriverDashboard extends Component {
         }
     }
     checkIfRegistered = () => {
-        console.log("triggered check for rider register");
         if (!this.props.user.driverRating) {
             // return <Redirect to="/rider-dashboard/rider-register" />
             return this.props.history.push("/driver-dashboard/driver-register")
 
         } else {
-            console.log("user regist, redirect to find a ride")
             return this.props.history.push("/driver-dashboard/create-a-ride")
             // return(<Redirect to="/rider-dashboard/find-a-ride" />)
         }
     }
     render() {
-        console.log("this.props on DriverDashboard", this.props)
         let { user } = this.props;
         if (!user.loggedIn) {
             return <Redirect to="/" />

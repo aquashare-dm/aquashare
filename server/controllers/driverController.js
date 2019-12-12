@@ -73,9 +73,7 @@ module.exports = {
     driverRegister: async (req, res) => {
         let { driverUsername, driverEmail, driverFirst, driverLast, driverImage, driverLicense, startRating } = req.body;
         const db = req.app.get("db");
-        console.log(req.body)
         let [user] = await db.driver_register([driverUsername, driverEmail, driverFirst, driverLast, driverImage, driverLicense, startRating])
-        console.log("hit driverRegister in controller, user has info: ", user);
         req.session.user = {
             isDriver: true,
             driverUsername: user.driver_username,
@@ -121,7 +119,6 @@ module.exports = {
         const db = req.app.get('db');
         let { rating, rideId, riderId } = req.body
         let result = await db.rate_rider([rating, rideId, riderId])
-        console.log('Driver rating result', result)
         res.status(200).send(result)
     },
 }
